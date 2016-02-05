@@ -78,15 +78,6 @@ namespace Shooter {
 
             // TODO: Add your update logic here
 
-            time += gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (time > interval) {
-                time = time % interval; // or while (time > interval) time -= interval;
-            }else {
-                SuppressDraw();
-                base.Update(gameTime);
-                return;
-            }
         }
 
         /// <summary>
@@ -98,6 +89,7 @@ namespace Shooter {
             spriteBatch.Begin();
             spriteBatch.Draw(sprite,r, Color.White);
             spriteBatch.End();
+            
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
