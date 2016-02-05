@@ -10,6 +10,13 @@ namespace Shooter {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //TEMPORARY ASSET OBJECTS
+        double interval = 1d / 60; // draw and do heavy updates only 60 frames per second
+        double time;
+
+        private Texture2D sprite;
+        private Rectangle r = new Rectangle(0,0,200,200);
+
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -34,7 +41,7 @@ namespace Shooter {
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            sprite = Content.Load<Texture2D>("sm");
             // TODO: use this.Content to load your game content here
         }
 
@@ -52,12 +59,34 @@ namespace Shooter {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+            //exit the window with esc key
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            //WASD movement controls
+            if (Keyboard.GetState().IsKeyDown(Keys.W)) {
+                r.Y -= 2;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A)) {
+                r.X -= 2;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S)) {
+                r.Y += 2;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D)) {
+                r.X += 2;
+            }
 
             // TODO: Add your update logic here
 
-            base.Update(gameTime);
+            time += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (time > interval) {
+                time = time % interval; // or while (time > interval) time -= interval;
+            }else {
+                SuppressDraw();
+                base.Update(gameTime);
+                return;
+            }
         }
 
         /// <summary>
@@ -66,7 +95,9 @@ namespace Shooter {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(sprite,r, Color.White);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
