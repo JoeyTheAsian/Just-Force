@@ -14,6 +14,5 @@ namespace Shooter.Entities {
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
         }
-
     }
 }

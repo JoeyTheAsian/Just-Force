@@ -10,6 +10,7 @@ namespace Shooter {
     ///main type for the game
 
     public class Game1 : Game {
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
