@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45DC0341-F658-47FA-B863-8A856D0548D3}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Shooter</RootNamespace>
     <AssemblyName>Shooter</AssemblyName>
@@ -37,8 +37,17 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Character.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="FPSHandling.cs" />
+    <Compile Include="Map\Coord.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Map\Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,10 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\sm.png">
+    <Content Include="Content\NoTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\XMLFile1.xml" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

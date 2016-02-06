@@ -23,5 +23,4 @@ C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
-C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\sm.png
-C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\UrbanJungle.ttf
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
