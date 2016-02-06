@@ -1,4 +1,4 @@
-# GDAPS-GAME-
+# GDAPS-GAME
 <b>10:28 am 2-1-16: Joey Tong</b> <ul><li>Created repository</li></ul>
 
 <b>12:24 pm 2-5-16: Joey Tong</b> <ul><li>Game skeleton, Rendering sprite, basic WASD movement</li></ul>
