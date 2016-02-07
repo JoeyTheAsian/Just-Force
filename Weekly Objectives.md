@@ -11,6 +11,6 @@
 <li>Come up with good feeling acceleration movement formula</li>
 <li>Sketch up the various menu interfaces on paper and implement as code allows</li></ul>
 <b>Anthony Olivares:</b><ul><li>Write game premise and story in detail</li>
-<li>Create possible game skills, mechanics, etc. that we have no discussed</li>
+<li>Create possible game skills, mechanics, etc. that we have not discussed</li>
 <li>Create characters, come up with rough idea of map design for at least 3 levels</li>
 <li>Consult with all members of the group to confirm feasibility of designs</li></ul>
