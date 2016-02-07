@@ -24,3 +24,4 @@ C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAsse
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteTexture.png
