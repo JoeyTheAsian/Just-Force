@@ -12,17 +12,20 @@ namespace Shooter.Entities {
 
         //STORES GLOBAL LOCATION "loc" = location
         protected Coord loc;
-
+        //direction the entity is pointed, 0.0 degrees is facing upwards
+        protected double direction;
         //Collision boolean, determines if you can walk through entity
         protected bool collision;
 
         //stores entity's texture
         protected Texture2D entTexture;
 
+        //default constructor
         public Entity(ContentManager content) {
             loc = new Coord();
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
+            direction = 0.0;
         }
 
         //parameters: pass in game content manager, x coord, y coord, texture file name
@@ -37,12 +40,26 @@ namespace Shooter.Entities {
             //set coordinates
             loc.X = x;
             loc.Y = y;
+            
+            direction = 0.0;
         }
-        public Entity(ContentManager content, double x, double y, string t, bool c) {
-            entTexture = content.Load<Texture2D>(t);
+        public Entity(ContentManager content, double x, double y, double dir, string t, bool c) {
+            //try to set texture to specified name
+            try {
+                entTexture = content.Load<Texture2D>(t);
+            } catch (FileNotFoundException) {
+                entTexture = content.Load<Texture2D>("NoTexture");
+                Console.WriteLine(t + "Not found. Using default texture.");
+            }
             loc.X = x;
             loc.Y = y;
             collision = c;
+            //direction can only be an angle from 0 - 360
+            if (dir >= 360 || dir < 0) {
+                throw new IndexOutOfRangeException();
+            } else {
+                direction = dir;
+            }
         }
 
 
@@ -50,6 +67,9 @@ namespace Shooter.Entities {
         public Texture2D EntTexture{
             get{
                 return entTexture;
+            }
+            set {
+                entTexture = value;
             }
         }
 

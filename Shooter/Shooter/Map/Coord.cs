@@ -14,8 +14,12 @@ namespace Shooter {
             x = 0.0;
             y = 0.0;
         }
-        //parameterized constructor
+        //parameterized constructors
         public Coord(int X, int Y) {
+            x = X;
+            y = Y;
+        }
+        public Coord(double X, double Y) {
             x = X;
             y = Y;
         }

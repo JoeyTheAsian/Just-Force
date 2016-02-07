@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Shooter.Entities;
+using Shooter.GameMap;
 using System;
 using System.Collections.Generic;
 
@@ -17,9 +18,12 @@ namespace Shooter {
         //FPS related objects
         private FPSHandling FPSHandler = new FPSHandling();
 
+
         //TEMPORARY ASSET OBJECTS________________________________________________________________
         private Entity sprite;
         private Rectangle r = new Rectangle(0,0,200,200);
+        private Map m = new Map();
+        private Texture2D[,] CurrentMap;
         //_______________________________________________________________________________________
 
         //Height and width of the monitor
@@ -30,11 +34,15 @@ namespace Shooter {
         protected double time;
 
         public Game1() {
-            
+
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
+
+            this.IsMouseVisible = true;
+            //set window size to screen size
             graphics.PreferredBackBufferHeight = ScreenHeight;
             graphics.PreferredBackBufferWidth = ScreenWidth;
+
             Content.RootDirectory = "Content";
             
         }
@@ -49,6 +57,7 @@ namespace Shooter {
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
             //set the game update rate to 120 hz
             base.TargetElapsedTime = System.TimeSpan.FromSeconds(1.0f / 120.0f);
         }
@@ -61,6 +70,8 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprite = new Entity(Content);
+            //create texture map the same size as map object and copy over textures
+            
             //use this.Content to load your game content here
         }
 
@@ -83,6 +94,8 @@ namespace Shooter {
                 Exit();
 
             //UPDATE LOGIC_____________________________________________________________________________________________________________
+
+            //CONTROLS_____________________________________
             //WASD movement controls
             if (Keyboard.GetState().IsKeyDown(Keys.W)) {
                 r.Y -= 2;
@@ -97,17 +110,14 @@ namespace Shooter {
                 r.X += 2;
             }
 
-
             //update current fps sample
             if(gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
                 FPSHandler.AddSample(FPSHandler.frames);
                 FPSHandler.frames = 0;
-            }
-            //update FPS
-            if (gameTime.TotalGameTime.TotalMilliseconds % 3000 == 0) {
+                //update FPS
                 FPSHandler.UpdateFPS();
             }
-            FPSHandler.frames++;
+
         }
 
         /// <summary>
@@ -118,7 +128,20 @@ namespace Shooter {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             //drawing code
             spriteBatch.Begin();
-            spriteBatch.Draw(sprite.EntTexture,r, Color.White);
+
+            //draw the map THIS MUST COME BEFORE ALL ENTITIES_________________________________________________________________
+            for (int i = 0; i < m.TileMap.GetLength(0); i++) {
+                for (int j = 0; j < m.TileMap.GetLength(1); j++) {
+                    //super sloppy code, just for testing purposes
+                    spriteBatch.Draw(Content.Load<Texture2D>(m.TileMap[i, j]),
+                        new Rectangle(100 * i, 100 * j, 100, 100), Color.White);
+                }
+            }
+            //draw entities___________________________________________________________________________________________________
+            //draw the temporary player 
+                spriteBatch.Draw(sprite.EntTexture, r, Color.White);
+            //add frame to frame counter
+            FPSHandler.frames++;
             spriteBatch.End();
 
             base.Draw(gameTime);
