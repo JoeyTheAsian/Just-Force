@@ -1,5 +1,7 @@
 <h1><b><u>Objectives for week 01 of development: 2-7-16 DEADLINE 2-14-16</u></b></h1>
-<b>Joey Tong:</b> Get map editor and some assets created. Implement entities
+<b>Joey Tong:<b><ul><li> Get map editor and some assets created.</li>
+<li>Implement entities</li>
+<li>Assist in coding game skeleton, esp graphical</li>
 <b>Austin Ford:</b><ul><li>Implement rotational rendering for entities</li>
 <li>map scrolling</li>
 <li>developer's console</li>
