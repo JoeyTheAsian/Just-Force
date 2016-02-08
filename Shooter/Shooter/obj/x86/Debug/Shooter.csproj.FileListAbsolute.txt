@@ -24,4 +24,9 @@ C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAsse
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
-C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteTexture.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt Copy.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteCorner.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteEdge.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\LaneLine.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Concrete.png

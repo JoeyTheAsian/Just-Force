@@ -21,9 +21,9 @@ namespace Shooter {
 
         //TEMPORARY ASSET OBJECTS________________________________________________________________
         private Entity sprite;
-        private Rectangle r = new Rectangle(0,0,200,200);
-        private Map m = new Map();
-        private Texture2D[,] CurrentMap;
+        private Rectangle r = new Rectangle(0, 0, 200, 200);
+        private Map m;
+
         //_______________________________________________________________________________________
 
         //Height and width of the monitor
@@ -70,8 +70,9 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprite = new Entity(Content);
+            m = new Map(Content);
             //create texture map the same size as map object and copy over textures
-            
+
             //use this.Content to load your game content here
         }
 
@@ -133,8 +134,8 @@ namespace Shooter {
             for (int i = 0; i < m.TileMap.GetLength(0); i++) {
                 for (int j = 0; j < m.TileMap.GetLength(1); j++) {
                     //super sloppy code, just for testing purposes
-                    spriteBatch.Draw(Content.Load<Texture2D>(m.TileMap[i, j]),
-                        new Rectangle(100 * i, 100 * j, 100, 100), Color.White);
+                    spriteBatch.Draw(m.TileMap[i, j],
+                        new Rectangle(i*m.TileSize, j*m.TileSize , m.TileSize, m.TileSize), Color.White);
                 }
             }
             //draw entities___________________________________________________________________________________________________
