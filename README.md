@@ -19,6 +19,6 @@
 <li> <b>Known Issue: frame rate is locked to about 55 and not very well optimizded, we should consider unlocking</b></li></ul>              			  
                             
 <b>3:59 pm 2-7-16 Anthony Olivares</b>
-<li>Added a story section to the design document </li>
+<ul><li>Added a story section to the design document </li></ul>
 <b>7:30pm 2-7-16: Joey Tong</b><ul><li>fixed implementation of map class to be more useful and changed map rendering pattern</li>
 <li>added and updated several tile textures: Concrete.png, Asphalt.png, ConcreteCorner.png, ConcreteEdge,png, LaneLine.png</li></ul>
