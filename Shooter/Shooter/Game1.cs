@@ -101,7 +101,7 @@ namespace Shooter {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
             //exit the window with esc key
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             //UPDATE LOGIC_____________________________________________________________________________________________________________
@@ -152,9 +152,12 @@ namespace Shooter {
             //draw the map THIS MUST COME BEFORE ALL ENTITIES_________________________________________________________________
             for (int i = 0; i < m.TileMap.GetLength(0); i++) {
                 for (int j = 0; j < m.TileMap.GetLength(1); j++) {
-                    //super sloppy code, just for testing purposes
+                    
                     spriteBatch.Draw(m.TileMap[i, j],
-                        new Rectangle((int)((global.X*m.TileSize)+ (i * m.TileSize) + .5), (int)((global.Y*m.TileSize) + (j * m.TileSize) + .5), m.TileSize, m.TileSize), Color.White);
+                        //X value and Y value are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
+                        new Rectangle((int)((global.X*m.TileSize)+ (i * m.TileSize) + .5), 
+                                      (int)((global.Y*m.TileSize) + (j * m.TileSize) + .5), 
+                                      m.TileSize, m.TileSize), Color.White);
                 }
             }
             //draw entities___________________________________________________________________________________________________
@@ -169,7 +172,6 @@ namespace Shooter {
             spriteBatch.End();
 
             base.Draw(gameTime);
-
         }
     }
 }
