@@ -20,3 +20,5 @@
                             
 <b>3:59 pm 2-7-16 Anthony Olivares</b>
 <li>Added a story section to the design document </li>
+<b>7:30pm 2-7-16: Joey Tong</b><ul><li>fixed implementation of map class to be more useful</li>
+<li>added and updated several tile textures: Concrete.png, Asphalt.png, ConcreteCorner.png, ConcreteEdge,png, LaneLine.png</li>
