@@ -19,16 +19,19 @@ namespace Shooter {
         private FPSHandling FPSHandler = new FPSHandling();
 
 
-        //TEMPORARY ASSET OBJECTS________________________________________________________________
-        private Entity sprite;
-        private Rectangle r = new Rectangle(0, 0, 200, 200);
-        private Map m;
 
-        //_______________________________________________________________________________________
 
         //Height and width of the monitor
         private int ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         private int ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+
+        //TEMPORARY ASSET OBJECTS________________________________________________________________
+        private Entity sprite;
+        private Rectangle r = new Rectangle(0, 0, 200, 200);
+        private Map m;
+        private Coord global;
+        private double MoveFactor;
+        //_______________________________________________________________________________________
 
         //game time
         protected double time;
@@ -70,7 +73,14 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprite = new Entity(Content);
+
             m = new Map(Content);
+
+            global = new Coord(0,0);
+
+            sprite.Loc.Y = sprite.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
+            sprite.Loc.X = sprite.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
+            MoveFactor = 5.0 / m.TileSize; //Pixels moved over tilesize
             //create texture map the same size as map object and copy over textures
 
             //use this.Content to load your game content here
@@ -99,16 +109,28 @@ namespace Shooter {
             //CONTROLS_____________________________________
             //WASD movement controls
             if (Keyboard.GetState().IsKeyDown(Keys.W)) {
-                r.Y -= 2;
+
+                global.Y += MoveFactor;
+                sprite.Loc.Y = global.Y - MoveFactor * 2 + (ScreenHeight / 2) / m.TileSize;
+
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A)) {
-                r.X -= 2;
+
+                global.X += MoveFactor;
+                sprite.Loc.X = global.X - MoveFactor * 2 + (ScreenWidth / 2) / m.TileSize;
+
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S)) {
-                r.Y += 2;
+
+                global.Y -= MoveFactor;
+                sprite.Loc.Y = global.Y + MoveFactor * 2 + (ScreenHeight / 2) / m.TileSize;
+
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D)) {
-                r.X += 2;
+
+                global.X -= MoveFactor;
+                sprite.Loc.X = global.X + MoveFactor * 2 + (ScreenWidth / 2) / m.TileSize;
+
             }
 
             //update current fps sample
@@ -118,7 +140,6 @@ namespace Shooter {
                 //update FPS
                 FPSHandler.UpdateFPS();
             }
-
         }
 
         /// <summary>
@@ -135,12 +156,17 @@ namespace Shooter {
                 for (int j = 0; j < m.TileMap.GetLength(1); j++) {
                     //super sloppy code, just for testing purposes
                     spriteBatch.Draw(m.TileMap[i, j],
-                        new Rectangle(i*m.TileSize, j*m.TileSize , m.TileSize, m.TileSize), Color.White);
+                        new Rectangle((int)((global.X*m.TileSize)+ (i * m.TileSize)), (int)((global.Y*m.TileSize) + j * m.TileSize), m.TileSize, m.TileSize), Color.White);
                 }
             }
             //draw entities___________________________________________________________________________________________________
             //draw the temporary player 
-                spriteBatch.Draw(sprite.EntTexture, r, Color.White);
+            for (int i = 0; i < 1; i++){
+                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(sprite.Loc.X * m.TileSize), (int)(sprite.Loc.Y * m.TileSize), m.TileSize, m.TileSize), Color.White);
+
+            }
+            Console.WriteLine(global.X + "," + global.Y);
+            Console.WriteLine(sprite.Loc.X + "," + sprite.Loc.Y);
             //add frame to frame counter
             FPSHandler.frames++;
             spriteBatch.End();

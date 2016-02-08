@@ -11,14 +11,15 @@ namespace Shooter.GameMap {
 
         protected Texture2D[,] tileMap;
         //tiles are 100px by 100px, use this variable for everything related to tile scaling
-        int tileSize = 100;
+        int tileSize = 200;
 
         //default map constructor, makes a concrete bitmap with nothing on it
         public Map(ContentManager content) {
             tileMap = new Texture2D[20, 35];
+            //loops through entire tileMap array and sets each value to concrete
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
-                    tileMap[i, j] = content.Load<Texture2D>("Concrete");
+                    tileMap[i, j] = content.Load<Texture2D>("LaneLine");
                 }
             }
         }

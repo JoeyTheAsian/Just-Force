@@ -22,7 +22,7 @@ namespace Shooter.Entities {
 
         //default constructor
         public Entity(ContentManager content) {
-            loc = new Coord();
+            loc = new Coord(0,0);
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
             direction = 0.0;
@@ -72,10 +72,17 @@ namespace Shooter.Entities {
                 entTexture = value;
             }
         }
-
+        public Coord Loc{
+            get{
+                return loc;
+            }
+            set{
+                loc = value;
+            }
+        }
         //MOVEMENT
         //moves entity "x" by "y" units
-        public void Move(int x, int y) {
+        public void Move(double x, double y) {
             loc.X += x;
             loc.Y += y;
         }
@@ -83,28 +90,28 @@ namespace Shooter.Entities {
         public void MoveUp() {
             loc.Y -= 1;
         }
-        public void MoveUp(int p) {
+        public void MoveUp(double p) {
             loc.Y -= p;
         }
         //_________________________
         public void MoveDown() {
             loc.Y += 1;
         }
-        public void MoveDown(int p) {
+        public void MoveDown(double p) {
             loc.Y += p;
         }
         //_________________________
         public void MoveLeft() {
             loc.X -= 1;
         }
-        public void MoveLeft(int p) {
+        public void MoveLeft(double p) {
             loc.X -= 1;
         }
         //_________________________
         public void MoveRight() {
             loc.X += 1;
         }
-        public void MoveRight(int p) {
+        public void MoveRight(double p) {
             loc.X += p;
         }
     }
