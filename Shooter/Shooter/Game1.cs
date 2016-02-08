@@ -109,27 +109,25 @@ namespace Shooter {
             //CONTROLS_____________________________________
             //WASD movement controls
             if (Keyboard.GetState().IsKeyDown(Keys.W)) {
-
                 global.Y += MoveFactor;
-                sprite.Loc.Y = global.Y - MoveFactor * 2 + (ScreenHeight / 2) / m.TileSize;
-
+                sprite.Loc.Y -= MoveFactor;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A)) {
 
                 global.X += MoveFactor;
-                sprite.Loc.X = global.X - MoveFactor * 2 + (ScreenWidth / 2) / m.TileSize;
+                sprite.Loc.X -= MoveFactor;
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S)) {
 
                 global.Y -= MoveFactor;
-                sprite.Loc.Y = global.Y + MoveFactor * 2 + (ScreenHeight / 2) / m.TileSize;
+                sprite.Loc.Y += MoveFactor;
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D)) {
 
                 global.X -= MoveFactor;
-                sprite.Loc.X = global.X + MoveFactor * 2 + (ScreenWidth / 2) / m.TileSize;
+                sprite.Loc.X += MoveFactor;
 
             }
 
@@ -156,14 +154,13 @@ namespace Shooter {
                 for (int j = 0; j < m.TileMap.GetLength(1); j++) {
                     //super sloppy code, just for testing purposes
                     spriteBatch.Draw(m.TileMap[i, j],
-                        new Rectangle((int)((global.X*m.TileSize)+ (i * m.TileSize)), (int)((global.Y*m.TileSize) + j * m.TileSize), m.TileSize, m.TileSize), Color.White);
+                        new Rectangle((int)((global.X*m.TileSize)+ (i * m.TileSize) + .5), (int)((global.Y*m.TileSize) + (j * m.TileSize) + .5), m.TileSize, m.TileSize), Color.White);
                 }
             }
             //draw entities___________________________________________________________________________________________________
             //draw the temporary player 
             for (int i = 0; i < 1; i++){
-                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(sprite.Loc.X * m.TileSize), (int)(sprite.Loc.Y * m.TileSize), m.TileSize, m.TileSize), Color.White);
-
+                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), Color.White);
             }
             Console.WriteLine(global.X + "," + global.Y);
             Console.WriteLine(sprite.Loc.X + "," + sprite.Loc.Y);
