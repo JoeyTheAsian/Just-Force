@@ -22,3 +22,5 @@
 <ul><li>Added a story section to the design document </li></ul>
 <b>7:30pm 2-7-16: Joey Tong</b><ul><li>fixed implementation of map class to be more useful and changed map rendering pattern</li>
 <li>added and updated several tile textures: Concrete.png, Asphalt.png, ConcreteCorner.png, ConcreteEdge,png, LaneLine.png</li></ul>
+<b>11:20 am 2-8-16: Joey Tong</b>
+<ul><li>Implemented Map scrolling</li></ul>
