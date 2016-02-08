@@ -19,10 +19,10 @@
 <li> <b>Known Issue: frame rate is locked to about 55 and not very well optimizded, we should consider unlocking</b></li></ul>              			  
                             
 <b>3:59 pm 2-7-16 Anthony Olivares</b>
-<ul><li>Added a story section to the design document </li></ul>
+<ul><li>Added a story section to the design document <b>Issue: File was not pushed to repo</b></li></ul>
 <b>7:30pm 2-7-16: Joey Tong</b><ul><li>fixed implementation of map class to be more useful and changed map rendering pattern</li>
 <li>added and updated several tile textures: Concrete.png, Asphalt.png, ConcreteCorner.png, ConcreteEdge,png, LaneLine.png</li></ul>
 <b>11:20 am 2-8-16: Joey Tong</b>
-<ul><li>Implemented Map scrolling</li>
+<ul><li>Implemented Map scrolling (during class in lab)</li>
 <li><b>Known Issue: Poor optimization of map rendering, need to implement ambient occlusion</b></ul>
 
