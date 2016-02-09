@@ -2,9 +2,9 @@
 <b>Joey Tong:</b><ul><li> Get map editor and some assets created.</li>
 <li>Implement entities</li>
 <li>Assist in coding game skeleton, esp graphical</li></ul>
-<b>Austin Ford:</b><ul><li>Implement rotational rendering for entities</li>
-<li>map scrolling</li>
-<li>developer's console</li>
+<b>Austin Ford:</b><ul><li>Implement rotation for entities and mouse tracking for player</li>
+<strike><li>implement map scrolling</li></strike>
+<li>developer's console & some commands</li>
 <li>move FPS handling to new command-based console</li>
 <li>Create hierarchal screen rendering structure</li></ul>
 <b>Connor Cummings:</b><ul><li> Map basic controls as mechanics are implemented</li>
