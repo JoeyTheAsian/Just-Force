@@ -24,5 +24,9 @@
 <li>added and updated several tile textures: Concrete.png, Asphalt.png, ConcreteCorner.png, ConcreteEdge,png, LaneLine.png</li></ul>
 <b>11:20 am 2-8-16: Joey Tong</b>
 <ul><li>Implemented Map scrolling (during class in lab)</li>
-<li><b>Known Issue: Poor optimization of map rendering, need to implement ambient occlusion</b></ul>
+<strike><li><b>Known Issue: Poor optimization of map rendering, need to implement ambient occlusion</b></ul></strike>
+<b>12:30 am 2-9-16: Joey Tong</b>
+<ul><li>Fixed optimization issues with rendering TileMap and implemented ambient occlusion</li>
+<li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li></ul>
+<li><b>Issue: Game will need load screens in the near future as total assets being loaded onto the ram are increasing rapidly with implementation</b></li></ul>
 
