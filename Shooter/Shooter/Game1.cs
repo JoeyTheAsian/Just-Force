@@ -80,7 +80,7 @@ namespace Shooter {
 
             sprite.Loc.Y = sprite.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
             sprite.Loc.X = sprite.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
-            MoveFactor = 5.0 / m.TileSize; //Pixels moved over tilesize
+            MoveFactor = 7.0 / m.TileSize; //Pixels moved over tilesize
             //create texture map the same size as map object and copy over textures
 
             //use this.Content to load your game content here
@@ -146,27 +146,59 @@ namespace Shooter {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            //min and max x & y tiles rendered
+            int Xmax;
+            int Ymax;
+            int Xmin;
+            int Ymin;
+
             //drawing code
             spriteBatch.Begin();
 
-            //draw the map THIS MUST COME BEFORE ALL ENTITIES_________________________________________________________________
-            for (int i = 0; i < m.TileMap.GetLength(0); i++) {
-                for (int j = 0; j < m.TileMap.GetLength(1); j++) {
-                    
-                    spriteBatch.Draw(m.TileMap[i, j],
-                        //X value and Y value are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
-                        new Rectangle((int)((global.X*m.TileSize)+ (i * m.TileSize) + .5), 
-                                      (int)((global.Y*m.TileSize) + (j * m.TileSize) + .5), 
-                                      m.TileSize, m.TileSize), Color.White);
+            //takes the inverted sign of coordinates x,y because global coordinates are inverted.
+            //Minimum bound is where the screen begins, maximum bound is where the screen ends. Implementation of ambient occlusion to save memory
+            //+/- 1 tile buffer to make sure non-whole edges of screen are never empty
+
+            //set max
+            if ((int)((global.X * -1) + (ScreenWidth / m.TileSize) + 1.5) < m.TileMap.GetLength(0)) {
+                Xmax = (int)((global.X * -1) + (ScreenWidth / m.TileSize) + 1.5);
+            } else {
+                Xmax = m.TileMap.GetLength(0);
+            } if ((int)((global.Y * -1) + (ScreenHeight / m.TileSize) + 1.5) < m.TileMap.GetLength(1)) {
+                Ymax = (int)((global.Y * -1) + (ScreenHeight / m.TileSize) + 2.5);
+            } else {
+                Ymax = m.TileMap.GetLength(1);
+            }
+            //set min
+            if ((int)((global.X * -1)) > 0) {
+                Xmin = (int)((global.X * - 1) - 1.5);
+            } else {
+                Xmin = 0;
+            } if ((int)((global.Y * -1)) > 0) {
+                Ymin = (int)((global.Y * - 1) - 1.5);
+            } else {
+                Ymin = 0;
+            }
+
+            //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
+
+            for (int i = Xmin; i < Xmax; i++) {   
+                for (int j = Ymin; j < Ymax; j++) {
+                    //draw the tile
+                        spriteBatch.Draw(m.TileMap[i, j],
+                                        //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
+                                        new Rectangle((int)((global.X * m.TileSize) + (i * m.TileSize) + .5),
+                                                      (int)((global.Y * m.TileSize) + (j * m.TileSize) + .5),
+                                                      m.TileSize, m.TileSize), Color.White);
                 }
             }
             //draw entities___________________________________________________________________________________________________
-            //draw the temporary player 
+            //draw the player model
             for (int i = 0; i < 1; i++){
                 spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), Color.White);
             }
-            Console.WriteLine(global.X + "," + global.Y);
-            Console.WriteLine(sprite.Loc.X + "," + sprite.Loc.Y);
+
             //add frame to frame counter
             FPSHandler.frames++;
             spriteBatch.End();
