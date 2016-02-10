@@ -36,3 +36,7 @@
 <li>Added two spritefonts so far, both arial for the time being, one in size 14 and the other in size 20</li>
 <li>The text "Testing text" appears at point (0,0) and remains there as the map moves</li>
 <li>Also changed the key input to allow for keypress and for when the keys are held down, the sound and escape are keypress while movement is still keydown</li></ul>
+<b>12:57 pm 2-10-16: Joey Tong</b>
+<ul><li>Moved implementation of ambient occlusion calculations to separate class called "TileBounds.cs"</li>
+<li>Changed spriteFont render on top left to show current FPS</li>
+<li>Changed default background color from CornFlowerBlue to Black</li></ul>
