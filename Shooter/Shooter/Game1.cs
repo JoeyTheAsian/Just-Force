@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using Shooter.Entities;
 using Shooter.GameMap;
 using System;
@@ -14,6 +15,15 @@ namespace Shooter {
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        //Creates a new spritefont
+        SpriteFont arial;
+
+        //A list for all of the soundeffects so we can add more in as we go
+        List<SoundEffect> soundEffects;
+
+        //A keyboard state object to get the keyboard old keyboard state
+        KeyboardState oldState;
 
         //FPS related objects
         private FPSHandling FPSHandler = new FPSHandling();
@@ -40,6 +50,12 @@ namespace Shooter {
 
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
+
+            //Initializes the list of sound effects
+            soundEffects = new List<SoundEffect>();
+
+            //Initializes the keyboard state object
+            oldState = Keyboard.GetState();
 
             this.IsMouseVisible = true;
             //set window size to screen size
@@ -74,6 +90,13 @@ namespace Shooter {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprite = new Entity(Content);
 
+            //Loads in the arial font file
+            arial = Content.Load<SpriteFont>("Arial20Bold");
+
+            //adds and loads the first soundeffect object object, a gunshot
+            //The gunshot file is a public domain file
+            soundEffects.Add(Content.Load<SoundEffect>("gunshot"));
+
             m = new Map(Content);
 
             global = new Coord(0,0);
@@ -100,39 +123,53 @@ namespace Shooter {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+            //Creates another keyboard state object to hold the new state
+            KeyboardState state = Keyboard.GetState();
+
             //exit the window with esc key
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //Checks to see if the key is just pressed and not held down
+            if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape))
                 Exit();
 
             //UPDATE LOGIC_____________________________________________________________________________________________________________
 
             //CONTROLS_____________________________________
             //WASD movement controls
-            if (Keyboard.GetState().IsKeyDown(Keys.W)) {
+            if (oldState.IsKeyDown(Keys.W)) {
                 global.Y += MoveFactor;
                 sprite.Loc.Y -= MoveFactor;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A)) {
+            if (oldState.IsKeyDown(Keys.A)) {
 
                 global.X += MoveFactor;
                 sprite.Loc.X -= MoveFactor;
 
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S)) {
+            if (oldState.IsKeyDown(Keys.S)) {
 
                 global.Y -= MoveFactor;
                 sprite.Loc.Y += MoveFactor;
 
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D)) {
+            if (oldState.IsKeyDown(Keys.D)) {
 
                 global.X -= MoveFactor;
                 sprite.Loc.X += MoveFactor;
 
             }
 
+            //Checks to see if the key is just pressed and not held down
+            if (state.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
+            {
+                //Plays a new instance of the first audio file which is the gunshot
+                soundEffects[0].CreateInstance().Play();
+            }
+
+            //Updates the old state with what the current state is
+            oldState = state;
+
             //update current fps sample
-            if(gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
+            if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
                 FPSHandler.AddSample(FPSHandler.frames);
                 FPSHandler.frames = 0;
                 //update FPS
@@ -198,6 +235,9 @@ namespace Shooter {
             for (int i = 0; i < 1; i++){
                 spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), Color.White);
             }
+
+            //Draws a spritefont at postion 0,0 on the screen
+            spriteBatch.DrawString(arial, "Testing text", new Vector2(0, 0), Color.Red);
 
             //add frame to frame counter
             FPSHandler.frames++;
