@@ -80,7 +80,7 @@ namespace Shooter {
 
             sprite.Loc.Y = sprite.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
             sprite.Loc.X = sprite.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
-            MoveFactor = 7.0 / m.TileSize; //Pixels moved over tilesize
+            MoveFactor = 10.0 / m.TileSize; //Pixels moved over tilesize
             //create texture map the same size as map object and copy over textures
 
             //use this.Content to load your game content here

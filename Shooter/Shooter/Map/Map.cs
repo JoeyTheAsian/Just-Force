@@ -19,7 +19,7 @@ namespace Shooter.GameMap {
             //loops through entire tileMap array and sets each value to concrete
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
-                    tileMap[i, j] = content.Load<Texture2D>("Asphalt");
+                    tileMap[i, j] = content.Load<Texture2D>("ConcreteCorner");
                 }
             }
         }
