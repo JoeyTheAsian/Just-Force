@@ -131,8 +131,9 @@ namespace Shooter {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
-            //Creates another keyboard state object to hold the new state
+            //Creates another keyboard & mouse state objects to hold the new states
             KeyboardState state = Keyboard.GetState();
+            MouseState mState = Mouse.GetState();
 
             //exit the window with esc key
             //Checks to see if the key is just pressed and not held down
@@ -221,7 +222,7 @@ namespace Shooter {
             }
 
             //Draws a spritefont at postion 0,0 on the screen
-            spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Red);
+            spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
             //add frame to frame counter
             FPSHandler.frames++;
