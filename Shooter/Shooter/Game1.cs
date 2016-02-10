@@ -193,13 +193,10 @@ namespace Shooter {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.Black);
 
-            //min and max x & y tiles rendered
-
-
             //drawing code
             spriteBatch.Begin();
 
-            //use Tilebounds findBounds method to find the tiles that are actually in the game window
+            //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
             tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1) , ScreenWidth, ScreenHeight);
 
             //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
