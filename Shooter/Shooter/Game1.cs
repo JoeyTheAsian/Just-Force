@@ -2,10 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using Shooter.Entities;
-using Shooter.GameMap;
+using Shooter.MapClasses;
+using Shooter.Tools;
 using System;
 using System.Collections.Generic;
+
 
 namespace Shooter {
     ///main type for the game
@@ -14,6 +17,15 @@ namespace Shooter {
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        //Creates a new spritefont
+        SpriteFont arial;
+
+        //A list for all of the soundeffects so we can add more in as we go
+        List<SoundEffect> soundEffects;
+
+        //A keyboard state object to get the keyboard old keyboard state
+        KeyboardState oldState;
 
         //FPS related objects
         private FPSHandling FPSHandler = new FPSHandling();
@@ -31,6 +43,7 @@ namespace Shooter {
         private Map m;
         private Coord global;
         private double MoveFactor;
+        private TileBounds tb;
         //_______________________________________________________________________________________
 
         //game time
@@ -40,6 +53,12 @@ namespace Shooter {
 
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
+
+            //Initializes the list of sound effects
+            soundEffects = new List<SoundEffect>();
+
+            //Initializes the keyboard state object
+            oldState = Keyboard.GetState();
 
             this.IsMouseVisible = true;
             //set window size to screen size
@@ -74,8 +93,20 @@ namespace Shooter {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprite = new Entity(Content);
 
+            //Loads in the arial font file
+            arial = Content.Load<SpriteFont>("Arial20Bold");
+
+            //adds and loads the first soundeffect object object, a gunshot
+            //The gunshot file is a public domain file
+            soundEffects.Add(Content.Load<SoundEffect>("gunshot"));
+
+            //create default tilebounds object
+            tb = new TileBounds();
+
+            //create map and pass in contentmanager
             m = new Map(Content);
 
+            //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
             sprite.Loc.Y = sprite.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
@@ -100,39 +131,53 @@ namespace Shooter {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+            //Creates another keyboard state object to hold the new state
+            KeyboardState state = Keyboard.GetState();
+
             //exit the window with esc key
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //Checks to see if the key is just pressed and not held down
+            if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape))
                 Exit();
 
             //UPDATE LOGIC_____________________________________________________________________________________________________________
 
             //CONTROLS_____________________________________
             //WASD movement controls
-            if (Keyboard.GetState().IsKeyDown(Keys.W)) {
+            if (oldState.IsKeyDown(Keys.W)) {
                 global.Y += MoveFactor;
                 sprite.Loc.Y -= MoveFactor;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A)) {
+            if (oldState.IsKeyDown(Keys.A)) {
 
                 global.X += MoveFactor;
                 sprite.Loc.X -= MoveFactor;
 
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S)) {
+            if (oldState.IsKeyDown(Keys.S)) {
 
                 global.Y -= MoveFactor;
                 sprite.Loc.Y += MoveFactor;
 
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D)) {
+            if (oldState.IsKeyDown(Keys.D)) {
 
                 global.X -= MoveFactor;
                 sprite.Loc.X += MoveFactor;
 
             }
 
+            //Checks to see if the key is just pressed and not held down
+            if (state.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
+            {
+                //Plays a new instance of the first audio file which is the gunshot
+                soundEffects[0].CreateInstance().Play();
+            }
+
+            //Updates the old state with what the current state is
+            oldState = state;
+
             //update current fps sample
-            if(gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
+            if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
                 FPSHandler.AddSample(FPSHandler.frames);
                 FPSHandler.frames = 0;
                 //update FPS
@@ -148,43 +193,18 @@ namespace Shooter {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //min and max x & y tiles rendered
-            int Xmax;
-            int Ymax;
-            int Xmin;
-            int Ymin;
+
 
             //drawing code
             spriteBatch.Begin();
 
-            //takes the inverted sign of coordinates x,y because global coordinates are inverted.
-            //Minimum bound is where the screen begins, maximum bound is where the screen ends. Implementation of ambient occlusion to save memory
-            //+/- 1 tile buffer to make sure non-whole edges of screen are never empty
-
-            //set max
-            if ((int)((global.X * -1) + (ScreenWidth / m.TileSize) + 1.5) < m.TileMap.GetLength(0)) {
-                Xmax = (int)((global.X * -1) + (ScreenWidth / m.TileSize) + 1.5);
-            } else {
-                Xmax = m.TileMap.GetLength(0);
-            } if ((int)((global.Y * -1) + (ScreenHeight / m.TileSize) + 1.5) < m.TileMap.GetLength(1)) {
-                Ymax = (int)((global.Y * -1) + (ScreenHeight / m.TileSize) + 2.5);
-            } else {
-                Ymax = m.TileMap.GetLength(1);
-            }
-            //set min
-            if ((int)((global.X * -1)) > 0) {
-                Xmin = (int)((global.X * - 1) - 1.5);
-            } else {
-                Xmin = 0;
-            } if ((int)((global.Y * -1)) > 0) {
-                Ymin = (int)((global.Y * - 1) - 1.5);
-            } else {
-                Ymin = 0;
-            }
+            //use Tilebounds findBounds method to find the tiles that are actually in the game window
+            tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1) , ScreenWidth, ScreenHeight);
 
             //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
-
-            for (int i = Xmin; i < Xmax; i++) {   
-                for (int j = Ymin; j < Ymax; j++) {
+            //loop through only the tiles that are actually in the window with bounds in tilebounds object
+            for (int i = tb.Xmin; i < tb.Xmax; i++) {   
+                for (int j = tb.Ymin; j < tb.Ymax; j++) {
                     //draw the tile
                         spriteBatch.Draw(m.TileMap[i, j],
                                         //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
@@ -193,11 +213,15 @@ namespace Shooter {
                                                       m.TileSize, m.TileSize), Color.White);
                 }
             }
+
             //draw entities___________________________________________________________________________________________________
             //draw the player model
             for (int i = 0; i < 1; i++){
                 spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), Color.White);
             }
+
+            //Draws a spritefont at postion 0,0 on the screen
+            spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Red);
 
             //add frame to frame counter
             FPSHandler.frames++;

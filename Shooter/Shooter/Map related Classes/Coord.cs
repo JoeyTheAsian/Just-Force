@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Shooter {
+namespace Shooter.MapClasses {
     //Coordinate class, object type that stores a pair of coordinates on the global map
     class Coord {
         //x and y values

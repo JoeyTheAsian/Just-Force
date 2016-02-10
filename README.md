@@ -24,5 +24,15 @@
 <li>added and updated several tile textures: Concrete.png, Asphalt.png, ConcreteCorner.png, ConcreteEdge,png, LaneLine.png</li></ul>
 <b>11:20 am 2-8-16: Joey Tong</b>
 <ul><li>Implemented Map scrolling (during class in lab)</li>
-<li><b>Known Issue: Poor optimization of map rendering, need to implement ambient occlusion</b></ul>
+<strike><li><b>Known Issue: Poor optimization of map rendering, need to implement ambient occlusion</b></ul></strike>
+<b>12:30 am 2-9-16: Joey Tong</b>
+<ul><li>Fixed optimization issues with rendering TileMap and implemented ambient occlusion</li>
+<li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li>
+<li><b>Issue: Game will need load screens in the near future as total assets being loaded onto the ram are increasing rapidly with implementation</b></li></ul>
 
+<b>10.07 pm 2-9-16: Austin Ford</b>
+<ul><li>Added sprite font and a list for holding sound effects for the time being</li>
+<li>Press "x" to hear the sound effect, right now it is just a gunshot</li>
+<li>Added two spritefonts so far, both arial for the time being, one in size 14 and the other in size 20</li>
+<li>The text "Testing text" appears at point (0,0) and remains there as the map moves</li>
+<li>Also changed the key input to allow for keypress and for when the keys are held down, the sound and escape are keypress while movement is still keydown</li></ul>

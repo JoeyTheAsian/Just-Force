@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Shooter.GameMap {
+namespace Shooter.MapClasses {
     class Map {
 
         protected Texture2D[,] tileMap;
