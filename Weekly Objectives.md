@@ -4,6 +4,7 @@
 <li>Assist in coding game skeleton, esp graphical</li></ul>
 <b>Austin Ford:</b><ul><li>Implement rotation for entities and mouse tracking for player</li>
 <strike><li>implement map scrolling</li></strike>
+<strike><li>implement spritefonts</li></strike>
 <li>developer's console & some commands</li>
 <li>move FPS handling to new command-based console</li>
 <li>Create hierarchal screen rendering structure</li></ul>
