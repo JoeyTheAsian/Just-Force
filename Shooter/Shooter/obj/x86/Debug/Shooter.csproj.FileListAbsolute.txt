@@ -134,3 +134,4 @@ C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
+C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png

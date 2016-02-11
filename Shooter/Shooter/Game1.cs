@@ -49,10 +49,27 @@ namespace Shooter {
         private Map m;
         private Coord global;
         private TileBounds tb;
+        private Texture2D startButton;
+        private Vector2 startButtonPosition;
+        private Texture2D exitButton;
+        private Vector2 exitButtonPosition;
+        private Texture2D pauseButton;
+        private Vector2 pauseButtonPosition;
+        private Texture2D resumeButton;
+        private Vector2 resumeButtonPosition;
+        private Texture2D loadscreen;
+        private bool isloading = false;
+        enum Gamestate {
+            StartMenu,
+            Loading,
+            Playing,
+            Paused
+        }
         //_______________________________________________________________________________________
 
         //game time
         protected double time;
+        private Gamestate gamestate;
 
         public Game1() {
 
@@ -84,6 +101,16 @@ namespace Shooter {
         protected override void Initialize() {
             // TODO: Add your initialization logic here
 
+            //enable mouse pointer
+            IsMouseVisible = true;
+
+            //set position of start button
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
+
+            //set game to start on start menu
+            gamestate = Gamestate.StartMenu;
+
+
             base.Initialize();
 
             //set the game update rate to 120 hz
@@ -98,6 +125,10 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprite = new Entity(Content);
+
+
+            startButton = Content.Load<Texture2D>("button-start");
+            exitButton = Content.Load<Texture2D>("exitbutton");
 
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
@@ -214,6 +245,9 @@ namespace Shooter {
             //drawing code
             spriteBatch.Begin();
 
+            //draw start button
+            spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+
             //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
             tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1) , ScreenWidth, ScreenHeight);
 
@@ -248,6 +282,11 @@ namespace Shooter {
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+        void LoadGame() {
+
+            
+            //startButtonPosition = new Vector2
         }
     }
 }
