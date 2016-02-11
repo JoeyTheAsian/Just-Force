@@ -23,8 +23,10 @@ namespace Shooter {
 
         //A list for all of the soundeffects so we can add more in as we go
         List<SoundEffect> soundEffects;
+
         //A queue for all soundeffects to be played
-        Queue<SoundEffect> curSounds;
+        private Queue<SoundEffect> curSounds;
+        private Queue<Entity> sprites;
 
         //A keyboard state object to get the keyboard old keyboard state
         KeyboardState oldState;
@@ -44,11 +46,16 @@ namespace Shooter {
         private int ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         private int ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
+        //ParentConvertor object, converts child objects of entity to entity objects for drawing to the screen
+        ParentConvertor convertor = new ParentConvertor();
+
         //TEMPORARY ASSET OBJECTS________________________________________________________________
-        private Entity sprite;
+
+        private Character player;
         private Map m;
         private Coord global;
         private TileBounds tb;
+        
         //_______________________________________________________________________________________
 
         //game time
@@ -97,7 +104,6 @@ namespace Shooter {
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            sprite = new Entity(Content);
 
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
@@ -112,14 +118,19 @@ namespace Shooter {
             //create map and pass in contentmanager
             m = new Map(Content);
 
+            //creates the player
+            player = new Character(Content);
+
             //creates the currently pending sound queue
             curSounds = new Queue<SoundEffect>();
+            //creates the currently pending entity queue
+            sprites = new Queue<Entity>();
 
             //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
-            sprite.Loc.Y = sprite.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
-            sprite.Loc.X = sprite.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
+            player.Loc.Y = player.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
+            player.Loc.X = player.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
             MoveFactor = 10.0 / m.TileSize; //Pixels moved over tilesize
             Maxvelocity = 20.0 / m.TileSize;
             //create texture map the same size as map object and copy over textures
@@ -127,7 +138,7 @@ namespace Shooter {
             //use this.Content to load your game content here
 
             //Sets up the origin postion based off the rectangle position
-            originPos = new Vector2((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)));
+            originPos = new Vector2((int)(((global.X + player.Loc.X) * m.TileSize)), (int)(((global.Y + player.Loc.Y) * m.TileSize)));
         }
 
         /// <summary>
@@ -159,21 +170,21 @@ namespace Shooter {
             //WASD movement controls
                 if (state.IsKeyDown(Keys.W)){
                     global.Y += MoveFactor;
-                    sprite.Loc.Y -= MoveFactor;
+                    player.Loc.Y -= MoveFactor;
                 }
                 if (state.IsKeyDown(Keys.A)){
 
                     global.X += MoveFactor;
-                    sprite.Loc.X -= MoveFactor;
+                    player.Loc.X -= MoveFactor;
                 }
                 if (state.IsKeyDown(Keys.S)){
 
                     global.Y -= MoveFactor;
-                    sprite.Loc.Y += MoveFactor;
+                    player.Loc.Y += MoveFactor;
                 }
                 if (state.IsKeyDown(Keys.D)){
                     global.X -= MoveFactor;
-                    sprite.Loc.X += MoveFactor;
+                    player.Loc.X += MoveFactor;
                 }
                 if (state.IsKeyDown(Keys.LeftShift) || state.IsKeyDown(Keys.RightShift)){
                      MoveFactor = Maxvelocity;
@@ -182,7 +193,7 @@ namespace Shooter {
                 MoveFactor = 10.0 / m.TileSize;
                 }
             //Checks to see if the key is just pressed and not held down
-            if (oldMState.RightButton == ButtonState.Pressed && mState.RightButton == ButtonState.Released){
+            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
                 //Plays a new instance of the first audio file which is the gunshot
                 curSounds.Enqueue(soundEffects[0]);
 
@@ -193,7 +204,10 @@ namespace Shooter {
             oldMState = mState;
 
             //Updates the rotation position by getting the angle between two points
-            sprite.Direction = (double)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
+            player.Direction = (double)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
+
+            //Enqueue player to be rendered
+            sprites.Enqueue(player);
 
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
@@ -233,7 +247,7 @@ namespace Shooter {
             //draw entities___________________________________________________________________________________________________
             //draw the player model
             for (int i = 0; i < 1; i++){
-                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, (float)sprite.Direction, originPos, SpriteEffects.None, 0);
+                spriteBatch.Draw(player.EntTexture, new Rectangle((int)(((global.X + player.Loc.X) * m.TileSize)), (int)(((global.Y + player.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
             }
 
             //Draws a spritefont at postion 0,0 on the screen
