@@ -185,6 +185,7 @@ namespace Shooter {
             if (oldMState.RightButton == ButtonState.Pressed && mState.RightButton == ButtonState.Released){
                 //Plays a new instance of the first audio file which is the gunshot
                 curSounds.Enqueue(soundEffects[0]);
+
             }
 
             //Updates the old state with what the current state is
