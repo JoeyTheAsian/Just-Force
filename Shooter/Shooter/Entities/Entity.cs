@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Shooter.Entities {
     class Entity {
-
         //STORES GLOBAL LOCATION "loc" = location
         protected Coord loc;
         //direction the entity is pointed, 0.0 degrees is facing upwards
@@ -80,6 +79,10 @@ namespace Shooter.Entities {
             set{
                 loc = value;
             }
+        }
+        public double Direction {
+            get { return direction; }
+            set { direction = value; }
         }
         //MOVEMENT
         //moves entity "x" by "y" units

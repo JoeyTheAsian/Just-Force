@@ -48,5 +48,9 @@ namespace Shooter.Entities {
                 direction = dir;
             }
         }
+        public Projectile Shoot(ContentManager content) {
+            Projectile p = new Projectile(content, loc.X, loc.Y, Direction, 30.0, "NoTexture", true);
+            return p;
+        }
     }
 }

@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45DC0341-F658-47FA-B863-8A856D0548D3}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Shooter</RootNamespace>
     <AssemblyName>Shooter</AssemblyName>
@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\ParentConvertor.cs" />
     <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Testing Tools\FPSHandling.cs" />
     <Compile Include="Map related Classes\Coord.cs" />

@@ -23,16 +23,18 @@ namespace Shooter {
 
         //A list for all of the soundeffects so we can add more in as we go
         List<SoundEffect> soundEffects;
+        //A queue for all soundeffects to be played
+        Queue<SoundEffect> curSounds;
 
         //A keyboard state object to get the keyboard old keyboard state
         KeyboardState oldState;
+        MouseState oldMState;
 
         //FPS related objects
         private FPSHandling FPSHandler = new FPSHandling();
 
         //Origin vector and rotation variable for rotating the object
         Vector2 originPos;
-        float rotate;
 
         //control related objects
         private double MoveFactor;
@@ -44,7 +46,6 @@ namespace Shooter {
 
         //TEMPORARY ASSET OBJECTS________________________________________________________________
         private Entity sprite;
-        private Rectangle r = new Rectangle(0, 0, 200, 200);
         private Map m;
         private Coord global;
         private TileBounds tb;
@@ -61,8 +62,9 @@ namespace Shooter {
             //Initializes the list of sound effects
             soundEffects = new List<SoundEffect>();
 
-            //Initializes the keyboard state object
+            //Initializes the state objects
             oldState = Keyboard.GetState();
+            oldMState = Mouse.GetState();
 
             this.IsMouseVisible = true;
             //set window size to screen size
@@ -110,6 +112,9 @@ namespace Shooter {
             //create map and pass in contentmanager
             m = new Map(Content);
 
+            //creates the currently pending sound queue
+            curSounds = new Queue<SoundEffect>();
+
             //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
@@ -152,54 +157,42 @@ namespace Shooter {
 
             //CONTROLS_____________________________________
             //WASD movement controls
-                if (oldState.IsKeyDown(Keys.W))
-                {
-
+                if (state.IsKeyDown(Keys.W)){
                     global.Y += MoveFactor;
                     sprite.Loc.Y -= MoveFactor;
-
                 }
-                if (oldState.IsKeyDown(Keys.A))
-                {
+                if (state.IsKeyDown(Keys.A)){
 
                     global.X += MoveFactor;
                     sprite.Loc.X -= MoveFactor;
-
                 }
-                if (oldState.IsKeyDown(Keys.S))
-                {
+                if (state.IsKeyDown(Keys.S)){
 
                     global.Y -= MoveFactor;
                     sprite.Loc.Y += MoveFactor;
-
                 }
-                if (oldState.IsKeyDown(Keys.D))
-                {
-
+                if (state.IsKeyDown(Keys.D)){
                     global.X -= MoveFactor;
                     sprite.Loc.X += MoveFactor;
-
                 }
-                if (oldState.IsKeyDown(Keys.LeftShift) || oldState.IsKeyDown(Keys.RightShift))
-                {
+                if (state.IsKeyDown(Keys.LeftShift) || state.IsKeyDown(Keys.RightShift)){
                      MoveFactor = Maxvelocity;
                 }
-                else
-                {
+                else{
                 MoveFactor = 10.0 / m.TileSize;
                 }
             //Checks to see if the key is just pressed and not held down
-            if (state.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
-            {
+            if (oldMState.RightButton == ButtonState.Pressed && mState.RightButton == ButtonState.Released){
                 //Plays a new instance of the first audio file which is the gunshot
-                soundEffects[0].CreateInstance().Play();
+                curSounds.Enqueue(soundEffects[0]);
             }
 
             //Updates the old state with what the current state is
             oldState = state;
+            oldMState = mState;
 
             //Updates the rotation position by getting the angle between two points
-            rotate = (float)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
+            sprite.Direction = (double)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
 
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
@@ -239,12 +232,16 @@ namespace Shooter {
             //draw entities___________________________________________________________________________________________________
             //draw the player model
             for (int i = 0; i < 1; i++){
-                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, rotate, originPos, SpriteEffects.None, 0);
+                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, (float)sprite.Direction, originPos, SpriteEffects.None, 0);
             }
 
             //Draws a spritefont at postion 0,0 on the screen
             spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS + " " + originPos, new Vector2(0, 0), Color.Yellow);
 
+            //play all enqueued sound effects
+            for(int i = 0; i < curSounds.Count; i++) {
+                curSounds.Dequeue().Play();
+            }
             //add frame to frame counter
             FPSHandler.frames++;
             spriteBatch.End();
