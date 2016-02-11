@@ -42,7 +42,7 @@
 <li>Changed default background color from CornFlowerBlue to Black</li></ul>
 
 
-<b>11:11 pm 2-10-2016: Connor Cummings<b>
+<b>11:11 pm 2-10-2016: Connor Cummings</b>
 <ul><li>Implemented Sprint Button (Press and hold Shift)</li>
 <li>Created MaxVelocity variable to use for sprint and normal movment acceleration </li></ul>
 
