@@ -51,3 +51,10 @@
 <li>Added two new variables, one for origin, one for rotation</li>
 <li>Changed the spritebatch draw to alllow for rotation</li></ul>
 
+<b>6:09 pm 2-10-16: Joey Tong</b>
+<ul><li>Added curSounds queue and modified implementation of sound effects to be able to play any number of sounds that are enqueued</li>
+<li>changed sprite entity to an entity queue that contains all the pending entities to be rendered</li>
+<li>created a "Character" object called player which now holds all of the player data</li>
+<li>changed activation button for sound effect to LMB</li>
+<li>added "ParentConvertor" that has methods that take a child of entity and convert it to an entity object for rendering</li>
+<li>added Shoot method to character that creates a new projectile</li></ul>
