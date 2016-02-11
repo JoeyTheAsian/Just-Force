@@ -41,13 +41,13 @@
 <li>Changed spriteFont render on top left to show current FPS</li>
 <li>Changed default background color from CornFlowerBlue to Black</li></ul>
 
-<<<<<<< HEAD
-11:11 pm 2-10-2016: Connor Cummings
-Implemented Sprint Button (Press and hold Shift)
-Created MaxVelocity variable to use for sprint and normal movment acceleration 
-=======
+
+<b>11:11 pm 2-10-2016: Connor Cummings<b>
+<ul><li>Implemented Sprint Button (Press and hold Shift)</li>
+<li>Created MaxVelocity variable to use for sprint and normal movment acceleration </li></ul>
+
 <b>8:08 pm 2-10-16: Austin Ford</b>
 <ul><li>Added to rotation to the player</li>
 <li>Added two new variables, one for origin, one for rotation</li>
 <li>Changed the spritebatch draw to alllow for rotation</li></ul>
->>>>>>> origin/master
+
