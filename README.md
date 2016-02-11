@@ -40,3 +40,7 @@
 <ul><li>Moved implementation of ambient occlusion calculations to separate class called "TileBounds.cs"</li>
 <li>Changed spriteFont render on top left to show current FPS</li>
 <li>Changed default background color from CornFlowerBlue to Black</li></ul>
+
+11:11 pm 2-10-2016: Connor Cummings
+Implemented Sprint Button (Press and hold Shift)
+Created MaxVelocity variable to use for sprint and normal movment acceleration 

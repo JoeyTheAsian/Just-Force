@@ -34,8 +34,9 @@ namespace Shooter {
         Vector2 originPos;
         float rotate;
 
-
-
+        //control related objects
+        private double MoveFactor;
+        private double Maxvelocity;
 
         //Height and width of the monitor
         private int ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
@@ -46,7 +47,6 @@ namespace Shooter {
         private Rectangle r = new Rectangle(0, 0, 200, 200);
         private Map m;
         private Coord global;
-        private double MoveFactor;
         private TileBounds tb;
         //_______________________________________________________________________________________
 
@@ -116,6 +116,7 @@ namespace Shooter {
             sprite.Loc.Y = sprite.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
             sprite.Loc.X = sprite.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
             MoveFactor = 10.0 / m.TileSize; //Pixels moved over tilesize
+            Maxvelocity = 20.0 / m.TileSize;
             //create texture map the same size as map object and copy over textures
 
             //use this.Content to load your game content here
@@ -151,29 +152,42 @@ namespace Shooter {
 
             //CONTROLS_____________________________________
             //WASD movement controls
-            if (oldState.IsKeyDown(Keys.W)) {
-                global.Y += MoveFactor;
-                sprite.Loc.Y -= MoveFactor;
-            }
-            if (oldState.IsKeyDown(Keys.A)) {
+                if (oldState.IsKeyDown(Keys.W))
+                {
 
-                global.X += MoveFactor;
-                sprite.Loc.X -= MoveFactor;
+                    global.Y += MoveFactor;
+                    sprite.Loc.Y -= MoveFactor;
 
-            }
-            if (oldState.IsKeyDown(Keys.S)) {
+                }
+                if (oldState.IsKeyDown(Keys.A))
+                {
 
-                global.Y -= MoveFactor;
-                sprite.Loc.Y += MoveFactor;
+                    global.X += MoveFactor;
+                    sprite.Loc.X -= MoveFactor;
 
-            }
-            if (oldState.IsKeyDown(Keys.D)) {
+                }
+                if (oldState.IsKeyDown(Keys.S))
+                {
 
-                global.X -= MoveFactor;
-                sprite.Loc.X += MoveFactor;
+                    global.Y -= MoveFactor;
+                    sprite.Loc.Y += MoveFactor;
 
-            }
+                }
+                if (oldState.IsKeyDown(Keys.D))
+                {
 
+                    global.X -= MoveFactor;
+                    sprite.Loc.X += MoveFactor;
+
+                }
+                if (oldState.IsKeyDown(Keys.LeftShift) || oldState.IsKeyDown(Keys.RightShift))
+                {
+                     MoveFactor = Maxvelocity;
+                }
+                else
+                {
+                MoveFactor = 10.0 / m.TileSize;
+                }
             //Checks to see if the key is just pressed and not held down
             if (state.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
             {
