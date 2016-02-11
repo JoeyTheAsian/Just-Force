@@ -30,6 +30,10 @@ namespace Shooter {
         //FPS related objects
         private FPSHandling FPSHandler = new FPSHandling();
 
+        //Origin vector and rotation variable for rotating the object
+        Vector2 originPos;
+        float rotate;
+
 
 
 
@@ -115,6 +119,9 @@ namespace Shooter {
             //create texture map the same size as map object and copy over textures
 
             //use this.Content to load your game content here
+
+            //Sets up the origin postion based off the rectangle position
+            originPos = new Vector2((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)));
         }
 
         /// <summary>
@@ -177,6 +184,9 @@ namespace Shooter {
             //Updates the old state with what the current state is
             oldState = state;
 
+            //Updates the rotation position by getting the angle between two points
+            rotate = (float)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
+
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
                 FPSHandler.AddSample(FPSHandler.frames);
@@ -215,11 +225,11 @@ namespace Shooter {
             //draw entities___________________________________________________________________________________________________
             //draw the player model
             for (int i = 0; i < 1; i++){
-                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), Color.White);
+                spriteBatch.Draw(sprite.EntTexture, new Rectangle((int)(((global.X + sprite.Loc.X) * m.TileSize)), (int)(((global.Y + sprite.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, rotate, originPos, SpriteEffects.None, 0);
             }
 
             //Draws a spritefont at postion 0,0 on the screen
-            spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
+            spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS + " " + originPos, new Vector2(0, 0), Color.Yellow);
 
             //add frame to frame counter
             FPSHandler.frames++;
