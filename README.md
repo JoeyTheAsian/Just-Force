@@ -30,7 +30,7 @@
 <li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li>
 <li><b>Issue: Game will need load screens in the near future as total assets being loaded onto the ram are increasing rapidly with implementation</b></li></ul>
 
-<b>10.07 pm 2-9-16: Austin Ford</b>
+<b>10:07 pm 2-9-16: Austin Ford</b>
 <ul><li>Added sprite font and a list for holding sound effects for the time being</li>
 <li>Press "x" to hear the sound effect, right now it is just a gunshot</li>
 <li>Added two spritefonts so far, both arial for the time being, one in size 14 and the other in size 20</li>
@@ -41,6 +41,13 @@
 <li>Changed spriteFont render on top left to show current FPS</li>
 <li>Changed default background color from CornFlowerBlue to Black</li></ul>
 
+<<<<<<< HEAD
 11:11 pm 2-10-2016: Connor Cummings
 Implemented Sprint Button (Press and hold Shift)
 Created MaxVelocity variable to use for sprint and normal movment acceleration 
+=======
+<b>8:08 pm 2-10-16: Austin Ford</b>
+<ul><li>Added to rotation to the player</li>
+<li>Added two new variables, one for origin, one for rotation</li>
+<li>Changed the spritebatch draw to alllow for rotation</li></ul>
+>>>>>>> origin/master
