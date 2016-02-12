@@ -59,14 +59,19 @@ namespace Shooter {
         private Map m;
         private Coord global;
         private TileBounds tb;
+<<<<<<< HEAD
         //<<<<<<< HEAD
 
         //=======
         private Gamestate gamestate;
         private Thread backgroundThread;
+=======
+
+>>>>>>> origin/master
         private Texture2D startButton;
         private Vector2 startButtonPosition;
         private Texture2D exitButton;
+        //connor's menu implementation_____________________________________________
         private Vector2 exitButtonPosition;
         private Texture2D pauseButton;
         private Vector2 pauseButtonPosition;
@@ -74,13 +79,17 @@ namespace Shooter {
         private Vector2 resumeButtonPosition;
         private Texture2D loadscreen;
         private bool isloading = false;
+        //_________________________________________________________________________
         enum Gamestate {
             StartMenu,
             Loading,
             Playing,
             Paused
         }
+<<<<<<< HEAD
 //>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> origin/master
         //_______________________________________________________________________________________
 
         //game time
@@ -427,6 +436,7 @@ namespace Shooter {
 
             base.Draw(gameTime);
         }
+<<<<<<< HEAD
         void LoadGame() {
             
             //wait one seconds
@@ -437,5 +447,10 @@ namespace Shooter {
             isloading = true;
 
         }
+=======
+       /* public void LoadGame() {
+            startButtonPosition = new Vector2
+        }*/
+>>>>>>> origin/master
     }
 }
