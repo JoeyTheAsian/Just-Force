@@ -42,8 +42,6 @@ namespace Shooter {
         //control related objects
         private double Maxvelocity;
         private double curVelocity;
-        private double initialTime;
-        private double newTime;
         private double acceleration;
 
         //Height and width of the monitor
@@ -68,10 +66,7 @@ namespace Shooter {
         private Texture2D exitButton;
         //connor's menu implementation_____________________________________________
         private Vector2 exitButtonPosition;
-        private Texture2D pauseButton;
-        private Vector2 pauseButtonPosition;
-        private Texture2D resumeButton;
-        private Vector2 resumeButtonPosition;
+
         private Texture2D loadscreen;
         private bool isloading = false;
         //_________________________________________________________________________
@@ -172,7 +167,6 @@ namespace Shooter {
             player.Loc.Y = player.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
             player.Loc.X = player.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
             Maxvelocity = 20.0 / m.TileSize;
-            initialTime = 0.0;
             acceleration = ((25.0 / m.TileSize) / 1000);
             //create texture map the same size as map object and copy over textures
 
