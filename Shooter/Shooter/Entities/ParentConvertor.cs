@@ -23,7 +23,6 @@ namespace Shooter.Entities {
                     return null;
                 }
             }
-           
         }
         public Entity ToEntity(Projectile p, ContentManager content) {
             Entity newEnt;

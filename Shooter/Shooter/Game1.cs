@@ -59,6 +59,7 @@ namespace Shooter {
         private Texture2D startButton;
         private Vector2 startButtonPosition;
         private Texture2D exitButton;
+        //connor's menu implementation_____________________________________________
         private Vector2 exitButtonPosition;
         private Texture2D pauseButton;
         private Vector2 pauseButtonPosition;
@@ -66,6 +67,7 @@ namespace Shooter {
         private Vector2 resumeButtonPosition;
         private Texture2D loadscreen;
         private bool isloading = false;
+        //_________________________________________________________________________
         enum Gamestate {
             StartMenu,
             Loading,
