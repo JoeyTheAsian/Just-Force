@@ -1,6 +1,6 @@
 <h1><b><u>Objectives for week 01 of development: 2-7-16 DEADLINE 2-14-16</u></b></h1>
-<b>Joey Tong:</b><ul><li> Get map editor and some assets created.</li>
-<li>Implement entities</li>
+<b>Joey Tong:</b><ul><li> Get map and some assets created.</li>
+<strike><li>Implement entities</li></strike>
 <li>Assist in coding game skeleton, esp graphical</li></ul>
 <b>Austin Ford:</b><ul><li>Implement rotation for entities and mouse tracking for player</li>
 <strike><li>implement map scrolling</li></strike>
