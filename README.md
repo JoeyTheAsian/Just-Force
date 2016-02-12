@@ -67,3 +67,8 @@
 
 <b>11:12 am 2-12-16 Anthony Olivares</b>
 <li>Updated design.txt with a section for assets we would need for confirmed levels as well as those that would be needed for other levels, added game name section</li>
+
+5:43pm 2/12/16 Connor Cummings
+Acceleration has been implemented 
+ISSUE: the acceleration jumps 
+Gamestates and start menu are operation and started on loading screen
