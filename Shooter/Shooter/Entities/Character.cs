@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Shooter.MapClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -46,6 +47,10 @@ namespace Shooter.Entities {
             } else {
                 direction = dir;
             }
+        }
+        public Projectile Shoot(ContentManager content) {
+            Projectile p = new Projectile(content, loc.X, loc.Y, Direction, 30.0, "NoTexture", true);
+            return p;
         }
     }
 }
