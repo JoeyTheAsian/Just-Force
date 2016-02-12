@@ -55,9 +55,7 @@ namespace Shooter {
         private Map m;
         private Coord global;
         private TileBounds tb;
-<<<<<<< HEAD
-        
-=======
+
         private Texture2D startButton;
         private Vector2 startButtonPosition;
         private Texture2D exitButton;
@@ -74,7 +72,6 @@ namespace Shooter {
             Playing,
             Paused
         }
->>>>>>> refs/remotes/origin/master
         //_______________________________________________________________________________________
 
         //game time
@@ -300,10 +297,8 @@ namespace Shooter {
 
             base.Draw(gameTime);
         }
-        void LoadGame() {
-
-            
-            //startButtonPosition = new Vector2
-        }
+       /* public void LoadGame() {
+            startButtonPosition = new Vector2
+        }*/
     }
 }
