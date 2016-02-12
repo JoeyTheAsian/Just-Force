@@ -64,3 +64,6 @@
 
 <b>11:04 pm 2-11-16 Anthony Olivares</b>
 <li>Contents of design doc migrated to design.txt, contents revised in terms of story and level design.</li>
+
+<b>11:12 am 2-12-16 Anthony Olivares</b>
+<li>Updated design.txt with a section for assets we would need for confirmed levels as well as those that would be needed for other levels, added game name section</li>
