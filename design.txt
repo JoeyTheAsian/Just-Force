@@ -1,0 +1,56 @@
+* next to items that we should focus on getting into the game
+
+###########
+Weapons:
+###########
+*Knife
+*Handgun
+Scattergun/spreadgun
+Rifle
+Grenade Launcher
+Disc Gun
+*Tommy Gun
+
+
+###########
+Skills:
+###########
+(player can take one per row) (most likely won’t be implemented unless there is extra time)
+
+Row 1:
+Overcharged: Max health is 1, deal double damage  
+Perseverance: Max health increased by 25%, deal only 75% damage
+
+Row 2:
+Focus: Increases stamina usage, sprinting slows time
+Rhinoceros: Sprinting deflects small bullets (up to x amount)
+Blink: Doubles (maybe triples?) stamina usage, grants invincibility during sprinting
+
+Row 3:
+Mug: Melee attacks refill ammo
+Reflex: Melee attacks can reflect bullets
+
+Row 4:
+Drone team: Two drones follow player around and fire at enemies for low damage
+Heavy Bolts: Deal 75% damage, but bullets explode for 25% splash damage
+Extending Arm: Melee attack has longer range, larger and longer-lasting hitbox, and does increased damage
+
+###########
+Story:
+###########
+The main character is John Kinder, a detective in the big city of Longdale. When his hometown of Goldcrest falls under the control of a huge crime ring that kills his wife, he goes back to take revenge and save the town. 
+
+Level 1 - Streets
+The detective is driving into town when some mobsters open fire on his car, having know he was 
+coming. He is forced to get out of his car and head into town on foot.
+
+
+
+###########
+Levels (ideas/general layout impression):
+###########
+-Streets: Large open area without much cover, enemies can enter from buildings along the sides of the street. Will branch out into various alleyways and sidestreets with varying levels of cover/openness. Cover objects could include trash cans, cars, etc.
+
+-Parking garage: Large rooms with sparse cover in the form of infrequently placed cars. Cars could possibly explode after taking too much damage. Can share trash cans, concrete, cars, etc. with streets level.
+
+
