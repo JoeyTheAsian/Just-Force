@@ -58,3 +58,6 @@
 <li>changed activation button for sound effect to LMB</li>
 <li>added "ParentConvertor" that has methods that take a child of entity and convert it to an entity object for rendering</li>
 <li>added Shoot method to character that creates a new projectile</li></ul>
+
+<b>7:43 pm 2-11-16 Anthony Olivares</b>
+<li>Actual changes to design doc. Added names of locations and character for story, level ideas, enemy types, marked items I feel are required for the game</li>
