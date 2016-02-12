@@ -135,5 +135,13 @@ C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
+<<<<<<< HEAD
+C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
+C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exit-button.png
+C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\loadinggraphic.png
+=======
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
+>>>>>>> origin/master
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exit-button.png
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\loadinggraphic.png

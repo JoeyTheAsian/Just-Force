@@ -66,4 +66,9 @@
 <li>Contents of design doc migrated to design.txt, contents revised in terms of story and level design.</li>
 
 <b>11:12 am 2-12-16 Anthony Olivares</b>
-<li>Updated design.txt with a section for assets we would need for confirmed levels as well as those that would be needed for other levels, added game name section</li>
+<ul><li>Updated design.txt with a section for assets we would need for confirmed levels as well as those that would be needed for other levels, added game name section</li></ul>
+
+<b>5:43pm 2/12/16 Connor Cummings</b>
+<ul><li>Acceleration has been implemented</li> 
+<li>ISSUE: the acceleration jumps</li> 
+<li>Gamestates and start menu are operation and started on loading screen</li></ul>
