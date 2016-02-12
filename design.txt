@@ -1,0 +1,84 @@
+* next to basic/required items
+
+###########
+Game Title Ideas:
+###########
+Enforcer
+WrathBlaster
+Just Force
+Covercraze
+
+###########
+Weapons:
+###########
+*Knife
+*Handgun
+Scattergun/spreadgun
+Rifle
+Grenade Launcher
+Disc Gun
+*Tommy Gun
+
+
+###########
+Skills:
+###########
+(player can take one per row) (most likely won’t be implemented unless there is extra time)
+
+Row 1:
+Overcharged: Max health is 1, deal double damage  
+Perseverance: Max health increased by 25%, deal only 75% damage
+
+Row 2:
+Focus: Increases stamina usage, sprinting slows time
+Rhinoceros: Sprinting deflects small bullets (up to x amount)
+Blink: Doubles (maybe triples?) stamina usage, grants invincibility during sprinting
+
+Row 3:
+Mug: Melee attacks refill ammo
+Reflex: Melee attacks can reflect bullets
+
+Row 4:
+Drone team: Two drones follow player around and fire at enemies for low damage
+Heavy Bolts: Deal 75% damage, but bullets explode for 25% splash damage
+Extending Arm: Melee attack has longer range, larger and longer-lasting hitbox, and does increased damage
+
+###########
+Story:
+###########
+The main character is John Kinder, a detective in the big city of Longdale. When his hometown of Goldcrest falls under the control of a huge crime ring that kills his wife, he goes back to take revenge and save the town. 
+
+Level 1 - Streets
+The detective is driving into town when some mobsters open fire on his car, having know he was 
+coming. He is forced to get out of his car and head into town on foot.
+
+
+
+###########
+Levels:
+###########
+-Streets: Large open area without much cover, enemies can enter from buildings along the sides of the street. Will branch out into various alleyways and sidestreets with varying levels of cover/openness. Cover objects could include trash cans, cars, etc.
+
+-Parking garage: Large rooms with sparse cover in the form of infrequently placed cars. Cars could possibly explode after taking too much damage. Can share trash cans, concrete, cars, etc. with streets level.
+
+
+
+###########
+Other level ideas (would require new assets):
+###########
+-Library: Detective could come here looking for information. Would be composed of large rooms divided into narrow passages by bookshelves, giving a lot of horizontal cover but not much room to move around in and leaving player open to attacks from enemies in the same row of shelves.
+
+Required assets: Bookshelves, interior floor/carpeting texture, maybe a desk object
+
+
+
+###########
+Assests (that would be required for currently confirmed levels)
+###########
+-*concrete texture
+-*asphalt / road lines
+-*cars
+-*building fronts / top-down view rooftops
+-*trash cans
+
+-streetlamps? (wouldn't be required but would make it look nicer)
