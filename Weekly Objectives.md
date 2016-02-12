@@ -9,6 +9,7 @@
 <li>move FPS handling to new command-based console</li>
 <strike><li>Create hierarchal screen rendering structure</li></ul></strike>
 <b>Connor Cummings:</b><ul><li> Map basic controls as mechanics are implemented</li>
+<li>research how to create menus and pause the game</li>
 <li>Come up with good feeling acceleration movement formula</li>
 <li>Sketch up the various menu interfaces on paper and implement as code allows</li></ul>
 <b>Anthony Olivares:</b><ul><li>Write game premise and story in detail</li>
