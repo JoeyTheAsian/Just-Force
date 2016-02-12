@@ -1,6 +1,6 @@
 <h1><b><u>Objectives for week 01 of development: 2-7-16 DEADLINE 2-14-16</u></b></h1>
-<strike><li>implement map scrolling</li></strike>
 <b>Joey Tong:</b><ul><strike><li> Get map and some assets created.</li></strike>
+<strike><li>implement map scrolling</li></strike>
 <strike><li>Implement entities</li></strike>
 <li>Assist in coding game skeleton, esp graphical</li></ul>
 <b>Austin Ford:</b><ul><li>Implement rotation for entities and mouse tracking for player</li>
