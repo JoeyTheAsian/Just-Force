@@ -40,8 +40,9 @@ namespace Shooter {
         Vector2 originPos;
 
         //control related objects
-        private double Maxvelocity;
-        private double curVelocity;
+        private double maxVelocity;
+        private double YVelocity;
+        private double XVelocity;
         private double acceleration;
 
         //Height and width of the monitor
@@ -166,8 +167,8 @@ namespace Shooter {
 
             player.Loc.Y = player.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
             player.Loc.X = player.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
-            Maxvelocity = 20.0 / m.TileSize;
-            acceleration = ((25.0 / m.TileSize) / 1000);
+            maxVelocity = 20.0 / m.TileSize;
+            acceleration = ((100.0 / m.TileSize) / 1000);
             //create texture map the same size as map object and copy over textures
 
             //use this.Content to load your game content here
@@ -223,89 +224,130 @@ namespace Shooter {
             //WASD movement controls
 
             //______________________W KEY_____________________________
-            if (state.IsKeyDown(Keys.W)){
-
-                if ((state.IsKeyDown(Keys.W) == true) && (oldState.IsKeyDown(Keys.W) == false)) {
-                    curVelocity = 0;
+            if (state.IsKeyDown(Keys.W)) {
+                //if less than or equal to, increase by acceleration
+                if (YVelocity < maxVelocity) {
+                    YVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
+                    //if above max velocity, set it to max velocity
+                    if (YVelocity > maxVelocity) {
+                        YVelocity = maxVelocity;
+                    }
                 }
 
-                if(curVelocity < Maxvelocity) {
-                    
-                    curVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    global.Y += (curVelocity);
-                    player.Loc.Y -= (curVelocity);
-                }
-            }
-
-            //__________________________________A KEY___________________________________
-            if (state.IsKeyDown(Keys.A)) {
-
-                if ((state.IsKeyDown(Keys.A) == true) && (oldState.IsKeyDown(Keys.A) == false)) {
-                    curVelocity = 0;
-                }
-
-                if (curVelocity < Maxvelocity) {
-
-                    curVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    global.X += (curVelocity);
-                    player.Loc.X -= (curVelocity);
-                }
+                global.Y += YVelocity;
+                player.Loc.Y -= YVelocity;
             }
             //__________________________________S KEY_____________________________________
-            if (state.IsKeyDown(Keys.S)) {
-
-                if ((state.IsKeyDown(Keys.S) == true) && (oldState.IsKeyDown(Keys.S) == false)) {
-                    curVelocity = 0;
+            else if (state.IsKeyDown(Keys.S)) {
+                //if less than or equal to, increase by acceleration
+                if (YVelocity > -1 * maxVelocity) {
+                    YVelocity -= (gameTime.ElapsedGameTime.Milliseconds * acceleration);
+                    //if more, set it to max
+                    if (YVelocity < -1 * maxVelocity) {
+                        YVelocity = -1 * maxVelocity;
+                    }
                 }
 
-                if (curVelocity < Maxvelocity) {
-
-                    curVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    global.Y -= (curVelocity);
-                    player.Loc.Y += (curVelocity);
+                global.Y += YVelocity;
+                player.Loc.Y -= YVelocity;
+            }
+            //decelerate y axis
+            else {
+                if ((state.IsKeyUp(Keys.W)) && YVelocity > 0) {
+                    YVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
+                    if (YVelocity < 0) {
+                        YVelocity = 0;
+                    }
+                    global.Y += YVelocity;
+                    player.Loc.Y -= YVelocity;
+                }
+                if ((state.IsKeyUp(Keys.S)) && YVelocity < 0) {
+                    YVelocity += gameTime.ElapsedGameTime.Milliseconds * acceleration;
+                    if (YVelocity > 0) {
+                        YVelocity = 0;
+                    }
+                    global.Y += YVelocity;
+                    player.Loc.Y -= YVelocity;
                 }
             }
-            //_______________________________D KEY_______________________
-            if (state.IsKeyDown(Keys.D)) {
-
-                if ((state.IsKeyDown(Keys.D) == true) && (oldState.IsKeyDown(Keys.D) == false)) {
-                    curVelocity = 0;
+            //__________________________________A KEY____________________________________
+            if (state.IsKeyDown(Keys.A)) {
+                //if less than or equal to, increase by acceleration
+                if (XVelocity < maxVelocity) {
+                    XVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
+                    //if above max velocity, set it to max velocity
+                    if (XVelocity > maxVelocity) {
+                        XVelocity = maxVelocity;
+                    }
                 }
 
-                if (curVelocity < Maxvelocity) {
+                global.X += XVelocity;
+                player.Loc.X -= XVelocity;
+            }
+            //__________________________________D KEY_____________________________________
+            else if (state.IsKeyDown(Keys.D)) {
+                //if less than or equal to, increase by acceleration
+                if (XVelocity > -1 * maxVelocity) {
+                    XVelocity -= (gameTime.ElapsedGameTime.Milliseconds * acceleration);
+                    //if more, set it to max
+                    if (XVelocity < -1 * maxVelocity) {
+                        XVelocity = -1 * maxVelocity;
+                    }
+                }
 
-                    curVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    global.X -= (curVelocity);
-                    player.Loc.X += (curVelocity);
+                global.X += XVelocity;
+                player.Loc.X -= XVelocity;
+            }
+            //decelerate y axis
+            else {
+                if ((state.IsKeyUp(Keys.A)) && XVelocity > 0) {
+                    XVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
+                    if (XVelocity < 0) {
+                        XVelocity = 0;
+                    }
+                    global.X += XVelocity;
+                    player.Loc.X -= XVelocity;
+                }
+                if ((state.IsKeyUp(Keys.D)) && XVelocity < 0) {
+                    XVelocity += gameTime.ElapsedGameTime.Milliseconds * acceleration;
+                    if (XVelocity > 0) {
+                        XVelocity = 0;
+                    }
+                    global.X += XVelocity;
+                    player.Loc.X -= XVelocity;
                 }
             }
-            else if (state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.S) && state.IsKeyUp(Keys.A) && state.IsKeyUp(Keys.D) && curVelocity > 0) {
-                curVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
 
-            }
-            if (curVelocity < 0) {
-                curVelocity = 0;
-            }
-            /*if (state.IsKeyDown(Keys.A)){
 
-                global.X += MoveFactor;
-                player.Loc.X -= MoveFactor;
-            }
-            if (state.IsKeyDown(Keys.S)){
+            /*//__________________________________A KEY___________________________________
+            if (state.IsKeyDown(Keys.A)) {
 
-                global.Y -= MoveFactor;
-                player.Loc.Y += MoveFactor;
+                if (XVelocity > -1 * maxVelocity) {
+                    XVelocity = -1 * maxVelocity;
+                }
+
+                if (XVelocity <= maxVelocity) {
+                    XVelocity -= (gameTime.ElapsedGameTime.Milliseconds * acceleration);
+                    global.X += (XVelocity);
+                    player.Loc.X -= (XVelocity);
+                }
             }
-            if (state.IsKeyDown(Keys.D)){
-                global.X -= MoveFactor;
-                player.Loc.X += MoveFactor;
-            }
-            if (state.IsKeyDown(Keys.LeftShift) || state.IsKeyDown(Keys.RightShift)){
-                 MoveFactor = Maxvelocity;
-            }
-            else{
-            MoveFactor = 10.0 / m.TileSize;
+
+            //_______________________________D KEY_____________________________________
+            else if (state.IsKeyDown(Keys.D)) {
+
+                if (XVelocity < maxVelocity) {
+                    XVelocity = maxVelocity;
+                }
+                if (XVelocity <= maxVelocity) {
+                    XVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
+                    global.X += (XVelocity);
+                    player.Loc.X -= (XVelocity);
+                }
+            } else if (state.IsKeyUp(Keys.A) && state.IsKeyUp(Keys.D) && XVelocity != 0) {
+                XVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
             }*/
+
 
             //Checks to see if the key is just pressed and not held down
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
