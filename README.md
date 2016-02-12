@@ -61,3 +61,6 @@
 
 <b>7:43 pm 2-11-16 Anthony Olivares</b>
 <li>Actual changes to design doc. Added names of locations and character for story, level ideas, enemy types, marked items I feel are required for the game</li>
+
+<b>11:04 pm 2-11-16 Anthony Olivares</b>
+<li>Contents of design doc migrated to design.txt, contents revised in terms of story and level design.</li>
