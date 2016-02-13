@@ -75,4 +75,5 @@
 
 <b>6:30 pm 2-12-16: Joey Tong</b>
 <ul><li>Fixed acceleration code</li>
+<li>migrated acceleration to external class</li>
 </ul>
