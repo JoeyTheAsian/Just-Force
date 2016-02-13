@@ -37,6 +37,7 @@ C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
@@ -115,3 +116,5 @@ C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> 9c4ae893db18b300694a06b83599394bda19c807

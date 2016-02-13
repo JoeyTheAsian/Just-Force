@@ -60,15 +60,20 @@
 <li>added Shoot method to character that creates a new projectile</li></ul>
 
 <b>7:43 pm 2-11-16 Anthony Olivares</b>
-<li>Actual changes to design doc. Added names of locations and character for story, level ideas, enemy types, marked items I feel are required for the game</li>
+<ul><li>Actual changes to design doc. Added names of locations and character for story, level ideas, enemy types, marked items I feel are required for the game</li></ul>
 
 <b>11:04 pm 2-11-16 Anthony Olivares</b>
-<li>Contents of design doc migrated to design.txt, contents revised in terms of story and level design.</li>
+<ul><li>Contents of design doc migrated to design.txt, contents revised in terms of story and level design.</li></ul>
 
 <b>11:12 am 2-12-16 Anthony Olivares</b>
 <ul><li>Updated design.txt with a section for assets we would need for confirmed levels as well as those that would be needed for other levels, added game name section</li></ul>
 
 <b>5:43pm 2/12/16 Connor Cummings</b>
 <ul><li>Acceleration has been implemented</li> 
-<li>ISSUE: the acceleration jumps</li> 
+<strike><li>ISSUE: the acceleration jumps</li> </strike>
 <li>Gamestates and start menu are operation and started on loading screen</li></ul>
+
+<b>6:30 pm 2-12-16: Joey Tong</b>
+<ul><li>Fixed acceleration code</li>
+<li>migrated acceleration to external class Movement.cs</li>
+</ul>
