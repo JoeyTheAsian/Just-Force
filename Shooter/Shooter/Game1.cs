@@ -171,18 +171,8 @@ namespace Shooter {
             //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
-<<<<<<< HEAD
             player.Loc.Y = (global.Y + (ScreenHeight / 2)) / m.TileSize;
             player.Loc.X = (global.X + (ScreenWidth / 2)) / m.TileSize;
-=======
-            player.Loc.Y = player.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
-            player.Loc.X = player.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
-
-            //movement object, set max velocity and acceleration here
-            double maxVelocity =(20.0 / m.TileSize);
-            double acceleration = ((100.0 / m.TileSize) / 1000);
-            movement = new Movement(maxVelocity, acceleration);
->>>>>>> 9c4ae893db18b300694a06b83599394bda19c807
 
             //movement object, set max velocity and acceleration here
             double maxVelocity =(20.0 / m.TileSize);
@@ -217,13 +207,10 @@ namespace Shooter {
             if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape)) {
                 Exit();
             }
-<<<<<<< HEAD
             if(oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde))
             {
                 consoleTool.OpenInput();
             }
-=======
->>>>>>> 9c4ae893db18b300694a06b83599394bda19c807
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
                 MouseClicked(mState.X, mState.Y);
@@ -265,7 +252,6 @@ namespace Shooter {
 
             }
 
-<<<<<<< HEAD
 
             //Updates the rotation position by getting the angle between two points
             player.Direction = (double)Math.Atan2((double)mState.Y - (int)(((global.Y + player.Loc.Y) * m.TileSize)), (double)mState.X - (int)(((global.X + player.Loc.X) * m.TileSize)));
@@ -274,16 +260,6 @@ namespace Shooter {
             oldState = state;
             oldMState = mState;
 
-=======
-
-            //Updates the rotation position by getting the angle between two points
-            player.Direction = (double)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
-
-            //Updates the old state with what the current state is
-            oldState = state;
-            oldMState = mState;
-
->>>>>>> 9c4ae893db18b300694a06b83599394bda19c807
             //Enqueue player to be rendered
             sprites.Enqueue(player);
 
