@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using Shooter.Controls;
 using Shooter.Entities;
 using Shooter.MapClasses;
 using Shooter.Tools;
@@ -39,11 +40,10 @@ namespace Shooter {
         //Origin vector and rotation variable for rotating the object
         Vector2 originPos;
 
-        //control related objects
-        private double maxVelocity;
+        //input objects
         private double YVelocity;
         private double XVelocity;
-        private double acceleration;
+        private Movement movement;
 
         //Height and width of the monitor
         private int ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
@@ -167,9 +167,11 @@ namespace Shooter {
 
             player.Loc.Y = player.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
             player.Loc.X = player.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
-            maxVelocity = 20.0 / m.TileSize;
-            acceleration = ((100.0 / m.TileSize) / 1000);
-            //create texture map the same size as map object and copy over textures
+
+            //movement object, set max velocity and acceleration here
+            double maxVelocity =(20.0 / m.TileSize);
+            double acceleration = ((100.0 / m.TileSize) / 1000);
+            movement = new Movement(maxVelocity, acceleration);
 
             //use this.Content to load your game content here
 
@@ -223,132 +225,17 @@ namespace Shooter {
             //CONTROLS_____________________________________
             //WASD movement controls
 
-            //______________________W KEY_____________________________
-            if (state.IsKeyDown(Keys.W)) {
-                //if less than or equal to, increase by acceleration
-                if (YVelocity < maxVelocity) {
-                    YVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    //if above max velocity, set it to max velocity
-                    if (YVelocity > maxVelocity) {
-                        YVelocity = maxVelocity;
-                    }
-                }
+            //update the current velocity
+            XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+            YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
 
-                global.Y += YVelocity;
-                player.Loc.Y -= YVelocity;
-            }
-            //__________________________________S KEY_____________________________________
-            else if (state.IsKeyDown(Keys.S)) {
-                //if less than or equal to, increase by acceleration
-                if (YVelocity > -1 * maxVelocity) {
-                    YVelocity -= (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    //if more, set it to max
-                    if (YVelocity < -1 * maxVelocity) {
-                        YVelocity = -1 * maxVelocity;
-                    }
-                }
-
-                global.Y += YVelocity;
-                player.Loc.Y -= YVelocity;
-            }
-            //decelerate y axis
-            else {
-                if ((state.IsKeyUp(Keys.W)) && YVelocity > 0) {
-                    YVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
-                    if (YVelocity < 0) {
-                        YVelocity = 0;
-                    }
-                    global.Y += YVelocity;
-                    player.Loc.Y -= YVelocity;
-                }
-                if ((state.IsKeyUp(Keys.S)) && YVelocity < 0) {
-                    YVelocity += gameTime.ElapsedGameTime.Milliseconds * acceleration;
-                    if (YVelocity > 0) {
-                        YVelocity = 0;
-                    }
-                    global.Y += YVelocity;
-                    player.Loc.Y -= YVelocity;
-                }
-            }
-            //__________________________________A KEY____________________________________
-            if (state.IsKeyDown(Keys.A)) {
-                //if less than or equal to, increase by acceleration
-                if (XVelocity < maxVelocity) {
-                    XVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    //if above max velocity, set it to max velocity
-                    if (XVelocity > maxVelocity) {
-                        XVelocity = maxVelocity;
-                    }
-                }
-
-                global.X += XVelocity;
-                player.Loc.X -= XVelocity;
-            }
-            //__________________________________D KEY_____________________________________
-            else if (state.IsKeyDown(Keys.D)) {
-                //if less than or equal to, increase by acceleration
-                if (XVelocity > -1 * maxVelocity) {
-                    XVelocity -= (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    //if more, set it to max
-                    if (XVelocity < -1 * maxVelocity) {
-                        XVelocity = -1 * maxVelocity;
-                    }
-                }
-
-                global.X += XVelocity;
-                player.Loc.X -= XVelocity;
-            }
-            //decelerate y axis
-            else {
-                if ((state.IsKeyUp(Keys.A)) && XVelocity > 0) {
-                    XVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
-                    if (XVelocity < 0) {
-                        XVelocity = 0;
-                    }
-                    global.X += XVelocity;
-                    player.Loc.X -= XVelocity;
-                }
-                if ((state.IsKeyUp(Keys.D)) && XVelocity < 0) {
-                    XVelocity += gameTime.ElapsedGameTime.Milliseconds * acceleration;
-                    if (XVelocity > 0) {
-                        XVelocity = 0;
-                    }
-                    global.X += XVelocity;
-                    player.Loc.X -= XVelocity;
-                }
-            }
-
-
-            /*//__________________________________A KEY___________________________________
-            if (state.IsKeyDown(Keys.A)) {
-
-                if (XVelocity > -1 * maxVelocity) {
-                    XVelocity = -1 * maxVelocity;
-                }
-
-                if (XVelocity <= maxVelocity) {
-                    XVelocity -= (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    global.X += (XVelocity);
-                    player.Loc.X -= (XVelocity);
-                }
-            }
-
-            //_______________________________D KEY_____________________________________
-            else if (state.IsKeyDown(Keys.D)) {
-
-                if (XVelocity < maxVelocity) {
-                    XVelocity = maxVelocity;
-                }
-                if (XVelocity <= maxVelocity) {
-                    XVelocity += (gameTime.ElapsedGameTime.Milliseconds * acceleration);
-                    global.X += (XVelocity);
-                    player.Loc.X -= (XVelocity);
-                }
-            } else if (state.IsKeyUp(Keys.A) && state.IsKeyUp(Keys.D) && XVelocity != 0) {
-                XVelocity -= gameTime.ElapsedGameTime.Milliseconds * acceleration;
-            }*/
-
-
+            //update the screen & player positions
+            global.X += XVelocity;
+            global.Y += YVelocity;
+            player.Loc.X -= XVelocity;
+            player.Loc.Y -= YVelocity;
+          
+            //Left mouse button to shoot
             //Checks to see if the key is just pressed and not held down
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
                 //Plays a new instance of the first audio file which is the gunshot

@@ -36,3 +36,4 @@ C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
