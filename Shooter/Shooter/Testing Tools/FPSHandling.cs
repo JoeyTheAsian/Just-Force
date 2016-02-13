@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Shooter.Tools {
+namespace Shooter.Testing_Tools {
     class FPSHandling {
-        //stores samples of the frame rates for the past 3 seconds
+        //stores samples of the frame rates for the past 5 seconds
         protected Queue<int> FPSSample = new Queue<int>(5);
         //the printed fps on screen
         protected int avgFPS = 0;
