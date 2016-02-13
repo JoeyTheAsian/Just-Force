@@ -353,7 +353,7 @@ namespace Shooter {
         void LoadGame() {
             
             //wait one seconds
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
 
             //start playing game
             gamestate = Gamestate.Playing;
