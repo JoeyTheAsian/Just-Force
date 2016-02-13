@@ -72,3 +72,7 @@
 <ul><li>Acceleration has been implemented</li> 
 <li>ISSUE: the acceleration jumps</li> 
 <li>Gamestates and start menu are operation and started on loading screen</li></ul>
+
+<b>6:30 pm 2-12-16: Joey Tong</b>
+<ul><li>Fixed acceleration code</li>
+</ul>
