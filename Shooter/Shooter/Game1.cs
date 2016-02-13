@@ -199,9 +199,9 @@ namespace Shooter {
 
             //exit the window with esc key
             //Checks to see if the key is just pressed and not held down
-            if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape))
+            if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape)) {
                 Exit();
-
+            }
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
                 MouseClicked(mState.X, mState.Y);
@@ -243,12 +243,13 @@ namespace Shooter {
 
             }
 
-            //Updates the old state with what the current state is
-            oldState = state;
-            oldMState = mState;
 
             //Updates the rotation position by getting the angle between two points
             player.Direction = (double)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
+
+            //Updates the old state with what the current state is
+            oldState = state;
+            oldMState = mState;
 
             //Enqueue player to be rendered
             sprites.Enqueue(player);
@@ -331,9 +332,7 @@ namespace Shooter {
 
                 //draw entities___________________________________________________________________________________________________
                 //draw the player model
-                for (int i = 0; i < 1; i++) {
                     spriteBatch.Draw(player.EntTexture, new Rectangle((int)(((global.X + player.Loc.X) * m.TileSize)), (int)(((global.Y + player.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
-                }
 
                 //Draws a spritefont at postion 0,0 on the screen
                 spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS + " " + originPos, new Vector2(0, 0), Color.Yellow);
