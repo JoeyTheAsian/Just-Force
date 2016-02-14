@@ -77,3 +77,7 @@
 <ul><li>Fixed acceleration code</li>
 <li>migrated acceleration to external class Movement.cs</li>
 </ul>
+
+<b>1:03 pm 2-14-16: Austin Ford</b>
+<ul><li>Fixed mouse rotation adn recentered the player</li>
+<li>Added a basic console class with a few commands</li></ul>
