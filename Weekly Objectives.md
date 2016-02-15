@@ -16,3 +16,20 @@
 <li>Create possible game skills, mechanics, etc. that we have not discussed</li>
 <li>Create characters, come up with rough idea of map design for at least 3 levels</li>
 <li>Consult with all members of the group to confirm feasibility of designs</li></ul>
+<h1><b><u>Objectives for week 2 of development: 2-14-16 DEADLINE 2-21-16</u></b></h1>
+<b>Joey Tong:</b><ul><li>Begin making map editor</li>
+<li>Finish implementing entities, projectiles</li>
+<li>Create more assets</li>
+<li>Overhaul rendering code</li>
+<li>migrate excess code & calculations in game1.cs to external classes</li></ul>
+<b>Austin Ford:</b><ul><li>Code commands for console as features are added</li>
+<li>help overhaul rendering system</li>
+<li>Begin coding game mechanics (hp, damage, etc)</li>
+<li>migrate rotation calculations to external class</li></ul>
+<b>Connor Cummings:</b><ul><li> Continue to map basic controls as mechanics are implemented</li>
+<li>reimplement "sprint" feature to work with acceleration (should just change maxvelocity value when pressed/released</li>
+<li>finish implementing loading, menu, and pause screens and migrate code to external class</li></ul>
+<b>Anthony Olivares:</b><ul><li>Continue creating game story, mechanics design, etc</li>
+<li>Create sketchup of map for level 1</li>
+<li>assist in creation of map editor</li>
+<li>write dialogues and scenes for game intro (exposition)</li></ul>
