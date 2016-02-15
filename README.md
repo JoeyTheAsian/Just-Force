@@ -79,5 +79,5 @@
 </ul>
 
 <b>1:03 pm 2-14-16: Austin Ford</b>
-<ul><li>Fixed mouse rotation adn recentered the player</li>
+<ul><li>Fixed mouse rotation and recentered the player</li>
 <li>Added a basic console class with a few commands</li></ul>
