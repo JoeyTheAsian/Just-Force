@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 using Shooter.Controls;
 using Shooter.Entities;
 using Shooter.MapClasses;
-using Shooter.Tools;
+using Shooter.Testing_Tools;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -51,6 +51,9 @@ namespace Shooter {
 
         //ParentConvertor object, converts child objects of entity to entity objects for drawing to the screen
         ParentConvertor convertor = new ParentConvertor();
+
+        //New game console object
+        GameConsole consoleTool;
 
         //TEMPORARY ASSET OBJECTS________________________________________________________________
 
@@ -126,6 +129,9 @@ namespace Shooter {
 
             //set the game update rate to 120 hz
             base.TargetElapsedTime = System.TimeSpan.FromSeconds(1.0f / 120.0f);
+
+            //Initializes console tool with fps
+            consoleTool = new GameConsole(FPSHandler);
         }
 
         /// <summary>
@@ -165,8 +171,8 @@ namespace Shooter {
             //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
-            player.Loc.Y = player.Loc.Y = global.Y + (ScreenHeight / 2) / m.TileSize;
-            player.Loc.X = player.Loc.X = global.X + (ScreenWidth / 2) / m.TileSize;
+            player.Loc.Y = (global.Y + (ScreenHeight / 2)) / m.TileSize;
+            player.Loc.X = (global.X + (ScreenWidth / 2)) / m.TileSize;
 
             //movement object, set max velocity and acceleration here
             double maxVelocity =(20.0 / m.TileSize);
@@ -174,9 +180,8 @@ namespace Shooter {
             movement = new Movement(maxVelocity, acceleration);
 
             //use this.Content to load your game content here
-
             //Sets up the origin postion based off the rectangle position
-            originPos = new Vector2((int)(((global.X + player.Loc.X) * m.TileSize)), (int)(((global.Y + player.Loc.Y) * m.TileSize)));
+            originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
         }
 
         /// <summary>
@@ -201,6 +206,10 @@ namespace Shooter {
             //Checks to see if the key is just pressed and not held down
             if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape)) {
                 Exit();
+            }
+            if(oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde))
+            {
+                consoleTool.OpenInput();
             }
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
@@ -245,8 +254,8 @@ namespace Shooter {
 
 
             //Updates the rotation position by getting the angle between two points
-            player.Direction = (double)Math.Atan2(mState.Y - originPos.Y, mState.X - originPos.X);
-
+            player.Direction = (double)Math.Atan2((double)mState.Y - (int)(((global.Y + player.Loc.Y) * m.TileSize)), (double)mState.X - (int)(((global.X + player.Loc.X) * m.TileSize)));
+            
             //Updates the old state with what the current state is
             oldState = state;
             oldMState = mState;
@@ -335,7 +344,7 @@ namespace Shooter {
                     spriteBatch.Draw(player.EntTexture, new Rectangle((int)(((global.X + player.Loc.X) * m.TileSize)), (int)(((global.Y + player.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
                 //Draws a spritefont at postion 0,0 on the screen
-                spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS + " " + originPos, new Vector2(0, 0), Color.Yellow);
+                spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
                 //play all enqueued sound effects
                 for (int i = 0; i < curSounds.Count; i++) {
