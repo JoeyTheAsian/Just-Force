@@ -81,3 +81,6 @@
 <b>1:03 pm 2-14-16: Austin Ford</b>
 <ul><li>Fixed mouse rotation and recentered the player</li>
 <li>Added a basic console class with a few commands</li></ul>
+
+<b>1:11 pm 2-17-16 Anthony Olivares</b>
+<li>Updated design.txt with a rough draft for game exposition/intro dialogue.</li>
