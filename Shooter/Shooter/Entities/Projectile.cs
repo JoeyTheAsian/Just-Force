@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Shooter.Entities {
     class Projectile :Entity{
+        protected double range;
         protected double velocity;
         public Projectile(ContentManager content): base(content) {
             loc = new Coord();
@@ -17,6 +18,10 @@ namespace Shooter.Entities {
             collision = false;
             direction = 0.0;
             velocity = 1.0;
+        }
+        public double Range {
+            get{ return range; }
+            set { range = value; }
         }
         //parameters: pass in game content manager, x coord, y coord, texture file name
         public Projectile(ContentManager content, double x, double y, string t): base(content, x, y, t) {
@@ -46,8 +51,8 @@ namespace Shooter.Entities {
             loc.Y = y;
             collision = c;
             //direction can only be an angle from 0 - 360
-            if (dir >= 360 || dir < 0) {
-                throw new IndexOutOfRangeException();
+            if (dir >= 180 || dir < -180) { 
+                direction = 0;
             } else {
                 direction = dir;
             }

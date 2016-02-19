@@ -38,6 +38,7 @@ namespace Shooter.Entities {
                 Console.WriteLine(t + "Not found. Using default texture.");
             }
             //set coordinates
+            loc = new Coord();
             loc.X = x;
             loc.Y = y;
             
@@ -51,12 +52,13 @@ namespace Shooter.Entities {
                 entTexture = content.Load<Texture2D>("NoTexture");
                 Console.WriteLine(t + "Not found. Using default texture.");
             }
+            loc = new Coord();
             loc.X = x;
             loc.Y = y;
             collision = c;
             //direction can only be an angle from 0 - 360
             if (dir >= 360 || dir < 0) {
-                throw new IndexOutOfRangeException();
+                direction = 0;
             } else {
                 direction = dir;
             }
