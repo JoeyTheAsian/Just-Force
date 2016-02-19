@@ -180,8 +180,8 @@ namespace Shooter {
             player.Loc.X = (global.X + (ScreenWidth / 2)) / m.TileSize;
 
             //movement object, set max velocity and acceleration here
-            double maxVelocity =(20.0 / m.TileSize);
-            double acceleration = ((100.0 / m.TileSize) / 1000);
+            double maxVelocity =(10.0 / m.TileSize);
+            double acceleration = ((70.0 / m.TileSize) / 1000);
             movement = new Movement(maxVelocity, acceleration);
 
             //use this.Content to load your game content here
@@ -242,10 +242,13 @@ namespace Shooter {
             //WASD movement controls
 
             //update sprint
-            movement.UpdateSprint(state, oldState);
+            movement.UpdateSprint(state, oldState, m.TileSize);
+            
             //update the current velocity
             XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
             YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+
+
 
             //update the screen & player positions
             player.Loc.X -= XVelocity;
@@ -261,8 +264,18 @@ namespace Shooter {
                 curSounds.Enqueue(soundEffects[0]);
                 projectiles.Add(player.Shoot(Content));
             }
-
-
+            
+            //updates projectiles
+            for(int i = 0; i < projectiles.Count; i++) { 
+                if(projectiles[i].CheckRange() == true) {
+                    Console.WriteLine(projectiles[i].Loc.X + "," + projectiles[i].Loc.Y);
+                    projectiles.Remove(projectiles[i]);
+                    i--;
+                } else {
+                    projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                }
+            }
+            
             //Updates the rotation position by getting the angle between two points
             player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize);
             
@@ -352,8 +365,8 @@ namespace Shooter {
                 }
 
                 //draw entities___________________________________________________________________________________________________
-                foreach (Projectile p in projectiles) {
-                    spriteBatch.Draw(p.EntTexture, new Rectangle((int)((global.X + p.Loc.X) * m.TileSize), (int)((global.Y + p.Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)p.Direction, new Vector2(p.EntTexture.Width / 2f, p.EntTexture.Width / 2f), SpriteEffects.None, 0);
+                for(int i = 0; i < projectiles.Count; i++) {
+                    spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                 }
                 //draw the player model
                 spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);

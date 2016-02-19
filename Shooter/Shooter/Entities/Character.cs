@@ -64,7 +64,7 @@ namespace Shooter.Entities {
             }
         }
         public Projectile Shoot(ContentManager content) {
-            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction, 40.0, "Bullet", true);
+            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction, 10.0, "Bullet", true);
             return p;
         }
     }

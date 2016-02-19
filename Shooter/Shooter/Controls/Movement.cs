@@ -12,12 +12,12 @@ namespace Shooter.Controls {
             maxVelocity = mv;
             acceleration = accel;
         }
-        public void UpdateSprint(KeyboardState state, KeyboardState oldState) {
-            if (state.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift)){
-                maxVelocity += maxVelocity / 2;
+        public void UpdateSprint(KeyboardState state, KeyboardState oldState, int tileSize) {
+            if (state.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift)) {
+                maxVelocity += 5.0 / tileSize;
             }
-            if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift)) {
-                maxVelocity -= maxVelocity / 2;
+            else if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift)) {
+                maxVelocity -= 5.0 / tileSize;
             }
         }
         public double UpdateY(double yVelocity, double timeElapsed, KeyboardState state) {
