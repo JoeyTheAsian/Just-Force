@@ -77,3 +77,4 @@ C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xm
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
+C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png

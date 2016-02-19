@@ -63,6 +63,9 @@ namespace Shooter {
         private Coord global;
         private TileBounds tb;
 
+        //Temp enemy
+        private List<Character> enemies;
+        private Character enemy;
         //connor's menu implementation_____________________________________________
         private Gamestate gamestate;
         private Thread backgroundThread;
@@ -179,15 +182,21 @@ namespace Shooter {
             player.Loc.Y = (global.Y + (ScreenHeight / 2)) / m.TileSize;
             player.Loc.X = (global.X + (ScreenWidth / 2)) / m.TileSize;
 
+
             //movement object, set max velocity and acceleration here
-            double maxVelocity =(20.0 / m.TileSize);
-            double acceleration = ((100.0 / m.TileSize) / 1000);
+            double maxVelocity =(10.0 / m.TileSize);
+            double acceleration = ((70.0 / m.TileSize) / 1000);
             movement = new Movement(maxVelocity, acceleration);
 
             //use this.Content to load your game content here
             //Sets up the origin postion based off the rectangle position
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
 
+            //Creates temp enemy
+            enemies = new List<Character>();
+            enemies.Add(new Character(Content, (global.X + 100) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (global.X + 400) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (global.X + 800) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
         }
 
         /// <summary>
@@ -242,10 +251,13 @@ namespace Shooter {
             //WASD movement controls
 
             //update sprint
-            movement.UpdateSprint(state, oldState);
+            movement.UpdateSprint(state, oldState, m.TileSize);
+            
             //update the current velocity
             XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
             YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+
+
 
             //update the screen & player positions
             player.Loc.X -= XVelocity;
@@ -261,8 +273,38 @@ namespace Shooter {
                 curSounds.Enqueue(soundEffects[0]);
                 projectiles.Add(player.Shoot(Content));
             }
+            
+            //updates projectiles
+            for(int i = 0; i < projectiles.Count; i++) { 
+                if(projectiles[i].CheckRange() == true) {
+                    Console.WriteLine(projectiles[i].Loc.X + "," + projectiles[i].Loc.Y);
+                    projectiles.Remove(projectiles[i]);
+                    i--;
+                } else {
+                    projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                    //Checks if any projectiles collide with any enemies
+                    for (int k = 0; k < enemies.Count; k++)
+                    {
+                        if (projectiles[i].CheckHit(enemies[k]))
+                        {
+                            projectiles.RemoveAt(i);
+                            i--;
+                            break;
+                        }
+                    }
+                }
+            }
 
-
+            //Temp: Checks to see if the enemy is hit
+            for (int k = 0; k < enemies.Count; k++)
+            {
+                if (!enemies[k].CheckHealth())
+                {
+                    enemies.RemoveAt(k);
+                    k--;
+                }
+            }
+            
             //Updates the rotation position by getting the angle between two points
             player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize);
             
@@ -352,13 +394,16 @@ namespace Shooter {
                 }
 
                 //draw entities___________________________________________________________________________________________________
-                foreach (Projectile p in projectiles) {
-                    spriteBatch.Draw(p.EntTexture, new Rectangle((int)((global.X + p.Loc.X) * m.TileSize), (int)((global.Y + p.Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)p.Direction, new Vector2(p.EntTexture.Width / 2f, p.EntTexture.Width / 2f), SpriteEffects.None, 0);
+                for(int i = 0; i < projectiles.Count; i++) {
+                    spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                 }
                 //draw the player model
                 spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
-
-                
+                //Draws the temp enemy
+                for (int k = 0; k < enemies.Count; k++)
+                {
+                    spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize), Color.White);
+                }
                 //Draws a spritefont at postion 0,0 on the screen
                 spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 

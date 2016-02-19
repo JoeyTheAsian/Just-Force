@@ -45,7 +45,7 @@
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\ParentConvertor.cs" />
-    <Compile Include="Entities\PlayerBox.cs" />
+    <Compile Include="Entities\PlayerPos.cs" />
     <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Map related Classes\MapObject.cs" />
     <Compile Include="Testing Tools\FPSHandling.cs" />

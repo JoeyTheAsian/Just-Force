@@ -57,7 +57,7 @@ namespace Shooter.Entities {
             loc.Y = y;
             collision = c;
             //direction can only be an angle from 0 - 360
-            if (dir >= 360 || dir < 0) {
+            if (dir >= 4 || dir < -4) {
                 direction = 0;
             } else {
                 direction = dir;
