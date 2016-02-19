@@ -97,3 +97,6 @@
 <b>12:15 am 2-19-16: Joey Tong</b>
 <ul><li>Created MapEditor windows form</li>
 <li>added range value to projectile object</li></ul>
+
+<b>12:53 pm 2-19-16 Anthony Olivares</b>
+<li>Updated design.txt with some important updates. Realized I forgot to move enemy types from the .docx over, so did that. Also updated skills further, and have now added stats for firerrate (in frames) and damage (numeric values) of all must-add weapons. Also added Health stat values for player and enemies, and stamina stat (max/recharge rate/usage speed) for player.</li>
