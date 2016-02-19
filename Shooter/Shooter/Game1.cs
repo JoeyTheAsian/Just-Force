@@ -64,15 +64,15 @@ namespace Shooter {
         private TileBounds tb;
 
         //connor's menu implementation_____________________________________________
+
         private Gamestate gamestate;
         private Thread backgroundThread;
 
         private Texture2D startButton;
         private Vector2 startButtonPosition;
         private Texture2D exitButton;
-
         private Vector2 exitButtonPosition;
-
+        
         private Texture2D loadscreen;
         private bool isloading = false;
         //_________________________________________________________________________
@@ -222,19 +222,38 @@ namespace Shooter {
                 MouseClicked(mState.X, mState.Y);
             }
 
-            if (gamestate == Gamestate.Playing && isloading) {
+            if(gamestate == Gamestate.Playing) {
 
-                LoadGame();
-                isloading = false;
+                if (state.IsKeyDown(Keys.P)) {
+
+                    gamestate = Gamestate.Paused;
+                  
+                }
             }
 
-            if(gamestate == Gamestate.Loading && !isloading) {
+            else if (gamestate == Gamestate.Paused) {
+
+                if (state.IsKeyDown(Keys.P)) {
+
+                    gamestate = Gamestate.Playing;
+                }
+            }
+
+            if(gamestate == Gamestate.Loading && isloading) {
 
                 backgroundThread = new Thread(LoadGame);
                 isloading = true;
 
                 backgroundThread.Start();
             }
+
+            if (gamestate == Gamestate.Playing && isloading) {
+
+                LoadGame();
+                isloading = false;
+            }
+
+            
             //UPDATE LOGIC_____________________________________________________________________________________________________________
 
             //CONTROLS_____________________________________
@@ -293,6 +312,7 @@ namespace Shooter {
                 //update FPS
                 FPSHandler.UpdateFPS();
             }
+            base.Update(gameTime);
         }
 
 
@@ -310,9 +330,9 @@ namespace Shooter {
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
 
-                   // gamestate = Gamestate.Loading;
+                    gamestate = Gamestate.Loading;
 
-                    gamestate = Gamestate.Playing;
+                    //gamestate = Gamestate.Playing;
 
                     isloading = true;
                 }
@@ -335,6 +355,7 @@ namespace Shooter {
             //drawing code
             spriteBatch.Begin();
 
+
             //draw in the start menu
             if(gamestate == Gamestate.StartMenu) {
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
@@ -342,7 +363,12 @@ namespace Shooter {
             }
 
             if(gamestate == Gamestate.Loading) {
-                spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.YellowGreen);
+                spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.Cyan);
+            }
+
+            if (gamestate == Gamestate.Paused) {
+
+                GraphicsDevice.Clear(Color.Blue);
             }
 
             //draw the game while it is being played
@@ -391,16 +417,12 @@ namespace Shooter {
         void LoadGame() {
             
             //wait one seconds
-            Thread.Sleep(100);
+            Thread.Sleep(1500);
 
             //start playing game
             gamestate = Gamestate.Playing;
-            isloading = true;
+            isloading = false;
 
         }
-
-       /* public void LoadGame() {
-            startButtonPosition = new Vector2
-        }*/
     }
 }
