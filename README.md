@@ -84,3 +84,25 @@
 
 <b>1:11 pm 2-17-16 Anthony Olivares</b>
 <li>Updated design.txt with a rough draft for game exposition/intro dialogue.</li>
+
+<b>11:41 am 2-19-16: Joey Tong</b>
+<ul><li>Reimplemented sprint feature (lshift)</li>
+<li>Fixed implementation of rotation</li>
+<li>Implemented shooting, currently creates bullet on the player in the same direction as the player</li>
+<li>Moved player position calculations to external static class called playerPos</li>
+<li>Added Bullet.png asset </li>
+<li>Added a projectiles list that contains all the projectiles on screen.</li>
+<li>Added a loop that renders all projectiles to the screen</li></ul>
+
+<b>12:15 pm 2-19-16: Joey Tong</b>
+<ul><li>Created MapEditor windows form</li>
+<li>added range value to projectile object</li></ul>
+
+<b>12:53 pm 2-19-16 Anthony Olivares</b>
+<ul><li>Updated design.txt with some important updates. Realized I forgot to move enemy types from the .docx over, so did that. Also updated skills further, and have now added stats for firerrate (in frames) and damage (numeric values) of all must-add weapons. Also added Health stat values for player and enemies, and stamina stat (max/recharge rate/usage speed) for player.</li></ul>
+
+<b>1:51 pm 2-19-16: Joey Tong</b>
+<ul><li>implemented bullet animations/rendering/ velocity/ range, etc.</li>
+<li> Adjusted movement speed</li>
+<li> fixed implementation of sprint (again)</li>
+<li>Fixed implementation of bullet rotation</li></ul>

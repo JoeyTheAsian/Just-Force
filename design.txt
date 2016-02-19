@@ -1,47 +1,77 @@
 * next to basic/required items
 
 ###########
-Game Title Ideas:
+Game Title:
 ###########
-Enforcer
-WrathBlaster
 Just Force
-Covercraze
+
 
 ###########
 Weapons:
 ###########
-*Knife
-*Handgun
-Scattergun/spreadgun
+(Firerate, in frames)
+*Knife ( 4 damage per hit ) ( 30 )
+*Handgun ( 2 damage per shot) ( 20 )
+Scattergun/spreadgun ( fires a spread of 5 pellets, each doing 1 damage ) ( 40 )
 Rifle
 Grenade Launcher
-Disc Gun
-*Tommy Gun
+*Tommy Gun ( same shot as handgun ) ( auto-fire while holding fire button, 10 )
+
+
+###########
+Player Base Stats:
+###########
+-5 Health
+-300 Stamina, stamina is used at a rate of one per frame when sprinting, sprinting gives 1.5X movement speed and refills at a rate of 1 every three frames while not sprinting
+
 
 
 ###########
 Skills:
 ###########
-(player can take one per row) (most likely won’t be implemented unless there is extra time)
+(player can take one per row)
 
+/////////////
 Row 1:
 Overcharged: Max health is 1, deal double damage  
-Perseverance: Max health increased by 25%, deal only 75% damage
 
+Perseverance: Max health increased to 10, deal only half damage
+
+/////////////
 Row 2:
 Focus: Increases stamina usage, sprinting slows time
-Rhinoceros: Sprinting deflects small bullets (up to x amount)
+
+Rhinoceros: Sprinting deflects small bullets (up to x amount) and allows player to deal contact damage to enemies
+
 Blink: Doubles (maybe triples?) stamina usage, grants invincibility during sprinting
 
+/////////////
 Row 3:
 Mug: Melee attacks refill ammo
+
 Reflex: Melee attacks can reflect bullets
 
+/////////////
 Row 4:
-Drone team: Two drones follow player around and fire at enemies for low damage
-Heavy Bolts: Deal 75% damage, but bullets explode for 25% splash damage
-Extending Arm: Melee attack has longer range, larger and longer-lasting hitbox, and does increased damage
+Drone team: Two drones follow player around and fire at enemies for low damage ( 1 per shot, firerate equal to 1/2 handgun )
+
+Heavy Bolts: Deal half damage, but bullets explode for 50% splash damage
+
+Extending Arm: Melee attack has longer range and a larger and longer-lasting hitbox
+
+
+###########
+Enemy Types:
+###########
+-*Normal enemies: move a bit slower than the player and use the handgun, have 4 health.
+-*Riot geared: move at half the speed and fire rate of the player, have 8 health.
+-*Mob leaders that are like normal enemies but use the tommy gun, have 5 health.
+
+-Flamethrower guys whose name is exactly what they do.
+-Shotgun – wielding enemies.
+-A melee variant of the riot-gear enemy type.
+-Slow enemy type that use deadly sniper rifles.
+
 
 ###########
 Story:
@@ -87,4 +117,3 @@ Assests (that would be required for currently confirmed levels)
 -*building fronts / top-down view rooftops
 -*trash cans
 
--streetlamps? (wouldn't be required but would make it look nicer)
