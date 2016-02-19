@@ -45,7 +45,9 @@
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\ParentConvertor.cs" />
+    <Compile Include="Entities\PlayerBox.cs" />
     <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="Map related Classes\MapObject.cs" />
     <Compile Include="Testing Tools\FPSHandling.cs" />
     <Compile Include="Map related Classes\Coord.cs" />
     <Compile Include="Game1.cs" />
@@ -64,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Asphalt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Bullet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\button-start.png">

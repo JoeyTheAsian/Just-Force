@@ -30,6 +30,9 @@ namespace Shooter {
         private Queue<SoundEffect> curSounds;
         private Queue<Entity> sprites;
 
+        //A list of all the projectiles
+        private List<Projectile> projectiles;
+
         //A keyboard state object to get the keyboard old keyboard state
         KeyboardState oldState;
         MouseState oldMState;
@@ -49,8 +52,6 @@ namespace Shooter {
         private int ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         private int ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
-        //ParentConvertor object, converts child objects of entity to entity objects for drawing to the screen
-        ParentConvertor convertor = new ParentConvertor();
 
         //New game console object
         GameConsole consoleTool;
@@ -62,13 +63,14 @@ namespace Shooter {
         private Coord global;
         private TileBounds tb;
 
+        //connor's menu implementation_____________________________________________
         private Gamestate gamestate;
         private Thread backgroundThread;
 
         private Texture2D startButton;
         private Vector2 startButtonPosition;
         private Texture2D exitButton;
-        //connor's menu implementation_____________________________________________
+
         private Vector2 exitButtonPosition;
 
         private Texture2D loadscreen;
@@ -168,6 +170,9 @@ namespace Shooter {
             //creates the currently pending entity queue
             sprites = new Queue<Entity>();
 
+            //Create the list of projectiles
+            projectiles = new List<Projectile>();
+
             //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
@@ -182,6 +187,7 @@ namespace Shooter {
             //use this.Content to load your game content here
             //Sets up the origin postion based off the rectangle position
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
+
         }
 
         /// <summary>
@@ -232,29 +238,33 @@ namespace Shooter {
             //UPDATE LOGIC_____________________________________________________________________________________________________________
 
             //CONTROLS_____________________________________
+
             //WASD movement controls
 
+            //update sprint
+            movement.UpdateSprint(state, oldState);
             //update the current velocity
             XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
             YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
 
             //update the screen & player positions
-            global.X += XVelocity;
-            global.Y += YVelocity;
             player.Loc.X -= XVelocity;
             player.Loc.Y -= YVelocity;
-          
+
+            global.X += XVelocity;
+            global.Y += YVelocity;
+
             //Left mouse button to shoot
             //Checks to see if the key is just pressed and not held down
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
                 //Plays a new instance of the first audio file which is the gunshot
                 curSounds.Enqueue(soundEffects[0]);
-
+                projectiles.Add(player.Shoot(Content));
             }
 
 
             //Updates the rotation position by getting the angle between two points
-            player.Direction = (double)Math.Atan2((double)mState.Y - (int)(((global.Y + player.Loc.Y) * m.TileSize)), (double)mState.X - (int)(((global.X + player.Loc.X) * m.TileSize)));
+            player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize);
             
             //Updates the old state with what the current state is
             oldState = state;
@@ -271,7 +281,9 @@ namespace Shooter {
                 FPSHandler.UpdateFPS();
             }
         }
-        //___________________________________________________________________________
+
+
+        //___________________________________________________________________________MOVE THIS CODE TO AN EXTERNAL CLASS
         //method for mouse on main menu
         void MouseClicked(int x, int y) {
 
@@ -298,6 +310,7 @@ namespace Shooter {
                 }
             }
         }
+        //___________________________________________________________________________MOVE THIS CODE TO AN EXTERNAL CLASS
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -316,7 +329,6 @@ namespace Shooter {
             }
 
             if(gamestate == Gamestate.Loading) {
-
                 spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.YellowGreen);
             }
 
@@ -340,9 +352,13 @@ namespace Shooter {
                 }
 
                 //draw entities___________________________________________________________________________________________________
+                foreach (Projectile p in projectiles) {
+                    spriteBatch.Draw(p.EntTexture, new Rectangle((int)((global.X + p.Loc.X) * m.TileSize), (int)((global.Y + p.Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)p.Direction, new Vector2(p.EntTexture.Width / 2f, p.EntTexture.Width / 2f), SpriteEffects.None, 0);
+                }
                 //draw the player model
-                    spriteBatch.Draw(player.EntTexture, new Rectangle((int)(((global.X + player.Loc.X) * m.TileSize)), (int)(((global.Y + player.Loc.Y) * m.TileSize)), m.TileSize, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+                spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
+                
                 //Draws a spritefont at postion 0,0 on the screen
                 spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
@@ -362,7 +378,7 @@ namespace Shooter {
         void LoadGame() {
             
             //wait one seconds
-            //Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             //start playing game
             gamestate = Gamestate.Playing;

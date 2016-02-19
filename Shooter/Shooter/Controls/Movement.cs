@@ -12,7 +12,14 @@ namespace Shooter.Controls {
             maxVelocity = mv;
             acceleration = accel;
         }
-
+        public void UpdateSprint(KeyboardState state, KeyboardState oldState) {
+            if (state.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift)){
+                maxVelocity += maxVelocity / 2;
+            }
+            if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift)) {
+                maxVelocity -= maxVelocity / 2;
+            }
+        }
         public double UpdateY(double yVelocity, double timeElapsed, KeyboardState state) {
             //WASD movement controls
             //______________________W KEY_____________________________
@@ -25,7 +32,6 @@ namespace Shooter.Controls {
                         yVelocity = maxVelocity;
                     }
                 }
-
             }
             //__________________________________S KEY_____________________________________
             else if (state.IsKeyDown(Keys.S)) {

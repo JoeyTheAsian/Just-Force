@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Shooter.Entities {
     //changes an entity child class back to an entity class for rendering
-    class ParentConvertor {
-        public Entity ToEntity(Character c, ContentManager content) {
+    static class ParentConvertor {
+        public static Entity ToEntity(Character c, ContentManager content) {
             Entity newEnt;
             try {
                 newEnt = new Entity(content, c.Loc.X, c.Loc.Y, c.EntTexture.ToString());
@@ -24,7 +24,7 @@ namespace Shooter.Entities {
                 }
             }
         }
-        public Entity ToEntity(Projectile p, ContentManager content) {
+        public static Entity ToEntity(Projectile p, ContentManager content) {
             Entity newEnt;
             try {
                 newEnt = new Entity(content, p.Loc.X, p.Loc.Y, p.EntTexture.ToString());

@@ -46,8 +46,8 @@ namespace Shooter.Entities {
             loc.Y = y;
             collision = c;
             //direction can only be an angle from 0 - 360
-            if (dir >= 360 || dir < 0) {
-                throw new IndexOutOfRangeException();
+            if (dir >= 180 || dir < -180) { 
+                direction = 0;
             } else {
                 direction = dir;
             }
