@@ -144,6 +144,7 @@ namespace Shooter {
         /// all of your content.
         /// </summary>
         protected override void LoadContent() {
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -197,6 +198,7 @@ namespace Shooter {
             enemies.Add(new Character(Content, (global.X + 100) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
             enemies.Add(new Character(Content, (global.X + 400) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
             enemies.Add(new Character(Content, (global.X + 800) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
+
         }
 
         /// <summary>
@@ -274,14 +276,14 @@ namespace Shooter {
                 projectiles.Add(player.Shoot(Content));
             }
             
-            //updates projectiles
+            //updates projectiles and checks collision
             for(int i = 0; i < projectiles.Count; i++) { 
                 if(projectiles[i].CheckRange() == true) {
-                    Console.WriteLine(projectiles[i].Loc.X + "," + projectiles[i].Loc.Y);
                     projectiles.Remove(projectiles[i]);
                     i--;
                 } else {
                     projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                    Console.WriteLine(projectiles[i].Loc.X + "," + projectiles[i].Loc.Y);
                     //Checks if any projectiles collide with any enemies
                     for (int k = 0; k < enemies.Count; k++)
                     {
@@ -296,8 +298,7 @@ namespace Shooter {
             }
 
             //Temp: Checks to see if the enemy is hit
-            for (int k = 0; k < enemies.Count; k++)
-            {
+            for (int k = 0; k < enemies.Count; k++){
                 if (!enemies[k].CheckHealth())
                 {
                     enemies.RemoveAt(k);
@@ -347,7 +348,6 @@ namespace Shooter {
                 }
                 //player exits game
                 else if (mouseClickRect.Intersects(exitbuttonRect)) {
-
                     Exit();
                 }
             }
@@ -397,13 +397,15 @@ namespace Shooter {
                 for(int i = 0; i < projectiles.Count; i++) {
                     spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                 }
-                //draw the player model
-                spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+
                 //Draws the temp enemy
-                for (int k = 0; k < enemies.Count; k++)
-                {
+                for (int k = 0; k < enemies.Count; k++){
                     spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize), Color.White);
                 }
+
+                //draw the player model
+                spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+
                 //Draws a spritefont at postion 0,0 on the screen
                 spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
@@ -420,20 +422,11 @@ namespace Shooter {
             base.Draw(gameTime);
         }
 
-        void LoadGame() {
-            
-            //wait one seconds
-            Thread.Sleep(100);
-            //Thread.Sleep(1500);
-
+        public void LoadGame() {
             //start playing game
             gamestate = Gamestate.Playing;
             isloading = true;
 
         }
-
-       /* public void LoadGame() {
-            startButtonPosition = new Vector2
-        }*/
     }
 }
