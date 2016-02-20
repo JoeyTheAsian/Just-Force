@@ -9,13 +9,13 @@ Just Force
 ###########
 Weapons:
 ###########
-(Firerate, in frames)
-*Knife ( 4 damage per hit ) ( 30 )
-*Handgun ( 2 damage per shot) ( 20 )
-Scattergun/spreadgun ( fires a spread of 5 pellets, each doing 1 damage ) ( 40 )
+(Firerate, seconds )
+*Knife ( 4 damage per hit ) ( 1/2 )
+*Handgun ( 2 damage per shot) ( 1/3 )
+Scattergun/spreadgun ( fires a spread of 5 pellets, each doing 1 damage ) ( 2/3 )
 Rifle
 Grenade Launcher
-*Tommy Gun ( same shot as handgun ) ( auto-fire while holding fire button, 10 )
+*Tommy Gun ( same shot as handgun ) ( auto-fire while holding fire button, 1/6 )
 
 
 ###########
@@ -53,7 +53,7 @@ Reflex: Melee attacks can reflect bullets
 
 /////////////
 Row 4:
-Drone team: Two drones follow player around and fire at enemies for low damage ( 1 per shot, firerate equal to 1/2 handgun )
+Drone team: Two drones follow player around and fire at enemies for low damage ( 1 per shot, firerate equal to 1 per second )
 
 Heavy Bolts: Deal half damage, but bullets explode for 50% splash damage
 
