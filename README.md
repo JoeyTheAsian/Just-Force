@@ -112,4 +112,6 @@
 <li>Created a loading screen that appears for 1.5 seconds before game starts</li></ul> 
 
 <b>8:04 pm 2-19-16 Anthony Olivares</b>
-<li>Fire rates in design.txt are now in seconds</li>
+<li>Fire rates in design.txt are now in seconds, as is stamina rates</li>
+<li>Fixed up opening narration a bit</li>
+<li>Added color and appearence ideas for enemies</li>
