@@ -22,7 +22,7 @@ Grenade Launcher
 Player Base Stats:
 ###########
 -5 Health
--300 Stamina, stamina is used at a rate of one per frame when sprinting, sprinting gives 1.5X movement speed and refills at a rate of 1 every three frames while not sprinting
+-300 Stamina, stamina is used at a rate of 60 per second when sprinting, sprinting gives 1.5X movement speed and refills at a rate of 50 per second while not sprinting
 
 
 
@@ -63,9 +63,9 @@ Extending Arm: Melee attack has longer range and a larger and longer-lasting hit
 ###########
 Enemy Types:
 ###########
--*Normal enemies: move a bit slower than the player and use the handgun, have 4 health.
--*Riot geared: move at half the speed and fire rate of the player, have 8 health.
--*Mob leaders that are like normal enemies but use the tommy gun, have 5 health.
+-*Normal enemies: move a bit slower than the player and use the handgun, have 4 health.( Wear dark biege trenchcoats - something like http://www.colorpicker.com/6b5a15 perhaps )
+-*Riot geared: move at half the speed and fire rate of the player, have 8 health. ( wear stolen riot gear, as the name implies - carrying a shield in one hand )
+-*Mob leaders that are like normal enemies but use the tommy gun, have 5 health. ( the fact they use a tommy gun should be reflected in the sprite, they can wear an old-school business suit with a fedora )
 
 -Flamethrower guys whose name is exactly what they do.
 -Shotgun – wielding enemies.
@@ -77,14 +77,14 @@ Enemy Types:
 Story:
 ###########
 The main character is John Kinder, a detective in the big city of Longdale. When his hometown of Goldcrest falls under the control of a huge crime ring that kills his wife, he goes back to take revenge and save the town. 
-
+Story:
 Level 1 - Streets
 The detective is driving into town when some mobsters open fire on his car, having know he was 
 coming. He is forced to get out of his car and head into town on foot.
 
 -Game Intro (text):
 (Main character narrating by talking into recorder)
-"It seemed simple at first. We had all heard the rumors. That Goldcrest - my hometown - had something going on. Something big. No one knew it would turn into this."
+"It seemed simple at first. We had all heard the rumors. That Goldcrest - my hometown, just 45 minutes away from my workplace in the Longdale Police Department - had something going on. Something big. No one knew it would turn into this."
 "We lost contact with Goldcrest's police force 8 hours ago. Since then, 2 investigation teams were sent in and they've gone dark now too."
 "I'm not supposed to be heading over. I'm technically off duty. But I can't stand by while this happens. My wife is still at home."
 "This may be the last anyone hears of me. Detective John Kinder, signing off." 
