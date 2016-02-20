@@ -424,6 +424,7 @@ namespace Shooter {
             
             //wait one seconds
             Thread.Sleep(100);
+            //Thread.Sleep(1500);
 
             //start playing game
             gamestate = Gamestate.Playing;
