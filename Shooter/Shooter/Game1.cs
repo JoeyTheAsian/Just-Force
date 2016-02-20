@@ -62,7 +62,11 @@ namespace Shooter {
         private Map m;
         private Coord global;
         private TileBounds tb;
-
+        //screenshake bool
+        private bool screenShake = false;
+        private int shakeDur = 0;
+        private int xOffset = 0;
+        private int yOffset = 0;
         //Temp enemy
         private List<Character> enemies;
         private Character enemy;
@@ -268,16 +272,35 @@ namespace Shooter {
             global.X += XVelocity;
             global.Y += YVelocity;
 
+
             //Left mouse button to shoot
             //Checks to see if the key is just pressed and not held down
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
                 //Plays a new instance of the first audio file which is the gunshot
                 curSounds.Enqueue(soundEffects[0]);
                 projectiles.Add(player.Shoot(Content));
+                screenShake = true;
             }
-            
+
+            //SCREEN SHAKE 
+            if(screenShake == true && shakeDur < 12) {
+                xOffset += 2;
+                shakeDur += gameTime.ElapsedGameTime.Milliseconds;
+            }else if(screenShake == true && shakeDur >= 12 && shakeDur < 37) {
+                xOffset -= 2;
+                shakeDur += gameTime.ElapsedGameTime.Milliseconds;
+            }else if (screenShake == true && shakeDur >= 37 && shakeDur < 50) {
+                xOffset += 2;
+                shakeDur += gameTime.ElapsedGameTime.Milliseconds;
+            }else if (shakeDur >= 50){
+                xOffset = 0;
+                yOffset = 0;
+                screenShake = false;
+                shakeDur = 0;
+            }
+
             //updates projectiles and checks collision
-            for(int i = 0; i < projectiles.Count; i++) { 
+            for (int i = 0; i < projectiles.Count; i++) { 
                 if(projectiles[i].CheckRange() == true) {
                     projectiles.Remove(projectiles[i]);
                     i--;
@@ -386,8 +409,8 @@ namespace Shooter {
                         //draw the tile
                         spriteBatch.Draw(m.TileMap[i, j],
                                         //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
-                                        new Rectangle((int)((global.X * m.TileSize) + (i * m.TileSize) + .5),
-                                                      (int)((global.Y * m.TileSize) + (j * m.TileSize) + .5),
+                                        new Rectangle((int)((global.X * m.TileSize) + (i * m.TileSize) + .5 + xOffset),
+                                                      (int)((global.Y * m.TileSize) + (j * m.TileSize) + .5 + yOffset),
                                                       m.TileSize, m.TileSize), Color.White);
                     }
                 }
@@ -399,11 +422,11 @@ namespace Shooter {
 
                 //Draws the temp enemy
                 for (int k = 0; k < enemies.Count; k++){
-                    spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize), Color.White);
+                    spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, xOffset, yOffset), Color.White);
                 }
 
                 //draw the player model
-                spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+                spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize, xOffset, yOffset), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
                 //Draws a spritefont at postion 0,0 on the screen
                 spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
