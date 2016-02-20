@@ -283,7 +283,6 @@ namespace Shooter {
                     i--;
                 } else {
                     projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                    Console.WriteLine(projectiles[i].Loc.X + "," + projectiles[i].Loc.Y);
                     //Checks if any projectiles collide with any enemies
                     for (int k = 0; k < enemies.Count; k++)
                     {

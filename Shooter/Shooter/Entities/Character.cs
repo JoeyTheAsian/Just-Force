@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,6 @@ namespace Shooter.Entities {
     class Character : Entity {
         private int health;
         private int stamina;
-
 
         public Character(ContentManager content) : base(content) {
             loc = new Coord();
