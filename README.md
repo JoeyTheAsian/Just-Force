@@ -106,3 +106,7 @@
 <li> Adjusted movement speed</li>
 <li> fixed implementation of sprint (again)</li>
 <li>Fixed implementation of bullet rotation</li></ul>
+
+<b> 5:01 pm 2/19/2016: Connor Cummings</b>
+<ul><li>Implemented a pause screen. It's just a blue screen activated by pressing P in game and exits the pause screen by pressing P again</li>
+<li>Created a loading screen that appears for 1.5 seconds before game starts</li></ul> 
