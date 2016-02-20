@@ -115,3 +115,8 @@
 <li>Fire rates in design.txt are now in seconds, as is stamina rates</li>
 <li>Fixed up opening narration a bit</li>
 <li>Added color and appearence ideas for enemies</li>
+
+<b>1:51 pm 2-19-16: Joey Tong</b>
+<ul><li>Implemented Screen shake by adding a pixel offset to all rendered objects</li>
+<li>Screen shakes when firing a projectile</li>
+<li>Coded a new class, "Weapon.cs". Will handle all weapon related functionality</li></ul>
