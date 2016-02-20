@@ -63,16 +63,19 @@ namespace Shooter {
         private Coord global;
         private TileBounds tb;
 
+        //Temp enemy
+        private List<Character> enemies;
+        private Character enemy;
         //connor's menu implementation_____________________________________________
-
         private Gamestate gamestate;
         private Thread backgroundThread;
 
         private Texture2D startButton;
         private Vector2 startButtonPosition;
         private Texture2D exitButton;
+
         private Vector2 exitButtonPosition;
-        
+
         private Texture2D loadscreen;
         private bool isloading = false;
         //_________________________________________________________________________
@@ -179,6 +182,7 @@ namespace Shooter {
             player.Loc.Y = (global.Y + (ScreenHeight / 2)) / m.TileSize;
             player.Loc.X = (global.X + (ScreenWidth / 2)) / m.TileSize;
 
+
             //movement object, set max velocity and acceleration here
             double maxVelocity =(10.0 / m.TileSize);
             double acceleration = ((70.0 / m.TileSize) / 1000);
@@ -188,6 +192,11 @@ namespace Shooter {
             //Sets up the origin postion based off the rectangle position
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
 
+            //Creates temp enemy
+            enemies = new List<Character>();
+            enemies.Add(new Character(Content, (global.X + 100) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (global.X + 400) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (global.X + 800) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
         }
 
         /// <summary>
@@ -222,38 +231,19 @@ namespace Shooter {
                 MouseClicked(mState.X, mState.Y);
             }
 
-            if(gamestate == Gamestate.Playing) {
-
-                if (state.IsKeyDown(Keys.P)) {
-
-                    gamestate = Gamestate.Paused;
-                  
-                }
-            }
-
-            else if (gamestate == Gamestate.Paused) {
-
-                if (state.IsKeyDown(Keys.P)) {
-
-                    gamestate = Gamestate.Playing;
-                }
-            }
-
-            if(gamestate == Gamestate.Loading && isloading) {
-
-                backgroundThread = new Thread(LoadGame);
-                isloading = true;
-
-                backgroundThread.Start();
-            }
-
             if (gamestate == Gamestate.Playing && isloading) {
 
                 LoadGame();
                 isloading = false;
             }
 
-            
+            if(gamestate == Gamestate.Loading && !isloading) {
+
+                backgroundThread = new Thread(LoadGame);
+                isloading = true;
+
+                backgroundThread.Start();
+            }
             //UPDATE LOGIC_____________________________________________________________________________________________________________
 
             //CONTROLS_____________________________________
@@ -292,6 +282,26 @@ namespace Shooter {
                     i--;
                 } else {
                     projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                    //Checks if any projectiles collide with any enemies
+                    for (int k = 0; k < enemies.Count; k++)
+                    {
+                        if (projectiles[i].CheckHit(enemies[k]))
+                        {
+                            projectiles.RemoveAt(i);
+                            i--;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //Temp: Checks to see if the enemy is hit
+            for (int k = 0; k < enemies.Count; k++)
+            {
+                if (!enemies[k].CheckHealth())
+                {
+                    enemies.RemoveAt(k);
+                    k--;
                 }
             }
             
@@ -312,7 +322,6 @@ namespace Shooter {
                 //update FPS
                 FPSHandler.UpdateFPS();
             }
-            base.Update(gameTime);
         }
 
 
@@ -330,9 +339,9 @@ namespace Shooter {
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
 
-                    gamestate = Gamestate.Loading;
+                   // gamestate = Gamestate.Loading;
 
-                    //gamestate = Gamestate.Playing;
+                    gamestate = Gamestate.Playing;
 
                     isloading = true;
                 }
@@ -355,7 +364,6 @@ namespace Shooter {
             //drawing code
             spriteBatch.Begin();
 
-
             //draw in the start menu
             if(gamestate == Gamestate.StartMenu) {
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
@@ -363,12 +371,7 @@ namespace Shooter {
             }
 
             if(gamestate == Gamestate.Loading) {
-                spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.Cyan);
-            }
-
-            if (gamestate == Gamestate.Paused) {
-
-                GraphicsDevice.Clear(Color.Blue);
+                spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.YellowGreen);
             }
 
             //draw the game while it is being played
@@ -396,8 +399,11 @@ namespace Shooter {
                 }
                 //draw the player model
                 spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
-
-                
+                //Draws the temp enemy
+                for (int k = 0; k < enemies.Count; k++)
+                {
+                    spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize), Color.White);
+                }
                 //Draws a spritefont at postion 0,0 on the screen
                 spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
@@ -417,12 +423,17 @@ namespace Shooter {
         void LoadGame() {
             
             //wait one seconds
+            Thread.Sleep(100);
             //Thread.Sleep(1500);
 
             //start playing game
             gamestate = Gamestate.Playing;
-            isloading = false;
+            isloading = true;
 
         }
+
+       /* public void LoadGame() {
+            startButtonPosition = new Vector2
+        }*/
     }
 }
