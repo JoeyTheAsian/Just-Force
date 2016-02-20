@@ -77,43 +77,84 @@ C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xm
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 C:\Users\Joey\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteCorner.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteEdge.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Concrete.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exit-button.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.wav
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\LaneLine.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\loadinggraphic.png
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Arial14Bold.xnb
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Arial20Bold.xnb
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.xnb
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Shooter.exe
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Shooter.pdb
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.dll
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
-C:\Users\Owner\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
+C:\Users\Austin\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteCorner.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteEdge.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Concrete.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exit-button.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.wav
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\LaneLine.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\loadinggraphic.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Arial14Bold.xnb
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Arial20Bold.xnb
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.xnb
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Shooter.exe
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Shooter.pdb
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Austin Ford\Documents\GitHub\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.exe
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteCorner.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteEdge.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Concrete.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exit-button.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.wav
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\LaneLine.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\loadinggraphic.png
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Arial14Bold.xnb
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\Arial20Bold.xnb
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.xnb
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Shooter.exe
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\Shooter.pdb
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\hi\GDAPS-GAME\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache

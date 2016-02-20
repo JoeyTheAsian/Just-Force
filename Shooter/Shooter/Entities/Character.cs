@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,17 +14,20 @@ namespace Shooter.Entities {
         private int health;
         private int stamina;
 
-
         public Character(ContentManager content) : base(content) {
             loc = new Coord();
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
+
+            //Set Health
+            health = 1;
+
         }
 
         //properties
         public int Health{
             get{ return health;}
-            set{ health = value;}
+            set{ health = value; }
         }
         public int Stamina {
             get { return stamina; }
@@ -45,6 +49,9 @@ namespace Shooter.Entities {
 
             //non-collidable object by default
             collision = false;
+
+            //Set health
+            health = 1;
         }
         
         public Character(ContentManager content, double x, double y, double dir, string t, bool c): base(content, x, y, t) {
@@ -54,6 +61,10 @@ namespace Shooter.Entities {
                 entTexture = content.Load<Texture2D>("NoTexture");
                 Console.WriteLine(t + "Not found. Using default texture.");
             }
+
+            //Set health
+            health = 1;
+
             loc.X = x;
             loc.Y = y;
             collision = c;
@@ -66,6 +77,18 @@ namespace Shooter.Entities {
         public Projectile Shoot(ContentManager content) {
             Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction, 10.0, "Bullet", true);
             return p;
+        }
+
+        public bool CheckHealth()
+        {
+            //True if the target is still alive
+            if(health > 0)
+            {
+                return true;
+            }
+
+            //False if the target is dead
+            return false;
         }
     }
 }

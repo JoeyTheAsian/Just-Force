@@ -110,3 +110,13 @@
 <b> 5:01 pm 2/19/2016: Connor Cummings</b>
 <ul><li>Implemented a pause screen. It's just a blue screen activated by pressing P in game and exits the pause screen by pressing P again</li>
 <li>Created a loading screen that appears for 1.5 seconds before game starts</li></ul> 
+
+<b>8:04 pm 2-19-16 Anthony Olivares</b>
+<li>Fire rates in design.txt are now in seconds, as is stamina rates</li>
+<li>Fixed up opening narration a bit</li>
+<li>Added color and appearence ideas for enemies</li>
+
+<b>5:10 pm 2-20-16: Joey Tong</b>
+<ul><li>Implemented Screen shake by adding a pixel offset to all rendered objects</li>
+<li>Screen shakes when firing a projectile</li>
+<li>Coded a new class, "Weapon.cs". Will handle all weapon related functionality</li></ul>

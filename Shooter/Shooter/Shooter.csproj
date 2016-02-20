@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controls\Movement.cs" />
+    <Compile Include="Controls\Weapon.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\ParentConvertor.cs" />
