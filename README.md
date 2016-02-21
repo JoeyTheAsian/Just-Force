@@ -111,9 +111,9 @@
 <li>Created a loading screen that appears for 1.5 seconds before game starts</li></ul> 
 
 <b>8:04 pm 2-19-16 Anthony Olivares</b>
-<li>Fire rates in design.txt are now in seconds, as is stamina rates</li>
+<ul><li>Fire rates in design.txt are now in seconds, as is stamina rates</li>
 <li>Fixed up opening narration a bit</li>
-<li>Added color and appearence ideas for enemies</li>
+<li>Added color and appearence ideas for enemies</li></ul>
 
 <b>5:10 pm 2-20-16: Joey Tong</b>
 <ul><li>Implemented Screen shake by adding a pixel offset to all rendered objects</li>
