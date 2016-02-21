@@ -10,7 +10,7 @@ using Shooter.Testing_Tools;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-
+using Shooter.GameStates;
 
 namespace Shooter {
     ///main type for the game
@@ -71,6 +71,9 @@ namespace Shooter {
         private List<Character> enemies;
         private Character enemy;
         //connor's menu implementation_____________________________________________
+        
+       // private GameStateClass g;
+        //_________________________________________________________________________
         private Gamestate gamestate;
         private Thread backgroundThread;
 
@@ -123,14 +126,12 @@ namespace Shooter {
         /// </summary>
         protected override void Initialize() {
             // TODO: Add your initialization logic here
-
+            //g = new GameStateClass(ScreenWidth,ScreenHeight, Content);
             //enable mouse pointer
             IsMouseVisible = true;
 
-            //set position of start button
             startButtonPosition = new Vector2((ScreenWidth / 2) - 150, 200);
             exitButtonPosition = new Vector2((ScreenWidth / 2) - 290, 400);
-
             //set game to start on start menu
             gamestate = Gamestate.StartMenu;
 
@@ -152,10 +153,11 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        
             //load in textures for start and exit buttons 
-            startButton = Content.Load<Texture2D>("button-start");
-            exitButton = Content.Load<Texture2D>("exit-button");
-            loadscreen = Content.Load<Texture2D>("loadinggraphic");
+           startButton = Content.Load<Texture2D>("button-start");
+           exitButton = Content.Load<Texture2D>("exit-button");
+           loadscreen = Content.Load<Texture2D>("loadinggraphic");
 
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
@@ -196,13 +198,14 @@ namespace Shooter {
             //use this.Content to load your game content here
             //Sets up the origin postion based off the rectangle position
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
-
+            
             //Creates temp enemy
             enemies = new List<Character>();
             enemies.Add(new Character(Content, (global.X + 100) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
             enemies.Add(new Character(Content, (global.X + 400) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
             enemies.Add(new Character(Content, (global.X + 800) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
 
+            //g = new GameStateClass(ScreenWidth, ScreenHeight, Content);
         }
 
         /// <summary>
@@ -225,16 +228,26 @@ namespace Shooter {
 
             //exit the window with esc key
             //Checks to see if the key is just pressed and not held down
-            if (oldState.IsKeyDown(Keys.Escape) && state.IsKeyUp(Keys.Escape)) {
-                Exit();
-            }
+            
             if(oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde))
             {
                 consoleTool.OpenInput();
             }
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
-                MouseClicked(mState.X, mState.Y);
+                MouseClicked(mState.X,mState.Y);
+                //GameStateClass.MouseClicked(mState.X, mState.Y, g.gamestate, g.startButtonPosition, g.exitButtonPosition, g.isloading);
+            }
+
+           // g.updateState(g.gamestate, state, g.isloading, g.backgroundThread);
+            if(gamestate == Gamestate.Playing) {
+                if (state.IsKeyDown(Keys.Escape)) {
+                    gamestate = Gamestate.Paused;
+                }
+            }else if(gamestate == Gamestate.Paused) {
+                if (state.IsKeyDown(Keys.Escape)) {
+                    gamestate = Gamestate.Playing;
+                }
             }
 
             if (gamestate == Gamestate.Playing && isloading) {
@@ -243,7 +256,7 @@ namespace Shooter {
                 isloading = false;
             }
 
-            if(gamestate == Gamestate.Loading && !isloading) {
+            if(gamestate == Gamestate.Loading && isloading) {
 
                 backgroundThread = new Thread(LoadGame);
                 isloading = true;
@@ -347,7 +360,6 @@ namespace Shooter {
             }
         }
 
-
         //___________________________________________________________________________MOVE THIS CODE TO AN EXTERNAL CLASS
         //method for mouse on main menu
         void MouseClicked(int x, int y) {
@@ -362,7 +374,7 @@ namespace Shooter {
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
 
-                   // gamestate = Gamestate.Loading;
+                    // gamestate = Gamestate.Loading;
 
                     gamestate = Gamestate.Playing;
 
@@ -374,7 +386,6 @@ namespace Shooter {
                 }
             }
         }
-        //___________________________________________________________________________MOVE THIS CODE TO AN EXTERNAL CLASS
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -386,59 +397,64 @@ namespace Shooter {
             //drawing code
             spriteBatch.Begin();
 
-            //draw in the start menu
-            if(gamestate == Gamestate.StartMenu) {
-                spriteBatch.Draw(startButton, startButtonPosition, Color.White);
-                spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
-            }
+            switch (gamestate) {
+//____________________DRAW START MENU____________________________________________________________________
+                case Gamestate.StartMenu:
+                    spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                    spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+                    break;
+//____________________DRAW LOAD SCREEN____________________________________________________________________
+                case Gamestate.Loading:
+                    //GameStateClass.DrawLoad(spriteBatch, g.loadscreen, g.loadscreenPos);
+                    spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.Cyan);
+                    break;
+//____________________DRAW PAUSE MENU____________________________________________________________________
+                case Gamestate.Paused:
+                    GraphicsDevice.Clear(Color.Blue);
+                    break;
+//____________________DRAW GAME ASSETS____________________________________________________________________
+                case Gamestate.Playing:
+                    //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
+                    tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), ScreenWidth, ScreenHeight);
 
-            if(gamestate == Gamestate.Loading) {
-                spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.YellowGreen);
-            }
-
-            //draw the game while it is being played
-            if (gamestate == Gamestate.Playing) {
-
-                //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
-                tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), ScreenWidth, ScreenHeight);
-
-                //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
-                //loop through only the tiles that are actually in the window with bounds in tilebounds object
-                for (int i = tb.Xmin; i < tb.Xmax; i++) {
-                    for (int j = tb.Ymin; j < tb.Ymax; j++) {
-                        //draw the tile
-                        spriteBatch.Draw(m.TileMap[i, j],
-                                        //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
-                                        new Rectangle((int)((global.X * m.TileSize) + (i * m.TileSize) + .5 + xOffset),
-                                                      (int)((global.Y * m.TileSize) + (j * m.TileSize) + .5 + yOffset),
-                                                      m.TileSize, m.TileSize), Color.White);
+                    //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
+                    //loop through only the tiles that are actually in the window with bounds in tilebounds object
+                    for (int i = tb.Xmin; i < tb.Xmax; i++) {
+                        for (int j = tb.Ymin; j < tb.Ymax; j++) {
+                            //draw the tile
+                            spriteBatch.Draw(m.TileMap[i, j],
+                                            //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
+                                            new Rectangle((int)((global.X * m.TileSize) + (i * m.TileSize) + .5 + xOffset),
+                                                          (int)((global.Y * m.TileSize) + (j * m.TileSize) + .5 + yOffset),
+                                                          m.TileSize, m.TileSize), Color.White);
+                        }
                     }
-                }
 
-                //draw entities___________________________________________________________________________________________________
-                for(int i = 0; i < projectiles.Count; i++) {
-                    spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
-                }
+                    //draw entities___________________________________________________________________________________________________
+                    for (int i = 0; i < projectiles.Count; i++) {
+                        spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
+                    }
 
-                //Draws the temp enemy
-                for (int k = 0; k < enemies.Count; k++){
-                    spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, xOffset, yOffset), Color.White);
-                }
+                    //Draws the temp enemy
+                    for (int k = 0; k < enemies.Count; k++) {
+                        spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, xOffset, yOffset), Color.White);
+                    }
 
-                //draw the player model
-                spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize, xOffset, yOffset), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+                    //draw the player model
+                    spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize, xOffset, yOffset), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
-                //Draws a spritefont at postion 0,0 on the screen
-                spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
+                    //Draws a spritefont at postion 0,0 on the screen
+                    spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
-                //play all enqueued sound effects
-                for (int i = 0; i < curSounds.Count; i++) {
-                    curSounds.Dequeue().Play();
-                }
-                //add frame to frame counter
-                FPSHandler.frames++;
+                    //play all enqueued sound effects
+                    for (int i = 0; i < curSounds.Count; i++) {
+                        curSounds.Dequeue().Play();
+                    }
+                    //add frame to frame counter
+                    FPSHandler.frames++;
+                    break;
             }
-
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -446,6 +462,7 @@ namespace Shooter {
 
         public void LoadGame() {
             //start playing game
+            
             gamestate = Gamestate.Playing;
             isloading = true;
 
