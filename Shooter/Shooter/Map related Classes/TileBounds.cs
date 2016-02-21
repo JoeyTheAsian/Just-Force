@@ -24,14 +24,14 @@ namespace Shooter.MapClasses {
         //Minimum bound is where the screen begins, maximum bound is where the screen ends. Implementation of ambient occlusion to save memory
         //+/- 1.5 tile buffer to make sure non-whole edges of screen are never empty and account for rounding errors
 
-        public void findBounds(double x, double y, int tileSize, int mapWidth, int mapHeight, int ScreenWidth, int ScreenHeight) {
-            if ((int)((x * -1) + (ScreenWidth / tileSize) + 1.5) < mapWidth) {
-                xmax = (int)((x * -1) + (ScreenWidth / tileSize) + 1.5);
+        public void findBounds(double x, double y, int tileSize, int mapWidth, int mapHeight, int screenWidth, int screenHeight) {
+            if ((int)((x * -1) + (screenWidth / tileSize) + 1.5) < mapWidth) {
+                xmax = (int)((x * -1) + (screenWidth / tileSize) + 1.5);
             } else {
                 xmax = mapWidth;
             }
-            if ((int)((y * -1) + (ScreenHeight / tileSize) + 1.5) < mapHeight) {
-                ymax = (int)((y * -1) + (ScreenHeight / tileSize) + 2.5);
+            if ((int)((y * -1) + (screenHeight / tileSize) + 1.5) < mapHeight) {
+                ymax = (int)((y * -1) + (screenHeight / tileSize) + 2.5);
             } else {
                 ymax = mapHeight;
             }

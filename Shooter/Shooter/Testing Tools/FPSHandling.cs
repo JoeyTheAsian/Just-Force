@@ -21,11 +21,14 @@ namespace Shooter.Testing_Tools {
         }
         
         public string UpdateFPS() {
-            avgFPS = (int)FPSSample.Average();
+            avgFPS = (int)(FPSSample.Average());
             return "FPS: " + avgFPS;
         }
         public void AddSample(int s) {
             FPSSample.Enqueue(s);
+            if (FPSSample.Count > 5) {
+                FPSSample.Dequeue();
+            }
         }
     }
 }

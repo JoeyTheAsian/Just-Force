@@ -49,8 +49,8 @@ namespace Shooter {
         private Movement movement;
 
         //Height and width of the monitor
-        private int ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-        private int ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
 
         //New game console object
@@ -71,29 +71,31 @@ namespace Shooter {
         private List<Character> enemies;
         private Character enemy;
         //connor's menu implementation_____________________________________________
-        
-       // private GameStateClass g;
+
+        // private GameStateClass g;
         //_________________________________________________________________________
-        private Gamestate gamestate;
-        private Thread backgroundThread;
+        /* private Gamestate gamestate;
+         private Thread backgroundThread;
 
-        private Texture2D startButton;
-        private Vector2 startButtonPosition;
-        private Texture2D exitButton;
+         private Texture2D startButton;
+         private Vector2 startButtonPosition;
+         private Texture2D exitButton;
 
-        private Vector2 exitButtonPosition;
+         private Vector2 exitButtonPosition;
 
-        private Texture2D loadscreen;
-        private bool isloading = false;
-        //_________________________________________________________________________
-        enum Gamestate {
-            StartMenu,
-            Loading,
-            Playing,
-            Paused
-        }
-        //_______________________________________________________________________________________
+         private Texture2D loadscreen;
+         private bool isloading = false;
 
+         //_________________________________________________________________________
+         enum Gamestate {
+             StartMenu,
+             Loading,
+             Playing,
+             Paused
+         }
+         //_______________________________________________________________________________________
+         */
+        GameStateManager g;
         //game time
         protected double time;
         
@@ -111,8 +113,8 @@ namespace Shooter {
 
             this.IsMouseVisible = true;
             //set window size to screen size
-            graphics.PreferredBackBufferHeight = ScreenHeight;
-            graphics.PreferredBackBufferWidth = ScreenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            graphics.PreferredBackBufferWidth = screenWidth;
 
             Content.RootDirectory = "Content";
             
@@ -126,14 +128,21 @@ namespace Shooter {
         /// </summary>
         protected override void Initialize() {
             // TODO: Add your initialization logic here
-            //g = new GameStateClass(ScreenWidth,ScreenHeight, Content);
+            //g = new GameStateClass(screenWidth,screenHeight, Content);
             //enable mouse pointer
             IsMouseVisible = true;
-
-            startButtonPosition = new Vector2((ScreenWidth / 2) - 150, 200);
-            exitButtonPosition = new Vector2((ScreenWidth / 2) - 290, 400);
+            g = new GameStateManager(screenWidth, screenHeight, Content);
+            //startButtonPosition = new Vector2((screenWidth / 2) - 150, 200);
+            //exitButtonPosition = new Vector2((screenWidth / 2) - 290, 400);
             //set game to start on start menu
-            gamestate = Gamestate.StartMenu;
+            try {
+                g.gameState = "StartMenu";
+                g.CheckGameState();
+            } catch (GameStateNotFoundException e) {
+                Console.WriteLine(e.ToString());
+                g.gameState = "";
+            }
+            //g.gameState = "StartMenu";
 
             base.Initialize();
 
@@ -153,12 +162,7 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        
-            //load in textures for start and exit buttons 
-           startButton = Content.Load<Texture2D>("button-start");
-           exitButton = Content.Load<Texture2D>("exit-button");
-           loadscreen = Content.Load<Texture2D>("loadinggraphic");
-
+       
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
 
@@ -186,8 +190,8 @@ namespace Shooter {
             //set global coordinates to default (this would be the starting point in the game)
             global = new Coord(0,0);
 
-            player.Loc.Y = (global.Y + (ScreenHeight / 2)) / m.TileSize;
-            player.Loc.X = (global.X + (ScreenWidth / 2)) / m.TileSize;
+            player.Loc.Y = (global.Y + (screenHeight / 2)) / m.TileSize;
+            player.Loc.X = (global.X + (screenWidth / 2)) / m.TileSize;
 
 
             //movement object, set max velocity and acceleration here
@@ -205,7 +209,6 @@ namespace Shooter {
             enemies.Add(new Character(Content, (global.X + 400) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
             enemies.Add(new Character(Content, (global.X + 800) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
 
-            //g = new GameStateClass(ScreenWidth, ScreenHeight, Content);
         }
 
         /// <summary>
@@ -235,34 +238,17 @@ namespace Shooter {
             }
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
-                MouseClicked(mState.X,mState.Y);
-                //GameStateClass.MouseClicked(mState.X, mState.Y, g.gamestate, g.startButtonPosition, g.exitButtonPosition, g.isloading);
+                //MouseClicked(mState.X,mState.Y);
+                g.MouseClicked(mState.X, mState.Y);
             }
 
-           // g.updateState(g.gamestate, state, g.isloading, g.backgroundThread);
-            if(gamestate == Gamestate.Playing) {
-                if (state.IsKeyDown(Keys.Escape)) {
-                    gamestate = Gamestate.Paused;
-                }
-            }else if(gamestate == Gamestate.Paused) {
-                if (state.IsKeyDown(Keys.Escape)) {
-                    gamestate = Gamestate.Playing;
-                }
+            //when loading, updatestate returns true, use that to start new thread
+            bool newThread = g.updateState(state, oldState);
+            if (newThread == true) {
+                g.backgroundThread = new Thread(new ThreadStart(g.StartGame));
+                g.backgroundThread.Start();
             }
-
-            if (gamestate == Gamestate.Playing && isloading) {
-
-                LoadGame();
-                isloading = false;
-            }
-
-            if(gamestate == Gamestate.Loading && isloading) {
-
-                backgroundThread = new Thread(LoadGame);
-                isloading = true;
-
-                backgroundThread.Start();
-            }
+           
             //UPDATE LOGIC_____________________________________________________________________________________________________________
 
             //CONTROLS_____________________________________
@@ -359,34 +345,6 @@ namespace Shooter {
                 FPSHandler.UpdateFPS();
             }
         }
-
-        //___________________________________________________________________________MOVE THIS CODE TO AN EXTERNAL CLASS
-        //method for mouse on main menu
-        void MouseClicked(int x, int y) {
-
-            if (gamestate == Gamestate.StartMenu) {
-
-                Rectangle mouseClickRect = new Rectangle(x, y, 10, 10);
-
-                Rectangle startbuttonRect = new Rectangle((int)startButtonPosition.X, (int)startButtonPosition.Y, 300, 108);
-                Rectangle exitbuttonRect = new Rectangle((int)exitButtonPosition.X, (int)exitButtonPosition.Y, 600, 192);
-
-                //player clicks start
-                if (mouseClickRect.Intersects(startbuttonRect)) {
-
-                    // gamestate = Gamestate.Loading;
-
-                    gamestate = Gamestate.Playing;
-
-                    isloading = true;
-                }
-                //player exits game
-                else if (mouseClickRect.Intersects(exitbuttonRect)) {
-                    Exit();
-                }
-            }
-        }
-
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -397,26 +355,27 @@ namespace Shooter {
             //drawing code
             spriteBatch.Begin();
 
-            switch (gamestate) {
-//____________________DRAW START MENU____________________________________________________________________
-                case Gamestate.StartMenu:
-                    spriteBatch.Draw(startButton, startButtonPosition, Color.White);
-                    spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            switch (g.gameState) {
+                //____________________DRAW START MENU____________________________________________________________________
+                case "StartMenu":
+                    spriteBatch.Draw(g.startButton, g.startButtonPosition, Color.White);
+                    spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
-//____________________DRAW LOAD SCREEN____________________________________________________________________
-                case Gamestate.Loading:
+                //____________________DRAW LOAD SCREEN____________________________________________________________________
+                case "Loading":
                     //GameStateClass.DrawLoad(spriteBatch, g.loadscreen, g.loadscreenPos);
-                    spriteBatch.Draw(loadscreen, new Vector2((ScreenWidth / 2) - (loadscreen.Width / 2), (ScreenHeight / 2) - (loadscreen.Height / 2)), Color.Cyan);
+                    spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
                     break;
-//____________________DRAW PAUSE MENU____________________________________________________________________
-                case Gamestate.Paused:
-                    GraphicsDevice.Clear(Color.Blue);
+                //____________________DRAW PAUSE MENU____________________________________________________________________
+                case "Paused":
+                    //temp test
+                    spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
                     break;
-//____________________DRAW GAME ASSETS____________________________________________________________________
-                case Gamestate.Playing:
+                //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
+                case "Playing":
                     //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
-                    tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), ScreenWidth, ScreenHeight);
-
+                    tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), screenWidth, screenHeight);
+                    
                     //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
                     for (int i = tb.Xmin; i < tb.Xmax; i++) {
@@ -458,14 +417,6 @@ namespace Shooter {
             spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        public void LoadGame() {
-            //start playing game
-            
-            gamestate = Gamestate.Playing;
-            isloading = true;
-
         }
     }
 }
