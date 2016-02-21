@@ -120,3 +120,8 @@
 <ul><li>Implemented Screen shake by adding a pixel offset to all rendered objects</li>
 <li>Screen shakes when firing a projectile</li>
 <li>Coded a new class, "Weapon.cs". Will handle all weapon related functionality</li></ul>
+
+<b>1:00 pm 2-21-16 Joey Tong & Connor Cummings</b>
+<ul><li>Fixed and moved implementation of gamestates to external class "GameStateManager"</li>
+<li>Fixed bug in FPSHandler that caused inaccurate readings of fps</li>
+</ul>
