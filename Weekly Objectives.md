@@ -41,7 +41,7 @@
 <b>Austin Ford:</b><ul><li>implementation of map objects & collision</li>
 <li>Implementation of damage mechanics and skills framework</li>
 <li>Code cleanup</li>
-<li>Expand developer console command list and document commands</li>
+<li>Expand developer console command list and document commands</li></ul>
 <b>Connor Cummings:</b><ul><li>Implementation of basic HUD elements (HP bar, stamina, ammo)</li>
-<li>Create UI and code Map Editor</li></ul>
+<li>Create UI and help create Map Editor</li></ul>
 <b>Anthony Olivares:</b><ul><li>Create Map Editor</li></ul>
