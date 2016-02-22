@@ -1,4 +1,4 @@
-<h1><b><u>Objectives for week 01 of development: 2-7-16 DEADLINE 2-14-16</u></b></h1>
+<h1><b><u>Objectives for week 1 of development: 2-7-16 DEADLINE 2-14-16</u></b></h1>
 <b>Joey Tong:</b><ul><strike><li> Get map and some assets created.</li></strike>
 <strike><li>implement map scrolling</li></strike>
 <strike><li>Implement entities</li></strike>
@@ -33,3 +33,15 @@
 <li>Create sketchup of map for level 1</li>
 <li>assist in creation of map editor</li>
 <li>write dialogues and scenes for game intro (exposition)</li></ul>
+<h1><b><u>Objectives for week 3 of development: 2-21-16 DEADLINE 2-28-16</u></b></h1>
+<b>Joey Tong:</b><ul><li>implementation of enemy & ai</li>
+<li>create textures for HUD and enemy</li>
+<li>Move screen shake to external class</li>
+<li>implementation of weapon functionality (Spread, reloading, etc.)</li></ul>
+<b>Austin Ford:</b><ul><li>implementation of map objects & collision</li>
+<li>Implementation of damage mechanics and skills framework</li>
+<li>Code cleanup</li>
+<li>Expand developer console command list and document commands</li>
+<b>Connor Cummings:</b><ul><li>Implementation of basic HUD elements (HP bar, stamina, ammo)</li>
+<li>Create UI and code Map Editor</li></ul>
+<b>Anthony Olivares:</b><ul><li>Create Map Editor</li></ul>
