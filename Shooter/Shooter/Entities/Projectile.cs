@@ -79,7 +79,7 @@ namespace Shooter.Entities {
         public bool CheckHit(Character target)
         {
             //Checks to see if the projectile has hit the target, deals damage and returns true 
-            if((loc.X >= target.Loc.X) && (loc.X <= target.Loc.X + 1) && (loc.Y >= target.Loc.Y) && (loc.Y <= target.Loc.X + 1))
+            if((loc.X >= target.Loc.X) && (loc.X <= target.Loc.X + 1) && (loc.Y >= target.Loc.Y) && (loc.Y <= target.Loc.Y + 1))
             {
                 target.Health -= 1;
                 return true;

@@ -124,3 +124,6 @@
 <ul><li>Fixed and moved implementation of gamestates to external class "GameStateManager"</li>
 <li>Fixed bug in FPSHandler that caused inaccurate readings of fps</li>
 </ul>
+
+<b>8:09 pm 2-24-16: Austin Ford</b>
+<ul><li>Fixed basic collision bug</li></ul>
