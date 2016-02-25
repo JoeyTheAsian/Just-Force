@@ -127,3 +127,6 @@
 
 <b>8:09 pm 2-24-16: Austin Ford</b>
 <ul><li>Fixed basic collision bug</li></ul>
+
+<b>3:02 pm 2/25/2016: Connor Cummings</b>
+<ul><li>added temporary assets for HUD (health, stamina, ammo)</li></ul>

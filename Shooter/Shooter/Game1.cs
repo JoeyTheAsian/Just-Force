@@ -70,32 +70,10 @@ namespace Shooter {
         //Temp enemy
         private List<Character> enemies;
         private Character enemy;
-        //connor's menu implementation_____________________________________________
-
-        // private GameStateClass g;
-        //_________________________________________________________________________
-        /* private Gamestate gamestate;
-         private Thread backgroundThread;
-
-         private Texture2D startButton;
-         private Vector2 startButtonPosition;
-         private Texture2D exitButton;
-
-         private Vector2 exitButtonPosition;
-
-         private Texture2D loadscreen;
-         private bool isloading = false;
-
-         //_________________________________________________________________________
-         enum Gamestate {
-             StartMenu,
-             Loading,
-             Playing,
-             Paused
-         }
-         //_______________________________________________________________________________________
-         */
+        //connor's menu implementation___________
         GameStateManager g;
+        //HUD assets
+        private Texture2D health;
         //game time
         protected double time;
         
@@ -132,9 +110,7 @@ namespace Shooter {
             //enable mouse pointer
             IsMouseVisible = true;
             g = new GameStateManager(screenWidth, screenHeight, Content);
-            //startButtonPosition = new Vector2((screenWidth / 2) - 150, 200);
-            //exitButtonPosition = new Vector2((screenWidth / 2) - 290, 400);
-            //set game to start on start menu
+            
             try {
                 g.gameState = "StartMenu";
                 g.CheckGameState();
@@ -142,7 +118,6 @@ namespace Shooter {
                 Console.WriteLine(e.ToString());
                 g.gameState = "";
             }
-            //g.gameState = "StartMenu";
 
             base.Initialize();
 
@@ -162,7 +137,8 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-       
+            //HUD content
+            health = Content.Load<Texture2D>("health");
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
 
@@ -238,7 +214,6 @@ namespace Shooter {
             }
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
-                //MouseClicked(mState.X,mState.Y);
                 g.MouseClicked(mState.X, mState.Y);
             }
 
@@ -390,6 +365,9 @@ namespace Shooter {
                     }
 
                     //draw entities___________________________________________________________________________________________________
+
+                    
+
                     for (int i = 0; i < projectiles.Count; i++) {
                         spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                     }
@@ -411,6 +389,11 @@ namespace Shooter {
                     }
                     //add frame to frame counter
                     FPSHandler.frames++;
+
+                    //temp HUD assets
+                    spriteBatch.Draw(health, new Rectangle(30, 5, 450, 100), Color.White);
+                    spriteBatch.Draw(health, new Rectangle(30, 50, 350, 100), Color.White);
+                    spriteBatch.DrawString(arial, "ammo", new Vector2(1250,50), Color.Yellow);
                     break;
             }
             
