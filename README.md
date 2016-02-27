@@ -164,4 +164,6 @@
 <ul><li>Moved ScreenShake code and all camera related variables to "Camera.cs"</li>
 <li>Implemented bullet spread, pistol spread set to 10 degrees</li>
 <li>created weapon object housed in character class</li>
-<li>Added HUD component that displays current weapon type and name and drew it to the screen</li></ul>
+<li>Added HUD component that displays current weapon type and name and drew it to the screen</li>
+<li>moved and renamed global coord to Camera class as "camPos"</li>
+<li>added silhouette of pistol (HUD texture) "Pistol.png"</li></ul>
