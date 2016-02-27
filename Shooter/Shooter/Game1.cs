@@ -252,7 +252,7 @@ namespace Shooter {
             }
 
             //update camera
-            c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds);
+            c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize);
 
             //updates projectiles and checks collision
             for (int i = 0; i < projectiles.Count; i++) { 

@@ -20,7 +20,7 @@ namespace Shooter.Controls {
             yOffset = 0;
             camPos = new Coord(0, 0);
         }
-        public void UpdateCamera(int elapsedTime) {
+        public void UpdateCamera(int elapsedTime, double X, double Y, int tileSize) {
             //SCREEN SHAKE 
             if (screenShake == true && shakeDur < 12) {
                 xOffset += 2;
