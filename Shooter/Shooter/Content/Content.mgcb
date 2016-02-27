@@ -1,5 +1,5 @@
 
-#----------------------------- Global Properties ----------------------------#
+#----------------------------- c.camPos Properties ----------------------------#
 
 /outputDir:bin/Windows
 /intermediateDir:obj/Windows

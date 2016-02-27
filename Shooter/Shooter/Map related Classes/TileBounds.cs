@@ -20,7 +20,7 @@ namespace Shooter.MapClasses {
             get { return ymin; }
         }
 
-        //takes the inverted sign of coordinates x,y because global coordinates are inverted.
+        //takes the inverted sign of coordinates x,y because c.camPos coordinates are inverted.
         //Minimum bound is where the screen begins, maximum bound is where the screen ends. Implementation of ambient occlusion to save memory
         //+/- 1.5 tile buffer to make sure non-whole edges of screen are never empty and account for rounding errors
 

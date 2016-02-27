@@ -52,21 +52,19 @@ namespace Shooter {
         private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 
+        //Camera object
+        private Camera c;
 
         //New game console object
-        GameConsole consoleTool;
+        private GameConsole consoleTool;
 
         //TEMPORARY ASSET OBJECTS________________________________________________________________
 
         private Character player;
         private Map m;
-        private Coord global;
+
         private TileBounds tb;
-        //screenshake bool
-        private bool screenShake = false;
-        private int shakeDur = 0;
-        private int xOffset = 0;
-        private int yOffset = 0;
+
         //Temp enemy
         private List<Character> enemies;
         private Character enemy;
@@ -78,7 +76,6 @@ namespace Shooter {
         protected double time;
         
         public Game1() {
-
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
 
@@ -95,7 +92,6 @@ namespace Shooter {
             graphics.PreferredBackBufferWidth = screenWidth;
 
             Content.RootDirectory = "Content";
-            
         }
 
         /// <summary>
@@ -163,11 +159,11 @@ namespace Shooter {
             //Create the list of projectiles
             projectiles = new List<Projectile>();
 
-            //set global coordinates to default (this would be the starting point in the game)
-            global = new Coord(0,0);
+            //load up initial camera
+            c = new Camera();
 
-            player.Loc.Y = (global.Y + (screenHeight / 2)) / m.TileSize;
-            player.Loc.X = (global.X + (screenWidth / 2)) / m.TileSize;
+            player.Loc.Y = (c.camPos.Y + (screenHeight / 2)) / m.TileSize;
+            player.Loc.X = (c.camPos.X + (screenWidth / 2)) / m.TileSize;
 
 
             //movement object, set max velocity and acceleration here
@@ -181,10 +177,9 @@ namespace Shooter {
             
             //Creates temp enemy
             enemies = new List<Character>();
-            enemies.Add(new Character(Content, (global.X + 100) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
-            enemies.Add(new Character(Content, (global.X + 400) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
-            enemies.Add(new Character(Content, (global.X + 800) / m.TileSize, (global.Y + 100) / m.TileSize, "NoTexture"));
-
+            enemies.Add(new Character(Content, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
         }
 
         /// <summary>
@@ -243,8 +238,8 @@ namespace Shooter {
             player.Loc.X -= XVelocity;
             player.Loc.Y -= YVelocity;
 
-            global.X += XVelocity;
-            global.Y += YVelocity;
+            c.camPos.X += XVelocity;
+            c.camPos.Y += YVelocity;
 
 
             //Left mouse button to shoot
@@ -253,25 +248,11 @@ namespace Shooter {
                 //Plays a new instance of the first audio file which is the gunshot
                 curSounds.Enqueue(soundEffects[0]);
                 projectiles.Add(player.Shoot(Content));
-                screenShake = true;
+                c.screenShake = true;
             }
 
-            //SCREEN SHAKE 
-            if(screenShake == true && shakeDur < 12) {
-                xOffset += 2;
-                shakeDur += gameTime.ElapsedGameTime.Milliseconds;
-            }else if(screenShake == true && shakeDur >= 12 && shakeDur < 37) {
-                xOffset -= 2;
-                shakeDur += gameTime.ElapsedGameTime.Milliseconds;
-            }else if (screenShake == true && shakeDur >= 37 && shakeDur < 50) {
-                xOffset += 2;
-                shakeDur += gameTime.ElapsedGameTime.Milliseconds;
-            }else if (shakeDur >= 50){
-                xOffset = 0;
-                yOffset = 0;
-                screenShake = false;
-                shakeDur = 0;
-            }
+            //update camera
+            c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds);
 
             //updates projectiles and checks collision
             for (int i = 0; i < projectiles.Count; i++) { 
@@ -303,7 +284,7 @@ namespace Shooter {
             }
             
             //Updates the rotation position by getting the angle between two points
-            player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize);
+            player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
             
             //Updates the old state with what the current state is
             oldState = state;
@@ -349,7 +330,7 @@ namespace Shooter {
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
                 case "Playing":
                     //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
-                    tb.findBounds(global.X, global.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), screenWidth, screenHeight);
+                    tb.findBounds(c.camPos.X, c.camPos.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), screenWidth, screenHeight);
                     
                     //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
@@ -358,8 +339,8 @@ namespace Shooter {
                             //draw the tile
                             spriteBatch.Draw(m.TileMap[i, j],
                                             //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
-                                            new Rectangle((int)((global.X * m.TileSize) + (i * m.TileSize) + .5 + xOffset),
-                                                          (int)((global.Y * m.TileSize) + (j * m.TileSize) + .5 + yOffset),
+                                            new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
+                                                          (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
                                                           m.TileSize, m.TileSize), Color.White);
                         }
                     }
@@ -367,21 +348,29 @@ namespace Shooter {
                     //draw entities___________________________________________________________________________________________________
 
                     
-
+                    //draw projectiles
                     for (int i = 0; i < projectiles.Count; i++) {
-                        spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((global.X + projectiles[i].Loc.X) * m.TileSize), (int)((global.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
+                        spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                     }
 
                     //Draws the temp enemy
                     for (int k = 0; k < enemies.Count; k++) {
-                        spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, xOffset, yOffset), Color.White);
+                        spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
                     }
 
                     //draw the player model
-                    spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(global.X, global.Y, player.Loc.X, player.Loc.Y, m.TileSize, xOffset, yOffset), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+                    spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize, c.xOffset, c.yOffset), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
+
+                    //Draws HUD
+                    //temp HUD assets
+                    spriteBatch.Draw(player.Weapon.Texture, new Rectangle(screenWidth - player.Weapon.Texture.Width *2 / 3, screenHeight - player.Weapon.Texture.Height*2/3, player.Weapon.Texture.Width / 3, player.Weapon.Texture.Height / 3), Color.White);
+                    spriteBatch.DrawString(arial, player.Weapon.Name , new Vector2(screenWidth - player.Weapon.Texture.Width * 1 / 3, screenHeight - player.Weapon.Texture.Height * 1 / 3 - arial.MeasureString(player.Weapon.Name).Y), Color.Red);
+                    spriteBatch.Draw(health, new Rectangle(30, 5, 450, 100), Color.White);
+                    spriteBatch.Draw(health, new Rectangle(30, 50, 350, 100), Color.White);
+                    spriteBatch.DrawString(arial, "ammo", new Vector2(1250, 50), Color.Yellow);
 
                     //play all enqueued sound effects
                     for (int i = 0; i < curSounds.Count; i++) {
@@ -389,11 +378,6 @@ namespace Shooter {
                     }
                     //add frame to frame counter
                     FPSHandler.frames++;
-
-                    //temp HUD assets
-                    spriteBatch.Draw(health, new Rectangle(30, 5, 450, 100), Color.White);
-                    spriteBatch.Draw(health, new Rectangle(30, 50, 350, 100), Color.White);
-                    spriteBatch.DrawString(arial, "ammo", new Vector2(1250,50), Color.Yellow);
                     break;
             }
             

@@ -5,33 +5,44 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Shooter.MapClasses;
+using Shooter.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+
 
 namespace Shooter.Entities {
     class Character : Entity {
         private int health;
         private int stamina;
+        private Weapon weapon;
 
         public Character(ContentManager content) : base(content) {
             loc = new Coord();
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
 
+            //default character creates default weapon which is a pistol
+            weapon = new Weapon(content);
             //Set Health
             health = 1;
-
+            //set stamina
+            stamina = 0;
         }
 
         //properties
-        public int Health{
-            get{ return health;}
-            set{ health = value; }
+        public int Health {
+            get { return health; }
+            set { health = value; }
         }
         public int Stamina {
             get { return stamina; }
             set { stamina = value; }
+        }
+        public Weapon Weapon {
+            get {
+                return weapon;
+            }
         }
 
         public Character(ContentManager content, double x, double y, string t): base(content, x, y, t) {
@@ -75,18 +86,15 @@ namespace Shooter.Entities {
             }
         }
         public Projectile Shoot(ContentManager content) {
-            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction, 10.0, "Bullet", true);
+            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction + weapon.GetSpread()*(Math.PI/180.0), 10.0, "Bullet", true);
             return p;
         }
 
-        public bool CheckHealth()
-        {
+        public bool CheckHealth(){
             //True if the target is still alive
-            if(health > 0)
-            {
+            if(health > 0){
                 return true;
             }
-
             //False if the target is dead
             return false;
         }

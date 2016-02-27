@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Shooter.Entities {
     class Entity {
-        //STORES GLOBAL LOCATION "loc" = location
+        //STORES c.camPos LOCATION "loc" = location
         protected Coord loc;
         //direction the entity is pointed, 0.0 degrees is facing upwards
         protected double direction;

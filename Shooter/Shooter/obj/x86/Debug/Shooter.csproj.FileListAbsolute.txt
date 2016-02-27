@@ -281,3 +281,5 @@ C:\Users\Owner\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAss
 C:\Users\Owner\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Owner\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol.png
