@@ -14,26 +14,18 @@ using Microsoft.Xna.Framework.Content;
 namespace Shooter.Entities {
     class Character : Entity {
         private int health;
+        private int maxHealth;
         private int stamina;
         private Weapon weapon;
-
-        public Character(ContentManager content) : base(content) {
-            loc = new Coord();
-            entTexture = content.Load<Texture2D>("NoTexture");
-            collision = false;
-
-            //default character creates default weapon which is a pistol
-            weapon = new Weapon(content);
-            //Set Health
-            health = 1;
-            //set stamina
-            stamina = 0;
-        }
 
         //properties
         public int Health {
             get { return health; }
             set { health = value; }
+        }
+        public int MaxHealth {
+            get { return maxHealth; }
+            set { maxHealth = value; }
         }
         public int Stamina {
             get { return stamina; }
@@ -43,6 +35,19 @@ namespace Shooter.Entities {
             get {
                 return weapon;
             }
+        }
+        public Character(ContentManager content) : base(content) {
+            loc = new Coord();
+            entTexture = content.Load<Texture2D>("NoTexture");
+            collision = false;
+
+            //default character creates default weapon which is a pistol
+            weapon = new Weapon(content);
+            //Set Health
+            maxHealth = 1;
+            health = maxHealth;
+            //set stamina
+            stamina = 0;
         }
 
         public Character(ContentManager content, double x, double y, string t): base(content, x, y, t) {
@@ -63,6 +68,7 @@ namespace Shooter.Entities {
 
             //Set health
             health = 1;
+            maxHealth = health;
         }
         
         public Character(ContentManager content, double x, double y, double dir, string t, bool c): base(content, x, y, t) {
@@ -75,6 +81,7 @@ namespace Shooter.Entities {
 
             //Set health
             health = 1;
+            maxHealth = health;
 
             loc.X = x;
             loc.Y = y;

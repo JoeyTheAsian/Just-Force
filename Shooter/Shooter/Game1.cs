@@ -71,6 +71,7 @@ namespace Shooter {
         //connor's menu implementation___________
         GameStateManager g;
         //HUD assets
+        private Texture2D healthBar;
         private Texture2D health;
         //game time
         protected double time;
@@ -134,6 +135,7 @@ namespace Shooter {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //HUD content
+            healthBar = Content.Load<Texture2D>("healthBar");
             health = Content.Load<Texture2D>("health");
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
@@ -368,9 +370,11 @@ namespace Shooter {
                     //temp HUD assets
                     spriteBatch.Draw(player.Weapon.Texture, new Rectangle(screenWidth - player.Weapon.Texture.Width *2 / 3, screenHeight - player.Weapon.Texture.Height*2/3, player.Weapon.Texture.Width / 3, player.Weapon.Texture.Height / 3), Color.White);
                     spriteBatch.DrawString(arial, player.Weapon.Name , new Vector2(screenWidth - player.Weapon.Texture.Width * 1 / 3, screenHeight - player.Weapon.Texture.Height * 1 / 3 - arial.MeasureString(player.Weapon.Name).Y), Color.Red);
-                    spriteBatch.Draw(health, new Rectangle(30, 5, 450, 100), Color.White);
-                    spriteBatch.Draw(health, new Rectangle(30, 50, 350, 100), Color.White);
-                    spriteBatch.DrawString(arial, "ammo", new Vector2(1250, 50), Color.Yellow);
+                    spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth / 100), screenHeight / 20 + (int)(screenHeight / 52), screenWidth / 4 - (screenWidth / 50), screenHeight / 15 - (int)(screenHeight / 30)), Color.Black);
+                    spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth/100), screenHeight / 20 + (int)(screenHeight/52), (screenWidth / 4 - (screenWidth/50)) * (player.Health/player.MaxHealth), screenHeight / 15 - (int)(screenHeight / 30)), Color.Magenta);
+                    spriteBatch.Draw(healthBar, new Rectangle(screenWidth/20, screenHeight/20, screenWidth / 4, screenHeight / 15),Color.White);
+
+                    //spriteBatch.DrawString(arial, "ammo", new Vector2(1250, 50), Color.Yellow);
 
                     //play all enqueued sound effects
                     for (int i = 0; i < curSounds.Count; i++) {
