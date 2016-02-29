@@ -198,102 +198,95 @@ namespace Shooter {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+
             //Creates another keyboard & mouse state objects to hold the new states
             KeyboardState state = Keyboard.GetState();
             MouseState mState = Mouse.GetState();
-
-            //exit the window with esc key
-            //Checks to see if the key is just pressed and not held down
-            
-            if(oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde))
-            {
+            if (oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde)) {
                 consoleTool.OpenInput();
             }
-            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
+            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
                 g.MouseClicked(mState.X, mState.Y);
             }
-
             //when loading, updatestate returns true, use that to start new thread
             bool newThread = g.updateState(state, oldState);
             if (newThread == true) {
                 g.backgroundThread = new Thread(new ThreadStart(g.StartGame));
                 g.backgroundThread.Start();
             }
-           
-            //UPDATE LOGIC_____________________________________________________________________________________________________________
+            //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
+            if (g.gameState != "Paused") {
+                //CONTROLS_____________________________________
 
-            //CONTROLS_____________________________________
+                //WASD movement controls
 
-            //WASD movement controls
+                //update sprint
+                movement.UpdateSprint(state, oldState, m.TileSize);
 
-            //update sprint
-            movement.UpdateSprint(state, oldState, m.TileSize);
-            
-            //update the current velocity
-            XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-            YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-
+                //update the current velocity
+                XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+                YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
 
 
-            //update the screen & player positions
-            player.Loc.X -= XVelocity;
-            player.Loc.Y -= YVelocity;
 
-            c.camPos.X += XVelocity;
-            c.camPos.Y += YVelocity;
+                //update the screen & player positions
+                player.Loc.X -= XVelocity;
+                player.Loc.Y -= YVelocity;
+
+                c.camPos.X += XVelocity;
+                c.camPos.Y += YVelocity;
 
 
-            //Left mouse button to shoot
-            //Checks to see if the key is just pressed and not held down
-            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
-                //Plays a new instance of the first audio file which is the gunshot
-                curSounds.Enqueue(soundEffects[0]);
-                projectiles.Add(player.Shoot(Content));
-                c.screenShake = true;
-            }
+                //Left mouse button to shoot
+                //Checks to see if the key is just pressed and not held down
+                if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
+                    //Plays a new instance of the first audio file which is the gunshot
+                    curSounds.Enqueue(soundEffects[0]);
+                    projectiles.Add(player.Shoot(Content));
+                    c.screenShake = true;
+                }
 
-            //update camera
-            c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize);
+                //update camera
+                c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize);
 
-            //updates projectiles and checks collision
-            for (int i = 0; i < projectiles.Count; i++) { 
-                if(projectiles[i].CheckRange() == true) {
-                    projectiles.Remove(projectiles[i]);
-                    i--;
-                } else {
-                    projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                    //Checks if any projectiles collide with any enemies
-                    for (int k = 0; k < enemies.Count; k++)
-                    {
-                        if (projectiles[i].CheckHit(enemies[k]))
-                        {
-                            projectiles.RemoveAt(i);
-                            i--;
-                            break;
+                //updates projectiles and checks collision
+                for (int i = 0; i < projectiles.Count; i++) {
+                    if (projectiles[i].CheckRange() == true) {
+                        projectiles.Remove(projectiles[i]);
+                        i--;
+                    } else {
+                        projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                        //Checks if any projectiles collide with any enemies
+                        for (int k = 0; k < enemies.Count; k++) {
+                            if (projectiles[i].CheckHit(enemies[k])) {
+                                projectiles.RemoveAt(i);
+                                i--;
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            //Temp: Checks to see if the enemy is hit
-            for (int k = 0; k < enemies.Count; k++){
-                if (!enemies[k].CheckHealth())
-                {
-                    enemies.RemoveAt(k);
-                    k--;
+                //Temp: Checks to see if the enemy is hit
+                for (int k = 0; k < enemies.Count; k++) {
+                    if (!enemies[k].CheckHealth()) {
+                        enemies.RemoveAt(k);
+                        k--;
+                    }
                 }
+
+                //Updates the rotation position by getting the angle between two points
+                player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
+
+                //Enqueue player to be rendered
+                sprites.Enqueue(player);
             }
-            
-            //Updates the rotation position by getting the angle between two points
-            player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
-            
+            //END OF GAME LOGIC_____________________________________________________________________________________________________________
+
             //Updates the old state with what the current state is
             oldState = state;
             oldMState = mState;
-
-            //Enqueue player to be rendered
-            sprites.Enqueue(player);
 
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
@@ -316,6 +309,7 @@ namespace Shooter {
             switch (g.gameState) {
                 //____________________DRAW START MENU____________________________________________________________________
                 case "StartMenu":
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.startButton, g.startButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
@@ -328,6 +322,7 @@ namespace Shooter {
                 case "Paused":
                     //temp test
                     spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
+                    
                     break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
                 case "Playing":

@@ -204,11 +204,9 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Ammo.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteCorner.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteEdge.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Concrete.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\exit-button.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.wav
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\LaneLine.png
@@ -284,3 +282,5 @@ C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthBar.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\startButton.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\startMenuBackground.png
