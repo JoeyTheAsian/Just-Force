@@ -34,7 +34,7 @@
 
 <b>12:30 am 2-9-16: Joey Tong</b>
 <ul><li>Fixed optimization issues with rendering TileMap and implemented ambient occlusion</li>
-<li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li>
+<li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li></ul>
 
 
 <b>10:07 pm 2-9-16: Austin Ford</b>
