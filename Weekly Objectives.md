@@ -45,3 +45,21 @@
 <b>Connor Cummings:</b><ul><li>Implementation of basic HUD elements (HP bar, stamina, ammo)</li>
 <li>Create UI and help create Map Editor</li></ul>
 <b>Anthony Olivares:</b><ul><li>Create Map Editor</li></ul>
+<h1><b><u>Objectives for week 4 of development: 2-29-16 DEADLINE 3-6-16</u></b></h1>
+<b>Joey Tong:</b><ul>
+<li>Implementation of reloading, weapon switching</li>
+<li>Basic enemy AI</li>
+</ul>
+<b>Austin Ford:</b><ul>
+<li>Finish implementation of collision</li>
+<li>Code more debug commands in console</li>
+</ul>
+<b>Connor Cummings:</b><ul>
+<li>Finish implementing interface and event handling and integrate with file IO</li>
+<li>Implement map objects into map editor (extra tilemap on top)</li>
+</ul>
+<b>Anthony Olivares:</b><ul>
+<li>finish file IO for tilemap data</li>
+<li>Add support for map objects and spawn point</li>
+<li>Integrate with interface</li>
+</ul>
