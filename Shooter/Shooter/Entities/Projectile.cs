@@ -23,7 +23,7 @@ namespace Shooter.Entities {
         }
 
         //parameters: pass in game content manager, x coord, y coord, texture file name
-        public Projectile(ContentManager content, double x, double y, string t): base(content, x, y, t) {
+        public Projectile(ContentManager content, double x, double y, string t, Rectangle r): base(content, x, y, t, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -39,7 +39,7 @@ namespace Shooter.Entities {
             range = 10.0;
         }
         //constructor: x coord, y coord, direction, velocity, texture file, collision
-        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c): base(content, x, y, dir, t, c) {
+        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r): base(content, x, y, dir, t, c, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -79,7 +79,7 @@ namespace Shooter.Entities {
         public bool CheckHit(Character target)
         {
             //Checks to see if the projectile has hit the target, deals damage and returns true 
-            if((loc.X >= target.Loc.X) && (loc.X <= target.Loc.X + 1) && (loc.Y >= target.Loc.Y) && (loc.Y <= target.Loc.Y + 1))
+            if(rectangle.Intersects(target.rectangle))
             {
                 target.Health -= 1;
                 return true;

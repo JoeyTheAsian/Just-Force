@@ -12,11 +12,11 @@ namespace Shooter.Entities {
         public static Entity ToEntity(Character c, ContentManager content) {
             Entity newEnt;
             try {
-                newEnt = new Entity(content, c.Loc.X, c.Loc.Y, c.EntTexture.ToString());
+                newEnt = new Entity(content, c.Loc.X, c.Loc.Y, c.EntTexture.ToString(), c.rectangle);
                 return newEnt;
             }catch(NullReferenceException) {
                 try {
-                    newEnt = new Entity(content, c.Loc.X, c.Loc.Y, content.Load<Texture2D>("NoTexture").ToString());
+                    newEnt = new Entity(content, c.Loc.X, c.Loc.Y, content.Load<Texture2D>("NoTexture").ToString(), c.rectangle);
                     return newEnt;
                 }catch(NullReferenceException e) {
                     Console.WriteLine(e.ToString());
@@ -27,11 +27,11 @@ namespace Shooter.Entities {
         public static Entity ToEntity(Projectile p, ContentManager content) {
             Entity newEnt;
             try {
-                newEnt = new Entity(content, p.Loc.X, p.Loc.Y, p.EntTexture.ToString());
+                newEnt = new Entity(content, p.Loc.X, p.Loc.Y, p.EntTexture.ToString(), p.rectangle);
                 return newEnt;
             } catch (NullReferenceException) {
                 try {
-                    newEnt = new Entity(content, p.Loc.X, p.Loc.Y, content.Load<Texture2D>("NoTexture").ToString());
+                    newEnt = new Entity(content, p.Loc.X, p.Loc.Y, content.Load<Texture2D>("NoTexture").ToString(), p.rectangle);
                     return newEnt;
                 } catch (NullReferenceException e) {
                     Console.WriteLine(e.ToString());

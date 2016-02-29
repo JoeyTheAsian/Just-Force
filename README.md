@@ -176,3 +176,8 @@
 <li>Fixed implementation of health bar to actually display current player health</li>
 <li>Fixed implementation of pausing to actually stop game loop</li>
 <li>Fixed implementation of drawing HP bar & menu buttons to be rescalable</li></ul>
+
+<b>12:34 am 2-29-16: Austin Ford</b>
+<ul><li>Changed collision to use rectangle intersect methods</li>
+<li>Added rectangle property to all entities and their constructors</li>
+<li>Add checkCollide method and coordinates to map objects</li></ul>

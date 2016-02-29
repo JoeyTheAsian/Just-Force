@@ -16,7 +16,8 @@ namespace Shooter.Entities {
         protected double direction;
         //Collision boolean, determines if you can walk through entity
         protected bool collision;
-
+        //Rectangle object, to check for collision
+        protected Rectangle entityRectangle;
         //stores entity's texture
         protected Texture2D entTexture;
 
@@ -26,10 +27,11 @@ namespace Shooter.Entities {
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
             direction = 0.0;
+            entityRectangle = new Rectangle(0, 0, 0, 0);
         }
 
         //parameters: pass in game content manager, x coord, y coord, texture file name
-        public Entity(ContentManager content, double x, double y, string t) {
+        public Entity(ContentManager content, double x, double y, string t, Rectangle r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -43,8 +45,9 @@ namespace Shooter.Entities {
             loc.Y = y;
             
             direction = 0.0;
+            entityRectangle = r;
         }
-        public Entity(ContentManager content, double x, double y, double dir, string t, bool c) {
+        public Entity(ContentManager content, double x, double y, double dir, string t, bool c, Rectangle r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -56,6 +59,7 @@ namespace Shooter.Entities {
             loc.X = x;
             loc.Y = y;
             collision = c;
+            entityRectangle = r;
             //direction can only be an angle from 0 - 360
             if (dir >= 4 || dir < -4) {
                 direction = 0;
@@ -63,8 +67,6 @@ namespace Shooter.Entities {
                 direction = dir;
             }
         }
-
-
         //Texture property
         public Texture2D EntTexture{
             get{
@@ -119,6 +121,12 @@ namespace Shooter.Entities {
         }
         public void MoveRight(double p) {
             loc.X += p;
+        }
+        //Rectangle property
+        public Rectangle rectangle
+        {
+            get { return entityRectangle; }
+            set { entityRectangle = value; }
         }
     }
 }
