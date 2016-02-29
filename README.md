@@ -169,4 +169,4 @@
 <li>added silhouette of pistol (HUD texture) "Pistol.png"</li></ul>
 
 <b>6:56 pm 2-28-16 Anthony Olivares</b>
-<li>Added FileHandling.cs to the map editor. Bare-bones and placeholder code for saving and reading in a map to/from .dat files.</li>
+<ul><li>Added FileHandling.cs to the map editor. Bare-bones and placeholder code for saving and reading in a map to/from .dat files.</li></ul>
