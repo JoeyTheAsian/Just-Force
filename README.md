@@ -167,3 +167,6 @@
 <li>Added HUD component that displays current weapon type and name and drew it to the screen</li>
 <li>moved and renamed global coord to Camera class as "camPos"</li>
 <li>added silhouette of pistol (HUD texture) "Pistol.png"</li></ul>
+
+<b>6:56 pm 2-28-16 Anthony Olivares</b>
+<li>Added FileHandling.cs to the map editor. Bare-bones and placeholder code for saving and reading in a map to/from .dat files.</li>
