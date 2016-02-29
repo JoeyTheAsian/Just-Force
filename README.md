@@ -168,5 +168,13 @@
 <li>moved and renamed global coord to Camera class as "camPos"</li>
 <li>added silhouette of pistol (HUD texture) "Pistol.png"</li></ul>
 
+
 <b>6:56 pm 2-28-16 Anthony Olivares</b>
 <ul><li>Added FileHandling.cs to the map editor. Bare-bones and placeholder code for saving and reading in a map to/from .dat files.</li></ul>
+
+
+<b>12:19 am 2-27-16: Joey Tong</b>
+<ul><li>Added new textures for Health, pistol silhouette, start menu background, start menu buttons, bullet</li>
+<li>Fixed implementation of health bar to actually display current player health</li>
+<li>Fixed implementation of pausing to actually stop game loop</li>
+<li>Fixed implementation of drawing HP bar & menu buttons to be rescalable</li></ul>
