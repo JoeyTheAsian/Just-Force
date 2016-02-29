@@ -29,7 +29,7 @@
 
 
 <b>11:20 am 2-8-16: Joey Tong</b>
-<ul><li>Implemented Map scrolling (during class in lab)</li>
+<ul><li>Implemented Map scrolling (during class in lab)</li></ul>
 
 
 <b>12:30 am 2-9-16: Joey Tong</b>
