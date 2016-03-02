@@ -44,3 +44,4 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
