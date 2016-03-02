@@ -29,14 +29,12 @@
 
 
 <b>11:20 am 2-8-16: Joey Tong</b>
-<ul><li>Implemented Map scrolling (during class in lab)</li>
-<strike><li><b>Known Issue: Poor optimization of map rendering, need to implement ambient occlusion</b></ul></strike>
+<ul><li>Implemented Map scrolling (during class in lab)</li></ul>
 
 
 <b>12:30 am 2-9-16: Joey Tong</b>
 <ul><li>Fixed optimization issues with rendering TileMap and implemented ambient occlusion</li>
-<li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li>
-<li><b>Issue: Game will need load screens in the near future as total assets being loaded onto the ram are increasing rapidly with implementation</b></li></ul>
+<li>Stress tested RAM capacity, game manages to load 10k x 10k TileMap and render with no issues. This means ambient occlusion is working properly. This also means, don't make maps more than 10k x 10k tiles. Though that should be obvious</li></ul>
 
 
 <b>10:07 pm 2-9-16: Austin Ford</b>
@@ -168,5 +166,18 @@
 <li>moved and renamed global coord to Camera class as "camPos"</li>
 <li>added silhouette of pistol (HUD texture) "Pistol.png"</li></ul>
 
+
 <b>6:56 pm 2-28-16 Anthony Olivares</b>
-<li>Added FileHandling.cs to the map editor. Bare-bones and placeholder code for saving and reading in a map to/from .dat files.</li>
+<ul><li>Added FileHandling.cs to the map editor. Bare-bones and placeholder code for saving and reading in a map to/from .dat files.</li></ul>
+
+
+<b>12:19 am 2-27-16: Joey Tong</b>
+<ul><li>Added new textures for Health, pistol silhouette, start menu background, start menu buttons, bullet</li>
+<li>Fixed implementation of health bar to actually display current player health</li>
+<li>Fixed implementation of pausing to actually stop game loop</li>
+<li>Fixed implementation of drawing HP bar & menu buttons to be rescalable</li></ul>
+
+<b>12:34 am 2-29-16: Austin Ford</b>
+<ul><li>Changed collision to use rectangle intersect methods</li>
+<li>Added rectangle property to all entities and their constructors</li>
+<li>Add checkCollide method and coordinates to map objects</li></ul>

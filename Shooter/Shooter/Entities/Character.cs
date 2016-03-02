@@ -50,7 +50,8 @@ namespace Shooter.Entities {
             stamina = 0;
         }
 
-        public Character(ContentManager content, double x, double y, string t): base(content, x, y, t) {
+        public Character(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r)
+        {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -70,8 +71,9 @@ namespace Shooter.Entities {
             health = 1;
             maxHealth = health;
         }
-        
-        public Character(ContentManager content, double x, double y, double dir, string t, bool c): base(content, x, y, t) {
+
+        public Character(ContentManager content, double x, double y, double dir, string t, bool c, Rectangle r) : base(content, x, y, t, r)
+        {
             try {
                 entTexture = content.Load<Texture2D>(t);
             } catch (FileNotFoundException) {
@@ -92,6 +94,14 @@ namespace Shooter.Entities {
                 direction = dir;
             }
         }
+<<<<<<< HEAD
+=======
+        public Projectile Shoot(ContentManager content, Camera c, int tileSize) {
+            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction + weapon.GetSpread() * (Math.PI / 180.0), 10.0, "Bullet", true, new Rectangle((int)((c.camPos.X + loc.X) * tileSize), (int)((c.camPos.Y + loc.Y) * tileSize), tileSize, tileSize));
+            return p;
+        }
+
+>>>>>>> a0093dee35551adc1030f62fe0387c381041473b
         public bool CheckHealth(){
             //True if the target is still alive
             if(health > 0){

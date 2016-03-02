@@ -87,8 +87,13 @@
     <Content Include="Content\Concrete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+<<<<<<< HEAD
     <Content Include="Content\emptyclick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+=======
+    <Content Include="Content\EmptyTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+>>>>>>> a0093dee35551adc1030f62fe0387c381041473b
     </Content>
     <Content Include="Content\exitbutton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
