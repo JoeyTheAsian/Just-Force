@@ -14,26 +14,18 @@ using Microsoft.Xna.Framework.Content;
 namespace Shooter.Entities {
     class Character : Entity {
         private int health;
+        private int maxHealth;
         private int stamina;
         private Weapon weapon;
-
-        public Character(ContentManager content) : base(content) {
-            loc = new Coord();
-            entTexture = content.Load<Texture2D>("NoTexture");
-            collision = false;
-
-            //default character creates default weapon which is a pistol
-            weapon = new Weapon(content);
-            //Set Health
-            health = 1;
-            //set stamina
-            stamina = 0;
-        }
 
         //properties
         public int Health {
             get { return health; }
             set { health = value; }
+        }
+        public int MaxHealth {
+            get { return maxHealth; }
+            set { maxHealth = value; }
         }
         public int Stamina {
             get { return stamina; }
@@ -44,8 +36,22 @@ namespace Shooter.Entities {
                 return weapon;
             }
         }
+        public Character(ContentManager content) : base(content) {
+            loc = new Coord();
+            entTexture = content.Load<Texture2D>("NoTexture");
+            collision = false;
 
-        public Character(ContentManager content, double x, double y, string t): base(content, x, y, t) {
+            //default character creates default weapon which is a pistol
+            weapon = new Weapon(content);
+            //Set Health
+            maxHealth = 1;
+            health = maxHealth;
+            //set stamina
+            stamina = 0;
+        }
+
+        public Character(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r)
+        {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -63,9 +69,11 @@ namespace Shooter.Entities {
 
             //Set health
             health = 1;
+            maxHealth = health;
         }
-        
-        public Character(ContentManager content, double x, double y, double dir, string t, bool c): base(content, x, y, t) {
+
+        public Character(ContentManager content, double x, double y, double dir, string t, bool c, Rectangle r) : base(content, x, y, t, r)
+        {
             try {
                 entTexture = content.Load<Texture2D>(t);
             } catch (FileNotFoundException) {
@@ -75,6 +83,7 @@ namespace Shooter.Entities {
 
             //Set health
             health = 1;
+            maxHealth = health;
 
             loc.X = x;
             loc.Y = y;
@@ -85,8 +94,8 @@ namespace Shooter.Entities {
                 direction = dir;
             }
         }
-        public Projectile Shoot(ContentManager content) {
-            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction + weapon.GetSpread()*(Math.PI/180.0), 10.0, "Bullet", true);
+        public Projectile Shoot(ContentManager content, Camera c, int tileSize) {
+            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction + weapon.GetSpread() * (Math.PI / 180.0), 10.0, "Bullet", true, new Rectangle((int)((c.camPos.X + loc.X) * tileSize), (int)((c.camPos.Y + loc.Y) * tileSize), tileSize, tileSize));
             return p;
         }
 

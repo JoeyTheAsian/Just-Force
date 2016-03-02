@@ -14,11 +14,14 @@ namespace Shooter.GameStates {
         //attributes
         public Thread backgroundThread;
         public Texture2D startButton;
-        public Vector2 startButtonPosition;
+        public Rectangle startButtonPosition;
         public Texture2D exitButton;
-        public Vector2 exitButtonPosition;
+        public Rectangle exitButtonPosition;
         public Texture2D loadScreen;
         public Vector2 loadScreenPos;
+
+        public Texture2D startMenuBackground;
+
         public List<string> states;
         public bool isLoading = false;
         public string gameState;
@@ -31,11 +34,12 @@ namespace Shooter.GameStates {
             states.Add("PAUSED");
             states.Add("STARTMENU");
             gameState = "";
-            startButton = content.Load<Texture2D>("button-start");
-            exitButton = content.Load<Texture2D>("exit-button");
+            startButton = content.Load<Texture2D>("startButton");
+            exitButton = content.Load<Texture2D>("exitButton");
             loadScreen = content.Load<Texture2D>("loadinggraphic");
-            startButtonPosition = new Vector2((screenWidth / 2) - 150, 200);
-            exitButtonPosition = new Vector2((screenWidth / 2) - 290, 400);
+            startMenuBackground = content.Load<Texture2D>("startMenuBackground");
+            startButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
+            exitButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
             loadScreenPos = new Vector2((screenWidth / 2) - (loadScreen.Width / 2), (screenHeight / 2) - (loadScreen.Height / 2));
             
         }

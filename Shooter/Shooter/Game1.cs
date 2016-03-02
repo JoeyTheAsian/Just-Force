@@ -67,10 +67,10 @@ namespace Shooter {
 
         //Temp enemy
         private List<Character> enemies;
-        private Character enemy;
         //connor's menu implementation___________
         GameStateManager g;
         //HUD assets
+        private Texture2D healthBar;
         private Texture2D health;
         //game time
         protected double time;
@@ -134,6 +134,7 @@ namespace Shooter {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //HUD content
+            healthBar = Content.Load<Texture2D>("healthBar");
             health = Content.Load<Texture2D>("health");
             //Loads in the arial font file
             arial = Content.Load<SpriteFont>("Arial20Bold");
@@ -177,9 +178,9 @@ namespace Shooter {
             
             //Creates temp enemy
             enemies = new List<Character>();
-            enemies.Add(new Character(Content, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
-            enemies.Add(new Character(Content, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
-            enemies.Add(new Character(Content, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
+            enemies.Add(new Character(Content, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
+            enemies.Add(new Character(Content, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
+            enemies.Add(new Character(Content, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
         }
 
         /// <summary>
@@ -196,102 +197,95 @@ namespace Shooter {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+
             //Creates another keyboard & mouse state objects to hold the new states
             KeyboardState state = Keyboard.GetState();
             MouseState mState = Mouse.GetState();
-
-            //exit the window with esc key
-            //Checks to see if the key is just pressed and not held down
-            
-            if(oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde))
-            {
+            if (oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde)) {
                 consoleTool.OpenInput();
             }
-            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
 
+            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
                 g.MouseClicked(mState.X, mState.Y);
             }
-
             //when loading, updatestate returns true, use that to start new thread
             bool newThread = g.updateState(state, oldState);
             if (newThread == true) {
                 g.backgroundThread = new Thread(new ThreadStart(g.StartGame));
                 g.backgroundThread.Start();
             }
-           
-            //UPDATE LOGIC_____________________________________________________________________________________________________________
+            //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
+            if (g.gameState != "Paused") {
+                //CONTROLS_____________________________________
 
-            //CONTROLS_____________________________________
+                //WASD movement controls
 
-            //WASD movement controls
+                //update sprint
+                movement.UpdateSprint(state, oldState, m.TileSize);
 
-            //update sprint
-            movement.UpdateSprint(state, oldState, m.TileSize);
-            
-            //update the current velocity
-            XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-            YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-
+                //update the current velocity
+                XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+                YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
 
 
-            //update the screen & player positions
-            player.Loc.X -= XVelocity;
-            player.Loc.Y -= YVelocity;
 
-            c.camPos.X += XVelocity;
-            c.camPos.Y += YVelocity;
+                //update the screen & player positions
+                player.Loc.X -= XVelocity;
+                player.Loc.Y -= YVelocity;
+
+                c.camPos.X += XVelocity;
+                c.camPos.Y += YVelocity;
 
 
-            //Left mouse button to shoot
-            //Checks to see if the key is just pressed and not held down
-            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released){
-                //Plays a new instance of the first audio file which is the gunshot
-                curSounds.Enqueue(soundEffects[0]);
-                projectiles.Add(player.Shoot(Content));
-                c.screenShake = true;
-            }
+                //Left mouse button to shoot
+                //Checks to see if the key is just pressed and not held down
+                if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
+                    //Plays a new instance of the first audio file which is the gunshot
+                    curSounds.Enqueue(soundEffects[0]);
+                    projectiles.Add(player.Shoot(Content, c, m.TileSize));
+                    c.screenShake = true;
+                }
 
-            //update camera
-            c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize);
+                //update camera
+                c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize);
 
-            //updates projectiles and checks collision
-            for (int i = 0; i < projectiles.Count; i++) { 
-                if(projectiles[i].CheckRange() == true) {
-                    projectiles.Remove(projectiles[i]);
-                    i--;
-                } else {
-                    projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                    //Checks if any projectiles collide with any enemies
-                    for (int k = 0; k < enemies.Count; k++)
-                    {
-                        if (projectiles[i].CheckHit(enemies[k]))
-                        {
-                            projectiles.RemoveAt(i);
-                            i--;
-                            break;
+                //updates projectiles and checks collision
+                for (int i = 0; i < projectiles.Count; i++) {
+                    if (projectiles[i].CheckRange() == true) {
+                        projectiles.Remove(projectiles[i]);
+                        i--;
+                    } else {
+                        projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                        //Checks if any projectiles collide with any enemies
+                        for (int k = 0; k < enemies.Count; k++) {
+                            if (projectiles[i].CheckHit(enemies[k])) {
+                                projectiles.RemoveAt(i);
+                                i--;
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            //Temp: Checks to see if the enemy is hit
-            for (int k = 0; k < enemies.Count; k++){
-                if (!enemies[k].CheckHealth())
-                {
-                    enemies.RemoveAt(k);
-                    k--;
+                //Temp: Checks to see if the enemy is hit
+                for (int k = 0; k < enemies.Count; k++) {
+                    if (!enemies[k].CheckHealth()) {
+                        enemies.RemoveAt(k);
+                        k--;
+                    }
                 }
+
+                //Updates the rotation position by getting the angle between two points
+                player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
+
+                //Enqueue player to be rendered
+                sprites.Enqueue(player);
             }
-            
-            //Updates the rotation position by getting the angle between two points
-            player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
-            
+            //END OF GAME LOGIC_____________________________________________________________________________________________________________
+
             //Updates the old state with what the current state is
             oldState = state;
             oldMState = mState;
-
-            //Enqueue player to be rendered
-            sprites.Enqueue(player);
 
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
@@ -314,6 +308,7 @@ namespace Shooter {
             switch (g.gameState) {
                 //____________________DRAW START MENU____________________________________________________________________
                 case "StartMenu":
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.startButton, g.startButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
@@ -326,6 +321,7 @@ namespace Shooter {
                 case "Paused":
                     //temp test
                     spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
+                    
                     break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
                 case "Playing":
@@ -347,19 +343,25 @@ namespace Shooter {
 
                     //draw entities___________________________________________________________________________________________________
 
-                    
                     //draw projectiles
-                    for (int i = 0; i < projectiles.Count; i++) {
-                        spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize), null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
+                    for (int i = 0; i < projectiles.Count; i++)
+                    {
+                        //Updates the projectiles' rectangle property
+                        projectiles[i].rectangle = new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize);
+                        spriteBatch.Draw(projectiles[i].EntTexture, projectiles[i].rectangle, null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                     }
-
                     //Draws the temp enemy
-                    for (int k = 0; k < enemies.Count; k++) {
-                        spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                    for (int k = 0; k < enemies.Count; k++)
+                    {
+                        //Updates the enemies' rectangle property
+                        enemies[k].rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset);
+                        spriteBatch.Draw(enemies[k].EntTexture, enemies[k].rectangle, null, Color.White, (float)enemies[k].Direction, originPos, SpriteEffects.None, 0);
                     }
 
                     //draw the player model
-                    spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize, c.xOffset, c.yOffset), null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+                    //updates the player's rectangle property
+                    player.rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize, c.xOffset, c.yOffset);
+                    spriteBatch.Draw(player.EntTexture, player.rectangle, null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
@@ -368,9 +370,11 @@ namespace Shooter {
                     //temp HUD assets
                     spriteBatch.Draw(player.Weapon.Texture, new Rectangle(screenWidth - player.Weapon.Texture.Width *2 / 3, screenHeight - player.Weapon.Texture.Height*2/3, player.Weapon.Texture.Width / 3, player.Weapon.Texture.Height / 3), Color.White);
                     spriteBatch.DrawString(arial, player.Weapon.Name , new Vector2(screenWidth - player.Weapon.Texture.Width * 1 / 3, screenHeight - player.Weapon.Texture.Height * 1 / 3 - arial.MeasureString(player.Weapon.Name).Y), Color.Red);
-                    spriteBatch.Draw(health, new Rectangle(30, 5, 450, 100), Color.White);
-                    spriteBatch.Draw(health, new Rectangle(30, 50, 350, 100), Color.White);
-                    spriteBatch.DrawString(arial, "ammo", new Vector2(1250, 50), Color.Yellow);
+                    spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth / 100), screenHeight / 20 + (int)(screenHeight / 52), screenWidth / 4 - (screenWidth / 50), screenHeight / 15 - (int)(screenHeight / 30)), Color.Black);
+                    spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth/100), screenHeight / 20 + (int)(screenHeight/52), (screenWidth / 4 - (screenWidth/50)) * (player.Health/player.MaxHealth), screenHeight / 15 - (int)(screenHeight / 30)), Color.Magenta);
+                    spriteBatch.Draw(healthBar, new Rectangle(screenWidth/20, screenHeight/20, screenWidth / 4, screenHeight / 15),Color.White);
+
+                    //spriteBatch.DrawString(arial, "ammo", new Vector2(1250, 50), Color.Yellow);
 
                     //play all enqueued sound effects
                     for (int i = 0; i < curSounds.Count; i++) {

@@ -14,6 +14,5 @@ namespace Shooter.Entities {
         public static double CalcDirection(double mouseX, double mouseY, double camX, double camY, double playerX, double playerY, int tileSize) {
             return (double)Math.Atan2((double)mouseY - (int)(((camY + playerY) * tileSize)), (double)mouseX - (int)(((camX + playerX) * tileSize)));
         }
-
     }
 }
