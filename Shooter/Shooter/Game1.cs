@@ -179,15 +179,11 @@ namespace Shooter {
             
             //Creates temp enemy
             enemies = new List<Character>();
-<<<<<<< HEAD
-            enemies.Add(new Character(Content, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
-            enemies.Add(new Character(Content, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
-            enemies.Add(new Character(Content, (c.camPos.X + 700) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture"));
-=======
+
             enemies.Add(new Character(Content, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
             enemies.Add(new Character(Content, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
             enemies.Add(new Character(Content, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
->>>>>>> a0093dee35551adc1030f62fe0387c381041473b
+
         }
 
         /// <summary>
@@ -247,30 +243,23 @@ namespace Shooter {
                 //Left mouse button to shoot
                 //Checks to see if the key is just pressed and not held down
                 if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
-<<<<<<< HEAD
                     if (temp) {
                         SoundEffect TempSound;
                         //enqueue gunshot sound
                         //only shoot if not a null projectile
-                        Projectile p = player.Weapon.Shoot(Content, player);
+                        Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
                         if (p != null) {
                             projectiles.Add(p);
                             soundEffects.TryGetValue("gunshot", out TempSound);
                             curSounds.Enqueue(TempSound);
                             c.screenShake = true;
                         } else {
-                            player.Weapon.Shoot(Content, player);
+                            player.Weapon.Shoot(Content, player, c, m.TileSize);
                             //enqueue gun click sound if empty
                             soundEffects.TryGetValue("emptyClick", out TempSound);
                             curSounds.Enqueue(TempSound);
                         }
                     }
-=======
-                    //Plays a new instance of the first audio file which is the gunshot
-                    curSounds.Enqueue(soundEffects[0]);
-                    projectiles.Add(player.Shoot(Content, c, m.TileSize));
-                    c.screenShake = true;
->>>>>>> a0093dee35551adc1030f62fe0387c381041473b
                 }
                 if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
                     player.Weapon.Reload();
@@ -360,7 +349,7 @@ namespace Shooter {
                 case "Playing":
                     //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
                     tb.findBounds(c.camPos.X, c.camPos.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), screenWidth, screenHeight);
-                    
+
                     //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
                     for (int i = tb.Xmin; i < tb.Xmax; i++) {
@@ -373,20 +362,14 @@ namespace Shooter {
                                                           m.TileSize, m.TileSize), Color.White);
                         }
                     }
-
-                    //draw entities___________________________________________________________________________________________________
-
                     //draw projectiles
-<<<<<<< HEAD
                     for (int i = 0; i < projectiles.Count; i++) {
-                        spriteBatch.Draw(projectiles[i].EntTexture, new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize) + c.xOffset, 
-                                                                                  (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize) + c.yOffset, m.TileSize, m.TileSize), 
-                                                                                  null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), 
-                                                                                  SpriteEffects.None, 0);
+                        //Updates the projectiles' rectangle property
+                        projectiles[i].rectangle = new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize);
+                        spriteBatch.Draw(projectiles[i].EntTexture, projectiles[i].rectangle, null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                     }
-
                     //Draws the temp enemies queued to the sprites list
-                    for(int i = 0; i < sprites.Count; i++) {
+                    for (int j = 0; j < sprites.Count; j++) {
                         //temp
                         Entity e = sprites.Dequeue();
                         //draw enemy
@@ -397,13 +380,6 @@ namespace Shooter {
                     spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, 
                                                                                 m.TileSize, c.xOffset, c.yOffset), 
                                                                                 null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
-=======
-                    for (int i = 0; i < projectiles.Count; i++)
-                    {
-                        //Updates the projectiles' rectangle property
-                        projectiles[i].rectangle = new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize);
-                        spriteBatch.Draw(projectiles[i].EntTexture, projectiles[i].rectangle, null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
-                    }
                     //Draws the temp enemy
                     for (int k = 0; k < enemies.Count; k++)
                     {
@@ -416,7 +392,6 @@ namespace Shooter {
                     //updates the player's rectangle property
                     player.rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize, c.xOffset, c.yOffset);
                     spriteBatch.Draw(player.EntTexture, player.rectangle, null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
->>>>>>> a0093dee35551adc1030f62fe0387c381041473b
 
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);

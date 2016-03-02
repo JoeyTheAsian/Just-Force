@@ -94,14 +94,7 @@ namespace Shooter.Entities {
                 direction = dir;
             }
         }
-<<<<<<< HEAD
-=======
-        public Projectile Shoot(ContentManager content, Camera c, int tileSize) {
-            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction + weapon.GetSpread() * (Math.PI / 180.0), 10.0, "Bullet", true, new Rectangle((int)((c.camPos.X + loc.X) * tileSize), (int)((c.camPos.Y + loc.Y) * tileSize), tileSize, tileSize));
-            return p;
-        }
 
->>>>>>> a0093dee35551adc1030f62fe0387c381041473b
         public bool CheckHealth(){
             //True if the target is still alive
             if(health > 0){
