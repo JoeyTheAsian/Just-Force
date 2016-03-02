@@ -181,3 +181,12 @@
 <ul><li>Changed collision to use rectangle intersect methods</li>
 <li>Added rectangle property to all entities and their constructors</li>
 <li>Add checkCollide method and coordinates to map objects</li></ul>
+
+<b>12:19 am 3-1-16: Joey Tong</b>
+<ul><li>Implemented weapon fire rate</li>
+<li>Implemented reloading and ammo HUD elements</li>
+<li>Changed implementation of entity drawing to enqueue all entity children to a sprites class for drawing</li>
+<li>Added emptyClick sound, sound of the gun when firing empty</li>
+<li>Moved Shoot() method from character to weapon</li>
+<li>Added various methods and variables to weapon class for fire rate & reload functionality</li>
+</ul>
