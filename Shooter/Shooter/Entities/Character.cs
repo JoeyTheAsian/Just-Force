@@ -92,11 +92,6 @@ namespace Shooter.Entities {
                 direction = dir;
             }
         }
-        public Projectile Shoot(ContentManager content) {
-            Projectile p = new Projectile(content, loc.X, loc.Y, this.Direction + weapon.GetSpread()*(Math.PI/180.0), 10.0, "Bullet", true);
-            return p;
-        }
-
         public bool CheckHealth(){
             //True if the target is still alive
             if(health > 0){

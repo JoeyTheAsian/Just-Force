@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Shooter.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,14 @@ namespace Shooter.Controls {
     class Weapon {
         //Texture for displaying weapon in the HUD
         protected Texture2D texture;
+        //texture for ammo
+        protected Texture2D ammoTexture;
+
+        //holds queued shots if clicked too early
+        bool queued = false;
         //each int in the list signifies how full that magazine is
         protected List<int> ammo;
+        public int maxAmmo;
         //if the gun is fully automatic
         protected bool auto;
         //randomness of the fire pattern
@@ -20,20 +27,24 @@ namespace Shooter.Controls {
         protected int fireRate;
         //name of gun (gun type)
         protected string name;
+        public double timeSinceLastShot = 1000;
 
         private Random r = new Random();
         //default weapon is a pistol
         public Weapon(ContentManager content) {
             auto = false;
             ammo = new List<int>();
-            for(int i = 0; i < 4; i++) {
-                ammo.Add(12);
-            }
-            fireRate = 4;
+            fireRate = 7;
+
             //randomness in fire pattern is a 10 degree arc
             spread = 10;
             name = "Pistol";
+            maxAmmo = 9;
             texture = content.Load<Texture2D>("Pistol");
+            ammoTexture = content.Load<Texture2D>("Ammo");
+            for(int i = 0; i < 6; i++) {
+                ammo.Add(maxAmmo);
+            }
         }
 
         public Weapon(ContentManager content, List<int> a, bool au, double spr, int fr, string t) {
@@ -61,21 +72,70 @@ namespace Shooter.Controls {
                 return name;
             }
         }
+        public bool Queued {
+            get {
+                return queued;
+            }
+            set {
+                queued = value;
+            }
+        }
         public Texture2D Texture {
             get {
                 return texture;
+            }
+        }
+        public Texture2D AmmoTexture {
+            get {
+                return ammoTexture;
             }
         }
         public double GetSpread() {
             //returns a random integer that will be the offset of the bullet direction
             return r.Next((int)-spread/2, (int)spread/2);
         }
+        public bool CheckAmmo() {
+            if(ammo[0] <= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        public Projectile Shoot(ContentManager content, Character p) {
+            timeSinceLastShot = 0;
+            if (CheckAmmo()) {
+                Projectile proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 10.0, "Bullet", true);
+                ammo[0]--;
+                return proj;
+            } else {
+                return null;
+            }
+        }
+        public void Reload() {
+            if(ammo.Count <= 1) {
+                return;
+            }
+            else if(ammo[0] <= maxAmmo) {
+                ammo.Remove(0);
+                ammo.Sort();
+                ammo.Reverse();
+            }
+        }
+        public int TotalAmmo() {
+            int total = 0;
+            foreach(int i in ammo) {
+                total += i;
+            }
+            return total;
+        }
         //Checks if gun is ready to be fired agaim
         //takes an int (milliseconds) of the time since the last shot was fired
-        public bool CheckFireRate(int timeElapsed) {
-            if(timeElapsed >= 1000/ fireRate) {
+        public bool CheckFireRate(double timeElapsed) {
+            timeSinceLastShot += timeElapsed;
+            if(timeSinceLastShot > (1000/ fireRate)) {
                 return true;
-            } else {
+            }else {
+                queued = true;
                 return false;
             }
         }

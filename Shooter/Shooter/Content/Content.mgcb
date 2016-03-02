@@ -1,5 +1,5 @@
 
-#----------------------------- c.camPos Properties ----------------------------#
+#----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin/Windows
 /intermediateDir:obj/Windows
@@ -18,4 +18,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:gunshot.wav
+
+#begin emptyClick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:emptyClick.wav
 

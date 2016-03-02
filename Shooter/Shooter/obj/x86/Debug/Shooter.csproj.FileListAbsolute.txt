@@ -284,3 +284,5 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthBar.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\startButton.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\startMenuBackground.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\emptyClick.wav
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\emptyclick.xnb
