@@ -190,3 +190,14 @@
 <li>Moved Shoot() method from character to weapon</li>
 <li>Added various methods and variables to weapon class for fire rate & reload functionality</li>
 </ul>
+
+<b> 4:48 pm 3/3/2016: Connor Cummings</b>
+<ul><li>added panel, scrollbars, tile selector, and user input boxes for map editor</li>
+<li>added textures to tile selection buttons</li>
+<li>created event handlers for</li>
+<li>	inputting grid and tile size</li>
+<li>	painting grid to panel</li>
+<li>	painting textures to button</li>
+<li>started events for</li>
+<li>	scrollbars</li>
+<li>	saving texture to cursor when tile selection is made</li></ul>

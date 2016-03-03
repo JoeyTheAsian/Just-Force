@@ -23,7 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -48,8 +47,6 @@
             this.TileHeightInput = new System.Windows.Forms.TextBox();
             this.TileWidth = new System.Windows.Forms.Label();
             this.TileHeight = new System.Windows.Forms.Label();
-            this.mapDisplay1 = new MapEditor.MapDisplay();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,14 +63,16 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.mapDisplay1);
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.MaximumSize = new System.Drawing.Size(880, 616);
             this.panel1.MinimumSize = new System.Drawing.Size(880, 616);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(880, 616);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tableLayoutPanel1
             // 
@@ -116,7 +115,6 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
@@ -124,6 +122,8 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Paint += new System.Windows.Forms.PaintEventHandler(this.button2_Paint);
+            this.button2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button2_MouseClick);
             // 
             // button3
             // 
@@ -135,6 +135,8 @@
             this.button3.TabIndex = 1;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Paint += new System.Windows.Forms.PaintEventHandler(this.button3_Paint);
+            this.button3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button3_MouseClick);
             // 
             // button4
             // 
@@ -146,6 +148,8 @@
             this.button4.TabIndex = 2;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Paint += new System.Windows.Forms.PaintEventHandler(this.button4_Paint);
+            this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
             // 
             // button5
             // 
@@ -157,6 +161,8 @@
             this.button5.TabIndex = 3;
             this.button5.Text = "button5";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Paint += new System.Windows.Forms.PaintEventHandler(this.button5_Paint);
+            this.button5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button5_MouseClick);
             // 
             // button6
             // 
@@ -168,6 +174,8 @@
             this.button6.TabIndex = 4;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Paint += new System.Windows.Forms.PaintEventHandler(this.button6_Paint);
+            this.button6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button6_MouseClick);
             // 
             // vScrollBar1
             // 
@@ -175,6 +183,7 @@
             this.vScrollBar1.Name = "vScrollBar1";
             this.vScrollBar1.Size = new System.Drawing.Size(17, 616);
             this.vScrollBar1.TabIndex = 3;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
             // hScrollBar1
             // 
@@ -182,6 +191,7 @@
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(880, 17);
             this.hScrollBar1.TabIndex = 4;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // menuStrip1
             // 
@@ -304,17 +314,6 @@
             this.TileHeight.TabIndex = 14;
             this.TileHeight.Text = "TileHeight:";
             // 
-            // mapDisplay1
-            // 
-            this.mapDisplay1.BackColor = System.Drawing.Color.Black;
-            this.mapDisplay1.Location = new System.Drawing.Point(-2, -2);
-            this.mapDisplay1.MaximumSize = new System.Drawing.Size(880, 616);
-            this.mapDisplay1.MinimumSize = new System.Drawing.Size(880, 616);
-            this.mapDisplay1.Name = "mapDisplay1";
-            this.mapDisplay1.Size = new System.Drawing.Size(880, 616);
-            this.mapDisplay1.TabIndex = 0;
-            this.mapDisplay1.Text = "mapDisplay1";
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,7 +341,6 @@
             this.MinimumSize = new System.Drawing.Size(1360, 706);
             this.Name = "Editor";
             this.Text = "Just Force Map Editor";
-            this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -361,7 +359,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private MapDisplay mapDisplay1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;

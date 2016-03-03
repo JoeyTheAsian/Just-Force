@@ -97,11 +97,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TileTextures\Asphalt.png" />
-    <Content Include="TileTextures\Concrete.png" />
-    <Content Include="TileTextures\ConcreteCorner.png" />
-    <Content Include="TileTextures\ConcreteEdge.png" />
-    <Content Include="TileTextures\LaneLine.png" />
+    <Content Include="TileTextures\Asphalt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TileTextures\Concrete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TileTextures\ConcreteCorner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TileTextures\ConcreteEdge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TileTextures\LaneLine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
