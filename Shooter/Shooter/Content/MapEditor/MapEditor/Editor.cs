@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,10 @@ namespace MapEditor {
         int rows, columns, tlWidth, tlHeight;
         string inputrows, inputcolumns, inputwidth, inputheight;
         int[,] grid;
+        string[] fileName;
+        Bitmap texture;
+        Bitmap lane;
+        
 
         //save button
         private void button1_Click(object sender, EventArgs e) {
@@ -26,7 +31,7 @@ namespace MapEditor {
 
         //Mouse click events to pick up textures from buttons
         private void button2_MouseClick(object sender, MouseEventArgs e) {
-
+           texture = lane;
         }
         
         private void button3_MouseClick(object sender, MouseEventArgs e) {
@@ -47,7 +52,7 @@ namespace MapEditor {
 
         //Paint events to show texture image on buttons_____________________________________________
         private void button2_Paint(object sender, PaintEventArgs e) {
-            Bitmap lane = new Bitmap("TileTextures/LaneLine.png");
+            lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
             g.DrawImage(lane, 0, 0, 50, 48);
         }
@@ -85,6 +90,12 @@ namespace MapEditor {
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e) {
 
         }
+
+        private void panel1_MouseClick(object sender, MouseEventArgs e) {
+            int positionX = e.X;
+            int positionY = e.Y;
+        }
+
         //____________________________________________________________________________________
 
         //get input for number of rows, columns and tile width and height_________________________________________
@@ -111,14 +122,17 @@ namespace MapEditor {
             Graphics g = e.Graphics;
             grid = new int[rows, columns]; 
             Pen p = new Pen(Color.White);
-        
+            
             for(int x = 0; x < columns; x++) {
                 g.DrawLine(p, x * tlWidth, 0, x * tlWidth, columns * tlWidth); //draw lines for columns
+                g.DrawImage((Image)new Bitmap("TileTextures/Concrete.png"), x * tlWidth, 0, x * tlWidth, columns * tlHeight);
             }
 
             for(int y = 0; y < rows; y++) {
                 g.DrawLine(p, 0, y * tlHeight, rows * tlHeight, y * tlHeight); // draw lines for rows
             }
+
+           // g.DrawImage(texture, positionX, positionY, tlWidth, tlHeight);
         }
         //when buuton is clicked parses user input and uses it to print out grid 
         private void CreateGrid_Click(object sender, EventArgs e) {
