@@ -84,14 +84,6 @@ namespace MapEditor {
         }
         //________________________________________________________________________________________
 
-        //scrollbar events__________________________________________________________________
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e) {
-
-        }
-
-        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e) {
-
-        }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e) {
             int positionX = e.X;
@@ -104,14 +96,12 @@ namespace MapEditor {
             Pen p = new Pen(Color.Red);
             for(int y = 0; y < rows; y++) {
                 for(int x = 0; x < columns; x++) {
-                    g.DrawImage((Image)new Bitmap("TileTextures/Concrete.png"), x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                    g.DrawImage(lane, x * tlWidth, tlHeight * y, tlWidth, tlHeight);
                     g.DrawLine(p, x * tlWidth, 0, x * tlWidth, columns * tlWidth); //draw lines for columns
                     g.DrawLine(p, 0, y * tlHeight, rows * tlHeight, y * tlHeight); // draw lines for rows   
                 }
             }
-            //g.DrawLine(p, x * tlWidth, 0, x * tlWidth, columns * tlWidth); //draw lines for columns
-            //g.DrawLine(p, 0, y * tlHeight, rows * tlHeight, y * tlHeight); // draw lines for rows   
-            // g.DrawImage(texture, positionX, positionY, tlWidth, tlHeight);
+            
         }
 
         
@@ -158,15 +148,17 @@ namespace MapEditor {
                 tlHeight = int.Parse(inputheight);
             }
             //___________________________________________________________________________
-            
 
-           // panel1.Invalidate(); //invalidate panel so it gets redrawn
 
+            // panel1.Invalidate(); //invalidate panel so it gets redrawn
+            pictureBox1.Invalidate();
+            pictureBox1.Height = columns* tlHeight;
+            pictureBox1.Width = rows * tlWidth;
             //clear user input textboxes
-            RowsInput.Clear();
+            /*RowsInput.Clear();
             ColumnsInput.Clear();
             TileWidthInput.Clear();
-            TileHeightInput.Clear();
+            TileHeightInput.Clear();*/
         }
     }
 }
