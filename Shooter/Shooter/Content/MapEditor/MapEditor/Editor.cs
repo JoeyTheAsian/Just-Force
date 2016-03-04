@@ -20,35 +20,16 @@ namespace MapEditor {
         string inputrows, inputcolumns, inputwidth, inputheight;
         int[,] grid;
         string[] fileName;
+        Bitmap[,] Map;
+        List<Point> map = new List<Point>();
         Bitmap texture;
-        Bitmap lane;
+        Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
         
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
         }
         //save button
         private void button1_Click(object sender, EventArgs e) {
-
-        }
-
-        //Mouse click events to pick up textures from buttons
-        private void button2_MouseClick(object sender, MouseEventArgs e) {
-           texture = lane;
-        }
-        
-        private void button3_MouseClick(object sender, MouseEventArgs e) {
-
-        }
-
-        private void button4_MouseClick(object sender, MouseEventArgs e) {
-
-        }
-
-        private void button5_MouseClick(object sender, MouseEventArgs e) {
-
-        }
-
-        private void button6_MouseClick(object sender, MouseEventArgs e) {
 
         }
 
@@ -60,48 +41,74 @@ namespace MapEditor {
         }
 
         private void button3_Paint(object sender, PaintEventArgs e) {
-            Bitmap asphalt = new Bitmap("TileTextures/Asphalt.png");
+            asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
             g.DrawImage(asphalt, 0, 0, 50, 48);
         }
 
+        
+
         private void button4_Paint(object sender, PaintEventArgs e) {
-            Bitmap concrete = new Bitmap("TileTextures/Concrete.png");
+            concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
             g.DrawImage(concrete, 0, 0, 50, 48);
         }
 
         private void button5_Paint(object sender, PaintEventArgs e) {
-            Bitmap concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
+            concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
             g.DrawImage(concreteCorner, 0, 0, 50, 48);
         }
 
         private void button6_Paint(object sender, PaintEventArgs e) {
-            Bitmap concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
+            concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
             g.DrawImage(concreteEdge, 0, 0, 50, 48);
         }
         //________________________________________________________________________________________
 
-
-        private void panel1_MouseClick(object sender, MouseEventArgs e) {
-            int positionX = e.X;
-            int positionY = e.Y;
+        //Mouse click events to pick up textures from buttons
+        private void button2_MouseClick(object sender, MouseEventArgs e) {
+            texture = lane;
         }
 
+        private void button3_MouseClick(object sender, MouseEventArgs e) {
+            texture = asphalt;
+        }
+
+        private void button4_MouseClick(object sender, MouseEventArgs e) {
+            texture = concrete;
+        }
+
+        private void button5_MouseClick(object sender, MouseEventArgs e) {
+            texture = concreteCorner;
+        }
+
+        private void button6_MouseClick(object sender, MouseEventArgs e) {
+            texture = concreteEdge;
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e) {
+            int positionX = (int)((e.X * 1.0/ tlWidth)- .5);
+            int positionY = (int)((e.Y * 1.0/ tlHeight) - .5);
+            Map[positionX, positionY] = texture;
+            
+        }
+        
         private void pictureBox1_Paint(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
-            grid = new int[rows, columns]; 
+            //map = new Bitmap[rows, columns]; 
             Pen p = new Pen(Color.Red);
             for(int y = 0; y < rows; y++) {
                 for(int x = 0; x < columns; x++) {
-                    g.DrawImage(lane, x * tlWidth, tlHeight * y, tlWidth, tlHeight);
-                    g.DrawLine(p, x * tlWidth, 0, x * tlWidth, columns * tlWidth); //draw lines for columns
-                    g.DrawLine(p, 0, y * tlHeight, rows * tlHeight, y * tlHeight); // draw lines for rows   
+                    try {
+                        g.DrawImage(Map[x,y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                    }
+                    catch(ArgumentNullException) {
+                        
+                    } 
                 }
-            }
-            
+            } 
         }
 
         
@@ -154,6 +161,13 @@ namespace MapEditor {
             pictureBox1.Invalidate();
             pictureBox1.Height = columns* tlHeight;
             pictureBox1.Width = rows * tlWidth;
+            Map = new Bitmap[columns, rows];
+            for(int i = 0; i < columns; i++) {
+                for(int j = 0; j < rows; j++) {
+                    Map[i, j] = texture;
+                }
+            }
+
             //clear user input textboxes
             /*RowsInput.Clear();
             ColumnsInput.Clear();

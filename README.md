@@ -205,3 +205,8 @@
 <b> 3:00 pm 3/4/2016: Anthony Olivares</b>
 <ul><li>Updated map editor with methods to read and write data to a .dat</li>
 <li>Updated game map classes with a constructor that reads from a file created by the map editor</li></ul>
+
+<b> 5:21 pm 3/4/2016: Connor Cummings</b>
+<ul><li> added further methods for selecting tiles yet it still doesn't work</li>
+<li> created method for getting box the mouse is clicking in the picturebox</li>
+<li>needs to fixing to get grid, textures and selectoring working correclty</li></ul>
