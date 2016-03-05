@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Shooter.MapClasses {
     class Map {
@@ -21,6 +22,24 @@ namespace Shooter.MapClasses {
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
                     tileMap[i, j] = content.Load<Texture2D>("ConcreteCorner");
+                }
+            }
+        }
+
+        // constructor that reads form a file map.cs
+        public Map(ContentManager content, string filename)
+        {
+            tileMap = new Texture2D[100, 100];
+            objectMap = new MapObject[100, 100];
+
+            BinaryReader input = new BinaryReader(File.OpenRead("../../../Content/" + filename));
+            for (int i = 0; i < tileMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < tileMap.GetLength(1); j++)
+                {
+                    string txtrString = input.ReadString();
+                    Texture2D texture = content.Load<Texture2D>(txtrString);
+                    tileMap[i, j] = texture;
                 }
             }
         }

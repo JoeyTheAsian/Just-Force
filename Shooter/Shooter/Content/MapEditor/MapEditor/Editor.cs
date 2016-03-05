@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MapEditor {
     public partial class Editor : Form {
@@ -25,12 +26,47 @@ namespace MapEditor {
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
         bool painting = false;
 
+        string[,] tilemap = new String[100, 100];
+        Stream str = File.OpenWrite("../../../../map.dat");
+
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
         }
         //save button
         private void button1_Click(object sender, EventArgs e) {
+            for (int i = 0; i < tilemap.GetLength(0); i++)
+            {
+                for (int j = 0; j < tilemap.GetLength(1); j++)
+                {
+                    tilemap[i, j] = "Asphalt";
+                }
+            }
+            BinaryWriter output = new BinaryWriter(str);
 
+            for (int i = 0; i < tilemap.GetLength(0); i++)
+            {
+                for (int j = 0; j < tilemap.GetLength(1); j++)
+                {
+                    string texture = tilemap[i, j].ToString();
+                    output.Write(texture);
+                }
+            }
+            output.Close();
+        }
+
+        // load map button
+        private void button7_Click(object sender, EventArgs e)
+        {
+            BinaryReader input = new BinaryReader(File.OpenRead("../../../../map.dat"));
+            for (int i = 0; i < tilemap.GetLength(0); i++)
+            {
+                for (int j = 0; j < tilemap.GetLength(1); j++)
+                {
+                    string texture = input.ReadString();
+                    tilemap[i, j] = texture;
+                }
+            }
+            input.Close();
         }
 
         //Paint events to show texture image on buttons_____________________________________________
@@ -99,7 +135,7 @@ namespace MapEditor {
                 g.DrawImage(texture, 0, 0, pictureBox2.Width, pictureBox2.Height);
             } catch (ArgumentNullException) { } catch (NullReferenceException) { }
         }
-
+               
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
             painting = false;

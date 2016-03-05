@@ -47,6 +47,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -56,9 +57,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1278, 636);
+            this.button1.Location = new System.Drawing.Point(1259, 636);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 31);
+            this.button1.Size = new System.Drawing.Size(50, 41);
             this.button1.TabIndex = 0;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
@@ -169,7 +170,7 @@
             // 
             // RowsInput
             // 
-            this.RowsInput.Location = new System.Drawing.Point(1087, 586);
+            this.RowsInput.Location = new System.Drawing.Point(1059, 588);
             this.RowsInput.Name = "RowsInput";
             this.RowsInput.Size = new System.Drawing.Size(48, 20);
             this.RowsInput.TabIndex = 6;
@@ -179,7 +180,7 @@
             // 
             this.Rows.AutoSize = true;
             this.Rows.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rows.Location = new System.Drawing.Point(1028, 586);
+            this.Rows.Location = new System.Drawing.Point(979, 586);
             this.Rows.Name = "Rows";
             this.Rows.Size = new System.Drawing.Size(53, 20);
             this.Rows.TabIndex = 7;
@@ -187,7 +188,7 @@
             // 
             // ColumnsInput
             // 
-            this.ColumnsInput.Location = new System.Drawing.Point(1087, 613);
+            this.ColumnsInput.Location = new System.Drawing.Point(1060, 613);
             this.ColumnsInput.Name = "ColumnsInput";
             this.ColumnsInput.Size = new System.Drawing.Size(48, 20);
             this.ColumnsInput.TabIndex = 8;
@@ -197,7 +198,7 @@
             // 
             this.Columns.AutoSize = true;
             this.Columns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Columns.Location = new System.Drawing.Point(1006, 611);
+            this.Columns.Location = new System.Drawing.Point(979, 612);
             this.Columns.Name = "Columns";
             this.Columns.Size = new System.Drawing.Size(75, 20);
             this.Columns.TabIndex = 9;
@@ -205,7 +206,7 @@
             // 
             // CreateGrid
             // 
-            this.CreateGrid.Location = new System.Drawing.Point(1278, 586);
+            this.CreateGrid.Location = new System.Drawing.Point(1259, 587);
             this.CreateGrid.Name = "CreateGrid";
             this.CreateGrid.Size = new System.Drawing.Size(50, 44);
             this.CreateGrid.TabIndex = 10;
@@ -215,7 +216,7 @@
             // 
             // TileWidthInput
             // 
-            this.TileWidthInput.Location = new System.Drawing.Point(1225, 586);
+            this.TileWidthInput.Location = new System.Drawing.Point(1197, 586);
             this.TileWidthInput.Name = "TileWidthInput";
             this.TileWidthInput.Size = new System.Drawing.Size(47, 20);
             this.TileWidthInput.TabIndex = 11;
@@ -223,7 +224,7 @@
             // 
             // TileHeightInput
             // 
-            this.TileHeightInput.Location = new System.Drawing.Point(1225, 612);
+            this.TileHeightInput.Location = new System.Drawing.Point(1197, 611);
             this.TileHeightInput.Name = "TileHeightInput";
             this.TileHeightInput.Size = new System.Drawing.Size(47, 20);
             this.TileHeightInput.TabIndex = 12;
@@ -233,7 +234,7 @@
             // 
             this.TileWidth.AutoSize = true;
             this.TileWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TileWidth.Location = new System.Drawing.Point(1141, 586);
+            this.TileWidth.Location = new System.Drawing.Point(1113, 586);
             this.TileWidth.Name = "TileWidth";
             this.TileWidth.Size = new System.Drawing.Size(78, 20);
             this.TileWidth.TabIndex = 13;
@@ -243,7 +244,7 @@
             // 
             this.TileHeight.AutoSize = true;
             this.TileHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TileHeight.Location = new System.Drawing.Point(1135, 613);
+            this.TileHeight.Location = new System.Drawing.Point(1114, 613);
             this.TileHeight.Name = "TileHeight";
             this.TileHeight.Size = new System.Drawing.Size(84, 20);
             this.TileHeight.TabIndex = 14;
@@ -312,13 +313,13 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // label1
@@ -330,12 +331,23 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Current Brush";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1197, 637);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(57, 40);
+            this.button7.TabIndex = 18;
+            this.button7.Text = "Load Map";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(1902, 999);
+            this.ClientSize = new System.Drawing.Size(1902, 1000);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.TileHeight);
@@ -354,7 +366,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
-            this.MinimumSize = new System.Drawing.Size(1918, 1038);
+            this.MinimumSize = new System.Drawing.Size(1856, 1038);
             this.Name = "Editor";
             this.Text = "Just Force Map Editor";
             this.Load += new System.EventHandler(this.Editor_Load);
@@ -396,6 +408,7 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button7;
     }
 }
 
