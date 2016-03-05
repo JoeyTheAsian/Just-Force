@@ -30,11 +30,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RowsInput = new System.Windows.Forms.TextBox();
             this.Rows = new System.Windows.Forms.Label();
             this.ColumnsInput = new System.Windows.Forms.TextBox();
@@ -46,19 +41,26 @@
             this.TileHeight = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1288, 596);
+            this.button1.Location = new System.Drawing.Point(1278, 636);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 46);
+            this.button1.Size = new System.Drawing.Size(50, 31);
             this.button1.TabIndex = 0;
-            this.button1.Text = "SAVE MAP";
+            this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -82,7 +84,7 @@
             this.tableLayoutPanel1.Controls.Add(this.button5, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button6, 4, 0);
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(905, 30);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(895, 30);
             this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(433, 550);
             this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(433, 550);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -165,47 +167,9 @@
             this.button6.Paint += new System.Windows.Forms.PaintEventHandler(this.button6_Paint);
             this.button6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button6_MouseClick);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1344, 24);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.loadToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            // 
-            // loadToolStripMenuItem
-            // 
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.loadToolStripMenuItem.Text = "Load";
-            // 
             // RowsInput
             // 
-            this.RowsInput.Location = new System.Drawing.Point(1014, 598);
+            this.RowsInput.Location = new System.Drawing.Point(1087, 586);
             this.RowsInput.Name = "RowsInput";
             this.RowsInput.Size = new System.Drawing.Size(48, 20);
             this.RowsInput.TabIndex = 6;
@@ -215,7 +179,7 @@
             // 
             this.Rows.AutoSize = true;
             this.Rows.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rows.Location = new System.Drawing.Point(956, 598);
+            this.Rows.Location = new System.Drawing.Point(1028, 586);
             this.Rows.Name = "Rows";
             this.Rows.Size = new System.Drawing.Size(53, 20);
             this.Rows.TabIndex = 7;
@@ -223,7 +187,7 @@
             // 
             // ColumnsInput
             // 
-            this.ColumnsInput.Location = new System.Drawing.Point(1014, 624);
+            this.ColumnsInput.Location = new System.Drawing.Point(1087, 613);
             this.ColumnsInput.Name = "ColumnsInput";
             this.ColumnsInput.Size = new System.Drawing.Size(48, 20);
             this.ColumnsInput.TabIndex = 8;
@@ -233,7 +197,7 @@
             // 
             this.Columns.AutoSize = true;
             this.Columns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Columns.Location = new System.Drawing.Point(934, 624);
+            this.Columns.Location = new System.Drawing.Point(1006, 611);
             this.Columns.Name = "Columns";
             this.Columns.Size = new System.Drawing.Size(75, 20);
             this.Columns.TabIndex = 9;
@@ -241,10 +205,9 @@
             // 
             // CreateGrid
             // 
-            this.CreateGrid.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateGrid.Location = new System.Drawing.Point(1212, 596);
+            this.CreateGrid.Location = new System.Drawing.Point(1278, 586);
             this.CreateGrid.Name = "CreateGrid";
-            this.CreateGrid.Size = new System.Drawing.Size(75, 47);
+            this.CreateGrid.Size = new System.Drawing.Size(50, 44);
             this.CreateGrid.TabIndex = 10;
             this.CreateGrid.Text = "Create";
             this.CreateGrid.UseVisualStyleBackColor = true;
@@ -252,7 +215,7 @@
             // 
             // TileWidthInput
             // 
-            this.TileWidthInput.Location = new System.Drawing.Point(1159, 596);
+            this.TileWidthInput.Location = new System.Drawing.Point(1225, 586);
             this.TileWidthInput.Name = "TileWidthInput";
             this.TileWidthInput.Size = new System.Drawing.Size(47, 20);
             this.TileWidthInput.TabIndex = 11;
@@ -260,7 +223,7 @@
             // 
             // TileHeightInput
             // 
-            this.TileHeightInput.Location = new System.Drawing.Point(1159, 623);
+            this.TileHeightInput.Location = new System.Drawing.Point(1225, 612);
             this.TileHeightInput.Name = "TileHeightInput";
             this.TileHeightInput.Size = new System.Drawing.Size(47, 20);
             this.TileHeightInput.TabIndex = 12;
@@ -270,7 +233,7 @@
             // 
             this.TileWidth.AutoSize = true;
             this.TileWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TileWidth.Location = new System.Drawing.Point(1075, 596);
+            this.TileWidth.Location = new System.Drawing.Point(1141, 586);
             this.TileWidth.Name = "TileWidth";
             this.TileWidth.Size = new System.Drawing.Size(78, 20);
             this.TileWidth.TabIndex = 13;
@@ -280,7 +243,7 @@
             // 
             this.TileHeight.AutoSize = true;
             this.TileHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TileHeight.Location = new System.Drawing.Point(1069, 623);
+            this.TileHeight.Location = new System.Drawing.Point(1135, 613);
             this.TileHeight.Name = "TileHeight";
             this.TileHeight.Size = new System.Drawing.Size(84, 20);
             this.TileHeight.TabIndex = 14;
@@ -292,12 +255,14 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(880, 616);
+            this.pictureBox1.Size = new System.Drawing.Size(880, 650);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // panel1
             // 
@@ -309,19 +274,70 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(0, 27);
-            this.panel1.MaximumSize = new System.Drawing.Size(880, 616);
-            this.panel1.MinimumSize = new System.Drawing.Size(880, 616);
+            this.panel1.MaximumSize = new System.Drawing.Size(880, 650);
+            this.panel1.MinimumSize = new System.Drawing.Size(880, 650);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(880, 616);
+            this.panel1.Size = new System.Drawing.Size(880, 650);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(898, 611);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(53, 56);
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox2_Paint);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1902, 24);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(892, 590);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Current Brush";
             // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
-            this.ClientSize = new System.Drawing.Size(1344, 667);
+            this.ClientSize = new System.Drawing.Size(1902, 999);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.TileHeight);
             this.Controls.Add(this.TileWidth);
             this.Controls.Add(this.TileHeightInput);
@@ -337,17 +353,18 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1360, 706);
-            this.MinimumSize = new System.Drawing.Size(1360, 706);
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
+            this.MinimumSize = new System.Drawing.Size(1918, 1038);
             this.Name = "Editor";
             this.Text = "Just Force Map Editor";
             this.Load += new System.EventHandler(this.Editor_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,9 +374,6 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
@@ -370,14 +384,18 @@
         private System.Windows.Forms.TextBox ColumnsInput;
         private System.Windows.Forms.Label Columns;
         private System.Windows.Forms.Button CreateGrid;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.TextBox TileWidthInput;
         private System.Windows.Forms.TextBox TileHeightInput;
         private System.Windows.Forms.Label TileWidth;
         private System.Windows.Forms.Label TileHeight;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }
 

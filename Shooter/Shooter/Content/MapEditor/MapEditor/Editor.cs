@@ -18,13 +18,13 @@ namespace MapEditor {
 
         int rows, columns, tlWidth, tlHeight;
         string inputrows, inputcolumns, inputwidth, inputheight;
-        int[,] grid;
-        string[] fileName;
+        string[,] fileName;
         Bitmap[,] Map;
         List<Point> map = new List<Point>();
         Bitmap texture;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
-        
+        bool painting = false;
+
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
         }
@@ -46,7 +46,7 @@ namespace MapEditor {
             g.DrawImage(asphalt, 0, 0, 50, 48);
         }
 
-        
+
 
         private void button4_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
@@ -70,45 +70,76 @@ namespace MapEditor {
         //Mouse click events to pick up textures from buttons
         private void button2_MouseClick(object sender, MouseEventArgs e) {
             texture = lane;
+            pictureBox2.Invalidate();
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
             texture = asphalt;
+            pictureBox2.Invalidate();
         }
 
         private void button4_MouseClick(object sender, MouseEventArgs e) {
             texture = concrete;
+            pictureBox2.Invalidate();
         }
 
         private void button5_MouseClick(object sender, MouseEventArgs e) {
             texture = concreteCorner;
+            pictureBox2.Invalidate();
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
             texture = concreteEdge;
+            pictureBox2.Invalidate();
         }
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e) {
-            int positionX = (int)((e.X * 1.0/ tlWidth)- .5);
-            int positionY = (int)((e.Y * 1.0/ tlHeight) - .5);
-            Map[positionX, positionY] = texture;
-            
+        private void pictureBox2_Paint(object sender, PaintEventArgs e) {
+            Graphics g = e.Graphics;
+            try {
+                g.DrawImage(texture, 0, 0, pictureBox2.Width, pictureBox2.Height);
+            } catch (ArgumentNullException) { } catch (NullReferenceException) { }
         }
-        
+
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
+            painting = false;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
+            if (painting) {
+                int positionX = (int)((e.X * 1.0 / tlWidth));
+                int positionY = (int)((e.Y * 1.0 / tlHeight));
+                try {
+                    Map[positionX, positionY] = texture;
+                } catch (ArgumentNullException) { } catch (NullReferenceException) { } catch (IndexOutOfRangeException) { }
+            }
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
+
+            painting = true;
+        }
         private void pictureBox1_Paint(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
-            //map = new Bitmap[rows, columns]; 
             Pen p = new Pen(Color.Red);
-            for(int y = 0; y < rows; y++) {
-                for(int x = 0; x < columns; x++) {
-                    try {
-                        g.DrawImage(Map[x,y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+            if (tlHeight != 0 && tlWidth != 0) {
+                for (int y = panel1.VerticalScroll.Value / tlHeight; y < (panel1.VerticalScroll.Value + panel1.Height) / tlHeight; y++) {
+                    for (int x = panel1.HorizontalScroll.Value / tlWidth; x < (panel1.HorizontalScroll.Value + panel1.Width) / tlWidth; x++) {
+                        // for (int y = 0; y < rows; y++) {
+                        // for (int x = 0; x < columns; x++) {
+                        try {
+                            g.DrawImage(Map[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                        } catch (ArgumentNullException) { } catch (NullReferenceException) { } catch (IndexOutOfRangeException) { }
                     }
-                    catch(ArgumentNullException) {
-                        
-                    } 
                 }
-            } 
+            }
+            for (int y = 0; y <= rows; y++) {
+                for (int x = 0; x <= columns; x++) {
+                g.DrawLine(p, x * tlWidth, 0, x * tlWidth, rows * tlHeight); //draw lines for columns
+                g.DrawLine(p, 0, y * tlHeight, columns * tlWidth, y * tlHeight); // draw lines for rows   
+                }
+            }
+            pictureBox1.Invalidate();
         }
 
         
@@ -158,15 +189,10 @@ namespace MapEditor {
 
 
             // panel1.Invalidate(); //invalidate panel so it gets redrawn
-            pictureBox1.Invalidate();
-            pictureBox1.Height = columns* tlHeight;
-            pictureBox1.Width = rows * tlWidth;
+            pictureBox1.Height = rows * tlHeight + 5;
+            pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
-            for(int i = 0; i < columns; i++) {
-                for(int j = 0; j < rows; j++) {
-                    Map[i, j] = texture;
-                }
-            }
+            pictureBox1.Invalidate();
 
             //clear user input textboxes
             /*RowsInput.Clear();
