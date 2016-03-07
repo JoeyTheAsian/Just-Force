@@ -183,8 +183,9 @@ namespace MapEditor {
         //____________________________________________________________________________________
 
         //get input for number of rows, columns and tile width and height_________________________________________
+        
         private void RowsInput_TextChanged(object sender, EventArgs e) { //get number of rows for map
-            inputrows = RowsInput.Text;    
+                inputrows = RowsInput.Text;
         }
 
         private void ColumnsInput_TextChanged(object sender, EventArgs e) { //get number of columns for map
@@ -210,16 +211,28 @@ namespace MapEditor {
 
             //Parse user input into ints_____________________________________________
             if(string.IsNullOrEmpty(inputrows) == false && inputrows != "0") {
-                rows = int.Parse(inputrows);
+                try {
+                    rows = int.Parse(inputrows);
             }
+            catch (FormatException) { }
+        }
             if(string.IsNullOrEmpty(inputcolumns) == false && inputcolumns != "0") {
-                columns = int.Parse(inputcolumns);
+                try {
+                    columns = int.Parse(inputcolumns);
+                }
+                catch (FormatException) { }
             }
             if(string.IsNullOrEmpty(inputwidth) == false && inputwidth != "0") {
-                tlWidth = int.Parse(inputwidth);
+                try {
+                    tlWidth = int.Parse(inputwidth);
+                }
+                catch (FormatException) { }
             }
             if(string.IsNullOrEmpty(inputheight) == false && inputheight != "0") {
-                tlHeight = int.Parse(inputheight);
+                try {
+                    tlHeight = int.Parse(inputheight);
+                }
+                catch (FormatException) { }
             }
             //___________________________________________________________________________
 

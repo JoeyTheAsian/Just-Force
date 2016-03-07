@@ -210,3 +210,6 @@
 <ul><li> added further methods for selecting tiles yet it still doesn't work</li>
 <li> created method for getting box the mouse is clicking in the picturebox</li>
 <li>needs to fixing to get grid, textures and selectoring working correclty</li></ul>
+
+<b> 10:43 am 3/7/2016: Connor Cummings</b>
+<ul><li>added FormatExceptions for input boxes for rows, columns, height, width for in map editor</li></ul>
