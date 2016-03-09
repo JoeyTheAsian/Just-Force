@@ -84,7 +84,7 @@ namespace Shooter.GameStates {
                 }
                 //player exits game
                 else if (mouseClickRect.Intersects(exitbuttonRect)) {
-                    
+                    //game.Exit();
                 }
                 
             }

@@ -213,3 +213,7 @@
 
 <b> 10:43 am 3/7/2016: Connor Cummings</b>
 <ul><li>added FormatExceptions for input boxes for rows, columns, height, width for in map editor</li></ul>
+
+<b> 6:17 pm 3/9/2016: Connor Cummings</b>
+<ul><li>changed the look of the pause screen and added an exit button</li>
+<li>added a Quit method after Draw in Game1 to exit game from other classes. But its not implemented anywhere</li></ul>
