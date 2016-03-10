@@ -342,8 +342,8 @@ namespace Shooter {
                 //____________________DRAW PAUSE MENU____________________________________________________________________
                 case "Paused":
                     //temp test
-                    spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
-                    
+                    GraphicsDevice.Clear(Color.Gray);
+                    spriteBatch.Draw(g.exitButton, new Rectangle(screenWidth - 250, screenHeight - 150, 200, 100), Color.White);
                     break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
                 case "Playing":
@@ -447,6 +447,9 @@ namespace Shooter {
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+        public void Quit() {
+            Exit();
         }
     }
 }
