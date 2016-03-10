@@ -177,7 +177,6 @@ namespace MapEditor {
             }
             pictureBox1.Invalidate();
         }
-
         
 
         //____________________________________________________________________________________
@@ -200,11 +199,6 @@ namespace MapEditor {
         }
         //________________________________________________________________________________
 
-        //event for painting grid on screen
-        private void panel1_Paint(object sender, PaintEventArgs e) { 
-
-            
-        }
         //when buuton is clicked parses user input and uses it to print out grid 
         private void CreateGrid_Click(object sender, EventArgs e) {
 
