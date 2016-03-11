@@ -35,6 +35,7 @@ namespace MapEditor {
 
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
+            panel2.Controls.Add(tableLayoutPanel1);
         }
         //save button
         private void button1_Click(object sender, EventArgs e) {
@@ -77,33 +78,31 @@ namespace MapEditor {
         private void button2_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
-            g.DrawImage(lane, 0, 0, 50, 48);
+            g.DrawImage(lane, 0, 0, 100, 100);
         }
 
         private void button3_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
-            g.DrawImage(asphalt, 0, 0, 50, 48);
+            g.DrawImage(asphalt, 0, 0, 100, 100);
         }
-
-
-
+        
         private void button4_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concrete, 0, 0, 50, 48);
+            g.DrawImage(concrete, 0, 0, 100, 100);
         }
 
         private void button5_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteCorner, 0, 0, 50, 48);
+            g.DrawImage(concreteCorner, 0, 0, 100, 100);
         }
 
         private void button6_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteEdge, 0, 0, 50, 48);
+            g.DrawImage(concreteEdge, 0, 0, 100, 100);
         }
         //________________________________________________________________________________________
 
