@@ -81,31 +81,31 @@ namespace MapEditor
         private void button2_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
-            g.DrawImage(lane, 0, 0, 100, 100);
+            g.DrawImage(lane, 0, 0, 50, 50);
         }
 
         private void button3_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
-            g.DrawImage(asphalt, 0, 0, 100, 100);
+            g.DrawImage(asphalt, 0, 0, 50, 50);
         }
         
         private void button4_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concrete, 0, 0, 100, 100);
+            g.DrawImage(concrete, 0, 0, 50, 50);
         }
 
         private void button5_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteCorner, 0, 0, 100, 100);
+            g.DrawImage(concreteCorner, 0, 0, 50, 50);
         }
 
         private void button6_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteEdge, 0, 0, 100, 100);
+            g.DrawImage(concreteEdge, 0, 0, 50, 50);
         }
         //________________________________________________________________________________________
 
@@ -135,6 +135,7 @@ namespace MapEditor
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
+            texture = concreteEdge;
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
