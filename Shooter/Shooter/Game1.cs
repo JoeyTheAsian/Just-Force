@@ -223,9 +223,10 @@ namespace Shooter {
 
                 //WASD movement controls
 
-                //update sprint
+                //update  & velocities
+                XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+                YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
                 movement.UpdateSprint(state, oldState, m.TileSize);
-
 
                 //update the screen & player positions
                 player.Loc.X -= XVelocity;
@@ -233,7 +234,8 @@ namespace Shooter {
 
                 c.camPos.X += XVelocity;
                 c.camPos.Y += YVelocity;
-
+                
+                
 
 
                 bool temp = player.Weapon.CheckFireRate(gameTime.ElapsedGameTime.Milliseconds);
@@ -358,6 +360,19 @@ namespace Shooter {
                                             new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
                                                           (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
                                                           m.TileSize, m.TileSize), Color.White);
+                        }
+                    }
+                    //loop through only the tiles that are actually in the window with bounds in tilebounds object
+                    for (int i = tb.Xmin; i < tb.Xmax; i++) {
+                        for (int j = tb.Ymin; j < tb.Ymax; j++) {
+                            try { 
+                            //draw the tile
+                            spriteBatch.Draw(m.ObjectMap[i, j].ObjTexture,
+                                            //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
+                                            new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
+                                                          (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
+                                                          m.TileSize, m.TileSize), Color.White);
+                            } catch (NullReferenceException) {}
                         }
                     }
                     //draw projectiles

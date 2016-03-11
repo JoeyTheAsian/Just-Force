@@ -24,7 +24,7 @@ namespace Shooter.MapClasses {
                     tileMap[i, j] = content.Load<Texture2D>("ConcreteCorner");
                 }
             }
-            /*//loops through objectMap array and sets edges to noTexture
+            //loops through objectMap array and sets edges to noTexture
             for (int i = 0; i < objectMap.GetLength(0); i++) {
                 for(int j = 0; j < objectMap.GetLength(1); j++) {
                     objectMap[i, j] = new MapObject(content, true, "NoTexture", i, j);
@@ -34,7 +34,7 @@ namespace Shooter.MapClasses {
                 for (int j = 1; j < objectMap.GetLength(1)-1; j++) {
                     objectMap[i, j] = null;
                 }
-            }*/
+            }
         }
 
         // constructor that reads form a file map.cs
