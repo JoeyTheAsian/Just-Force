@@ -365,14 +365,13 @@ namespace Shooter {
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
                     for (int i = tb.Xmin; i < tb.Xmax; i++) {
                         for (int j = tb.Ymin; j < tb.Ymax; j++) {
-                            try { 
-                            //draw the tile
-                            spriteBatch.Draw(m.ObjectMap[i, j].ObjTexture,
-                                            //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
-                                            new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
-                                                          (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
-                                                          m.TileSize, m.TileSize), Color.White);
-                            } catch (NullReferenceException) {}
+                            if (m.ObjectMap[i, j] != null) {
+                                spriteBatch.Draw(m.ObjectMap[i, j].ObjTexture,
+                                                //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
+                                                new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
+                                                                (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
+                                                                m.TileSize, m.TileSize), Color.White);
+                            }
                         }
                     }
                     //draw projectiles

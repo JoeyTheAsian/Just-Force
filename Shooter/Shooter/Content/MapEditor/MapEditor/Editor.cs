@@ -1,17 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace MapEditor {
+namespace MapEditor
+{
     public partial class Editor : Form {
         public Editor() {
             InitializeComponent();
@@ -20,9 +14,13 @@ namespace MapEditor {
         int rows, columns, tlWidth, tlHeight;
         string inputrows, inputcolumns, inputwidth, inputheight;
         string[,] fileName;
-        Bitmap[,] Map;
+        Bitmap[,] Map; // array that stores bitmaps
+        string[,] mapString; // array that stores texture names as a string for saving the file
         List<Point> map = new List<Point>();
+        //currently stored texture swatch on the brush
         Bitmap texture;
+        //string name for texture
+        string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
         bool painting = false;
 
@@ -31,6 +29,7 @@ namespace MapEditor {
 
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
+            panel2.Controls.Add(tableLayoutPanel1);
         }
         //save button
         private void button1_Click(object sender, EventArgs e) {
@@ -38,7 +37,7 @@ namespace MapEditor {
             {
                 for (int j = 0; j < tilemap.GetLength(1); j++)
                 {
-                    tilemap[i, j] = "Asphalt";
+                    tilemap[i, j] = mapString[i,j];
                 }
             }
             BinaryWriter output = new BinaryWriter(str);
@@ -62,70 +61,81 @@ namespace MapEditor {
             {
                 for (int j = 0; j < tilemap.GetLength(1); j++)
                 {
-                    string texture = input.ReadString();
-                    tilemap[i, j] = texture;
+                    string texture = input.ReadString(); // string it reads in is the name of the texture's file
+                    mapString[i, j] = texture; // stores it in the string version of the map array
                 }
             }
             input.Close();
+
+            for (int i = 0; i < mapString.GetLength(0); i++)
+            {
+                for (int j = 0; j < mapString.GetLength(1); j++)
+                {
+                    Bitmap text = new Bitmap("TileTextures/" + mapString[i, j] + ".png"); // loads the texture
+                    Map[i, j] = text; // stores it in the map array for editing
+                }
+            }
         }
 
         //Paint events to show texture image on buttons_____________________________________________
         private void button2_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
-            g.DrawImage(lane, 0, 0, 50, 48);
+            g.DrawImage(lane, 0, 0, 100, 100);
         }
 
         private void button3_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
-            g.DrawImage(asphalt, 0, 0, 50, 48);
+            g.DrawImage(asphalt, 0, 0, 100, 100);
         }
-
-
-
+        
         private void button4_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concrete, 0, 0, 50, 48);
+            g.DrawImage(concrete, 0, 0, 100, 100);
         }
 
         private void button5_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteCorner, 0, 0, 50, 48);
+            g.DrawImage(concreteCorner, 0, 0, 100, 100);
         }
 
         private void button6_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteEdge, 0, 0, 50, 48);
+            g.DrawImage(concreteEdge, 0, 0, 100, 100);
         }
         //________________________________________________________________________________________
 
         //Mouse click events to pick up textures from buttons
         private void button2_MouseClick(object sender, MouseEventArgs e) {
             texture = lane;
+            textString = "LaneLine";
             pictureBox2.Invalidate();
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
             texture = asphalt;
+            textString = "Asphalt";
             pictureBox2.Invalidate();
         }
 
         private void button4_MouseClick(object sender, MouseEventArgs e) {
             texture = concrete;
+            textString = "Concrete";
             pictureBox2.Invalidate();
         }
 
         private void button5_MouseClick(object sender, MouseEventArgs e) {
             texture = concreteCorner;
+            textString = "ConcreteCorner";
             pictureBox2.Invalidate();
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
-            texture = concreteEdge;
+            textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
 
@@ -147,6 +157,7 @@ namespace MapEditor {
                 int positionY = (int)((e.Y * 1.0 / tlHeight));
                 try {
                     Map[positionX, positionY] = texture;
+                    mapString[positionX, positionY] = textString;
                 } catch (ArgumentNullException) { } catch (NullReferenceException) { } catch (IndexOutOfRangeException) { }
             }
         }
