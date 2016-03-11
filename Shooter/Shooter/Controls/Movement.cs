@@ -22,8 +22,28 @@ namespace Shooter.Controls {
         }
         public double UpdateY(double yVelocity, double timeElapsed, KeyboardState state) {
             //WASD movement controls
+            //______________________COMBOS_____________________________
+            if (state.IsKeyDown(Keys.W) && (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.A))) {
+                //if less than or equal to, increase by acceleration
+                if (yVelocity < maxVelocity) {
+                    yVelocity += (timeElapsed * Math.Sqrt((acceleration * acceleration / 2)));
+                    //if above max velocity, set it to max velocity
+                    if (yVelocity > maxVelocity) {
+                        yVelocity = maxVelocity;
+                    }
+                }
+            }else if (state.IsKeyDown(Keys.S) && (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.A))) {
+                //if less than or equal to, increase by acceleration
+                if (yVelocity > -1 * maxVelocity) {
+                    yVelocity -= (timeElapsed * Math.Sqrt((acceleration * acceleration / 2)));
+                    //if above max velocity, set it to max velocity
+                    if (yVelocity > maxVelocity) {
+                        yVelocity = maxVelocity;
+                    }
+                }
+            }
             //______________________W KEY_____________________________
-            if (state.IsKeyDown(Keys.W)) {
+            else if (state.IsKeyDown(Keys.W)) {
                 //if less than or equal to, increase by acceleration
                 if (yVelocity < maxVelocity) {
                     yVelocity += (timeElapsed * acceleration);

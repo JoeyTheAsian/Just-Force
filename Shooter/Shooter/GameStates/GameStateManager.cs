@@ -15,6 +15,8 @@ namespace Shooter.GameStates {
         public Thread backgroundThread;
         public Texture2D startButton;
         public Rectangle startButtonPosition;
+        //public Texture2D ResumeButton;
+        //public Rectangle ResumeButtonPosition;
         public Texture2D exitButton;
         public Rectangle exitButtonPosition;
         public Texture2D loadScreen;
