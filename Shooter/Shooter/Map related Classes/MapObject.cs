@@ -43,8 +43,7 @@ namespace Shooter.MapClasses {
         public string CheckCollide(Entity e)
         {
             //First checks to see if the object has collision before testing for collision
-            if (!collision)
-            {
+            if (!collision){
                 //Returns none if there is no collision
                 return "none";
             }
@@ -74,8 +73,7 @@ namespace Shooter.MapClasses {
                     double corner1X, corner2X, corner1Y, corner2Y;
                     
                     //Checks the top left corner to determine the side of collision
-                    if (topLeftCorner)
-                    {
+                    if (topLeftCorner){
                         //Gets the points for the two corners to check
                         corner1X = Math.Abs((this.loc.X + 1) - (e.Loc.X - 0.5));
                         corner1Y = Math.Abs(this.loc.Y - (e.Loc.Y - 0.5));
@@ -91,8 +89,7 @@ namespace Shooter.MapClasses {
                             return "Bottom";
                         }
                     }
-                    else if (topRightCorner)
-                    {
+                    else if (topRightCorner){
                         //Gets the points for the two corners to check
                         corner1X = Math.Abs(this.loc.X - (e.Loc.X + 0.5));
                         corner1Y = Math.Abs(this.loc.Y - (e.Loc.Y - 0.5));

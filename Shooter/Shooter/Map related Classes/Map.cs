@@ -17,13 +17,24 @@ namespace Shooter.MapClasses {
         //default map constructor, makes a concrete bitmap with nothing on it
         public Map(ContentManager content) {
             tileMap = new Texture2D[100, 100];
-            objectMap = new MapObject[100, 100];
+            objectMap = new MapObject[tileMap.GetLength(0),tileMap.GetLength(1)];
             //loops through entire tileMap array and sets each value to concrete
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
                     tileMap[i, j] = content.Load<Texture2D>("ConcreteCorner");
                 }
             }
+            /*//loops through objectMap array and sets edges to noTexture
+            for (int i = 0; i < objectMap.GetLength(0); i++) {
+                for(int j = 0; j < objectMap.GetLength(1); j++) {
+                    objectMap[i, j] = new MapObject(content, true, "NoTexture", i, j);
+                }
+            }
+            for (int i = 1; i < objectMap.GetLength(0)-1; i++) {
+                for (int j = 1; j < objectMap.GetLength(1)-1; j++) {
+                    objectMap[i, j] = null;
+                }
+            }*/
         }
 
         // constructor that reads form a file map.cs

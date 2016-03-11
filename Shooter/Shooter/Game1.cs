@@ -234,6 +234,8 @@ namespace Shooter {
                 c.camPos.X += XVelocity;
                 c.camPos.Y += YVelocity;
 
+
+
                 bool temp = player.Weapon.CheckFireRate(gameTime.ElapsedGameTime.Milliseconds);
                 //Left mouse button to shoot
                 //Checks to see if the key is just pressed and not held down
