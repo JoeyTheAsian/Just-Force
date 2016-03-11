@@ -20,7 +20,8 @@ namespace Shooter.Entities {
         protected Rectangle entityRectangle;
         //stores entity's texture
         protected Texture2D entTexture;
-
+        //Boolean value for the entity being the player
+        protected bool isPlayer;
         //default constructor
         public Entity(ContentManager content) {
             loc = new Coord(0,0);
@@ -28,6 +29,7 @@ namespace Shooter.Entities {
             collision = false;
             direction = 0.0;
             entityRectangle = new Rectangle(0, 0, 0, 0);
+            isPlayer = false;
         }
 
         //parameters: pass in game content manager, x coord, y coord, texture file name
@@ -43,7 +45,7 @@ namespace Shooter.Entities {
             loc = new Coord();
             loc.X = x;
             loc.Y = y;
-            
+            isPlayer = false;
             direction = 0.0;
             entityRectangle = r;
         }
@@ -60,6 +62,7 @@ namespace Shooter.Entities {
             loc.Y = y;
             collision = c;
             entityRectangle = r;
+            isPlayer = false;
             //direction can only be an angle from 0 - 360
             if (dir >= 4 || dir < -4) {
                 direction = 0;
@@ -127,6 +130,12 @@ namespace Shooter.Entities {
         {
             get { return entityRectangle; }
             set { entityRectangle = value; }
+        }
+        //Property for the isPlayer attribute
+        public bool IsPlayer
+        {
+            get { return isPlayer; }
+            set { isPlayer = value; }
         }
     }
 }

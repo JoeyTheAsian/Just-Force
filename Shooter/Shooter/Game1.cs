@@ -226,11 +226,6 @@ namespace Shooter {
                 //update sprint
                 movement.UpdateSprint(state, oldState, m.TileSize);
 
-                //update the current velocity
-                XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-                YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-
-
 
                 //update the screen & player positions
                 player.Loc.X -= XVelocity;
@@ -385,7 +380,6 @@ namespace Shooter {
                     {
                         //Updates the enemies' rectangle property
                         enemies[k].rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset);
-                        spriteBatch.Draw(enemies[k].EntTexture, enemies[k].rectangle, null, Color.White, (float)enemies[k].Direction, originPos, SpriteEffects.None, 0);
                     }
 
                     //draw the player model

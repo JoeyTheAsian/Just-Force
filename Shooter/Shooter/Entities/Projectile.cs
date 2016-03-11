@@ -76,16 +76,54 @@ namespace Shooter.Entities {
             }
         }
 
-        public bool CheckHit(Character target)
+        public bool CheckHit(Character e)
         {
-            //Checks to see if the projectile has hit the target, deals damage and returns true 
-            if(rectangle.Intersects(target.rectangle))
-            {
-                target.Health -= 1;
-                return true;
-            }
+            //Converts the direction from radians to degrees
+            double directionDegrees = this.direction * 57.2958;
 
-            //Else returns false
+            //Checks collision based on the direction the projectile is rotated to
+            //Checks angles in the fourth quadrant
+            if (directionDegrees > 270 && directionDegrees <= 360)
+            {
+                if (this.loc.X + 1 < e.Loc.X + 1 && this.loc.X + 1 > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y)
+                {
+                    //Decrements the character's health
+                    e.Health -= 1;
+                    return true;
+                }
+            }
+            //Checks angles in the third quadrant
+            else if (directionDegrees > 180 && directionDegrees <= 270)
+            {
+                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y)
+                {
+                    //Decrements the character's health
+                    e.Health -= 1;
+                    return true;
+                }
+            }
+            //Checks angles in the second quadrant
+            else if (directionDegrees > 90 && directionDegrees <= 180)
+            {
+                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y)
+                {
+                    //Decrements the character's health
+                    e.Health -= 1;
+                    return true;
+                }
+            }
+            //Checks angles in the first quadrant
+            else
+            {
+                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y)
+                {
+                    //Decrements the character's health
+                    e.Health -= 1;
+                    return true;
+                }
+            }
+   
+            //Else returns false if no collision occurs
             return false;
         }
     }
