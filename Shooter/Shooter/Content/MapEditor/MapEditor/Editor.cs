@@ -20,9 +20,13 @@ namespace MapEditor {
         int rows, columns, tlWidth, tlHeight;
         string inputrows, inputcolumns, inputwidth, inputheight;
         string[,] fileName;
-        Bitmap[,] Map;
+        Bitmap[,] Map; // array that stores bitmaps
+        string[,] mapString; // array that stores texture names as a string for saving the file
         List<Point> map = new List<Point>();
+        //currently stored texture swatch on the brush
         Bitmap texture;
+        //string name for texture
+        string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
         bool painting = false;
 
@@ -38,7 +42,7 @@ namespace MapEditor {
             {
                 for (int j = 0; j < tilemap.GetLength(1); j++)
                 {
-                    tilemap[i, j] = "Asphalt";
+                    tilemap[i, j] = mapString[i,j];
                 }
             }
             BinaryWriter output = new BinaryWriter(str);
@@ -106,26 +110,30 @@ namespace MapEditor {
         //Mouse click events to pick up textures from buttons
         private void button2_MouseClick(object sender, MouseEventArgs e) {
             texture = lane;
+            textString = "LaneLine";
             pictureBox2.Invalidate();
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
             texture = asphalt;
+            textString = "Asphalt";
             pictureBox2.Invalidate();
         }
 
         private void button4_MouseClick(object sender, MouseEventArgs e) {
             texture = concrete;
+            textString = "Concrete";
             pictureBox2.Invalidate();
         }
 
         private void button5_MouseClick(object sender, MouseEventArgs e) {
             texture = concreteCorner;
+            textString = "ConcreteCorner";
             pictureBox2.Invalidate();
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
-            texture = concreteEdge;
+            textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
 
@@ -147,6 +155,7 @@ namespace MapEditor {
                 int positionY = (int)((e.Y * 1.0 / tlHeight));
                 try {
                     Map[positionX, positionY] = texture;
+                    mapString[positionX, positionY] = textString;
                 } catch (ArgumentNullException) { } catch (NullReferenceException) { } catch (IndexOutOfRangeException) { }
             }
         }
