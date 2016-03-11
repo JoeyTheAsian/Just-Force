@@ -1,17 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace MapEditor {
+namespace MapEditor
+{
     public partial class Editor : Form {
         public Editor() {
             InitializeComponent();
@@ -66,11 +60,20 @@ namespace MapEditor {
             {
                 for (int j = 0; j < tilemap.GetLength(1); j++)
                 {
-                    string texture = input.ReadString();
-                    tilemap[i, j] = texture;
+                    string texture = input.ReadString(); // string it reads in is the name of the texture's file
+                    mapString[i, j] = texture; // stores it in the string version of the map array
                 }
             }
             input.Close();
+
+            for (int i = 0; i < mapString.GetLength(0); i++)
+            {
+                for (int j = 0; j < mapString.GetLength(1); j++)
+                {
+                    Bitmap text = new Bitmap("TileTextures/" + mapString[i, j] + ".png"); // loads the texture
+                    Map[i, j] = text; // stores it in the map array for editing
+                }
+            }
         }
 
         //Paint events to show texture image on buttons_____________________________________________
