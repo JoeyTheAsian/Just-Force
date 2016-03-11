@@ -217,3 +217,6 @@
 <b> 6:17 pm 3/9/2016: Connor Cummings</b>
 <ul><li>changed the look of the pause screen and added an exit button</li>
 <li>added a Quit method after Draw in Game1 to exit game from other classes. But its not implemented anywhere</li></ul>
+
+<b> 2:38 pm 3/11/2016: Connor Cummings</b>
+<ul><li>fixed code for Exit buttons. Exit buttons on start and pause menu now exit program</li></ul>

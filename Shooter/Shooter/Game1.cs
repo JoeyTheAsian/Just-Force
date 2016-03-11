@@ -209,7 +209,7 @@ namespace Shooter {
             }
 
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
-                g.MouseClicked(mState.X, mState.Y);
+                g.MouseClicked(mState.X, mState.Y, this);
             }
             //when loading, updatestate returns true, use that to start new thread
             bool newThread = g.updateState(state, oldState);
@@ -338,7 +338,8 @@ namespace Shooter {
                 case "Paused":
                     //temp test
                     GraphicsDevice.Clear(Color.Gray);
-                    spriteBatch.Draw(g.exitButton, new Rectangle(screenWidth - 250, screenHeight - 150, 200, 100), Color.White);
+                    spriteBatch.DrawString(arial, "Press Esc to Resume", new Vector2(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10), Color.DarkRed);
+                    spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
                 case "Playing":
@@ -441,9 +442,6 @@ namespace Shooter {
             spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-        public void Quit() {
-            Exit();
         }
     }
 }

@@ -63,12 +63,12 @@ namespace Shooter.GameStates {
             isLoading = true;
         }
         //method for mouse on main menu
-        public Rectangle MouseClicked(int x, int y) {
+        public Rectangle MouseClicked(int x, int y, Game1 game) {
             Rectangle mouseClickRect = new Rectangle(x, y, 1, 1);
-            if (gameState == "StartMenu") {
+            Rectangle startbuttonRect = new Rectangle((int)startButtonPosition.X, (int)startButtonPosition.Y, 300, 108);
+            Rectangle exitbuttonRect = new Rectangle((int)exitButtonPosition.X, (int)exitButtonPosition.Y, 600, 192);
 
-                Rectangle startbuttonRect = new Rectangle((int)startButtonPosition.X, (int)startButtonPosition.Y, 300, 108);
-                Rectangle exitbuttonRect = new Rectangle((int)exitButtonPosition.X, (int)exitButtonPosition.Y, 600, 192);
+            if (gameState == "StartMenu") {
 
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
@@ -84,9 +84,15 @@ namespace Shooter.GameStates {
                 }
                 //player exits game
                 else if (mouseClickRect.Intersects(exitbuttonRect)) {
-                    //game.Exit();
+                    game.Exit();
                 }
-                
+            }
+
+            //puased screen method
+            if (gameState == "Paused") {
+                if (mouseClickRect.Intersects(exitbuttonRect)) {
+                    game.Exit();
+                }
             }
             return mouseClickRect;
         }
