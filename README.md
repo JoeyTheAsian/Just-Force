@@ -220,3 +220,6 @@
 
 <b> 2:38 pm 3/11/2016: Connor Cummings</b>
 <ul><li>fixed code for Exit buttons. Exit buttons on start and pause menu now exit program</li></ul>
+
+<b> 3:34 pm 3/11/2016: Anthony Olivares</b>
+<ul><li>added code so that the map editor creates a 2d string array version of the map that contains texture names in the same locations as the textures are stored. This array is read from to create the file that is saved by it.</li></ul>
