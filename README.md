@@ -224,3 +224,8 @@
 <b> 3:52 pm 3/11/2016: Anthony Olivares</b>
 <ul><li>added code so that the map editor creates a 2d string array version of the map that contains texture names in the same locations as the textures are stored. This array is read from to create the file that is saved by it.</li>
 <li>The load map button has also had its method altered to function this way - it reads in the strings from the .dat file, puts them back into the string array, and then loads the bitmaps with those names and puts them in the editor's map.</li></ul>
+
+<b> 4:00 pm 3/11/16: Joey Tong</b>
+<ul><li>Fixed issue regarding diagonal movement being faster</li>
+<li>Added tommy gun (submachinegun) UI texture</li>
+</ul>
