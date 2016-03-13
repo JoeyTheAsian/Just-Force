@@ -164,7 +164,7 @@ namespace Shooter {
 
             player.Loc.Y = (c.camPos.Y + (screenHeight / 2)) / m.TileSize;
             player.Loc.X = (c.camPos.X + (screenWidth / 2)) / m.TileSize;
-
+            player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here
             double maxVelocity =(10.0 / m.TileSize);
@@ -225,6 +225,15 @@ namespace Shooter {
                 movement.YVelocity = movement.UpdateY(movement.YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
                 movement.UpdateSprint(state, oldState, m.TileSize);
 
+                //Checks for player collision with mapobjects
+                string[] s = m.CheckArea(player).Split(',');
+                for (int i = 0; i < s.Length; i++) {
+                    if (s[i].Equals("Top") && movement.YVelocity < 0 || s[i].Equals("Bottom") && movement.YVelocity > 0) {
+                        movement.YVelocity = 0;
+                    } else if (s[i].Equals("Left") && movement.XVelocity < 0 || s[i].Equals("Right") && movement.XVelocity > 0) {
+                        movement.XVelocity = 0;
+                    }
+                }
                 //update the camera & player positions
                 player.Loc.X -= movement.XVelocity;
                 player.Loc.Y -= movement.YVelocity;
@@ -272,7 +281,7 @@ namespace Shooter {
                         projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
                         //Checks if any projectiles collide with any enemies
                         for (int k = 0; k < enemies.Count; k++) {
-                            if (projectiles[i].CheckHit(enemies[k])) {
+                            if (projectiles[i].CheckHit(enemies[k]) || m.CheckArea(projectiles[i]).Equals("hit")) {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;

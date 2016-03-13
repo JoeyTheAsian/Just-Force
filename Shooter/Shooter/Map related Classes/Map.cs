@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Shooter.Entities;
 
 namespace Shooter.MapClasses {
     class Map {
@@ -53,6 +54,25 @@ namespace Shooter.MapClasses {
                     tileMap[i, j] = texture;
                 }
             }
+        }
+
+        public string CheckArea(Entity e) {
+            string sides = "";
+            for (int i = (int)e.Loc.X - 2; i < (int)e.Loc.X + 2; i++) {
+                for (int j = (int)e.Loc.Y - 2; j < (int)e.Loc.Y + 2; j++) {
+                    if (i > -1 && j > -1 && i < objectMap.GetLength(0) && j < objectMap.GetLength(1)) {
+                        if (objectMap[i, j] != null && !objectMap[i, j].CheckCollide(e).Equals("none")) {
+                            if (e is Projectile) {
+                                return "hit";
+                            } else {
+                                sides += objectMap[i, j].CheckCollide(e) + ",";
+                            }
+                        }
+                    }
+                }
+            }
+
+            return sides;
         }
 
         //tileMap property
