@@ -229,3 +229,9 @@
 <ul><li>Fixed issue regarding diagonal movement being faster</li>
 <li>Added tommy gun (submachinegun) UI texture</li>
 </ul>
+<b> 3:21 am 3/13/16: Joey Tong</b>
+<ul><li>General Code cleanup, moved HUD drawing procedure to external class</li>
+<li>Added comments where needed</li>
+<li>Removed unused values and calculations in camera class</li>
+<li>added drawing procedure for objectMap</li>
+</ul>
