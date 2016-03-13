@@ -57,6 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controls\Camera.cs" />
+    <Compile Include="Controls\HUD.cs" />
     <Compile Include="Controls\Movement.cs" />
     <Compile Include="Controls\Weapon.cs" />
     <Compile Include="Entities\Character.cs" />

@@ -44,8 +44,6 @@ namespace Shooter {
         Vector2 originPos;
 
         //input objects
-        private double YVelocity;
-        private double XVelocity;
         private Movement movement;
 
         //Height and width of the monitor
@@ -221,22 +219,19 @@ namespace Shooter {
             if (g.gameState != "Paused") {
                 //CONTROLS_____________________________________
 
-                //WASD movement controls
-
-                //update  & velocities
-                XVelocity = movement.UpdateX(XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-                YVelocity = movement.UpdateY(YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+                //movement controls (W,A,S,D, Shift)
+                //update X & Y instantanous velocities and checks sprint
+                movement.XVelocity = movement.UpdateX(movement.XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+                movement.YVelocity = movement.UpdateY(movement.YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
                 movement.UpdateSprint(state, oldState, m.TileSize);
 
-                //update the screen & player positions
-                player.Loc.X -= XVelocity;
-                player.Loc.Y -= YVelocity;
+                //update the camera & player positions
+                player.Loc.X -= movement.XVelocity;
+                player.Loc.Y -= movement.YVelocity;
 
-                c.camPos.X += XVelocity;
-                c.camPos.Y += YVelocity;
-                
-                
-
+                c.camPos.X += movement.XVelocity;
+                c.camPos.Y += movement.YVelocity;
+                //_____________________________________________
 
                 bool temp = player.Weapon.CheckFireRate(gameTime.ElapsedGameTime.Milliseconds);
                 //Left mouse button to shoot
@@ -263,12 +258,13 @@ namespace Shooter {
                 if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
                     player.Weapon.Reload();
                 }
-                    //update camera
-                    c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
-                               new Coord(mState.X, mState.Y), new Coord((player.Loc.X - c.camPos.X) * m.TileSize, (player.Loc.Y - c.camPos.Y) * m.TileSize));
+                //update camera
+                c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
+                            new Coord(mState.X, mState.Y), new Coord((player.Loc.X - c.camPos.X) * m.TileSize, (player.Loc.Y - c.camPos.Y) * m.TileSize));
 
                 //updates projectiles and checks collision
                 for (int i = 0; i < projectiles.Count; i++) {
+                    //checks if the projectile has exceeded its maximum range
                     if (projectiles[i].CheckRange() == true) {
                         projectiles.Remove(projectiles[i]);
                         i--;
@@ -304,7 +300,7 @@ namespace Shooter {
             
             //END OF GAME LOGIC_____________________________________________________________________________________________________________
 
-            //Updates the old state with what the current state is
+            //Updates the old input states with what the current states are
             oldState = state;
             oldMState = mState;
 
@@ -393,8 +389,7 @@ namespace Shooter {
                                                                                 m.TileSize, c.xOffset, c.yOffset), 
                                                                                 null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
                     //Draws the temp enemy
-                    for (int k = 0; k < enemies.Count; k++)
-                    {
+                    for (int k = 0; k < enemies.Count; k++){
                         //Updates the enemies' rectangle property
                         enemies[k].rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset);
                     }
@@ -407,44 +402,8 @@ namespace Shooter {
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
 
-                    //Draws HUD___________________________________________________________________________________________
-                    //weapon indicator at bottom right
-                    spriteBatch.Draw(player.Weapon.Texture, new Rectangle(screenWidth - player.Weapon.Texture.Width * 2/3,
-                                                                          screenHeight - player.Weapon.Texture.Height * 2/3, 
-                                                                          player.Weapon.Texture.Width / 3, 
-                                                                          player.Weapon.Texture.Height / 3), Color.White);
-                    //Weapon name
-                    spriteBatch.DrawString(arial, player.Weapon.Name , new Vector2(screenWidth - player.Weapon.Texture.Width * 1 / 3, 
-                                                                                   screenHeight - player.Weapon.Texture.Height * 1 / 3 - arial.MeasureString(player.Weapon.Name).Y), Color.Red);
-                    //health bar background
-                    spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth / 100), 
-                                                           screenHeight / 20 + (int)(screenHeight / 52), 
-                                                           screenWidth / 4 - (screenWidth / 50), 
-                                                           screenHeight / 15 - (int)(screenHeight / 30)), Color.Black);
-                    //health
-                    spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth/100), 
-                                                           screenHeight / 20 + (int)(screenHeight/52), 
-                                                           (screenWidth / 4 - (screenWidth/50)) * (player.Health/player.MaxHealth), 
-                                                           screenHeight / 15 - (int)(screenHeight / 30)), Color.Magenta);
-                    //health bar
-                    spriteBatch.Draw(healthBar, new Rectangle(screenWidth/20, screenHeight/20, screenWidth / 4, screenHeight / 15),Color.White);
-
-                    //ammo
-                    for(int i = 0; i < player.Weapon.Ammo.Count; i++) {
-                        spriteBatch.Draw(health, new Rectangle(screenWidth * 6 / 7 - 2, 
-                                                              (screenHeight / 18) + (i * 35) - 2,
-                                                              player.Weapon.maxAmmo * 19 + 2,
-                                                              31), Color.DarkGray);
-                        for(int j = 0; j < player.Weapon.Ammo[i]; j++) {
-                            spriteBatch.Draw(player.Weapon.AmmoTexture, 
-                                            new Rectangle(screenWidth * 6 / 7 + (j * 19),
-                                                         (screenHeight / 18) + (i * 35) - 2,
-                                                          19, 31), Color.White);
-                        }
-                    }
-                    spriteBatch.DrawString(arial, "Ammo Left: " + player.Weapon.TotalAmmo(), new Vector2(screenWidth * 6 / 7 - 2,
-                                                                                                        (screenHeight / 18) - arial.MeasureString(" ").Y - 10) , Color.Red);
-                    //___________________________________________________________________________________________
+                    //Draw the HUD, moved calculations to external static class
+                    HUD.DrawHUD(player, ref spriteBatch, screenHeight, screenWidth, arial, health, healthBar);
 
                     //play all enqueued sound effects
                     for (int i = 0; i < curSounds.Count; i++) {

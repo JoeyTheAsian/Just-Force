@@ -6,6 +6,10 @@ using System.Text;
 
 namespace Shooter.Controls {
     class Movement {
+        //mutatable instantaneous velocity of character
+        public double YVelocity;
+        public double XVelocity;
+        //immutable maximum velocity
         private double maxVelocity;
         private double acceleration;
         public Movement(double mv, double accel) {
@@ -82,8 +86,28 @@ namespace Shooter.Controls {
             return yVelocity;
         }
         public double UpdateX(double xVelocity, double timeElapsed, KeyboardState state) {
+            //______________________COMBOS_____________________________
+            if (state.IsKeyDown(Keys.A) && (state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.S))) {
+                //if less than or equal to, increase by acceleration
+                if (xVelocity < maxVelocity) {
+                    xVelocity += (timeElapsed * Math.Sqrt((acceleration * acceleration / 2)));
+                    //if above max velocity, set it to max velocity
+                    if (xVelocity > maxVelocity) {
+                        xVelocity = maxVelocity;
+                    }
+                }
+            } else if (state.IsKeyDown(Keys.D) && (state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.S))) {
+                //if less than or equal to, increase by acceleration
+                if (xVelocity > -1 * maxVelocity) {
+                    xVelocity -= (timeElapsed * Math.Sqrt((acceleration * acceleration / 2)));
+                    //if above max velocity, set it to max velocity
+                    if (xVelocity > maxVelocity) {
+                        xVelocity = maxVelocity;
+                    }
+                }
+            }
             //__________________________________A KEY____________________________________
-            if (state.IsKeyDown(Keys.A)) {
+            else if (state.IsKeyDown(Keys.A)) {
                 //if less than or equal to, increase by acceleration
                 if (xVelocity < maxVelocity) {
                     xVelocity += (timeElapsed * acceleration);
