@@ -5,12 +5,13 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Shooter.Controls;
 using Shooter.Entities;
+using Shooter.GameStates;
 using Shooter.MapClasses;
 using Shooter.Testing_Tools;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Shooter.GameStates;
+
 
 namespace Shooter {
     ///main type for the game
@@ -234,6 +235,7 @@ namespace Shooter {
                         movement.XVelocity = 0;
                     }
                 }
+
                 //update the camera & player positions
                 player.Loc.X -= movement.XVelocity;
                 player.Loc.Y -= movement.YVelocity;
@@ -241,6 +243,7 @@ namespace Shooter {
                 c.camPos.X += movement.XVelocity;
                 c.camPos.Y += movement.YVelocity;
                 //_____________________________________________
+
 
                 bool temp = player.Weapon.CheckFireRate(gameTime.ElapsedGameTime.Milliseconds);
                 //Left mouse button to shoot

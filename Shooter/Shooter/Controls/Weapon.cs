@@ -112,6 +112,7 @@ namespace Shooter.Controls {
                 return null;
             }
         }
+        //Reloads gun
         public void Reload() {
             if(ammo.Count <= 1) {
                 return;
