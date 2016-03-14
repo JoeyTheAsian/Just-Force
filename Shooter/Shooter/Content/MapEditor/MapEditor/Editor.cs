@@ -24,7 +24,7 @@ namespace MapEditor
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
         bool painting = false;
 
-        string[,] tilemap = new String[100, 100];
+        string[,] tilemap; // 2d array that gets written to the file
         Stream str = File.OpenWrite("../../../../map.dat");
 
         private void Editor_Load(object sender, EventArgs e) {
@@ -37,7 +37,7 @@ namespace MapEditor
             {
                 for (int j = 0; j < tilemap.GetLength(1); j++)
                 {
-                    tilemap[i, j] = mapString[i,j];
+                    tilemap[i, j] = mapString[i,j]; // sets all the values in the saved map to the values found in the array of texture names
                 }
             }
             BinaryWriter output = new BinaryWriter(str);
@@ -46,7 +46,7 @@ namespace MapEditor
             {
                 for (int j = 0; j < tilemap.GetLength(1); j++)
                 {
-                    string texture = tilemap[i, j].ToString();
+                    string texture = tilemap[i, j].ToString(); // gets the texture name from the array and saves it to the file
                     output.Write(texture);
                 }
             }
@@ -81,31 +81,31 @@ namespace MapEditor
         private void button2_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
-            g.DrawImage(lane, 0, 0, 50, 50);
+            g.DrawImage(lane, 0, 0, 100, 100);
         }
 
         private void button3_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
-            g.DrawImage(asphalt, 0, 0, 50, 50);
+            g.DrawImage(asphalt, 0, 0, 100, 100);
         }
         
         private void button4_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concrete, 0, 0, 50, 50);
+            g.DrawImage(concrete, 0, 0, 100, 100);
         }
 
         private void button5_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteCorner, 0, 0, 50, 50);
+            g.DrawImage(concreteCorner, 0, 0, 100, 100);
         }
 
         private void button6_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteEdge, 0, 0, 50, 50);
+            g.DrawImage(concreteEdge, 0, 0, 100, 100);
         }
         //________________________________________________________________________________________
 
@@ -135,7 +135,6 @@ namespace MapEditor
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
-            texture = concreteEdge;
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
@@ -247,6 +246,8 @@ namespace MapEditor
             pictureBox1.Height = rows * tlHeight + 5;
             pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
+            tilemap = new String[columns, rows];
+            mapString = new String[columns, rows];
             pictureBox1.Invalidate();
 
             //clear user input textboxes
