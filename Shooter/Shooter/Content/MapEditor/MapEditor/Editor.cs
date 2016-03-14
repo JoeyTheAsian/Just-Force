@@ -15,13 +15,17 @@ namespace MapEditor
         string inputrows, inputcolumns, inputwidth, inputheight;
         string[,] fileName;
         Bitmap[,] Map; // array that stores bitmaps
+
         string[,] mapString; // array that stores texture names as a string for saving the file
         List<Point> map = new List<Point>();
         //currently stored texture swatch on the brush
-        Bitmap texture;
+        string curType;
+        Bitmap curgameObject;
+        Bitmap curTexture;
         //string name for texture
         string textString;
-        Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge;
+        Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
+        Bitmap object1; //gameobject bitmaps
         bool painting = false;
 
         string[,] tilemap = new String[100, 100];
@@ -30,6 +34,7 @@ namespace MapEditor
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
             panel2.Controls.Add(tableLayoutPanel1);
+            panel3.Controls.Add(tableLayoutPanel2);
         }
         //save button
         private void button1_Click(object sender, EventArgs e) {
@@ -109,42 +114,75 @@ namespace MapEditor
         }
         //________________________________________________________________________________________
 
+        //Paint events to show game objects on buttons____________________________________
+        private void button9_Paint(object sender, PaintEventArgs e) {
+            object1 = new Bitmap("GameObjects/NoTexture.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(object1, 0, 0, 50, 50);
+        }
+        //_________________________________________________________________________________________
+
         //Mouse click events to pick up textures from buttons
         private void button2_MouseClick(object sender, MouseEventArgs e) {
-            texture = lane;
+            curTexture = lane;
+            curType = "texture";
             textString = "LaneLine";
             pictureBox2.Invalidate();
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
-            texture = asphalt;
+            curTexture = asphalt;
+            curType = "texture";
             textString = "Asphalt";
             pictureBox2.Invalidate();
         }
 
         private void button4_MouseClick(object sender, MouseEventArgs e) {
-            texture = concrete;
+            curTexture = concrete;
+            curType = "texture";
             textString = "Concrete";
             pictureBox2.Invalidate();
         }
 
         private void button5_MouseClick(object sender, MouseEventArgs e) {
-            texture = concreteCorner;
+            curTexture = concreteCorner;
+            curType = "texture";
             textString = "ConcreteCorner";
             pictureBox2.Invalidate();
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
-            texture = concreteEdge;
+            curTexture = concreteEdge;
+            curType = "texture";
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
+        
+        //____________________________________________________________________________________________
+
+        //Mouse click events to pick up Gameobjects from buttons
+        private void button9_MouseClick(object sender, MouseEventArgs e) {
+            curgameObject = object1;
+            curType = "object";
+            pictureBox2.Invalidate();
+        }
+        //__________________________________________________________________________________________
 
         private void pictureBox2_Paint(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
-            try {
-                g.DrawImage(texture, 0, 0, pictureBox2.Width, pictureBox2.Height);
-            } catch (ArgumentNullException) { } catch (NullReferenceException) { }
+            if (curType == "texture") {
+                try {
+                    g.DrawImage(curTexture, 0, 0, pictureBox2.Width, pictureBox2.Height);
+                }
+                catch (ArgumentNullException) { }
+                catch (NullReferenceException) { }
+            }else if (curType == "object") {
+                try {
+                    g.DrawImage(curgameObject, 0, 0, pictureBox2.Width, pictureBox2.Height);
+                }
+                catch (ArgumentNullException) { }
+                catch (NullReferenceException) { }
+            }
         }
                
 
@@ -154,12 +192,27 @@ namespace MapEditor
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
             if (painting) {
-                int positionX = (int)((e.X * 1.0 / tlWidth));
-                int positionY = (int)((e.Y * 1.0 / tlHeight));
-                try {
-                    Map[positionX, positionY] = texture;
-                    mapString[positionX, positionY] = textString;
-                } catch (ArgumentNullException) { } catch (NullReferenceException) { } catch (IndexOutOfRangeException) { }
+                if (curType == "texture") {
+                    int positionX = (int)((e.X * 1.0 / tlWidth));
+                    int positionY = (int)((e.Y * 1.0 / tlHeight));
+                    try {
+                        Map[positionX, positionY] = curTexture;
+                        mapString[positionX, positionY] = textString;
+                    }
+                    catch (ArgumentNullException) { }
+                    catch (NullReferenceException) { }
+                    catch (IndexOutOfRangeException) { }
+                } else if(curType == "object") {
+                    int positionX = (int)((e.X * 1.0 / tlWidth));
+                    int positionY = (int)((e.Y * 1.0 / tlHeight));
+                    try {
+                        Map[positionX, positionY] = curgameObject;
+                        mapString[positionX, positionY] = textString;
+                    }
+                    catch (ArgumentNullException) { }
+                    catch (NullReferenceException) { }
+                    catch (IndexOutOfRangeException) { }
+                }
             }
         }
 

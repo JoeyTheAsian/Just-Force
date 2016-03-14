@@ -236,3 +236,9 @@
 <li>Removed unused values and calculations in camera class</li>
 <li>added drawing procedure for objectMap</li>
 </ul>
+
+<b> 10:45 am 3/14/2016: Connor Cummings</b>
+<ul><li>added curype to Mapeditor to choose between textures and objects</li>
+<li>removed classes that weren't needed</li>
+<li>added one gameobject for now</li>
+<li>gave game objects their own table</li></ul>
