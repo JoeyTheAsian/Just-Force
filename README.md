@@ -236,3 +236,8 @@
 <li>Removed unused values and calculations in camera class</li>
 <li>added drawing procedure for objectMap</li>
 </ul>
+
+<b> 10:44 am 3/14/16: Anthony Olivares </b>
+<ul><li>Commented the file io code in the map editor</li>
+<li>Fixed initialization of string arrays used in file io in the map editor</li>
+<li>Map editor saving method can be optimised better, will clean up the code more later</li></ul>
