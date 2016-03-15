@@ -237,15 +237,19 @@
 <li>added drawing procedure for objectMap</li>
 </ul>
 
-<<<<<<< HEAD
 <b> 10:45 am 3/14/2016: Connor Cummings</b>
 <ul><li>added curype to Mapeditor to choose between textures and objects</li>
 <li>removed classes that weren't needed</li>
 <li>added one gameobject for now</li>
 <li>gave game objects their own table</li></ul>
-=======
+
 <b> 10:44 am 3/14/16: Anthony Olivares </b>
 <ul><li>Commented the file io code in the map editor</li>
 <li>Fixed initialization of string arrays used in file io in the map editor</li>
 <li>Map editor saving method can be optimised better, will clean up the code more later</li></ul>
 >>>>>>> origin/master
+
+<b> 11:48 pm 3/43/16: Joey Tong</b>
+<ul><li>Added full compatibility with different resolution screens</li>
+<li>Fixed tommy gun weapon indicator texture</li>
+</ul>
