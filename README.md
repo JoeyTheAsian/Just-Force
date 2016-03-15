@@ -247,7 +247,7 @@
 <ul><li>Commented the file io code in the map editor</li>
 <li>Fixed initialization of string arrays used in file io in the map editor</li>
 <li>Map editor saving method can be optimised better, will clean up the code more later</li></ul>
->>>>>>> origin/master
+
 
 <b> 11:48 pm 3/43/16: Joey Tong</b>
 <ul><li>Added full compatibility with different resolution screens</li>
