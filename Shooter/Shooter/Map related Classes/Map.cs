@@ -13,10 +13,11 @@ namespace Shooter.MapClasses {
         protected Texture2D[,] tileMap;
         protected MapObject[,] objectMap;
         //tiles are 100px by 100px, use this variable for everything related to tile scaling
-        int tileSize = 100;
+        int tileSize;
 
         //default map constructor, makes a concrete bitmap with nothing on it
-        public Map(ContentManager content) {
+        public Map(ContentManager content, int screenWidth, int screenHeight) {
+            tileSize = screenWidth / 20;
             tileMap = new Texture2D[100, 100];
             objectMap = new MapObject[tileMap.GetLength(0),tileMap.GetLength(1)];
             //loops through entire tileMap array and sets each value to concrete

@@ -50,7 +50,8 @@ namespace Shooter {
         //Height and width of the monitor
         private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-
+        //private int screenHeight = 768;
+        //private int screenWidth = 1024;
         //Camera object
         private Camera c;
 
@@ -147,7 +148,7 @@ namespace Shooter {
             tb = new TileBounds();
 
             //create map and pass in contentmanager
-            m = new Map(Content);
+            m = new Map(Content, screenWidth, screenHeight);
 
             //creates the player
             player = new Character(Content);
