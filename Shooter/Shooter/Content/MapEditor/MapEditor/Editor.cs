@@ -13,15 +13,16 @@ namespace MapEditor
 
         int rows, columns, tlWidth, tlHeight;
         string inputrows, inputcolumns, inputwidth, inputheight;
-        string[,] fileName;
-        Bitmap[,] Map; // array that stores bitmaps
 
-        string[,] mapString; // array that stores texture names as a string for saving the file
+        Bitmap[,] Map = new Bitmap[0,0]; // array that stores bitmaps
+        Bitmap[,] objectMap = new Bitmap[0,0]; // array that stores bitmaps
+
+        string[,] mapString = new string[0,0]; // array that stores texture names as a string for saving the file
+        string[,] objectString = new string[0,0]; // array that stores object texture names as a string for saving the file
         List<Point> map = new List<Point>();
         //currently stored texture swatch on the brush
         string curType;
-        Bitmap curgameObject;
-        Bitmap curTexture;
+        Bitmap curBrush;
         //string name for texture
         string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
@@ -86,31 +87,31 @@ namespace MapEditor
         private void button2_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
-            g.DrawImage(lane, 0, 0, 100, 100);
+            g.DrawImage(lane, 0, 0, 50, 50);
         }
 
         private void button3_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
-            g.DrawImage(asphalt, 0, 0, 100, 100);
+            g.DrawImage(asphalt, 0, 0, 50, 50);
         }
         
         private void button4_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concrete, 0, 0, 100, 100);
+            g.DrawImage(concrete, 0, 0, 50, 50);
         }
 
         private void button5_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteCorner, 0, 0, 100, 100);
+            g.DrawImage(concreteCorner, 0, 0, 50, 50);
         }
 
         private void button6_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
-            g.DrawImage(concreteEdge, 0, 0, 100, 100);
+            g.DrawImage(concreteEdge, 0, 0, 50, 50);
         }
         //________________________________________________________________________________________
 
@@ -124,39 +125,36 @@ namespace MapEditor
 
         //Mouse click events to pick up textures from buttons
         private void button2_MouseClick(object sender, MouseEventArgs e) {
-            curTexture = lane;
+            curBrush = lane;
             curType = "texture";
             textString = "LaneLine";
             pictureBox2.Invalidate();
         }
 
         private void button3_MouseClick(object sender, MouseEventArgs e) {
-            curTexture = asphalt;
+            curBrush = asphalt;
             curType = "texture";
             textString = "Asphalt";
             pictureBox2.Invalidate();
         }
 
         private void button4_MouseClick(object sender, MouseEventArgs e) {
-            curTexture = concrete;
+            curBrush = concrete;
             curType = "texture";
             textString = "Concrete";
             pictureBox2.Invalidate();
         }
 
         private void button5_MouseClick(object sender, MouseEventArgs e) {
-            curTexture = concreteCorner;
+            curBrush = concreteCorner;
             curType = "texture";
             textString = "ConcreteCorner";
             pictureBox2.Invalidate();
         }
 
         private void button6_MouseClick(object sender, MouseEventArgs e) {
-<<<<<<< HEAD
-            curTexture = concreteEdge;
+            curBrush = concreteEdge;
             curType = "texture";
-=======
->>>>>>> origin/master
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
@@ -165,8 +163,9 @@ namespace MapEditor
 
         //Mouse click events to pick up Gameobjects from buttons
         private void button9_MouseClick(object sender, MouseEventArgs e) {
-            curgameObject = object1;
+            curBrush = object1;
             curType = "object";
+            textString = "NoTexture";
             pictureBox2.Invalidate();
         }
         //__________________________________________________________________________________________
@@ -175,13 +174,13 @@ namespace MapEditor
             Graphics g = e.Graphics;
             if (curType == "texture") {
                 try {
-                    g.DrawImage(curTexture, 0, 0, pictureBox2.Width, pictureBox2.Height);
+                    g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
                 }
                 catch (ArgumentNullException) { }
                 catch (NullReferenceException) { }
             }else if (curType == "object") {
                 try {
-                    g.DrawImage(curgameObject, 0, 0, pictureBox2.Width, pictureBox2.Height);
+                    g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
                 }
                 catch (ArgumentNullException) { }
                 catch (NullReferenceException) { }
@@ -193,54 +192,44 @@ namespace MapEditor
             painting = false;
         }
 
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
+            painting = true;
+        }
+
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
             if (painting) {
-                if (curType == "texture") {
-                    int positionX = (int)((e.X * 1.0 / tlWidth));
-                    int positionY = (int)((e.Y * 1.0 / tlHeight));
-                    try {
-                        Map[positionX, positionY] = curTexture;
+                int positionX = (int)((e.X * 1.0 / tlWidth));
+                int positionY = (int)((e.Y * 1.0 / tlHeight));
+                if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+                        Map[positionX, positionY] = curBrush;
                         mapString[positionX, positionY] = textString;
-                    }
-                    catch (ArgumentNullException) { }
-                    catch (NullReferenceException) { }
-                    catch (IndexOutOfRangeException) { }
-                } else if(curType == "object") {
-                    int positionX = (int)((e.X * 1.0 / tlWidth));
-                    int positionY = (int)((e.Y * 1.0 / tlHeight));
-                    try {
-                        Map[positionX, positionY] = curgameObject;
-                        mapString[positionX, positionY] = textString;
-                    }
-                    catch (ArgumentNullException) { }
-                    catch (NullReferenceException) { }
-                    catch (IndexOutOfRangeException) { }
+                }
+                else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+                        objectMap[positionX, positionY] = curBrush;
+                        objectString[positionX, positionY] = textString;
                 }
             }
         }
 
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
-
-            painting = true;
-        }
         private void pictureBox1_Paint(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
             Pen p = new Pen(Color.Red);
             if (tlHeight != 0 && tlWidth != 0) {
+                //loop through parts of map that are displayed on screen
                 for (int y = panel1.VerticalScroll.Value / tlHeight; y < (panel1.VerticalScroll.Value + panel1.Height) / tlHeight; y++) {
                     for (int x = panel1.HorizontalScroll.Value / tlWidth; x < (panel1.HorizontalScroll.Value + panel1.Width) / tlWidth; x++) {
-                        // for (int y = 0; y < rows; y++) {
-                        // for (int x = 0; x < columns; x++) {
-                        try {
-                            g.DrawImage(Map[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
-                        } catch (ArgumentNullException) { } catch (NullReferenceException) { } catch (IndexOutOfRangeException) { }
+                        //draw tilemap and objectmap
+                        if (x < Map.GetLength(0) && y < Map.GetLength(1)) {
+                            if (Map[x, y] != null) {
+                               g.DrawImage(Map[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                            }
+                            if (objectMap[x, y] != null) {
+                                g.DrawImage(objectMap[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                            }
+                        }
+                        g.DrawLine(p, x * tlWidth, 0, x * tlWidth, rows * tlHeight); //draw lines for columns
+                        g.DrawLine(p, 0, y * tlHeight, columns * tlWidth, y * tlHeight); // draw lines for rows   
                     }
-                }
-            }
-            for (int y = 0; y <= rows; y++) {
-                for (int x = 0; x <= columns; x++) {
-                g.DrawLine(p, x * tlWidth, 0, x * tlWidth, rows * tlHeight); //draw lines for columns
-                g.DrawLine(p, 0, y * tlHeight, columns * tlWidth, y * tlHeight); // draw lines for rows   
                 }
             }
             pictureBox1.Invalidate();
@@ -252,7 +241,7 @@ namespace MapEditor
         //get input for number of rows, columns and tile width and height_________________________________________
         
         private void RowsInput_TextChanged(object sender, EventArgs e) { //get number of rows for map
-                inputrows = RowsInput.Text;
+            inputrows = RowsInput.Text;
         }
 
         private void ColumnsInput_TextChanged(object sender, EventArgs e) { //get number of columns for map
@@ -277,7 +266,7 @@ namespace MapEditor
                     rows = int.Parse(inputrows);
             }
             catch (FormatException) { }
-        }
+            }
             if(string.IsNullOrEmpty(inputcolumns) == false && inputcolumns != "0") {
                 try {
                     columns = int.Parse(inputcolumns);
@@ -297,21 +286,15 @@ namespace MapEditor
                 catch (FormatException) { }
             }
             //___________________________________________________________________________
-
-
-            // panel1.Invalidate(); //invalidate panel so it gets redrawn
             pictureBox1.Height = rows * tlHeight + 5;
             pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
-            tilemap = new String[columns, rows];
-            mapString = new String[columns, rows];
-            pictureBox1.Invalidate();
+            objectMap = new Bitmap[columns, rows];
+            tilemap = new string[columns, rows];
+            objectString = new string[columns, rows];
+            mapString = new string[columns, rows];
 
-            //clear user input textboxes
-            /*RowsInput.Clear();
-            ColumnsInput.Clear();
-            TileWidthInput.Clear();
-            TileHeightInput.Clear();*/
+            pictureBox1.Invalidate();
         }
     }
 }
