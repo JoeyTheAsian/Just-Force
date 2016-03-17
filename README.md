@@ -257,3 +257,13 @@
 <b> 9:22 pm 3/16/16: Joey Tong</b>
 <ul><li>Fixed optimization and data handling issues with map editor</li>
 </ul>
+
+<b> 2:24 pm 3/17/16: Austin Ford</b>
+<ul><li>Created a static class for creating, shooting and switching the player's weapon</li>
+<li>Added sub classes to character for Enemies and Riot Enemies</li>
+<li>Created a static class for creating Enemies</li>
+<li>Fixed collison against map objects</li>
+<li>Added a new constructor and fillAmmo method to the weapon class</li>
+<li>Added the Tommy Gun</li>
+<li>Changed game console class and added commands for it</li>
+</ul>
