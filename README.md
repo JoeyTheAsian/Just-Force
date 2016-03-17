@@ -249,7 +249,11 @@
 <li>Map editor saving method can be optimised better, will clean up the code more later</li></ul>
 
 
-<b> 11:48 pm 3/43/16: Joey Tong</b>
+<b> 11:48 pm 3/15/16: Joey Tong</b>
 <ul><li>Added full compatibility with different resolution screens</li>
 <li>Fixed tommy gun weapon indicator texture</li>
+</ul>
+
+<b> 9:22 pm 3/16/16: Joey Tong</b>
+<ul><li>Fixed optimization and data handling issues with map editor</li>
 </ul>
