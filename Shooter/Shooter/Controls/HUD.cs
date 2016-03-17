@@ -55,7 +55,7 @@ namespace Shooter.Controls {
                                                                     player.Weapon.Texture.Width / 3, 
                                                                     player.Weapon.Texture.Height / 3), Color.White);
             //Weapon name
-            spriteBatch.DrawString(arial, player.Weapon.Name , new Vector2(screenWidth - player.Weapon.Texture.Width * 1 / 3, 
+            spriteBatch.DrawString(arial, player.Weapon.Name , new Vector2(screenWidth - player.Weapon.Texture.Width * 1 / 2, 
                                                                             screenHeight - player.Weapon.Texture.Height * 1 / 3 - arial.MeasureString(player.Weapon.Name).Y), Color.Red);
             //health bar background
             spriteBatch.Draw(health, new Rectangle(screenWidth / 20 + (screenWidth / 100), 
@@ -78,7 +78,7 @@ namespace Shooter.Controls {
                                                         31), Color.DarkGray);
                 for(int j = 0; j < player.Weapon.Ammo[i]; j++) {
                     spriteBatch.Draw(player.Weapon.AmmoTexture, 
-                                    new Rectangle(screenWidth * 6 / 7 + (j * 19),
+                                    new Rectangle(screenWidth * 6 / 7 + (j * 17),
                                                     (screenHeight / 18) + (i * 35) - 2,
                                                     19, 31), Color.White);
                 }

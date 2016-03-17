@@ -66,7 +66,7 @@ namespace Shooter {
         private TileBounds tb;
 
         //Temp enemy
-        private List<Character> enemies;
+        private List<Enemy> enemies;
         //connor's menu implementation___________
         GameStateManager g;
         //HUD assets
@@ -121,7 +121,7 @@ namespace Shooter {
             base.TargetElapsedTime = System.TimeSpan.FromSeconds(1.0f / 120.0f);
 
             //Initializes console tool with fps
-            consoleTool = new GameConsole(FPSHandler);
+            consoleTool = new GameConsole();
         }
 
         /// <summary>
@@ -178,11 +178,17 @@ namespace Shooter {
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
             
             //Creates temp enemy
-            enemies = new List<Character>();
+            enemies = new List<Enemy>();
 
-            enemies.Add(new Character(Content, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 100) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
-            enemies.Add(new Character(Content, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 400) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
-            enemies.Add(new Character(Content, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, "NoTexture", PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, (c.camPos.X + 800) / m.TileSize, (c.camPos.Y + 100) / m.TileSize, m.TileSize, c.xOffset, c.yOffset)));
+            //Creates enemies to check
+            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, 4, 1);
+            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, 8, 1);
+            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, 12, 1);
+            CreateEnemy.CreateRiotEnemy(enemies, Content, c, m, 16, 1);
+            //Creates the weapons for the player
+            Shooting.CreateWeapons(Content);
+            //Starts the player with the first weapon
+            player.Weapon = Shooting.weapons[0];
 
         }
 
@@ -204,8 +210,38 @@ namespace Shooter {
             //Creates another keyboard & mouse state objects to hold the new states
             KeyboardState state = Keyboard.GetState();
             MouseState mState = Mouse.GetState();
+
+            //Checks for a console input
             if (oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde)) {
-                consoleTool.OpenInput();
+                //Checks the command and does the neccessary method for that
+                string command = "";
+                //Loops until time to exit the console
+                while (!command.Equals("exit")) {
+                    command = consoleTool.OpenInput();
+                    //Splits the method call into the method and parameter
+                    string[] methodCall = command.Split('/');
+                    //Checks to see the number of parameters
+                    if (methodCall.Length > 2) {
+                        if (methodCall[0].Equals("CreateNormalEnemy")) {
+                            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                        } else if (methodCall[0].Equals("CreateRiotEnemy")) {
+                            CreateEnemy.CreateRiotEnemy(enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                        }
+                        //Else runs checks for the command
+                    } else {
+                        if (methodCall[0].Equals("player.weapon")) {
+                            player.Weapon.FillAmmo();
+                        } else if (methodCall[0].Equals("player.health")) {
+                            player.Health = 10000000;
+                        } else if (methodCall[0].Equals("UpdateFPS")) {
+                            FPSHandler.UpdateFPS();
+                        } else if (methodCall[0].Equals("printenemies")) {
+                            foreach (Enemy e in enemies) {
+                                Console.WriteLine("X: " + e.Loc.X + " Y: " + e.Loc.Y + " Health: " + e.Health);
+                            }
+                        }
+                    }
+                }
             }
 
             if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
@@ -228,12 +264,15 @@ namespace Shooter {
                 movement.UpdateSprint(state, oldState, m.TileSize);
 
                 //Checks for player collision with mapobjects
-                string[] s = m.CheckArea(player).Split(',');
+                string[] s = m.CheckArea(player);
                 for (int i = 0; i < s.Length; i++) {
-                    if (s[i].Equals("Top") && movement.YVelocity < 0 || s[i].Equals("Bottom") && movement.YVelocity > 0) {
-                        movement.YVelocity = 0;
-                    } else if (s[i].Equals("Left") && movement.XVelocity < 0 || s[i].Equals("Right") && movement.XVelocity > 0) {
-                        movement.XVelocity = 0;
+                    if (s[i] != null) {
+                        if (s[i].Equals("Bottom") && movement.YVelocity > 0 || s[i].Equals("Top") && movement.YVelocity < 0) {
+                            movement.YVelocity = -movement.YVelocity / 5;
+                        }
+                        if (s[i].Equals("Left") && movement.XVelocity < 0 || s[i].Equals("Right") && movement.XVelocity > 0) {
+                            movement.XVelocity = -movement.XVelocity / 5;
+                        }
                     }
                 }
 
@@ -247,27 +286,13 @@ namespace Shooter {
 
 
                 bool temp = player.Weapon.CheckFireRate(gameTime.ElapsedGameTime.Milliseconds);
-                //Left mouse button to shoot
-                //Checks to see if the key is just pressed and not held down
-                if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
-                    if (temp) {
-                        SoundEffect TempSound;
-                        //enqueue gunshot sound
-                        //only shoot if not a null projectile
-                        Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
-                        if (p != null) {
-                            projectiles.Add(p);
-                            soundEffects.TryGetValue("gunshot", out TempSound);
-                            curSounds.Enqueue(TempSound);
-                            c.screenShake = true;
-                        } else {
-                            player.Weapon.Shoot(Content, player, c, m.TileSize);
-                            //enqueue gun click sound if empty
-                            soundEffects.TryGetValue("emptyClick", out TempSound);
-                            curSounds.Enqueue(TempSound);
-                        }
-                    }
-                }
+
+                //Shoots the player's weapon
+                Shooting.ShootWeapon(player, mState, oldMState, projectiles, temp, c, Content, curSounds, soundEffects, m);
+
+                //Switches the player's weapon
+                Shooting.SwitchWeapon(player, state, oldState);
+
                 if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
                     player.Weapon.Reload();
                 }
@@ -283,9 +308,14 @@ namespace Shooter {
                         i--;
                     } else {
                         projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit")) {
+                            projectiles.RemoveAt(i);
+                            i--;
+                            break;
+                        }
                         //Checks if any projectiles collide with any enemies
                         for (int k = 0; k < enemies.Count; k++) {
-                            if (projectiles[i].CheckHit(enemies[k]) || m.CheckArea(projectiles[i]).Equals("hit")) {
+                            if (projectiles[i].CheckHit(enemies[k])) {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;

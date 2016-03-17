@@ -49,7 +49,7 @@ namespace Shooter.MapClasses {
             //Checks to see if the entity is a Projectile
             if (e is Projectile) {
                 //Then checks for collision
-                if (this.loc.X < e.Loc.X && this.loc.X + 1 > e.Loc.X && this.loc.Y < e.Loc.Y && this.loc.Y + 1 > e.Loc.Y) {
+                if (this.loc.X <= e.Loc.X && this.loc.X + 1 >= e.Loc.X && this.loc.Y <= e.Loc.Y && this.loc.Y + 1 >= e.Loc.Y) {
                     //Returns hit if the object does collide
                     return "hit";
                 }
@@ -58,10 +58,10 @@ namespace Shooter.MapClasses {
             else if (e is Character && e.IsPlayer) {
 
                 //Gets the boolean values of the the corresponding four corners of the player
-                bool topLeftCorner = (this.loc.X < e.Loc.X - 0.5 && this.loc.X + 1 > e.Loc.X - 0.5 && this.loc.Y < e.Loc.Y - 0.5 && this.loc.Y + 1 > e.Loc.Y - 0.5);
-                bool topRightCorner = (this.loc.X < e.Loc.X + 0.5 && this.loc.X + 1 > e.Loc.X + 0.5 && this.loc.Y < e.Loc.Y - 0.5 && this.loc.Y + 1 > e.Loc.Y - 0.5);
-                bool botLeftCorner = (this.loc.X < e.Loc.X - 0.5 && this.loc.X + 1 > e.Loc.X - 0.5 && this.loc.Y < e.Loc.Y + 0.5 && this.loc.Y + 1 > e.Loc.Y + 0.5);
-                bool botRightCorner = (this.loc.X < e.Loc.X + 0.5 && this.loc.X + 1 > e.Loc.X + 0.5 && this.loc.Y < e.Loc.Y + 0.5 && this.loc.Y + 1 > e.Loc.Y + 0.5);
+                bool topLeftCorner = (this.loc.X <= e.Loc.X - 0.5 && this.loc.X + 1 >= e.Loc.X - 0.5 && this.loc.Y <= e.Loc.Y - 0.5 && this.loc.Y + 1 >= e.Loc.Y - 0.5);
+                bool topRightCorner = (this.loc.X <= e.Loc.X + 0.5 && this.loc.X + 1 >= e.Loc.X + 0.5 && this.loc.Y <= e.Loc.Y - 0.5 && this.loc.Y + 1 >= e.Loc.Y - 0.5);
+                bool botLeftCorner = (this.loc.X <= e.Loc.X - 0.5 && this.loc.X + 1 >= e.Loc.X - 0.5 && this.loc.Y <= e.Loc.Y + 0.5 && this.loc.Y + 1 >= e.Loc.Y + 0.5);
+                bool botRightCorner = (this.loc.X <= e.Loc.X + 0.5 && this.loc.X + 1 >= e.Loc.X + 0.5 && this.loc.Y <= e.Loc.Y + 0.5 && this.loc.Y + 1 >= e.Loc.Y + 0.5);
 
                 //Checks if any corners collide
                 if (topLeftCorner || topRightCorner || botLeftCorner || botRightCorner) {
@@ -76,7 +76,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs(this.loc.X - (e.Loc.X - 0.5));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y - 0.5));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Right";
                         } else {
                             return "Bottom";
@@ -88,7 +88,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs((this.loc.X + 1) - (e.Loc.X + 0.5));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y - 0.5));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Left";
                         } else {
                             return "Bottom";
@@ -100,7 +100,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs((this.loc.X + 1) - (e.Loc.X - 0.5));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y + 0.5));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Top";
                         } else {
                             return "Right";
@@ -114,7 +114,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs(this.loc.X - (e.Loc.X + 0.5));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y + 0.5));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Top";
                         } else {
                             return "Left";
@@ -123,10 +123,10 @@ namespace Shooter.MapClasses {
                 }
             } else if (e is Character) {
                 //Gets the boolean values of the the corresponding four corners of a character
-                bool topLeftCorner = (this.loc.X - 0.02 < e.Loc.X && this.loc.X + 1.02 > e.Loc.X && this.loc.Y - 0.02 < e.Loc.Y && this.loc.Y + 1.02 > e.Loc.Y);
-                bool topRightCorner = (this.loc.X - 0.02 < e.Loc.X + 1 && this.loc.X + 1.02 > e.Loc.X + 1 && this.loc.Y - 0.02 < e.Loc.Y && this.loc.Y + 1.02 > e.Loc.Y);
-                bool botLeftCorner = (this.loc.X - 0.02 < e.Loc.X && this.loc.X + 1.02 > e.Loc.X && this.loc.Y - 0.02 < e.Loc.Y + 1 && this.loc.Y + 1.02 > e.Loc.Y + 1);
-                bool botRightCorner = (this.loc.X - 0.02 < e.Loc.X + 1 && this.loc.X + 1.02 > e.Loc.X + 1 && this.loc.Y - 0.02 < e.Loc.Y + 1 && this.loc.Y + 1.02 > e.Loc.Y + 1);
+                bool topLeftCorner = (this.loc.X - 0.02 <= e.Loc.X && this.loc.X + 1.02 >= e.Loc.X && this.loc.Y - 0.02 <= e.Loc.Y && this.loc.Y + 1.02 >= e.Loc.Y);
+                bool topRightCorner = (this.loc.X - 0.02 <= e.Loc.X + 1 && this.loc.X + 1.02 >= e.Loc.X + 1 && this.loc.Y - 0.02 <= e.Loc.Y && this.loc.Y + 1.02 >= e.Loc.Y);
+                bool botLeftCorner = (this.loc.X - 0.02 <= e.Loc.X && this.loc.X + 1.02 >= e.Loc.X && this.loc.Y - 0.02 <= e.Loc.Y + 1 && this.loc.Y + 1.02 >= e.Loc.Y + 1);
+                bool botRightCorner = (this.loc.X - 0.02 <= e.Loc.X + 1 && this.loc.X + 1.02 >= e.Loc.X + 1 && this.loc.Y - 0.02 <= e.Loc.Y + 1 && this.loc.Y + 1.02 >= e.Loc.Y + 1);
 
                 //
                 double corner1X, corner2X;
@@ -139,7 +139,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs(this.loc.X - (e.Loc.X));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Right";
                         } else {
                             return "Bottom";
@@ -151,7 +151,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs((this.loc.X + 1) - (e.Loc.X + 1));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Left";
                         } else {
                             return "Bottom";
@@ -163,7 +163,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs((this.loc.X + 1) - (e.Loc.X));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y + 1));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Top";
                         } else {
                             return "Right";
@@ -175,7 +175,7 @@ namespace Shooter.MapClasses {
                         corner2X = Math.Abs(this.loc.X - (e.Loc.X + 1));
                         corner2Y = Math.Abs((this.loc.Y + 1) - (e.Loc.Y + 1));
                         //Uses the distance formula to see which side it is closer to and returns the closer side
-                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) < Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
+                        if (Math.Sqrt(Math.Pow(corner1X, 2) + Math.Pow(corner1Y, 2)) <= Math.Sqrt(Math.Pow(corner2X, 2) + Math.Pow(corner2Y, 2))) {
                             return "Top";
                         } else {
                             return "Left";

@@ -57,22 +57,32 @@ namespace Shooter.MapClasses {
             }
         }
 
-        public string CheckArea(Entity e) {
-            string sides = "";
+        public string[] CheckArea(Entity e) {
+            //Array to store the sides which the entity collides with
+            string[] sides = new string[10];
+            //Index in the arry
+            int index = 0;
+            //Loops thorugh nearby x values
             for (int i = (int)e.Loc.X - 2; i < (int)e.Loc.X + 2; i++) {
+                //Loops through nearby y values
                 for (int j = (int)e.Loc.Y - 2; j < (int)e.Loc.Y + 2; j++) {
+                    //Checks if the spot is a valid spot to check
                     if (i > -1 && j > -1 && i < objectMap.GetLength(0) && j < objectMap.GetLength(1)) {
+                        //Checks to see if the object is null or collides
                         if (objectMap[i, j] != null && !objectMap[i, j].CheckCollide(e).Equals("none")) {
+                            //If the entity is a projectile then set the first index has a hit in it
                             if (e is Projectile) {
-                                return "hit";
+                                sides[0] = "hit";
+                            //Else is a character and puts the side with the collsion in the array
                             } else {
-                                sides += objectMap[i, j].CheckCollide(e) + ",";
+                                sides[index] = objectMap[i, j].CheckCollide(e);
                             }
+                            index++;
                         }
                     }
                 }
             }
-
+            //Return the sides
             return sides;
         }
 

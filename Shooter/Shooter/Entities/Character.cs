@@ -13,10 +13,10 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Shooter.Entities {
     class Character : Entity {
-        private int health;
-        private int maxHealth;
-        private int stamina;
-        private Weapon weapon;
+        protected int health;
+        protected int maxHealth;
+        protected int stamina;
+        protected Weapon weapon;
 
         //properties
         public int Health {
@@ -32,9 +32,8 @@ namespace Shooter.Entities {
             set { stamina = value; }
         }
         public Weapon Weapon {
-            get {
-                return weapon;
-            }
+            get { return weapon;}
+            set { weapon = value;}
         }
         public Character(ContentManager content) : base(content) {
             loc = new Coord();

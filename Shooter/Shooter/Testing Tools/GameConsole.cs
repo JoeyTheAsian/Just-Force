@@ -8,29 +8,32 @@ namespace Shooter.Testing_Tools
 {
     class GameConsole
     {
+
         //A list to hold commands
-        private List<string> commands;
+        private Dictionary<string, string> commands;
 
-        //Fps object to handle fps
-        private FPSHandling fpsHandler;
+        public GameConsole()
+        {
 
-
-        public GameConsole(FPSHandling fps) {
-            //Stores the fps parameter in the class
-            fpsHandler = fps;
 
             //Initializes the list
-            commands = new List<string>();
+            commands = new Dictionary<string, string>();
 
             //Adds the commands
-            commands.Add("exit");
-            commands.Add("UpdateFPS");
+            commands.Add("Exit", "exit");
+            commands.Add("Update Fps", "UpdateFPS");
+            commands.Add("Create Normal Enemy", "CreateNormalEnemy");
+            commands.Add("Create Riot Enemy", "CreateRiotEnemy");
+            commands.Add("Fill player ammo", "player.weapon");
+            commands.Add("Super Health", "player.Health");
+            commands.Add("Print", "");
+            commands.Add("Print Enemies", "printenemies");
         }
 
         /// <summary>
         /// Opens input for the console
         /// </summary>
-        public void OpenInput()
+        public string OpenInput()
         {
             //Runs until the exit command is typed
             while (true)
@@ -39,44 +42,41 @@ namespace Shooter.Testing_Tools
                 string line = Console.ReadLine();
 
                 //Checks to see if the command exists
-                if (!Check(line)){
+                if (!commands.ContainsKey(line))
+                {
                     Console.WriteLine("Invalid Command");
+                    continue;
                 }
-                //Checks to exit the console
-                else if (line.Equals(commands[0]))
+                //Prints the commands out
+                else if (line.Equals("Print"))
                 {
-                    //breaks the loop and exits
-                    break;
+                    foreach (string command in commands.Keys)
+                    {
+                        Console.WriteLine(command);
+                    }
                 }
-                //Updates the fps
-                else if (line.Equals(commands[1]))
+                //Checks if the command wants an enemy then gets the necessary location for the enemy
+                else if (line.Equals("Create Normal Enemy") || line.Equals("Create Riot Enemy"))
                 {
-                    fpsHandler.UpdateFPS();
-                    Console.WriteLine("Updated");
+                    Console.WriteLine("Enter X:");
+                    int x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter Y:");
+                    int y = int.Parse(Console.ReadLine());
+                    if (line.Equals("Create Normal Enemy"))
+                    {
+                        return commands["Create Normal Enemy"] + "/" + x + "/" + y;
+                    }
+                    else {
+                        return commands["Create Riot Enemy"] + "/" + x + "/" + y;
+                    }
                 }
+                //Else returns the command to check
+                else {
+                    return commands[line];
+                }
+
             }
         }
 
-        /// <summary>
-        /// Method to check if the command exists in the list
-        /// </summary>
-        /// <param name="line">line to check</param>
-        /// <returns>Returns if the object is in the list or not</returns>
-        public bool Check(string line)
-        {
-            //Searches through the list
-            foreach(string com in commands)
-            {
-                //Returns true and stops searching
-                if (com.Equals(line))
-                {
-                    return true;
-                }
-            }
-
-            //Returns false if never found
-            return false;
-        }
     }
-
 }
