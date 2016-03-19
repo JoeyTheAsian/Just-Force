@@ -286,15 +286,17 @@ namespace Shooter {
 
 
                 bool temp = player.Weapon.CheckFireRate(gameTime.ElapsedGameTime.Milliseconds);
+                //check if gun is reloading
+                if (!player.Weapon.Reloading(gameTime.ElapsedGameTime.Milliseconds)) {
+                    //Shoots the player's weapon
+                    Shooting.ShootWeapon(player, mState, oldMState, projectiles, temp, c, Content, curSounds, soundEffects, m);
 
-                //Shoots the player's weapon
-                Shooting.ShootWeapon(player, mState, oldMState, projectiles, temp, c, Content, curSounds, soundEffects, m);
+                    //Switches the player's weapon
+                    Shooting.SwitchWeapon(player, state, oldState);
 
-                //Switches the player's weapon
-                Shooting.SwitchWeapon(player, state, oldState);
-
-                if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
-                    player.Weapon.Reload();
+                    if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
+                        player.Weapon.Reload();
+                    }
                 }
                 //update camera
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
@@ -346,14 +348,6 @@ namespace Shooter {
             //Updates the old input states with what the current states are
             oldState = state;
             oldMState = mState;
-
-            //update current fps sample
-            if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
-                FPSHandler.AddSample(FPSHandler.frames);
-                FPSHandler.frames = 0;
-                //update FPS
-                FPSHandler.UpdateFPS();
-            }
         }
         /// <summary>
         /// This is called when the game should draw itself.
@@ -389,7 +383,7 @@ namespace Shooter {
                     //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
                     tb.findBounds(c.camPos.X, c.camPos.Y, m.TileSize, m.TileMap.GetLength(0), m.TileMap.GetLength(1), screenWidth, screenHeight);
 
-                    //draw the TileMap THIS MUST COME FIRST__________________________________________________________________________
+                    //draw the Map THIS MUST COME FIRST__________________________________________________________________________
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
                     for (int i = tb.Xmin; i < tb.Xmax; i++) {
                         for (int j = tb.Ymin; j < tb.Ymax; j++) {
@@ -458,7 +452,13 @@ namespace Shooter {
             }
             
             spriteBatch.End();
-
+            //update current fps sample
+            if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
+                FPSHandler.AddSample(FPSHandler.frames);
+                FPSHandler.frames = 0;
+                //update FPS
+                FPSHandler.UpdateFPS();
+            }
             base.Draw(gameTime);
         }
     }

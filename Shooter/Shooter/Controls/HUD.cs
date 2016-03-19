@@ -74,7 +74,7 @@ namespace Shooter.Controls {
             for(int i = 0; i < player.Weapon.Ammo.Count; i++) {
                 spriteBatch.Draw(health, new Rectangle(screenWidth * 6 / 7 - 2, 
                                                         (screenHeight / 18) + (i * 35) - 2,
-                                                        player.Weapon.maxAmmo * 19 + 2,
+                                                        player.Weapon.maxAmmo * 18 + 2,
                                                         31), Color.DarkGray);
                 for(int j = 0; j < player.Weapon.Ammo[i]; j++) {
                     spriteBatch.Draw(player.Weapon.AmmoTexture, 

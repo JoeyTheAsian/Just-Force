@@ -375,3 +375,4 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAs
 C:\Users\Austin\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 C:\Users\Austin\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\SubmachineGun.png
+C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\SubmachineGun.png

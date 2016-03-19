@@ -61,7 +61,7 @@ namespace Shooter.Controls {
             weapons[0] = new Weapon(Content);
 
             //Adds the Tommy Gun
-            weapons[1] = new Weapon(Content, true, 10, 14, "SubmachineGun", "Ammo", "Submachine Gun", 15, 4);
+            weapons[1] = new Weapon(Content, true, 10, 14, "SubmachineGun", "Ammo", "Submachine Gun", 15, 4, 1800);
         }
         
         //Shoots the player's current gun
