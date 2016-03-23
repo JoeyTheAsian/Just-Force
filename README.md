@@ -267,3 +267,8 @@
 <li>Added the Tommy Gun</li>
 <li>Changed game console class and added commands for it</li>
 </ul>
+
+<b> 11:33 pm 3/22/16: Joey Tong</b>
+<ul><li>Added player textures "Pistol_Player" and "Submachine_Gun_Player"</li>
+<li>Added UI textures for pause menu buttons</li>
+<li>Added temporary test code to test player textures</li></ul>
