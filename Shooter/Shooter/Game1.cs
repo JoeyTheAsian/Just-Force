@@ -150,8 +150,8 @@ namespace Shooter {
             //create map and pass in contentmanager
             m = new Map(Content, screenWidth, screenHeight);
 
-            //creates the player
-            player = new Character(Content);
+            //creates the player (test texture)
+            player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0)); 
 
             //creates the currently pending sound queue
             curSounds = new Queue<SoundEffect>();
