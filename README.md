@@ -272,3 +272,7 @@
 <ul><li>Added player textures "Pistol_Player" and "Submachine_Gun_Player"</li>
 <li>Added UI textures for pause menu buttons</li>
 <li>Added temporary test code to test player textures</li></ul>
+
+<b> 10:46 am 3/28/2016: Connor Cummings</b>
+<ul><li> Added regions for ease of reading the code</li>
+<li> started an eraser tool</li></ul>

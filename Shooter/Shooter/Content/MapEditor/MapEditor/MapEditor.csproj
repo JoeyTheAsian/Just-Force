@@ -92,6 +92,9 @@
     <Content Include="GameObjects\NoTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameObjects\Trash_Can.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TileTextures\Asphalt.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

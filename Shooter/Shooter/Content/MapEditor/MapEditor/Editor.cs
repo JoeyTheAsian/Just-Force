@@ -26,7 +26,7 @@ namespace MapEditor
         //string name for texture
         string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
-        Bitmap object1; //gameobject bitmaps
+        Bitmap no_texture, trash_can; //gameobject bitmaps
         bool painting = false;
 
         string[,] tilemap; // 2d array that gets written to the file
@@ -83,7 +83,8 @@ namespace MapEditor
             }
         }
 
-        //Paint events to show texture image on buttons_____________________________________________
+        #region Paint events to show texture image on buttons
+
         private void button2_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
@@ -114,16 +115,26 @@ namespace MapEditor
             g.DrawImage(concreteEdge, 0, 0, 50, 50);
         }
         //________________________________________________________________________________________
+        #endregion
 
-        //Paint events to show game objects on buttons____________________________________
+        #region Paint events to show game objects on buttons
+
         private void button9_Paint(object sender, PaintEventArgs e) {
-            object1 = new Bitmap("GameObjects/NoTexture.png");
+            no_texture = new Bitmap("GameObjects/NoTexture.png");
             Graphics g = e.Graphics;
-            g.DrawImage(object1, 0, 0, 50, 50);
+            g.DrawImage(no_texture, 0, 0, 50, 50);
+        }
+
+        private void button10_Paint(object sender, PaintEventArgs e) {
+            trash_can = new Bitmap("GameObjects/Trash_Can.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(trash_can, 0, 0, 50, 50);
         }
         //_________________________________________________________________________________________
+        #endregion
 
-        //Mouse click events to pick up textures from buttons
+        #region Mouse click events to pick up textures from buttons
+
         private void button2_MouseClick(object sender, MouseEventArgs e) {
             curBrush = lane;
             curType = "texture";
@@ -158,17 +169,36 @@ namespace MapEditor
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
-        
         //____________________________________________________________________________________________
+        #endregion
 
-        //Mouse click events to pick up Gameobjects from buttons
+        #region Mouse click events to pick up Gameobjects from buttons
+
         private void button9_MouseClick(object sender, MouseEventArgs e) {
-            curBrush = object1;
+            curBrush = no_texture;
             curType = "object";
             textString = "NoTexture";
             pictureBox2.Invalidate();
         }
+        
+        private void button10_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = trash_can;
+            curType = "object";
+            textString = "TrashCan";
+            pictureBox2.Invalidate();
+        }
         //__________________________________________________________________________________________
+        #endregion
+
+        #region Tools
+
+        private void button11_MouseClick(object sender, MouseEventArgs e) {
+           
+        }
+
+        #endregion
+
+        #region Paint Methods
 
         private void pictureBox2_Paint(object sender, PaintEventArgs e) {
             Graphics g = e.Graphics;
@@ -234,12 +264,13 @@ namespace MapEditor
             }
             pictureBox1.Invalidate();
         }
-        
-
         //____________________________________________________________________________________
+        #endregion
+
+        #region Input Methods
 
         //get input for number of rows, columns and tile width and height_________________________________________
-        
+
         private void RowsInput_TextChanged(object sender, EventArgs e) { //get number of rows for map
             inputrows = RowsInput.Text;
         }
@@ -286,6 +317,8 @@ namespace MapEditor
                 catch (FormatException) { }
             }
             //___________________________________________________________________________
+            #endregion
+
             pictureBox1.Height = rows * tlHeight + 5;
             pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
@@ -295,6 +328,6 @@ namespace MapEditor
             mapString = new string[columns, rows];
 
             pictureBox1.Invalidate();
-        }
+        }  
     }
 }

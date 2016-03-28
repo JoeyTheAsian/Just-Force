@@ -53,6 +53,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -85,7 +87,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
@@ -108,7 +110,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(321, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // button2
@@ -182,7 +184,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 50);
+            this.button8.Size = new System.Drawing.Size(53, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -403,6 +405,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.Controls.Add(this.button9, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button10, 1, 0);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -429,10 +432,33 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(50, 50);
             this.button9.TabIndex = 0;
-            this.button9.Text = "Object 1";
+            this.button9.Text = "no texture";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Paint += new System.Windows.Forms.PaintEventHandler(this.button9_Paint);
             this.button9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button9_MouseClick);
+            // 
+            // button10
+            // 
+            this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button10.Location = new System.Drawing.Point(56, 3);
+            this.button10.Margin = new System.Windows.Forms.Padding(0);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(50, 50);
+            this.button10.TabIndex = 1;
+            this.button10.Text = "trash can";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Paint += new System.Windows.Forms.PaintEventHandler(this.button10_Paint);
+            this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button10_MouseClick);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(895, 28);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(50, 50);
+            this.button11.TabIndex = 21;
+            this.button11.Text = "Eraser";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button11_MouseClick);
             // 
             // Editor
             // 
@@ -440,6 +466,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button7);
@@ -513,6 +540,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }
 
