@@ -259,9 +259,10 @@ namespace Shooter {
 
                 //movement controls (W,A,S,D, Shift)
                 //update X & Y instantanous velocities and checks sprint
+                movement.UpdateSprint(state, oldState, m.TileSize);
+
                 movement.XVelocity = movement.UpdateX(movement.XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
                 movement.YVelocity = movement.UpdateY(movement.YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-                movement.UpdateSprint(state, oldState, m.TileSize);
 
                 //Checks for player collision with mapobjects
                 string[] s = m.CheckArea(player);

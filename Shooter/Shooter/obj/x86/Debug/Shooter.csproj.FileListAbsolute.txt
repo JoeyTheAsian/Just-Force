@@ -385,3 +385,12 @@ C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Resume.png
 C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Sounds.png
 C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
 C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Back.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Exit.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Graphics.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Options.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Player.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Resume.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Sounds.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png

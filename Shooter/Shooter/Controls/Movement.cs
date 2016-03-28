@@ -18,10 +18,10 @@ namespace Shooter.Controls {
         }
         public void UpdateSprint(KeyboardState state, KeyboardState oldState, int tileSize) {
             if (state.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift)) {
-                maxVelocity += 5.0 / tileSize;
+                maxVelocity = maxVelocity + 5.0 / tileSize;
             }
             else if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift)) {
-                maxVelocity -= 5.0 / tileSize;
+                maxVelocity = maxVelocity - 5.0 / tileSize;
             }
         }
         public double UpdateY(double yVelocity, double timeElapsed, KeyboardState state) {
@@ -86,6 +86,17 @@ namespace Shooter.Controls {
             return yVelocity;
         }
         public double UpdateX(double xVelocity, double timeElapsed, KeyboardState state) {
+            if (((state.IsKeyDown(Keys.A)) && xVelocity > maxVelocity)) {
+                xVelocity -= timeElapsed * acceleration;
+                if (xVelocity < maxVelocity) {
+                    xVelocity = maxVelocity;
+                }
+            } else if ((state.IsKeyDown(Keys.D)) && xVelocity < -1 * maxVelocity) {
+                xVelocity += timeElapsed * acceleration;
+                if (xVelocity > -1 * maxVelocity) {
+                    xVelocity = -1 * maxVelocity;
+                }
+            }
             //______________________COMBOS_____________________________
             if (state.IsKeyDown(Keys.A) && (state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.S))) {
                 //if less than or equal to, increase by acceleration
@@ -128,7 +139,7 @@ namespace Shooter.Controls {
                     }
                 }
             } else {
-                if ((state.IsKeyUp(Keys.W)) && xVelocity > 0) {
+                if (((state.IsKeyUp(Keys.W)) && xVelocity > 0)) {
                     xVelocity -= timeElapsed * acceleration;
                     if (xVelocity < 0) {
                         xVelocity = 0;
@@ -140,6 +151,7 @@ namespace Shooter.Controls {
                         xVelocity = 0;
                     }
                 }
+
             }
             return xVelocity;
         }
