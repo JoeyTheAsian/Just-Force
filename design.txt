@@ -119,3 +119,4 @@ Assests (that would be required for currently confirmed levels)
 -dirt lot floors
 -fencing
 -dumpsters
+-brick walls for alleyways
