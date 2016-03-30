@@ -68,7 +68,7 @@ Enemy Types:
 -*Mob leaders that are like normal enemies but use the tommy gun, have 5 health. ( the fact they use a tommy gun should be reflected in the sprite, they can wear an old-school business suit with a fedora )
 
 -Flamethrower guys whose name is exactly what they do.
--Shotgun – wielding enemies.
+-Shotgun â€“ wielding enemies.
 -A melee variant of the riot-gear enemy type.
 -Slow enemy type that use deadly sniper rifles.
 
@@ -111,9 +111,11 @@ Required assets: Bookshelves, interior floor/carpeting texture, maybe a desk obj
 ###########
 Assests (that would be required for currently confirmed levels)
 ###########
--*concrete texture
--*asphalt / road lines
--*cars
--*building fronts / top-down view rooftops
--*trash cans
-
+-concrete texture for sidewalks
+-asphalt / road lines
+-cars
+-building fronts / top-down view rooftops
+-trash cans
+-dirt lot floors
+-fencing
+-dumpsters
