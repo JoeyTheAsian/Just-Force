@@ -276,3 +276,6 @@
 <b> 10:46 am 3/28/2016: Connor Cummings</b>
 <ul><li> Added regions for ease of reading the code</li>
 <li> started an eraser tool</li></ul>
+
+<b>10:49 am 3/30/2016: Anthony Olivares</b>
+<ul><li> Updated list of assets we need for level 1 (look at the bottom of design.txt for the Assets section)</li></ul>
