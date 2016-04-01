@@ -27,6 +27,7 @@ namespace MapEditor
         string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
         Bitmap no_texture, trash_can; //gameobject bitmaps
+        Bitmap eraser; //eraser bitmap
         bool painting = false;
 
         string[,] tilemap; // 2d array that gets written to the file
@@ -187,13 +188,30 @@ namespace MapEditor
             textString = "TrashCan";
             pictureBox2.Invalidate();
         }
+
+        
+
         //__________________________________________________________________________________________
         #endregion
 
         #region Tools
 
+        //eraser for game objects
         private void button11_MouseClick(object sender, MouseEventArgs e) {
-           
+            eraser = new Bitmap("Tools/EmptyTile.png");
+            curBrush = eraser;
+            curType = "object";
+            textString = null;
+            pictureBox2.Invalidate();
+        }
+
+        //eraser for textures
+        private void button12_MouseClick(object sender, MouseEventArgs e) {
+            eraser = new Bitmap("Tools/EmptyTile.png");
+            curBrush = eraser;
+            curType = "texture";
+            textString = null;
+            pictureBox2.Invalidate();
         }
 
         #endregion

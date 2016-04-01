@@ -55,6 +55,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -87,7 +89,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
@@ -110,7 +112,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // button2
@@ -184,7 +186,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(53, 50);
+            this.button8.Size = new System.Drawing.Size(56, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -368,6 +370,7 @@
             this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.button12);
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Location = new System.Drawing.Point(950, 28);
             this.panel2.MaximumSize = new System.Drawing.Size(400, 250);
@@ -383,6 +386,7 @@
             this.panel3.AutoSize = true;
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.button11);
             this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Location = new System.Drawing.Point(950, 285);
             this.panel3.MaximumSize = new System.Drawing.Size(400, 250);
@@ -403,7 +407,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel2.Controls.Add(this.button9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button10, 1, 0);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
@@ -421,7 +425,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // button9
@@ -452,13 +456,34 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(895, 28);
+            this.button11.BackColor = System.Drawing.Color.LightCoral;
+            this.button11.Location = new System.Drawing.Point(2, 3);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(50, 50);
             this.button11.TabIndex = 21;
-            this.button11.Text = "Eraser";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Text = "Object Eraser";
+            this.button11.UseVisualStyleBackColor = false;
             this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button11_MouseClick);
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.LightCoral;
+            this.button12.Location = new System.Drawing.Point(2, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(52, 50);
+            this.button12.TabIndex = 3;
+            this.button12.Text = "Texture Eraser ";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button12_MouseClick);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(883, 30);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(65, 41);
+            this.button13.TabIndex = 21;
+            this.button13.Text = "Draw Rectangle";
+            this.button13.UseVisualStyleBackColor = true;
             // 
             // Editor
             // 
@@ -466,7 +491,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(1362, 741);
-            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button7);
@@ -542,6 +567,8 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
     }
 }
 
