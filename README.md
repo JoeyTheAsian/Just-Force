@@ -279,3 +279,8 @@
 
 <b>10:49 am 3/30/2016: Anthony Olivares</b>
 <ul><li> Updated list of assets we need for level 1 (look at the bottom of design.txt for the Assets section)</li></ul>
+
+<b> 4:50 pm 4/1/2016: Connor Cummings</b>
+<ul><li> added erasers for textures and game objects</li>
+<li>encountered an issue where the left most column and the top most row of the editor can not be painted on<li>
+<li>these spaces dont take textures or game objects</li></ul>
