@@ -12,7 +12,9 @@ namespace MapEditor
         }
 
         int rows, columns, tlWidth, tlHeight;
-        string inputrows, inputcolumns, inputwidth, inputheight;
+        string inputrows, inputcolumns, inputwidth, inputheight, inputFilename;
+
+        string filename; // string that holds the name of the file that is being saved/loaded to
 
         Bitmap[,] Map = new Bitmap[0,0]; // array that stores bitmaps
         Bitmap[,] objectMap = new Bitmap[0,0]; // array that stores bitmaps
@@ -29,51 +31,73 @@ namespace MapEditor
         Bitmap no_texture, trash_can; //gameobject bitmaps
         Bitmap eraser; //eraser bitmap
         bool painting = false;
-
-        string[,] tilemap; // 2d array that gets written to the file
-        Stream str = File.OpenWrite("../../../../map.dat");
+        
+        
 
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
             panel2.Controls.Add(tableLayoutPanel1);
             panel3.Controls.Add(tableLayoutPanel2);
         }
+
+        #region Save Map Button
         //save button
         private void button1_Click(object sender, EventArgs e) {
-            for (int i = 0; i < tilemap.GetLength(0); i++)
-            {
-                for (int j = 0; j < tilemap.GetLength(1); j++)
-                {
-                    tilemap[i, j] = mapString[i,j]; // sets all the values in the saved map to the values found in the array of texture names
-                }
-            }
+
+            Stream str = File.OpenWrite("../../../../" + filename + ".dat");
             BinaryWriter output = new BinaryWriter(str);
 
-            for (int i = 0; i < tilemap.GetLength(0); i++)
+            // saves textures
+            for (int i = 0; i < mapString.GetLength(0); i++)
             {
-                for (int j = 0; j < tilemap.GetLength(1); j++)
+                for (int j = 0; j < mapString.GetLength(1); j++)
                 {
-                    string texture = tilemap[i, j].ToString(); // gets the texture name from the array and saves it to the file
+                    string texture = mapString[i, j].ToString(); // gets the texture name from the array and saves it to the file
                     output.Write(texture);
+                }
+            }
+
+            // saves objects
+            for (int i = 0; i < objectString.GetLength(0); i++)
+            {
+                for (int j = 0; j < objectString.GetLength(1); j++)
+                {
+                    string obj = objectString[i, j].ToString(); // saves object's name to the file
+                    output.Write(obj);
                 }
             }
             output.Close();
         }
-
+        #endregion
+        
+        #region Load Map Button
         // load map button
         private void button7_Click(object sender, EventArgs e)
         {
-            BinaryReader input = new BinaryReader(File.OpenRead("../../../../map.dat"));
-            for (int i = 0; i < tilemap.GetLength(0); i++)
+            BinaryReader input = new BinaryReader(File.OpenRead("../../../../" + filename + ".dat"));
+
+            // get textures
+            for (int i = 0; i < Map.GetLength(0); i++)
             {
-                for (int j = 0; j < tilemap.GetLength(1); j++)
+                for (int j = 0; j < Map.GetLength(1); j++)
                 {
                     string texture = input.ReadString(); // string it reads in is the name of the texture's file
                     mapString[i, j] = texture; // stores it in the string version of the map array
                 }
             }
-            input.Close();
 
+            // get objects
+            for (int i = 0; i < Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < Map.GetLength(1); j++)
+                {
+                    string obj = input.ReadString(); // string it reads in is the name of the object's file
+                    objectString[i, j] = obj; // stores it in the string version of the object array
+                }
+            }
+            input.Close();
+            
+            // load textures
             for (int i = 0; i < mapString.GetLength(0); i++)
             {
                 for (int j = 0; j < mapString.GetLength(1); j++)
@@ -82,7 +106,18 @@ namespace MapEditor
                     Map[i, j] = text; // stores it in the map array for editing
                 }
             }
+
+            // load objects
+            for (int i = 0; i < objectString.GetLength(0); i++)
+            {
+                for (int j = 0; j < objectString.GetLength(1); j++)
+                {
+                    Bitmap obj = new Bitmap("TileTextures/" + objectString[i, j] + ".png"); // load object texture
+                    objectMap[i, j] = obj; // stores it in the object array
+                }
+            }
         }
+        #endregion
 
         #region Paint events to show texture image on buttons
 
@@ -204,6 +239,7 @@ namespace MapEditor
             textString = null;
             pictureBox2.Invalidate();
         }
+        
 
         //eraser for textures
         private void button12_MouseClick(object sender, MouseEventArgs e) {
@@ -287,7 +323,11 @@ namespace MapEditor
 
         #region Input Methods
 
-        //get input for number of rows, columns and tile width and height_________________________________________
+        //get input for number of rows, columns, tile width and height, and file name_________________________________________
+
+        private void fileNameBox_TextChanged(object sender, EventArgs e) { // get file name
+            inputFilename = fileNameBox.Text;
+        }
 
         private void RowsInput_TextChanged(object sender, EventArgs e) { //get number of rows for map
             inputrows = RowsInput.Text;
@@ -306,7 +346,7 @@ namespace MapEditor
         }
         //________________________________________________________________________________
 
-        //when buuton is clicked parses user input and uses it to print out grid 
+        //when button is clicked parses user input and uses it to print out grid 
         private void CreateGrid_Click(object sender, EventArgs e) {
 
             //Parse user input into ints_____________________________________________
@@ -337,13 +377,14 @@ namespace MapEditor
             //___________________________________________________________________________
             #endregion
 
+            
             pictureBox1.Height = rows * tlHeight + 5;
             pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
             objectMap = new Bitmap[columns, rows];
-            tilemap = new string[columns, rows];
             objectString = new string[columns, rows];
             mapString = new string[columns, rows];
+            filename = inputFilename;
 
             pictureBox1.Invalidate();
         }  

@@ -50,13 +50,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button12 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.fileNameBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -89,7 +91,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
@@ -112,7 +114,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // button2
@@ -186,7 +188,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(56, 50);
+            this.button8.Size = new System.Drawing.Size(62, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -379,6 +381,17 @@
             this.panel2.Size = new System.Drawing.Size(400, 250);
             this.panel2.TabIndex = 19;
             // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.LightCoral;
+            this.button12.Location = new System.Drawing.Point(2, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(52, 50);
+            this.button12.TabIndex = 3;
+            this.button12.Text = "Texture Eraser ";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button12_MouseClick);
+            // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
@@ -395,6 +408,17 @@
             this.panel3.Size = new System.Drawing.Size(400, 250);
             this.panel3.TabIndex = 20;
             // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.LightCoral;
+            this.button11.Location = new System.Drawing.Point(2, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(50, 50);
+            this.button11.TabIndex = 21;
+            this.button11.Text = "Object Eraser";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button11_MouseClick);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.AutoSize = true;
@@ -407,7 +431,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel2.Controls.Add(this.button9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button10, 1, 0);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
@@ -425,7 +449,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(330, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // button9
@@ -454,28 +478,6 @@
             this.button10.Paint += new System.Windows.Forms.PaintEventHandler(this.button10_Paint);
             this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button10_MouseClick);
             // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.LightCoral;
-            this.button11.Location = new System.Drawing.Point(2, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(50, 50);
-            this.button11.TabIndex = 21;
-            this.button11.Text = "Object Eraser";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button11_MouseClick);
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.LightCoral;
-            this.button12.Location = new System.Drawing.Point(2, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(52, 50);
-            this.button12.TabIndex = 3;
-            this.button12.Text = "Texture Eraser ";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button12_MouseClick);
-            // 
             // button13
             // 
             this.button13.Location = new System.Drawing.Point(883, 30);
@@ -485,12 +487,31 @@
             this.button13.Text = "Draw Rectangle";
             this.button13.UseVisualStyleBackColor = true;
             // 
+            // fileNameBox
+            // 
+            this.fileNameBox.Location = new System.Drawing.Point(983, 556);
+            this.fileNameBox.Name = "fileNameBox";
+            this.fileNameBox.Size = new System.Drawing.Size(326, 20);
+            this.fileNameBox.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(891, 556);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 20);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Map Name:";
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.fileNameBox);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -569,6 +590,8 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox fileNameBox;
+        private System.Windows.Forms.Label label2;
     }
 }
 
