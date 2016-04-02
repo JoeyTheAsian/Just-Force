@@ -288,4 +288,4 @@
 <b> 1:36 pm 4/2/2016: Anthony Olivares</b>
 <ul><li> cleaned up code for saving and loading maps in editor</li>
 <li> added code for saving object array</li>
-<li> added in a textbox to name the map so that it saves to/ loads from a manually chosen file instead of just the default map.dat</li>
+<li> added in a textbox to name the map so that it saves to/ loads from a manually chosen file instead of just the default map.dat</li></ul>
