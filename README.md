@@ -289,3 +289,9 @@
 <ul><li> cleaned up code for saving and loading maps in editor</li>
 <li> added code for saving object array</li>
 <li> added in a textbox to name the map so that it saves to/ loads from a manually chosen file instead of just the default map.dat</li></ul>
+
+<b> 9:46 am 4/4/16: Austin Ford</b>
+<ul><li>Added stamina drain and recharge</li>
+<li>Added two basic skills: Overcharged and Perseverance</li>
+<li>Added base skill parent class and static class for using skills</li>
+<li>Fixed sprint bug</li></ul>
