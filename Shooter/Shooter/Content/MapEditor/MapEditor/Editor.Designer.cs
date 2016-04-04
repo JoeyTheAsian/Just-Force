@@ -56,9 +56,11 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.Fill = new System.Windows.Forms.Button();
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.Pen = new System.Windows.Forms.Button();
+            this.Line = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -91,7 +93,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
@@ -114,7 +116,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(339, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // button2
@@ -188,7 +190,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(62, 50);
+            this.button8.Size = new System.Drawing.Size(68, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -286,6 +288,7 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -431,7 +434,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel2.Controls.Add(this.button9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button10, 1, 0);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
@@ -449,7 +452,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(330, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(336, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // button9
@@ -478,14 +481,15 @@
             this.button10.Paint += new System.Windows.Forms.PaintEventHandler(this.button10_Paint);
             this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button10_MouseClick);
             // 
-            // button13
+            // Fill
             // 
-            this.button13.Location = new System.Drawing.Point(883, 30);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(65, 41);
-            this.button13.TabIndex = 21;
-            this.button13.Text = "Draw Rectangle";
-            this.button13.UseVisualStyleBackColor = true;
+            this.Fill.Location = new System.Drawing.Point(883, 30);
+            this.Fill.Name = "Fill";
+            this.Fill.Size = new System.Drawing.Size(65, 41);
+            this.Fill.TabIndex = 21;
+            this.Fill.Text = "Fill Tool";
+            this.Fill.UseVisualStyleBackColor = true;
+            this.Fill.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Fill_MouseClick);
             // 
             // fileNameBox
             // 
@@ -504,15 +508,37 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "Map Name:";
             // 
+            // Pen
+            // 
+            this.Pen.Location = new System.Drawing.Point(883, 79);
+            this.Pen.Name = "Pen";
+            this.Pen.Size = new System.Drawing.Size(65, 23);
+            this.Pen.TabIndex = 24;
+            this.Pen.Text = "Pen Tool";
+            this.Pen.UseVisualStyleBackColor = true;
+            this.Pen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Pen_MouseClick);
+            // 
+            // Line
+            // 
+            this.Line.Location = new System.Drawing.Point(883, 108);
+            this.Line.Name = "Line";
+            this.Line.Size = new System.Drawing.Size(65, 23);
+            this.Line.TabIndex = 25;
+            this.Line.Text = "Line Tool";
+            this.Line.UseVisualStyleBackColor = true;
+            this.Line.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Line_MouseClick);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.Controls.Add(this.Line);
+            this.Controls.Add(this.Pen);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.fileNameBox);
-            this.Controls.Add(this.button13);
+            this.Controls.Add(this.Fill);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button7);
@@ -589,9 +615,11 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button Fill;
         private System.Windows.Forms.TextBox fileNameBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button Pen;
+        private System.Windows.Forms.Button Line;
     }
 }
 

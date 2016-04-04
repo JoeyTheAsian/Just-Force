@@ -25,11 +25,14 @@ namespace MapEditor
         //currently stored texture swatch on the brush
         string curType;
         Bitmap curBrush;
+        string curTool;
         //string name for texture
         string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
         Bitmap no_texture, trash_can; //gameobject bitmaps
+        //Tools
         Bitmap eraser; //eraser bitmap
+        Rectangle fill;
         bool painting = false;
         
         
@@ -239,6 +242,23 @@ namespace MapEditor
             textString = null;
             pictureBox2.Invalidate();
         }
+
+        //Fill tool
+        private void Fill_MouseClick(object sender, MouseEventArgs e) {
+            curTool = "Fill";
+
+        }
+
+        //Line tool
+        private void Line_MouseClick(object sender, MouseEventArgs e) {
+            curTool = "Line";
+        }
+
+        //Pen tool
+        private void Pen_MouseClick(object sender, MouseEventArgs e) {
+            curTool = "Pen";
+        }
+
         
 
         //eraser for textures
@@ -271,7 +291,6 @@ namespace MapEditor
             }
         }
                
-
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
             painting = false;
         }
@@ -284,7 +303,7 @@ namespace MapEditor
             if (painting) {
                 int positionX = (int)((e.X * 1.0 / tlWidth));
                 int positionY = (int)((e.Y * 1.0 / tlHeight));
-                if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+                if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
                         Map[positionX, positionY] = curBrush;
                         mapString[positionX, positionY] = textString;
                 }
@@ -317,6 +336,32 @@ namespace MapEditor
                 }
             }
             pictureBox1.Invalidate();
+        }
+
+        //Mouseclick for tools
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e) {
+            if(curTool == "Fill") {
+                int PosX = e.X;
+                int PosY = e.Y;
+                int previousPosX = PosX;
+                int previousPosY = PosY;
+                fill = new Rectangle(PosX, PosY, previousPosX - PosX, previousPosY - PosY);
+
+                if(curType == "texture") {
+                  for(int w = PosX; w < previousPosX - PosX; w++) {
+                        for(int h = PosY; h < previousPosY - PosY; h++) {
+                            Map[w, h] = curBrush;
+                            mapString[w, h] = textString;
+                        }
+                    }
+                }
+            }
+            if(curTool == "Pen") {
+
+            }
+            if(curTool == "Line") {
+
+            }
         }
         //____________________________________________________________________________________
         #endregion
