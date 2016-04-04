@@ -7,19 +7,22 @@ using System.Text;
 
 namespace Shooter.Controls {
     class OverCharged : Skill {
+        //Object to store a player and their previous hp
         protected Character player;
         protected int prevHp;
+
+        //Constructor that takes the player object, and passes up static names for this skill
         public OverCharged(ContentManager content, Character p) : base(content, "NoTexture", "Overcharged", 6000, 3000) {
             player = p;
         }
-
+        //Stores the player's previous health, doubles the player's damage, halves the player's health and sets the skill to active
         public override void ActivateSkill() {
             prevHp = player.Health;
             player.Health = 1;
             player.Weapon.Damage *= 2;
             active = true;
         }
-
+        //Restores the player's previous health, halves their weapon damage and sets the player's skill to deactive
         public override void DeactivateSkill() {
             player.Health = prevHp;
             player.Weapon.Damage /= 2;

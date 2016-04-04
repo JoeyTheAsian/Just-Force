@@ -22,14 +22,15 @@ namespace Shooter.Controls {
             normVelocity = maxVelocity;
         }
         public void UpdateSprint(KeyboardState state, KeyboardState oldState, int tileSize, Character player) {
-            if (state.IsKeyDown(Keys.LeftShift) && player.CheckStamina()) {
-                maxVelocity = sprintVelocity;
-                player.IsSprinting = true;
-            } else if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift) || !player.CheckStamina()) {
-                maxVelocity = normVelocity;
-                if (player.IsSprinting && player.ChargeDelay < 5) {
-                    player.ChargeDelay = 5;
+            if (state.IsKeyDown(Keys.LeftShift)) {
+                if (player.CheckStamina()) {
+                    maxVelocity = sprintVelocity;
+                    player.IsSprinting = true;
+                } else {
+                    maxVelocity = normVelocity;
                 }
+            } else if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift)) {
+                maxVelocity = normVelocity;
                 player.IsSprinting = false;
             }
         }

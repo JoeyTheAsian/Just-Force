@@ -18,7 +18,6 @@ namespace Shooter.Entities {
         protected double stamina;
         protected Weapon weapon;
         protected bool isSprinting;
-        protected double chargeDelay;
         protected ContentManager cont;
         protected Skill skill;
 
@@ -44,11 +43,6 @@ namespace Shooter.Entities {
         public bool IsSprinting {
             get { return isSprinting; }
             set { isSprinting = value; }
-        }
-
-        public double ChargeDelay {
-            get { return chargeDelay; }
-            set { chargeDelay = value; }
         }
 
         public Skill Skill {
@@ -145,15 +139,14 @@ namespace Shooter.Entities {
             if (stamina >= 100) {
                 stamina = 100;
             }
-            //checks to see if the stamina is not max, that the pplayer is not sprinting and that there is no delay before adding stamina
-            if (stamina < 100 && !isSprinting && chargeDelay <= 0) {
+            //checks to see if the stamina is not max, that the player is not sprinting
+            if (stamina < 100 && !isSprinting) {
+                //Increases stamina
                 stamina += time / 2500.0;
-                //Removes stamina if the player is sprinting
-            } else if (isSprinting) {
+                //Removes stamina if the player is sprinting and if stamina is postive
+            } else if (isSprinting && stamina > 0) {
                 stamina -= time / 4000.0;
                 //If the charge delay is active then decrements it
-            } else if (chargeDelay > 0) {
-                chargeDelay -= time / 25000.0;
             }
         }
     }

@@ -452,6 +452,7 @@ namespace Shooter {
 
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
+                    spriteBatch.DrawString(arial, ": " + player.Stamina, new Vector2(100, 0), Color.Yellow);
                     //Draw the HUD, moved calculations to external static class
                     HUD.DrawHUD(player, ref spriteBatch, screenHeight, screenWidth, arial, health, healthBar);
 
