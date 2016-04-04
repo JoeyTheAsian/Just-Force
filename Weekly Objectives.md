@@ -63,3 +63,31 @@
 <li>Add support for map objects and spawn point</li>
 <li>Integrate with interface</li>
 </ul>
+<h1><b><u>Objectives for week 9 of development: Nearing completion of core game! 4-4-16 DEADLINE 4-11-16</u></b></h1>
+<b>Joey Tong</b><ul>
+<li>Code basic enemy AI</li>
+<li>Code in animation structure</li>
+<li>create visual assets for level 1</li>
+<li>Create more interface assets>/li>
+</ul>
+<b>Anthony Olivates</b><ul>
+<li>Implement some parts of the interface (skill bar, options menu, etc</li>
+<li>finish digital sketches of lv 1 & 2</li>
+<li>Finish implementation of file IO for editor and map</li>
+</ul>
+<b>Austin Ford</b><ul>
+<li>Implementation of melee</li>
+<li>Code map loading structure</li>
+<li>Fix implementation of stamina</li>
+<li>Account for ammo overflowe in UI</li>
+<li>Implement pickups</li>
+</ul>
+<b>Connor Cummings</b>
+<ul><li>Finish implementation of editor</li>
+<li>Implement entity spawns</li>
+<li>Implement editor tools</li>
+<li>Add texture buttons as textures are created</li>
+<li>Fix naming of all buttons</li>
+</ul>
+
+
