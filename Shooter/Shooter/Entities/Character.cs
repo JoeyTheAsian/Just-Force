@@ -15,8 +15,13 @@ namespace Shooter.Entities {
     class Character : Entity {
         protected int health;
         protected int maxHealth;
-        protected int stamina;
+        protected double stamina;
         protected Weapon weapon;
+        protected bool isSprinting;
+        protected double chargeDelay;
+        protected ContentManager cont;
+        protected Skill skill;
+
 
         //properties
         public int Health {
@@ -27,14 +32,30 @@ namespace Shooter.Entities {
             get { return maxHealth; }
             set { maxHealth = value; }
         }
-        public int Stamina {
+        public double Stamina {
             get { return stamina; }
             set { stamina = value; }
         }
         public Weapon Weapon {
-            get { return weapon;}
-            set { weapon = value;}
+            get { return weapon; }
+            set { weapon = value; }
         }
+
+        public bool IsSprinting {
+            get { return isSprinting; }
+            set { isSprinting = value; }
+        }
+
+        public double ChargeDelay {
+            get { return chargeDelay; }
+            set { chargeDelay = value; }
+        }
+
+        public Skill Skill {
+            get { return skill; }
+            set { skill = value; }
+        }
+
         public Character(ContentManager content) : base(content) {
             loc = new Coord();
             entTexture = content.Load<Texture2D>("NoTexture");
@@ -46,11 +67,11 @@ namespace Shooter.Entities {
             maxHealth = 1;
             health = maxHealth;
             //set stamina
-            stamina = 0;
+            stamina = 100;
+            cont = content;
         }
 
-        public Character(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r)
-        {
+        public Character(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -69,10 +90,14 @@ namespace Shooter.Entities {
             //Set health
             health = 1;
             maxHealth = health;
+
+            //set stamina
+            stamina = 100;
+
+            cont = content;
         }
 
-        public Character(ContentManager content, double x, double y, double dir, string t, bool c, Rectangle r) : base(content, x, y, t, r)
-        {
+        public Character(ContentManager content, double x, double y, double dir, string t, bool c, Rectangle r) : base(content, x, y, t, r) {
             try {
                 entTexture = content.Load<Texture2D>(t);
             } catch (FileNotFoundException) {
@@ -84,6 +109,9 @@ namespace Shooter.Entities {
             health = 1;
             maxHealth = health;
 
+            //set stamina
+            stamina = 100;
+            cont = content;
             loc.X = x;
             loc.Y = y;
             collision = c;
@@ -94,13 +122,41 @@ namespace Shooter.Entities {
             }
         }
 
-        public bool CheckHealth(){
+        public bool CheckHealth() {
             //True if the target is still alive
-            if(health > 0){
+            if (health > 0) {
                 return true;
             }
             //False if the target is dead
             return false;
         }
+
+        public bool CheckStamina() {
+            //Return true if stamina is over 0
+            if (stamina > 0) {
+                return true;
+            }
+            //Else return false
+            return false;
+        }
+
+        public void UpdateStamina(int time) {
+            //Sets the stamina to a max of 100
+            if (stamina >= 100) {
+                stamina = 100;
+            }
+            //checks to see if the stamina is not max, that the pplayer is not sprinting and that there is no delay before adding stamina
+            if (stamina < 100 && !isSprinting && chargeDelay <= 0) {
+                stamina += time / 2500.0;
+                //Removes stamina if the player is sprinting
+            } else if (isSprinting) {
+                stamina -= time / 4000.0;
+                //If the charge delay is active then decrements it
+            } else if (chargeDelay > 0) {
+                chargeDelay -= time / 25000.0;
+            }
+        }
     }
+
 }
+

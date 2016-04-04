@@ -3,28 +3,49 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
 using System.Text;
+using Shooter.Entities;
 
 namespace Shooter.Controls {
     class Movement {
         //mutatable instantaneous velocity of character
         public double YVelocity;
         public double XVelocity;
+        public double sprintVelocity;
+        public double normVelocity;
         //immutable maximum velocity
         private double maxVelocity;
         private double acceleration;
-        public Movement(double mv, double accel) {
+        public Movement(double mv, double accel, int tileSize) {
             maxVelocity = mv;
             acceleration = accel;
+            sprintVelocity = maxVelocity + 5.0 / tileSize;
+            normVelocity = maxVelocity;
         }
-        public void UpdateSprint(KeyboardState state, KeyboardState oldState, int tileSize) {
-            if (state.IsKeyDown(Keys.LeftShift) && oldState.IsKeyUp(Keys.LeftShift)) {
-                maxVelocity = maxVelocity + 5.0 / tileSize;
-            }
-            else if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift)) {
-                maxVelocity = maxVelocity - 5.0 / tileSize;
+        public void UpdateSprint(KeyboardState state, KeyboardState oldState, int tileSize, Character player) {
+            if (state.IsKeyDown(Keys.LeftShift) && player.CheckStamina()) {
+                maxVelocity = sprintVelocity;
+                player.IsSprinting = true;
+            } else if (state.IsKeyUp(Keys.LeftShift) && oldState.IsKeyDown(Keys.LeftShift) || !player.CheckStamina()) {
+                maxVelocity = normVelocity;
+                if (player.IsSprinting && player.ChargeDelay < 5) {
+                    player.ChargeDelay = 5;
+                }
+                player.IsSprinting = false;
             }
         }
         public double UpdateY(double yVelocity, double timeElapsed, KeyboardState state) {
+            if (((state.IsKeyDown(Keys.W)) && yVelocity > maxVelocity)) {
+                yVelocity -= timeElapsed * acceleration;
+                if (yVelocity < maxVelocity) {
+                    yVelocity = maxVelocity;
+                }
+            } else if ((state.IsKeyDown(Keys.S)) && yVelocity < -1 * maxVelocity) {
+                yVelocity += timeElapsed * acceleration;
+                if (yVelocity > -1 * maxVelocity) {
+                    yVelocity = -1 * maxVelocity;
+                }
+            }
+
             //WASD movement controls
             //______________________COMBOS_____________________________
             if (state.IsKeyDown(Keys.W) && (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.A))) {
@@ -36,7 +57,7 @@ namespace Shooter.Controls {
                         yVelocity = maxVelocity;
                     }
                 }
-            }else if (state.IsKeyDown(Keys.S) && (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.A))) {
+            } else if (state.IsKeyDown(Keys.S) && (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.A))) {
                 //if less than or equal to, increase by acceleration
                 if (yVelocity > -1 * maxVelocity) {
                     yVelocity -= (timeElapsed * Math.Sqrt((acceleration * acceleration / 2)));
@@ -46,8 +67,8 @@ namespace Shooter.Controls {
                     }
                 }
             }
-            //______________________W KEY_____________________________
-            else if (state.IsKeyDown(Keys.W)) {
+             //______________________W KEY_____________________________
+             else if (state.IsKeyDown(Keys.W)) {
                 //if less than or equal to, increase by acceleration
                 if (yVelocity < maxVelocity) {
                     yVelocity += (timeElapsed * acceleration);
@@ -57,8 +78,8 @@ namespace Shooter.Controls {
                     }
                 }
             }
-            //__________________________________S KEY_____________________________________
-            else if (state.IsKeyDown(Keys.S)) {
+             //__________________________________S KEY_____________________________________
+             else if (state.IsKeyDown(Keys.S)) {
                 //if less than or equal to, increase by acceleration
                 if (yVelocity > -1 * maxVelocity) {
                     yVelocity -= (timeElapsed * acceleration);
@@ -68,8 +89,8 @@ namespace Shooter.Controls {
                     }
                 }
             }
-            //decelerate y axis________________________________________________________
-            else {
+             //decelerate y axis________________________________________________________
+             else {
                 if ((state.IsKeyUp(Keys.W)) && yVelocity > 0) {
                     yVelocity -= timeElapsed * acceleration;
                     if (yVelocity < 0) {

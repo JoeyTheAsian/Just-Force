@@ -25,7 +25,7 @@ namespace Shooter {
         SpriteFont arial;
 
         //A list for all of the soundeffects so we can add more in as we go
-        Dictionary<string,SoundEffect> soundEffects;
+        Dictionary<string, SoundEffect> soundEffects;
 
         //A queue for all soundeffects to be played
         private Queue<SoundEffect> curSounds;
@@ -74,13 +74,13 @@ namespace Shooter {
         private Texture2D health;
         //game time
         protected double time;
-        
+
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
 
             //Initializes the list of sound effects
-            soundEffects = new Dictionary<string,SoundEffect>();
+            soundEffects = new Dictionary<string, SoundEffect>();
 
             //Initializes the state objects
             oldState = Keyboard.GetState();
@@ -106,7 +106,7 @@ namespace Shooter {
             //enable mouse pointer
             IsMouseVisible = true;
             g = new GameStateManager(screenWidth, screenHeight, Content);
-            
+
             try {
                 g.gameState = "StartMenu";
                 g.CheckGameState();
@@ -151,7 +151,7 @@ namespace Shooter {
             m = new Map(Content, screenWidth, screenHeight);
 
             //creates the player (test texture)
-            player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0)); 
+            player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
 
             //creates the currently pending sound queue
             curSounds = new Queue<SoundEffect>();
@@ -169,14 +169,14 @@ namespace Shooter {
             player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here
-            double maxVelocity =(10.0 / m.TileSize);
+            double maxVelocity = (10.0 / m.TileSize);
             double acceleration = ((70.0 / m.TileSize) / 1000);
-            movement = new Movement(maxVelocity, acceleration);
+            movement = new Movement(maxVelocity, acceleration, m.TileSize);
 
             //use this.Content to load your game content here
             //Sets up the origin postion based off the rectangle position
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
-            
+
             //Creates temp enemy
             enemies = new List<Enemy>();
 
@@ -187,9 +187,10 @@ namespace Shooter {
             CreateEnemy.CreateRiotEnemy(enemies, Content, c, m, 16, 1);
             //Creates the weapons for the player
             Shooting.CreateWeapons(Content);
+            Skills.CreateSkills(Content, player);
             //Starts the player with the first weapon
             player.Weapon = Shooting.weapons[0];
-
+            player.Skill = Skills.skills[0];
         }
 
         /// <summary>
@@ -258,11 +259,16 @@ namespace Shooter {
                 //CONTROLS_____________________________________
 
                 //movement controls (W,A,S,D, Shift)
-                //update X & Y instantanous velocities and checks sprint
-                movement.UpdateSprint(state, oldState, m.TileSize);
-
+                //update X & Y instantanous velocities and checks sprint  
                 movement.XVelocity = movement.UpdateX(movement.XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
                 movement.YVelocity = movement.UpdateY(movement.YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
+                //if (!(player.CheckStamina())) {
+                //    movement.UpdateSprint(state, oldState, m.TileSize, false, player);
+                // } else {
+                //    movement.UpdateSprint(state, oldState, m.TileSize, true, player);
+                // }
+                movement.UpdateSprint(state, oldState, m.TileSize, player);
+                player.UpdateStamina(gameTime.TotalGameTime.Milliseconds);
 
                 //Checks for player collision with mapobjects
                 string[] s = m.CheckArea(player);
@@ -299,6 +305,9 @@ namespace Shooter {
                         player.Weapon.Reload();
                     }
                 }
+
+                Skills.UseSkill(player, state, oldState, gameTime.TotalGameTime.Milliseconds);
+                Skills.SwitchSkills(player, state, oldState);
                 //update camera
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
                             new Coord(mState.X, mState.Y), new Coord((player.Loc.X - c.camPos.X) * m.TileSize, (player.Loc.Y - c.camPos.Y) * m.TileSize));
@@ -318,7 +327,7 @@ namespace Shooter {
                         }
                         //Checks if any projectiles collide with any enemies
                         for (int k = 0; k < enemies.Count; k++) {
-                            if (projectiles[i].CheckHit(enemies[k])) {
+                            if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;
@@ -339,11 +348,15 @@ namespace Shooter {
                     }
                 }
 
+                if (oldState.IsKeyDown(Keys.X) && state.IsKeyUp(Keys.X)) {
+
+                }
+
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
 
             }
-            
+
             //END OF GAME LOGIC_____________________________________________________________________________________________________________
 
             //Updates the old input states with what the current states are
@@ -423,11 +436,11 @@ namespace Shooter {
                     }
 
                     //draw the player model
-                    spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, 
-                                                                                m.TileSize, c.xOffset, c.yOffset), 
+                    spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y,
+                                                                                m.TileSize, c.xOffset, c.yOffset),
                                                                                 null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
                     //Draws the temp enemy
-                    for (int k = 0; k < enemies.Count; k++){
+                    for (int k = 0; k < enemies.Count; k++) {
                         //Updates the enemies' rectangle property
                         enemies[k].rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset);
                     }
@@ -439,7 +452,6 @@ namespace Shooter {
 
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
-
                     //Draw the HUD, moved calculations to external static class
                     HUD.DrawHUD(player, ref spriteBatch, screenHeight, screenWidth, arial, health, healthBar);
 
@@ -451,7 +463,7 @@ namespace Shooter {
                     FPSHandler.frames++;
                     break;
             }
-            
+
             spriteBatch.End();
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {

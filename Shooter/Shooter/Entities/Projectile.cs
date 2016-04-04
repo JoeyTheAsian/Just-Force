@@ -7,13 +7,14 @@ using Shooter.MapClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Shooter.Controls;
 
 namespace Shooter.Entities {
-    class Projectile :Entity{
+    class Projectile : Entity {
         protected double range;
         protected double velocity;
         protected double distTraveled;
-        public Projectile(ContentManager content): base(content) {
+        public Projectile(ContentManager content) : base(content) {
             loc = new Coord();
             entTexture = content.Load<Texture2D>("NoTexture");
             collision = false;
@@ -23,7 +24,7 @@ namespace Shooter.Entities {
         }
 
         //parameters: pass in game content manager, x coord, y coord, texture file name
-        public Projectile(ContentManager content, double x, double y, string t, Rectangle r): base(content, x, y, t, r) {
+        public Projectile(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -39,7 +40,7 @@ namespace Shooter.Entities {
             range = 10.0;
         }
         //constructor: x coord, y coord, direction, velocity, texture file, collision
-        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r): base(content, x, y, dir, t, c, r) {
+        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r) : base(content, x, y, dir, t, c, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -51,7 +52,7 @@ namespace Shooter.Entities {
             loc.Y = y;
             collision = c;
             //direction can only be an angle from 0 - 360
-            if (dir >= 4 || dir < -4) { 
+            if (dir >= 4 || dir < -4) {
                 direction = 0;
             } else {
                 direction = dir;
@@ -67,62 +68,53 @@ namespace Shooter.Entities {
             distTraveled += Math.Sqrt(x * x + y * y);
         }
         public bool CheckRange() {
-            if(distTraveled >= range) {
+            if (distTraveled >= range) {
                 //if the bullet has traveled the distance of its effective range, return true
                 return true;
-            }else{
+            } else {
                 //if it hasn't, return false
                 return false;
             }
         }
 
-        public bool CheckHit(Character e)
-        {
+        public bool CheckHit(Character e, Weapon w) {
             //Converts the direction from radians to degrees
             double directionDegrees = this.direction * 57.2958;
 
             //Checks collision based on the direction the projectile is rotated to
             //Checks angles in the fourth quadrant
-            if (directionDegrees > 270 && directionDegrees <= 360)
-            {
-                if (this.loc.X + 1 < e.Loc.X + 1 && this.loc.X + 1 > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y)
-                {
+            if (directionDegrees > 270 && directionDegrees <= 360) {
+                if (this.loc.X + 1 < e.Loc.X + 1 && this.loc.X + 1 > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y) {
                     //Decrements the character's health
-                    e.Health -= 1;
+                    e.Health -= w.Damage;
                     return true;
                 }
             }
             //Checks angles in the third quadrant
-            else if (directionDegrees > 180 && directionDegrees <= 270)
-            {
-                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y)
-                {
+            else if (directionDegrees > 180 && directionDegrees <= 270) {
+                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y) {
                     //Decrements the character's health
-                    e.Health -= 1;
+                    e.Health -= w.Damage;
                     return true;
                 }
             }
             //Checks angles in the second quadrant
-            else if (directionDegrees > 90 && directionDegrees <= 180)
-            {
-                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y)
-                {
+            else if (directionDegrees > 90 && directionDegrees <= 180) {
+                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y) {
                     //Decrements the character's health
-                    e.Health -= 1;
+                    e.Health -= w.Damage;
                     return true;
                 }
             }
             //Checks angles in the first quadrant
-            else
-            {
-                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y)
-                {
+            else {
+                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y) {
                     //Decrements the character's health
-                    e.Health -= 1;
+                    e.Health -= w.Damage;
                     return true;
                 }
             }
-   
+
             //Else returns false if no collision occurs
             return false;
         }

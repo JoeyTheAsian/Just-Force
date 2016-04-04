@@ -59,7 +59,11 @@
     <Compile Include="Controls\Camera.cs" />
     <Compile Include="Controls\HUD.cs" />
     <Compile Include="Controls\Movement.cs" />
+    <Compile Include="Controls\OverCharged.cs" />
+    <Compile Include="Controls\Perseverance.cs" />
     <Compile Include="Controls\Shooting.cs" />
+    <Compile Include="Controls\Skill.cs" />
+    <Compile Include="Controls\Skills.cs" />
     <Compile Include="Controls\Weapon.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\CreateEnemy.cs" />
