@@ -67,7 +67,7 @@ namespace Shooter.Controls {
         }
 
         //Shoots the player's current gun
-        public static void ShootWeapon(Character player, MouseState mState, MouseState oldMState, List<Projectile> projectiles, bool temp, Camera c, ContentManager Content, Queue<SoundEffect> curSounds, Dictionary<string, SoundEffect> soundEffects, Map m) {
+        public static void ShootWeapon(Character player, MouseState mState, MouseState oldMState, List<Projectile> projectiles, bool temp, Camera c, ContentManager Content, Queue<SoundEffect> curSounds, Dictionary<string, SoundEffect> soundEffects,ref Map m) {
             if (player.Weapon.Auto) {
                 if (oldMState.LeftButton == ButtonState.Pressed) {
                     if (temp) {
@@ -76,9 +76,13 @@ namespace Shooter.Controls {
                         //only shoot if not a null projectile
                         Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
                         if (p != null) {
+                            //create new projectile
                             projectiles.Add(p);
+                            //load and enqueue sound
                             soundEffects.TryGetValue("gunshot", out TempSound);
                             curSounds.Enqueue(TempSound);
+                            //add the player's sound to the map's sound queue for AI to detect
+                            m.sounds.Add(player.Loc);
                             c.screenShake = true;
                         } else {
                             player.Weapon.Shoot(Content, player, c, m.TileSize);

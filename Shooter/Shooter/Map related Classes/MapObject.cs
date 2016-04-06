@@ -10,7 +10,7 @@ using Shooter.Entities;
 namespace Shooter.MapClasses {
     class MapObject {
         protected Texture2D objTexture;
-        bool collision;
+        public bool collision;
         protected Coord loc;
 
         public Texture2D ObjTexture

@@ -17,7 +17,7 @@ namespace Shooter {
     ///main type for the game
 
     public class Game1 : Game {
-
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -181,10 +181,10 @@ namespace Shooter {
             enemies = new List<Enemy>();
 
             //Creates enemies to check
-            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, 4, 1);
-            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, 8, 1);
-            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, 12, 1);
-            CreateEnemy.CreateRiotEnemy(enemies, Content, c, m, 16, 1);
+            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
+            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
+            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
+            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
             //Creates the weapons for the player
             Shooting.CreateWeapons(Content);
             Skills.CreateSkills(Content, player);
@@ -224,9 +224,9 @@ namespace Shooter {
                     //Checks to see the number of parameters
                     if (methodCall.Length > 2) {
                         if (methodCall[0].Equals("CreateNormalEnemy")) {
-                            CreateEnemy.CreateNormalEnemy(enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         } else if (methodCall[0].Equals("CreateRiotEnemy")) {
-                            CreateEnemy.CreateRiotEnemy(enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         }
                         //Else runs checks for the command
                     } else {
@@ -256,6 +256,7 @@ namespace Shooter {
             }
             //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
             if (g.gameState != "Paused") {
+
                 //CONTROLS_____________________________________
 
                 //movement controls (W,A,S,D, Shift)
@@ -296,7 +297,7 @@ namespace Shooter {
                 //check if gun is reloading
                 if (!player.Weapon.Reloading(gameTime.ElapsedGameTime.Milliseconds)) {
                     //Shoots the player's weapon
-                    Shooting.ShootWeapon(player, mState, oldMState, projectiles, temp, c, Content, curSounds, soundEffects, m);
+                    Shooting.ShootWeapon(player, mState, oldMState, projectiles, temp, c, Content, curSounds, soundEffects, ref m);
 
                     //Switches the player's weapon
                     Shooting.SwitchWeapon(player, state, oldState);

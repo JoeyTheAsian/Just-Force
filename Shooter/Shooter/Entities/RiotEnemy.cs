@@ -28,5 +28,9 @@ namespace Shooter.Entities {
             health = 8;
             maxHealth = health;
         }
+        //does all AI related calculations and updates character
+        public void UpdateAI() {
+
+        }
     }
 }

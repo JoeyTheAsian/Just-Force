@@ -12,6 +12,8 @@ namespace Shooter.MapClasses {
     class Map {
         protected Texture2D[,] tileMap;
         protected MapObject[,] objectMap;
+        //currently active sounds on the map, used for AI to detect sounds and move towards position
+        public List<Coord> sounds = new List<Coord>();
         //tiles are 100px by 100px, use this variable for everything related to tile scaling
         int tileSize;
 
@@ -39,7 +41,7 @@ namespace Shooter.MapClasses {
             }
         }
 
-        // constructor that reads form a file map.cs
+        // constructor that reads fro a file map.cs
         public Map(ContentManager content, string filename)
         {
             tileMap = new Texture2D[100, 100];

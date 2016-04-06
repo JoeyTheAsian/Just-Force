@@ -1,6 +1,7 @@
 Just-Force
 Team "Git Gu(i)d" Spring 2016
 Connor Cummings, Austin Ford, Anthony Olivares, Joey Tong
+
 Map Editor application is under Shooter/Content/MapEditor directory
 
 -----------------------------------------------

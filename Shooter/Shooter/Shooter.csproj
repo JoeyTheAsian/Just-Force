@@ -76,6 +76,7 @@
     <Compile Include="GameStates\GameStateManager.cs" />
     <Compile Include="GameStates\GameStateNotFoundException.cs" />
     <Compile Include="Map related Classes\MapObject.cs" />
+    <Compile Include="Other tools\Node.cs" />
     <Compile Include="Testing Tools\FPSHandling.cs" />
     <Compile Include="Map related Classes\Coord.cs" />
     <Compile Include="Game1.cs" />
