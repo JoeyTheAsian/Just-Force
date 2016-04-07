@@ -295,3 +295,8 @@
 <li>Added two basic skills: Overcharged and Perseverance</li>
 <li>Added base skill parent class and static class for using skills</li>
 <li>Fixed sprint bug</li></ul>
+
+<b> 8:56 pm 4/6/16: Joey Tong</b>
+<ul><li>Began work on AI and pathfinding</li>
+<li>Added Node class</li>
+</ul>
