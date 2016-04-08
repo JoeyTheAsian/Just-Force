@@ -245,7 +245,7 @@ namespace Shooter {
                 }
             }
 
-            if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton == ButtonState.Released) {
+            if (oldMState.LeftButton == ButtonState.Released && mState.LeftButton == ButtonState.Pressed) {
                 g.MouseClicked(mState.X, mState.Y, this);
             }
             //when loading, updatestate returns true, use that to start new thread
@@ -379,7 +379,25 @@ namespace Shooter {
                 case "StartMenu":
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.startButton, g.startButtonPosition, Color.White);
+                    spriteBatch.Draw(g.optionsButton, g.optionsButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
+                    break;
+                //____________________DRAW OPTIONS MENU___________________________________________________________________
+                case "OptionsMenu":
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.soundsButton, g.soundsButtonPosition, Color.White);
+                    spriteBatch.Draw(g.graphicsButton, g.graphicsButtonPosition, Color.White);
+                    spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    break;
+                //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
+                case "GraphicsMenu":
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    break;
+                //____________________DRAW SOUNDS OPTIONS MENU____________________________________________________________
+                case "SoundsMenu":
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
                     break;
                 //____________________DRAW LOAD SCREEN____________________________________________________________________
                 case "Loading":
@@ -391,6 +409,7 @@ namespace Shooter {
                     //temp test
                     GraphicsDevice.Clear(Color.Gray);
                     spriteBatch.DrawString(arial, "Press Esc to Resume", new Vector2(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10), Color.DarkRed);
+                    spriteBatch.Draw(g.optionsButton, g.optionsButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________

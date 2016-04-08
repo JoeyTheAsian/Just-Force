@@ -22,11 +22,21 @@ namespace Shooter.GameStates {
         public Texture2D loadScreen;
         public Vector2 loadScreenPos;
 
+        public Texture2D optionsButton;
+        public Rectangle optionsButtonPosition;
+        public Texture2D soundsButton;
+        public Rectangle soundsButtonPosition;
+        public Texture2D graphicsButton;
+        public Rectangle graphicsButtonPosition;
+        public Texture2D backButton;
+        public Rectangle backButtonPosition;
+
         public Texture2D startMenuBackground;
 
         public List<string> states;
         public bool isLoading = false;
         public string gameState;
+        public string lastState; // holds whether the player went to options from pause menu or main menu
         //define attributes
 
         public GameStateManager(int screenWidth, int screenHeight, ContentManager content) {
@@ -35,15 +45,30 @@ namespace Shooter.GameStates {
             states.Add("PLAYING");
             states.Add("PAUSED");
             states.Add("STARTMENU");
+            states.Add("OPTIONSMENU");
+            states.Add("SOUNDSMENU");
+            states.Add("GRAPHICSMENU");
             gameState = "";
+
+            // main menu buttons and their positions
             startButton = content.Load<Texture2D>("startButton");
             exitButton = content.Load<Texture2D>("exitButton");
             loadScreen = content.Load<Texture2D>("loadinggraphic");
             startMenuBackground = content.Load<Texture2D>("startMenuBackground");
             startButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
-            exitButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
+            exitButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 8 / 10, screenWidth / 5, screenHeight / 8);
             loadScreenPos = new Vector2((screenWidth / 2) - (loadScreen.Width / 2), (screenHeight / 2) - (loadScreen.Height / 2));
-            
+
+            // initialise buttons for options menu and their positions
+            optionsButton = content.Load<Texture2D>("Options");
+            soundsButton = content.Load<Texture2D>("Sounds");
+            graphicsButton = content.Load<Texture2D>("Graphics");
+            backButton = content.Load<Texture2D>("Back");
+            optionsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
+            soundsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
+            graphicsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
+            backButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 8 / 10, screenWidth / 5, screenHeight / 8);
+
         }
         public void CheckGameState() {
             if (states.Contains(gameState.ToUpper()) == false) {
@@ -88,16 +113,122 @@ namespace Shooter.GameStates {
                 else if (mouseClickRect.Intersects(exitbuttonRect)) {
                     game.Exit();
                 }
+                // player clicked on options
+                else if (mouseClickRect.Intersects(optionsButtonPosition)) {
+                    try
+                    {
+                        gameState = "OptionsMenu";
+                        lastState = "StartMenu";
+                        CheckGameState();
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                    }
+                    
+                }
             }
 
             //puased screen method
-            if (gameState == "Paused") {
+            else if (gameState == "Paused") {
                 if (mouseClickRect.Intersects(exitbuttonRect)) {
                     game.Exit();
                 }
+                else if (mouseClickRect.Intersects(optionsButtonPosition)) {
+                    try
+                    {
+                        gameState = "OptionsMenu";
+                        lastState = "Paused";
+                        CheckGameState();
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";                        
+                    }
+                }
             }
+
+            //options screen method
+            else if (gameState == "OptionsMenu")
+            {
+                // back button clicked
+                if (mouseClickRect.Intersects(backButtonPosition)) {
+                    try
+                    {
+                        gameState = lastState;
+                        CheckGameState();
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                        lastState = "";
+                    }
+                }
+                // sounds button clicked
+                else if (mouseClickRect.Intersects(soundsButtonPosition)){
+                    try
+                    {
+                        gameState = "SoundsMenu";
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                    }
+                }
+                // graphics button clicked
+                else if (mouseClickRect.Intersects(graphicsButtonPosition)) {
+                    try
+                    {
+                        gameState = "GraphicsMenu";
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                    }
+                }
+            }
+
+            // Sounds menu
+            else if (gameState == "SoundsMenu")
+            {
+                if (mouseClickRect.Intersects(backButtonPosition))
+                {
+                    try
+                    {
+                        gameState = "OptionsMenu";
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                    }
+                }
+            }
+
+            // graphics menu
+            else if (gameState == "GraphicsMenu")
+            {
+                if (mouseClickRect.Intersects(backButtonPosition))
+                {
+                    try
+                    {
+                        gameState = "OptionsMenu";
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                    }
+                }
+            }            
             return mouseClickRect;
         }
+        
 
         public bool updateState(KeyboardState State, KeyboardState oldState) {
             if (gameState == "Playing" && State.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) {
