@@ -300,3 +300,6 @@
 <ul><li>Began work on AI and pathfinding</li>
 <li>Added Node class</li>
 </ul>
+
+<b> 3:48 pm 4/8/2016: Connor Cummings</b>
+<ul><li> fill tool works with textures, objects and erasers</li></ul>

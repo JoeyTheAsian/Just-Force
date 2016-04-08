@@ -25,14 +25,19 @@ namespace MapEditor
         //currently stored texture swatch on the brush
         string curType;
         Bitmap curBrush;
-        string curTool;
+        string curTool = "";
         //string name for texture
         string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
         Bitmap no_texture, trash_can; //gameobject bitmaps
         //Tools
+        int mousePosX = -1;
+        int mousePosY = -1;
+        int prevMousePosX = -1;
+        int prevMousePosY = -1;
+        List<int> xValues = new List<int>();
+        List<int> yValues = new List<int>();
         Bitmap eraser; //eraser bitmap
-        Rectangle fill;
         bool painting = false;
         
         
@@ -246,7 +251,6 @@ namespace MapEditor
         //Fill tool
         private void Fill_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Fill";
-
         }
 
         //Line tool
@@ -341,19 +345,59 @@ namespace MapEditor
         //Mouseclick for tools
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e) {
             if(curTool == "Fill") {
-                int PosX = e.X;
-                int PosY = e.Y;
-                int previousPosX = PosX;
-                int previousPosY = PosY;
-                fill = new Rectangle(PosX, PosY, previousPosX - PosX, previousPosY - PosY);
-
-                if(curType == "texture") {
-                  for(int w = PosX; w < previousPosX - PosX; w++) {
-                        for(int h = PosY; h < previousPosY - PosY; h++) {
-                            Map[w, h] = curBrush;
-                            mapString[w, h] = textString;
+                if (prevMousePosX == -1 && prevMousePosY == -1) {
+                    prevMousePosX = (int)(e.X * 1.0 / tlWidth);
+                    prevMousePosY = (int)(e.Y * 1.0 / tlHeight);
+                }
+                else {
+                    mousePosX = (int)(e.X * 1.0 / tlWidth);
+                    mousePosY = (int)(e.Y * 1.0 / tlHeight);
+                    if(mousePosX < prevMousePosX) {
+                        for(int i = mousePosX; i < prevMousePosX; i++) {
+                            xValues.Add(i);
+                        }
+                    }else if(mousePosX >= prevMousePosX) {
+                        for (int i = prevMousePosX; i <= mousePosX; i++) {
+                            xValues.Add(i);
                         }
                     }
+                    if (mousePosY < prevMousePosY) {
+                        for (int i = mousePosY; i < prevMousePosY; i++) {
+                            yValues.Add(i);
+                        }
+                    }
+                    else if (mousePosY >= prevMousePosY) {
+                        for (int i = prevMousePosY; i <= mousePosY; i++) {
+                            yValues.Add(i);
+                        }
+                    }
+
+                    if (curType == "texture") {
+                        xValues.Sort();
+                        yValues.Sort();
+                        foreach (int x in xValues) {
+                            foreach (int y in yValues) {
+                                Map[x, y] = curBrush;
+                                mapString[x, y] = textString;
+                            }
+                        }
+                    }
+                    if (curType == "object") {
+                        xValues.Sort();
+                        yValues.Sort();
+                        foreach (int x in xValues) {
+                            foreach (int y in yValues) {
+                                Map[x, y] = curBrush;
+                                mapString[x, y] = textString;
+                            }
+                        }
+                    }
+                    prevMousePosX = -1;
+                    prevMousePosY = -1;
+                    mousePosX = -1;
+                    mousePosY = -1;
+                    xValues = new List<int>();
+                    yValues = new List<int>();
                 }
             }
             if(curTool == "Pen") {
