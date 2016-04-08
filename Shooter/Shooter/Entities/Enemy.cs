@@ -18,8 +18,7 @@ namespace Shooter.Entities {
         private int scanRange;
 
         //Default constructor for normal enemies
-        public Enemy(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r)
-        {
+        public Enemy(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -27,7 +26,7 @@ namespace Shooter.Entities {
                 entTexture = content.Load<Texture2D>("NoTexture");
                 Console.WriteLine(t + "Not found. Using default texture.");
             }
-            
+
             //collidable object by default
             collision = true;
 
@@ -41,63 +40,60 @@ namespace Shooter.Entities {
 
         }
         //Checks all adjacent tiles and returns list of valid tiles sorted by estimated path length
-        public List<Node> checkAdjacent(Node curNode, Coord end, ref Map m) {
+        public List<Node> checkAdjacent(Node curNode, Coord end, ref Map m, ref List<Node>[,] nodeMap) {
             int X = (int)curNode.location.X;
             int Y = (int)curNode.location.Y;
 
             List<Node> adjacentNodes = new List<Node>();
             bool temp;
             //check for valid tiles and add them to list
-            //account for null case
-            if (m.ObjectMap[X + 1, Y] == null) temp = false;
-            else temp = m.ObjectMap[X + 1, Y].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X + 1, Y), temp, end, curNode));
+            for (int i = X - 1; i < X + 2; i++) {
+                for (int j = Y - 1; j < Y + 2; Y++) {
+                    //account for null case
+                    if (m.ObjectMap[i, j] == null) {
+                        temp = false;
+                    } else {
+                        temp = m.ObjectMap[i, j].collision;
+                    }
+                    //check that the coord checked isn't the current position & it isn't collidable
+                    if (temp != true && (i != X || j != Y)) {
+                        //add a new valid adjacent node to the list
+                        adjacentNodes.Add(new Node(new Coord(i, j), temp, end, curNode));
+                    }
+                }
             }
-            if (m.ObjectMap[X - 1, Y] == null) temp = false;
-            else temp = m.ObjectMap[X - 1, Y].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X - 1, Y), temp, end, curNode));
-            }
-            if (m.ObjectMap[X + 1, Y + 1] == null) temp = false;
-            else temp = m.ObjectMap[X + 1, Y + 1].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X + 1, Y + 1), temp, end, curNode));
-            }
-            if (m.ObjectMap[X - 1, Y + 1] == null) temp = false;
-            else temp = m.ObjectMap[X - 1, Y + 1].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X - 1, Y + 1), temp, end, curNode));
-            }
-            if (m.ObjectMap[X - 1, Y - 1] == null) temp = false;
-            else temp = m.ObjectMap[X - 1, Y - 1].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X - 1, Y - 1), temp, end, curNode));
-            }
-            if (m.ObjectMap[X, Y + 1] == null) temp = false;
-            else temp = m.ObjectMap[X, Y + 1].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X, Y + 1), temp, end, curNode));
-            }
-            if (m.ObjectMap[X, Y - 1] == null) temp = false;
-            else temp = m.ObjectMap[X, Y - 1].collision;
-            if (temp != false) {
-                adjacentNodes.Add(new Node(new Coord(X, Y - 1), temp, end, curNode));
-            }
+
             //sort the list by the estimated length of the path
             adjacentNodes.Sort((x, y) => x.estLength.CompareTo(y.estLength));
-            return adjacentNodes;
-       }
-       /*public Node FindPath(ref Map m, Node curNode, Coord curPos , Coord endPos) {
-            bool isTilecollidable;
-            if (m.ObjectMap[(int)(loc.X - .5), (int)(loc.Y - .5)] == null) {
-                isTilecollidable = false;
-            } else {
-                isTilecollidable = m.ObjectMap[(int)(loc.X - .5), (int)(loc.Y - .5)].collision;
+            foreach(Node n in adjacentNodes) {
+                n.state = Node.NodeState.Open;
             }
+            return adjacentNodes;
+        }
+        public List<Coord> FindPath(ref Map m, Node curNode, Coord startPos, Coord endPos, List<Node>[,] nodeMap) {
+            if(curNode == null) {
+                curNode = new Node(new Coord((int)(startPos.X - .5), (int)(startPos.Y - .5)), false, endPos, null);
+            }
+            Coord endTile = new Coord((int)(endPos.X - .5), (int)(endPos.Y - .5));
+            if (curNode.location != endTile) {
+                List<Node> adjNodes = checkAdjacent(curNode, endPos, ref m, ref nodeMap);
+                if(adjNodes.Count == 0) {
+                    //return empty list if the path doesn't reach the destination & there's no more valid paths
+                    return new List<Coord>();
+                }
+                foreach(Node n in adjNodes) {
+                    //tested nodes are marked as closed
+                    n.state = Node.NodeState.Closed;
+                    List<Coord> result = FindPath(ref m, n, startPos, endPos, nodeMap);
+                    //if the last value in the resulting path is the end tile, return the path
+                    if (result[result.Count - 1] == endTile) {
+                        return result;
+                    }
+                }
+            } else {
+                
+            }
+        }
 
-        }*/
     }
-
-
 }

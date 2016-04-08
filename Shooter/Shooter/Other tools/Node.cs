@@ -20,7 +20,7 @@ namespace Shooter.Other_tools {
             Closed    
         };
         public NodeState state;
-        public Node(Coord loc, bool col, Coord end, Node par) {
+        public Node(Coord loc, bool col, Coord end, Node par){
             collidable = col;
             location = loc;
             parent = par;
