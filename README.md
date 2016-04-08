@@ -303,3 +303,7 @@
 
 <b> 3:48 pm 4/8/2016: Connor Cummings</b>
 <ul><li> fill tool works with textures, objects and erasers</li></ul>
+
+<b> 4:00 pm 4/8/2016: Anthony Olivares</b>
+<ul><li> added option screen functionality / game states (can be accessed from main menu or pause menu) </li>
+<li> added placeholder screens and states for sound options and graphics options </li> </ul>
