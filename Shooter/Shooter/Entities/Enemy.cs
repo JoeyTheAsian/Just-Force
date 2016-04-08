@@ -70,6 +70,7 @@ namespace Shooter.Entities {
             }
             return adjacentNodes;
         }
+        /*
         public List<Coord> FindPath(ref Map m, Node curNode, Coord startPos, Coord endPos, List<Node>[,] nodeMap) {
             if(curNode == null) {
                 curNode = new Node(new Coord((int)(startPos.X - .5), (int)(startPos.Y - .5)), false, endPos, null);
@@ -93,7 +94,7 @@ namespace Shooter.Entities {
             } else {
                 
             }
-        }
+        }*/
 
     }
 }
