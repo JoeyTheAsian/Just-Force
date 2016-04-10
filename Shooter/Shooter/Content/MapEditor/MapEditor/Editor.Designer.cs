@@ -25,11 +25,11 @@
         private void InitializeComponent() {
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.RoadLane = new System.Windows.Forms.Button();
+            this.AsphaltTex = new System.Windows.Forms.Button();
+            this.ConcreteTex = new System.Windows.Forms.Button();
+            this.ConcreteCornerTex = new System.Windows.Forms.Button();
+            this.ConcreteSideTex = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.RowsInput = new System.Windows.Forms.TextBox();
             this.Rows = new System.Windows.Forms.Label();
@@ -54,8 +54,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button11 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.NoTexture = new System.Windows.Forms.Button();
+            this.TrashCan = new System.Windows.Forms.Button();
             this.Fill = new System.Windows.Forms.Button();
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -93,13 +93,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button4, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button5, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button6, 4, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ConcreteCornerTex, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ConcreteSideTex, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.button8, 5, 0);
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(55, 0);
@@ -116,73 +115,73 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(339, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // button2
+            // RoadLane
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "texture1";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Paint += new System.Windows.Forms.PaintEventHandler(this.button2_Paint);
-            this.button2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button2_MouseClick);
+            this.RoadLane.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RoadLane.Location = new System.Drawing.Point(3, 3);
+            this.RoadLane.Margin = new System.Windows.Forms.Padding(0);
+            this.RoadLane.Name = "RoadLane";
+            this.RoadLane.Size = new System.Drawing.Size(50, 50);
+            this.RoadLane.TabIndex = 0;
+            this.RoadLane.Text = "road lane";
+            this.RoadLane.UseVisualStyleBackColor = true;
+            this.RoadLane.Paint += new System.Windows.Forms.PaintEventHandler(this.RoadLane_Paint);
+            this.RoadLane.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RoadLane_MouseClick);
             // 
-            // button3
+            // AsphaltTex
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(56, 3);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(50, 50);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "texture2";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Paint += new System.Windows.Forms.PaintEventHandler(this.button3_Paint);
-            this.button3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button3_MouseClick);
+            this.AsphaltTex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AsphaltTex.Location = new System.Drawing.Point(56, 3);
+            this.AsphaltTex.Margin = new System.Windows.Forms.Padding(0);
+            this.AsphaltTex.Name = "AsphaltTex";
+            this.AsphaltTex.Size = new System.Drawing.Size(50, 50);
+            this.AsphaltTex.TabIndex = 1;
+            this.AsphaltTex.Text = "asphalt";
+            this.AsphaltTex.UseVisualStyleBackColor = true;
+            this.AsphaltTex.Paint += new System.Windows.Forms.PaintEventHandler(this.AsphaltTex_Paint);
+            this.AsphaltTex.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AsphaltTex_MouseClick);
             // 
-            // button4
+            // ConcreteTex
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(109, 3);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(50, 50);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "texture3";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Paint += new System.Windows.Forms.PaintEventHandler(this.button4_Paint);
-            this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
+            this.ConcreteTex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConcreteTex.Location = new System.Drawing.Point(109, 3);
+            this.ConcreteTex.Margin = new System.Windows.Forms.Padding(0);
+            this.ConcreteTex.Name = "ConcreteTex";
+            this.ConcreteTex.Size = new System.Drawing.Size(50, 50);
+            this.ConcreteTex.TabIndex = 2;
+            this.ConcreteTex.Text = "concrete";
+            this.ConcreteTex.UseVisualStyleBackColor = true;
+            this.ConcreteTex.Paint += new System.Windows.Forms.PaintEventHandler(this.ConcreteTex_Paint);
+            this.ConcreteTex.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ConcreteTex_MouseClick);
             // 
-            // button5
+            // ConcreteCornerTex
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Location = new System.Drawing.Point(162, 3);
-            this.button5.Margin = new System.Windows.Forms.Padding(0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(50, 50);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "texture4";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Paint += new System.Windows.Forms.PaintEventHandler(this.button5_Paint);
-            this.button5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button5_MouseClick);
+            this.ConcreteCornerTex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConcreteCornerTex.Location = new System.Drawing.Point(162, 3);
+            this.ConcreteCornerTex.Margin = new System.Windows.Forms.Padding(0);
+            this.ConcreteCornerTex.Name = "ConcreteCornerTex";
+            this.ConcreteCornerTex.Size = new System.Drawing.Size(50, 50);
+            this.ConcreteCornerTex.TabIndex = 3;
+            this.ConcreteCornerTex.Text = "concrete corner";
+            this.ConcreteCornerTex.UseVisualStyleBackColor = true;
+            this.ConcreteCornerTex.Paint += new System.Windows.Forms.PaintEventHandler(this.ConcreteCornerTex_Paint);
+            this.ConcreteCornerTex.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ConcreteCornerTex_MouseClick);
             // 
-            // button6
+            // ConcreteSideTex
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Location = new System.Drawing.Point(215, 3);
-            this.button6.Margin = new System.Windows.Forms.Padding(0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(50, 50);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "texture5";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Paint += new System.Windows.Forms.PaintEventHandler(this.button6_Paint);
-            this.button6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button6_MouseClick);
+            this.ConcreteSideTex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConcreteSideTex.Location = new System.Drawing.Point(215, 3);
+            this.ConcreteSideTex.Margin = new System.Windows.Forms.Padding(0);
+            this.ConcreteSideTex.Name = "ConcreteSideTex";
+            this.ConcreteSideTex.Size = new System.Drawing.Size(50, 50);
+            this.ConcreteSideTex.TabIndex = 4;
+            this.ConcreteSideTex.Text = "concrete side";
+            this.ConcreteSideTex.UseVisualStyleBackColor = true;
+            this.ConcreteSideTex.Paint += new System.Windows.Forms.PaintEventHandler(this.ConcreteSideTex_Paint);
+            this.ConcreteSideTex.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ConcreteSideTex_MouseClick);
             // 
             // button8
             // 
@@ -190,7 +189,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(68, 50);
+            this.button8.Size = new System.Drawing.Size(53, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -434,9 +433,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel2.Controls.Add(this.button9, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button10, 1, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -452,34 +451,34 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(336, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // button9
+            // NoTexture
             // 
-            this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(3, 3);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(50, 50);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "no texture";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Paint += new System.Windows.Forms.PaintEventHandler(this.button9_Paint);
-            this.button9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button9_MouseClick);
+            this.NoTexture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NoTexture.Location = new System.Drawing.Point(3, 3);
+            this.NoTexture.Margin = new System.Windows.Forms.Padding(0);
+            this.NoTexture.Name = "NoTexture";
+            this.NoTexture.Size = new System.Drawing.Size(50, 50);
+            this.NoTexture.TabIndex = 0;
+            this.NoTexture.Text = "no texture";
+            this.NoTexture.UseVisualStyleBackColor = true;
+            this.NoTexture.Paint += new System.Windows.Forms.PaintEventHandler(this.NoTexture_Paint);
+            this.NoTexture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NoTexture_MouseClick);
             // 
-            // button10
+            // TrashCan
             // 
-            this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.Location = new System.Drawing.Point(56, 3);
-            this.button10.Margin = new System.Windows.Forms.Padding(0);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(50, 50);
-            this.button10.TabIndex = 1;
-            this.button10.Text = "trash can";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Paint += new System.Windows.Forms.PaintEventHandler(this.button10_Paint);
-            this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button10_MouseClick);
+            this.TrashCan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TrashCan.Location = new System.Drawing.Point(56, 3);
+            this.TrashCan.Margin = new System.Windows.Forms.Padding(0);
+            this.TrashCan.Name = "TrashCan";
+            this.TrashCan.Size = new System.Drawing.Size(50, 50);
+            this.TrashCan.TabIndex = 1;
+            this.TrashCan.Text = "trash can";
+            this.TrashCan.UseVisualStyleBackColor = true;
+            this.TrashCan.Paint += new System.Windows.Forms.PaintEventHandler(this.TrashCan_Paint);
+            this.TrashCan.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrashCan_MouseClick);
             // 
             // Fill
             // 
@@ -584,11 +583,11 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button RoadLane;
+        private System.Windows.Forms.Button AsphaltTex;
+        private System.Windows.Forms.Button ConcreteTex;
+        private System.Windows.Forms.Button ConcreteCornerTex;
+        private System.Windows.Forms.Button ConcreteSideTex;
         private System.Windows.Forms.TextBox RowsInput;
         private System.Windows.Forms.Label Rows;
         private System.Windows.Forms.TextBox ColumnsInput;
@@ -611,8 +610,8 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button NoTexture;
+        private System.Windows.Forms.Button TrashCan;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button Fill;
