@@ -129,31 +129,31 @@ namespace MapEditor
 
         #region Paint events to show texture image on buttons
 
-        private void button2_Paint(object sender, PaintEventArgs e) {
+        private void RoadLane_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
             g.DrawImage(lane, 0, 0, 50, 50);
         }
 
-        private void button3_Paint(object sender, PaintEventArgs e) {
+        private void AsphaltTex_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
             g.DrawImage(asphalt, 0, 0, 50, 50);
         }
         
-        private void button4_Paint(object sender, PaintEventArgs e) {
+        private void ConcreteTex_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
             g.DrawImage(concrete, 0, 0, 50, 50);
         }
 
-        private void button5_Paint(object sender, PaintEventArgs e) {
+        private void ConcreteCornerTex_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
             g.DrawImage(concreteCorner, 0, 0, 50, 50);
         }
 
-        private void button6_Paint(object sender, PaintEventArgs e) {
+        private void ConcreteSideTex_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
             g.DrawImage(concreteEdge, 0, 0, 50, 50);
@@ -163,13 +163,13 @@ namespace MapEditor
 
         #region Paint events to show game objects on buttons
 
-        private void button9_Paint(object sender, PaintEventArgs e) {
+        private void NoTexture_Paint(object sender, PaintEventArgs e) {
             no_texture = new Bitmap("GameObjects/NoTexture.png");
             Graphics g = e.Graphics;
             g.DrawImage(no_texture, 0, 0, 50, 50);
         }
 
-        private void button10_Paint(object sender, PaintEventArgs e) {
+        private void TrashCan_Paint(object sender, PaintEventArgs e) {
             trash_can = new Bitmap("GameObjects/Trash_Can.png");
             Graphics g = e.Graphics;
             g.DrawImage(trash_can, 0, 0, 50, 50);
@@ -179,35 +179,35 @@ namespace MapEditor
 
         #region Mouse click events to pick up textures from buttons
 
-        private void button2_MouseClick(object sender, MouseEventArgs e) {
+        private void RoadLane_MouseClick(object sender, MouseEventArgs e) {
             curBrush = lane;
             curType = "texture";
             textString = "LaneLine";
             pictureBox2.Invalidate();
         }
 
-        private void button3_MouseClick(object sender, MouseEventArgs e) {
+        private void AsphaltTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = asphalt;
             curType = "texture";
             textString = "Asphalt";
             pictureBox2.Invalidate();
         }
 
-        private void button4_MouseClick(object sender, MouseEventArgs e) {
+        private void ConcreteTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = concrete;
             curType = "texture";
             textString = "Concrete";
             pictureBox2.Invalidate();
         }
 
-        private void button5_MouseClick(object sender, MouseEventArgs e) {
+        private void ConcreteCornerTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = concreteCorner;
             curType = "texture";
             textString = "ConcreteCorner";
             pictureBox2.Invalidate();
         }
 
-        private void button6_MouseClick(object sender, MouseEventArgs e) {
+        private void ConcreteSideTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = concreteEdge;
             curType = "texture";
             textString = "ConcreteEdge";
@@ -218,14 +218,14 @@ namespace MapEditor
 
         #region Mouse click events to pick up Gameobjects from buttons
 
-        private void button9_MouseClick(object sender, MouseEventArgs e) {
+        private void NoTexture_MouseClick(object sender, MouseEventArgs e) {
             curBrush = no_texture;
             curType = "object";
             textString = "NoTexture";
             pictureBox2.Invalidate();
         }
         
-        private void button10_MouseClick(object sender, MouseEventArgs e) {
+        private void TrashCan_MouseClick(object sender, MouseEventArgs e) {
             curBrush = trash_can;
             curType = "object";
             textString = "TrashCan";

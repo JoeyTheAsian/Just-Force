@@ -307,3 +307,6 @@
 <b> 4:00 pm 4/8/2016: Anthony Olivares</b>
 <ul><li> added option screen functionality / game states (can be accessed from main menu or pause menu) </li>
 <li> added placeholder screens and states for sound options and graphics options </li> </ul>
+
+<b> 2:58 pm 4/10/2016: Connor Cummings</b>
+<ul><li> fixed naming conventions for buttons in map editor</li></ul>
