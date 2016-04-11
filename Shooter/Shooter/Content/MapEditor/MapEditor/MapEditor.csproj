@@ -92,6 +92,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entities\Pistol_Player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameObjects\NoTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

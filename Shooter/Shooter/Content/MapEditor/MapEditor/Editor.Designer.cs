@@ -50,9 +50,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
+            this.TextureEraser = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button11 = new System.Windows.Forms.Button();
+            this.ObjectEraser = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.NoTexture = new System.Windows.Forms.Button();
             this.TrashCan = new System.Windows.Forms.Button();
@@ -61,6 +61,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Pen = new System.Windows.Forms.Button();
             this.Line = new System.Windows.Forms.Button();
+            this.PlayerSpawn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -93,7 +94,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -115,7 +116,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(330, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -189,7 +190,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(53, 50);
+            this.button8.Size = new System.Drawing.Size(59, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -374,7 +375,7 @@
             this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.button12);
+            this.panel2.Controls.Add(this.TextureEraser);
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Location = new System.Drawing.Point(950, 28);
             this.panel2.MaximumSize = new System.Drawing.Size(400, 250);
@@ -383,16 +384,16 @@
             this.panel2.Size = new System.Drawing.Size(400, 250);
             this.panel2.TabIndex = 19;
             // 
-            // button12
+            // TextureEraser
             // 
-            this.button12.BackColor = System.Drawing.Color.LightCoral;
-            this.button12.Location = new System.Drawing.Point(2, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(52, 50);
-            this.button12.TabIndex = 3;
-            this.button12.Text = "Texture Eraser ";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button12_MouseClick);
+            this.TextureEraser.BackColor = System.Drawing.Color.LightCoral;
+            this.TextureEraser.Location = new System.Drawing.Point(2, 3);
+            this.TextureEraser.Name = "TextureEraser";
+            this.TextureEraser.Size = new System.Drawing.Size(52, 50);
+            this.TextureEraser.TabIndex = 3;
+            this.TextureEraser.Text = "Texture Eraser ";
+            this.TextureEraser.UseVisualStyleBackColor = false;
+            this.TextureEraser.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextureEraser_MouseClick);
             // 
             // panel3
             // 
@@ -401,7 +402,7 @@
             this.panel3.AutoSize = true;
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.button11);
+            this.panel3.Controls.Add(this.ObjectEraser);
             this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Location = new System.Drawing.Point(950, 285);
             this.panel3.MaximumSize = new System.Drawing.Size(400, 250);
@@ -410,16 +411,16 @@
             this.panel3.Size = new System.Drawing.Size(400, 250);
             this.panel3.TabIndex = 20;
             // 
-            // button11
+            // ObjectEraser
             // 
-            this.button11.BackColor = System.Drawing.Color.LightCoral;
-            this.button11.Location = new System.Drawing.Point(2, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(50, 50);
-            this.button11.TabIndex = 21;
-            this.button11.Text = "Object Eraser";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button11_MouseClick);
+            this.ObjectEraser.BackColor = System.Drawing.Color.LightCoral;
+            this.ObjectEraser.Location = new System.Drawing.Point(2, 3);
+            this.ObjectEraser.Name = "ObjectEraser";
+            this.ObjectEraser.Size = new System.Drawing.Size(50, 50);
+            this.ObjectEraser.TabIndex = 21;
+            this.ObjectEraser.Text = "Object Eraser";
+            this.ObjectEraser.UseVisualStyleBackColor = false;
+            this.ObjectEraser.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ObjectEraser_MouseClick);
             // 
             // tableLayoutPanel2
             // 
@@ -433,7 +434,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
@@ -451,7 +452,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(330, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -527,12 +528,23 @@
             this.Line.UseVisualStyleBackColor = true;
             this.Line.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Line_MouseClick);
             // 
+            // PlayerSpawn
+            // 
+            this.PlayerSpawn.Location = new System.Drawing.Point(883, 160);
+            this.PlayerSpawn.Name = "PlayerSpawn";
+            this.PlayerSpawn.Size = new System.Drawing.Size(65, 50);
+            this.PlayerSpawn.TabIndex = 26;
+            this.PlayerSpawn.Text = "Player spawn";
+            this.PlayerSpawn.UseVisualStyleBackColor = true;
+            this.PlayerSpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PlayerSpawn_MouseClick);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.Controls.Add(this.PlayerSpawn);
             this.Controls.Add(this.Line);
             this.Controls.Add(this.Pen);
             this.Controls.Add(this.label2);
@@ -612,13 +624,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button NoTexture;
         private System.Windows.Forms.Button TrashCan;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button ObjectEraser;
+        private System.Windows.Forms.Button TextureEraser;
         private System.Windows.Forms.Button Fill;
         private System.Windows.Forms.TextBox fileNameBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Pen;
         private System.Windows.Forms.Button Line;
+        private System.Windows.Forms.Button PlayerSpawn;
     }
 }
 

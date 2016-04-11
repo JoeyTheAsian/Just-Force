@@ -316,3 +316,7 @@
 <li>Changed the skill system</li>
 <li>Changed HUD to count total player mags and draw only first eight</li>
 <li>Added a melee weapon class and a basic stab method</li></ul>
+
+<b> 10:04 am 4/11/2016: Connor Cummings</b>
+<ul><li>created entity array and entity string array for enimeies ane player spawn</li>
+<li> added a player spawn tool to set point of entry in level</li></ul>

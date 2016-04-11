@@ -18,9 +18,12 @@ namespace MapEditor
 
         Bitmap[,] Map = new Bitmap[0,0]; // array that stores bitmaps
         Bitmap[,] objectMap = new Bitmap[0,0]; // array that stores bitmaps
+        Bitmap[,] entityMap = new Bitmap[0,0];
 
         string[,] mapString = new string[0,0]; // array that stores texture names as a string for saving the file
         string[,] objectString = new string[0,0]; // array that stores object texture names as a string for saving the file
+        string[,] entityString = new string[0,0];
+
         List<Point> map = new List<Point>();
         //currently stored texture swatch on the brush
         string curType;
@@ -30,6 +33,7 @@ namespace MapEditor
         string textString;
         Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
         Bitmap no_texture, trash_can; //gameobject bitmaps
+        Bitmap player; //entity bitmaps
         //Tools
         int mousePosX = -1;
         int mousePosY = -1;
@@ -231,16 +235,13 @@ namespace MapEditor
             textString = "TrashCan";
             pictureBox2.Invalidate();
         }
-
-        
-
         //__________________________________________________________________________________________
         #endregion
 
         #region Tools
 
         //eraser for game objects
-        private void button11_MouseClick(object sender, MouseEventArgs e) {
+        private void ObjectEraser_MouseClick(object sender, MouseEventArgs e) {
             eraser = new Bitmap("Tools/EmptyTile.png");
             curBrush = eraser;
             curType = "object";
@@ -263,14 +264,21 @@ namespace MapEditor
             curTool = "Pen";
         }
 
-        
-
         //eraser for textures
-        private void button12_MouseClick(object sender, MouseEventArgs e) {
+        private void TextureEraser_MouseClick(object sender, MouseEventArgs e) {
             eraser = new Bitmap("Tools/EmptyTile.png");
             curBrush = eraser;
             curType = "texture";
             textString = null;
+            pictureBox2.Invalidate();
+        }
+
+        //Player spawn
+        private void PlayerSpawn_MouseClick(object sender, MouseEventArgs e) {
+            player = new Bitmap("Entities/Pistol_Player.png");
+            curBrush = player;
+            curTool = "Player_entity";
+            textString = "Player";
             pictureBox2.Invalidate();
         }
 
@@ -287,6 +295,12 @@ namespace MapEditor
                 catch (ArgumentNullException) { }
                 catch (NullReferenceException) { }
             }else if (curType == "object") {
+                try {
+                    g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
+                }
+                catch (ArgumentNullException) { }
+                catch (NullReferenceException) { }
+            }else if (curType == "entity") {
                 try {
                     g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
                 }
@@ -332,6 +346,9 @@ namespace MapEditor
                             }
                             if (objectMap[x, y] != null) {
                                 g.DrawImage(objectMap[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                            }
+                            if (entityMap[x,y] != null) {
+                                g.DrawImage(entityMap[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
                             }
                         }
                         g.DrawLine(p, x * tlWidth, 0, x * tlWidth, rows * tlHeight); //draw lines for columns
@@ -387,8 +404,8 @@ namespace MapEditor
                         yValues.Sort();
                         foreach (int x in xValues) {
                             foreach (int y in yValues) {
-                                Map[x, y] = curBrush;
-                                mapString[x, y] = textString;
+                                objectMap[x, y] = curBrush;
+                                objectString[x, y] = textString;
                             }
                         }
                     }
@@ -405,6 +422,13 @@ namespace MapEditor
             }
             if(curTool == "Line") {
 
+            }
+            if(curTool == "Player_entity") {
+                mousePosX = (int)(e.X * 1.0 / tlWidth);
+                mousePosY = (int)(e.Y * 1.0 / tlHeight);
+
+                entityMap[mousePosX, mousePosY] = curBrush;
+                entityString[mousePosX, mousePosY] = textString;
             }
         }
         //____________________________________________________________________________________
@@ -471,6 +495,8 @@ namespace MapEditor
             pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
             objectMap = new Bitmap[columns, rows];
+            entityMap = new Bitmap[columns, rows];
+            entityString = new string[columns, rows];
             objectString = new string[columns, rows];
             mapString = new string[columns, rows];
             filename = inputFilename;
