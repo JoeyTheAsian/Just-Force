@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 
 namespace Shooter.Controls {
-    static class Skills {
+    static class SkillSystem {
         //Static array for the skills in the game
         public static Skill[] skills = new Skill[2];
         public static double timer = 0;
@@ -23,27 +23,19 @@ namespace Shooter.Controls {
         //Uses the player's skill
         public static void UseSkill(Character player, KeyboardState state, KeyboardState oldState, int time) {
             //Checks to see if the key is pressed
-            if(state.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X) && !player.Skill.Active && reTimer >= 100) {
+            if(state.IsKeyDown(Keys.D1) && oldState.IsKeyUp(Keys.D1) && !CheckActiveSkills() && skills[0].Obtained) {
                 //Activate the skill and sets the timers
-                player.Skill.ActivateSkill();
-                player.Skill.Active = true;
-                timer = 100;
-                reTimer = 0;
+                skills[0].ActivateSkill();
+            } else if (state.IsKeyDown(Keys.D2) && oldState.IsKeyUp(Keys.D2) && !CheckActiveSkills() && skills[1].Obtained) {
+                //Activate the skill and sets the timers
+                skills[1].ActivateSkill();
             }
-            //if the timer is greater than zero than decrement it by the skill's usage rate and time
-            if (timer > 0) {
-                timer -= time / player.Skill.UseRate;
-            //If the skills was active and the timer has run out then deactivates the skills
-            } else if(timer <= 0 && player.Skill.Active){
-                player.Skill.DeactivateSkill();
-            //If the skill is not active then recharges it by the recharge rate and time
-            } else if(!player.Skill.Active && reTimer < 100) {
-                reTimer += time / player.Skill.RechargeRate;
-            }
-            
+            foreach (Skill s in skills) {
+                    s.Status(time);                
+            }           
         }
 
-        //Switches the player's skill
+        /*//Switches the player's skill
         public static void SwitchSkills(Character player, KeyboardState state, KeyboardState oldState) {
             //Press Q to switch the player's skill
             if (state.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q)) {
@@ -64,6 +56,14 @@ namespace Shooter.Controls {
                 //Changes the skill
                 player.Skill = skills[index];
             }
+        }*/
+        public static bool CheckActiveSkills() {
+            foreach(Skill s in skills) {
+                if (s.Active || s.ReTimer < 100) {
+                    return true;
+                }                
+            }
+            return false;
         }
      }
 }

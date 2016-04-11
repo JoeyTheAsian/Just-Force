@@ -461,3 +461,7 @@ D:\Github\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
 D:\Github\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 D:\Github\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 D:\Github\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png

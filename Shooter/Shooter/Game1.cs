@@ -17,7 +17,7 @@ namespace Shooter {
     ///main type for the game
 
     public class Game1 : Game {
-        
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -67,6 +67,7 @@ namespace Shooter {
 
         //Temp enemy
         private List<Enemy> enemies;
+        private List<PickUpItem> Items;
         //connor's menu implementation___________
         GameStateManager g;
         //HUD assets
@@ -179,7 +180,7 @@ namespace Shooter {
 
             //Creates temp enemy
             enemies = new List<Enemy>();
-
+            Items = new List<PickUpItem>();
             //Creates enemies to check
             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
@@ -187,10 +188,11 @@ namespace Shooter {
             CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
             //Creates the weapons for the player
             Shooting.CreateWeapons(Content);
-            Skills.CreateSkills(Content, player);
+            SkillSystem.CreateSkills(Content, player);
             //Starts the player with the first weapon
-            player.Weapon = Shooting.weapons[0];
-            player.Skill = Skills.skills[0];
+            player.Weapon = Shooting.weapons[1];
+            SkillSystem.skills[0].Obtained = true;
+            SkillSystem.skills[1].Obtained = true;
         }
 
         /// <summary>
@@ -306,9 +308,8 @@ namespace Shooter {
                         player.Weapon.Reload();
                     }
                 }
-
-                Skills.UseSkill(player, state, oldState, gameTime.TotalGameTime.Milliseconds);
-                Skills.SwitchSkills(player, state, oldState);
+                Shooting.Stab(player, state, oldState, Content, c, m.TileSize, projectiles);
+                SkillSystem.UseSkill(player, state, oldState, gameTime.TotalGameTime.Milliseconds);
                 //update camera
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
                             new Coord(mState.X, mState.Y), new Coord((player.Loc.X - c.camPos.X) * m.TileSize, (player.Loc.Y - c.camPos.Y) * m.TileSize));
@@ -355,6 +356,7 @@ namespace Shooter {
 
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
+
 
             }
 
@@ -441,12 +443,18 @@ namespace Shooter {
                             }
                         }
                     }
+                    //Draws the Items in the list
+                    for (int u = 0; u < Items.Count; u++) {
+                        spriteBatch.Draw(Items[u].ItemTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, Items[u].Location.X, Items[u].Location.X, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                    }
+
                     //draw projectiles
                     for (int i = 0; i < projectiles.Count; i++) {
                         //Updates the projectiles' rectangle property
                         projectiles[i].rectangle = new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize);
                         spriteBatch.Draw(projectiles[i].EntTexture, projectiles[i].rectangle, null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
                     }
+
                     //Draws the temp enemies queued to the sprites list
                     for (int j = 0; j < sprites.Count; j++) {
                         //temp
@@ -454,8 +462,9 @@ namespace Shooter {
                         //draw enemy
                         spriteBatch.Draw(e.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, e.Loc.X, e.Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
                     }
-
-                    //draw the player model
+                    if (Items.Count > 0) {
+                        spriteBatch.Draw(Items[0].ItemTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, Items[0].Location.X, Items[0].Location.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                    }//draw the player model
                     spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y,
                                                                                 m.TileSize, c.xOffset, c.yOffset),
                                                                                 null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
@@ -464,6 +473,7 @@ namespace Shooter {
                         //Updates the enemies' rectangle property
                         enemies[k].rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset);
                     }
+
 
                     //draw the player model
                     //updates the player's rectangle property

@@ -20,12 +20,16 @@ namespace Shooter.Controls {
             prevHp = player.Health;
             player.Health = 1;
             player.Weapon.Damage *= 2;
+            //Sets the skill to active and starts the two timers
             active = true;
+            timer = 100;
+            reTimer = 0;
         }
         //Restores the player's previous health, halves their weapon damage and sets the player's skill to deactive
         public override void DeactivateSkill() {
             player.Health = prevHp;
             player.Weapon.Damage /= 2;
+            //Sets the skill to deactive
             active = false;
         }
     }

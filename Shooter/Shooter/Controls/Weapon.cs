@@ -138,11 +138,11 @@ namespace Shooter.Controls {
                 return true;
             }
         }
-        public Projectile Shoot(ContentManager content, Character p, Camera c, int tileSize) {
+        public virtual Projectile Shoot(ContentManager content, Character p, Camera c, int tileSize) {
             timeSinceLastShot = 0;
             if (CheckAmmo()) {
-                Projectile proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 10.0, "Bullet", true, 
-                                                new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize));
+                Projectile proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 10.0, "Bullet", true,
+                                                new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), 10.0);
                 ammo[0]--;
                 return proj;
             } else {

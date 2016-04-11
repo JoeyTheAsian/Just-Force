@@ -19,7 +19,6 @@ namespace Shooter.Entities {
         protected Weapon weapon;
         protected bool isSprinting;
         protected ContentManager cont;
-        protected Skill skill;
 
 
         //properties
@@ -43,11 +42,6 @@ namespace Shooter.Entities {
         public bool IsSprinting {
             get { return isSprinting; }
             set { isSprinting = value; }
-        }
-
-        public Skill Skill {
-            get { return skill; }
-            set { skill = value; }
         }
 
         public Character(ContentManager content) : base(content) {

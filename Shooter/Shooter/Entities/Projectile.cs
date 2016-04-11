@@ -40,7 +40,7 @@ namespace Shooter.Entities {
             range = 10.0;
         }
         //constructor: x coord, y coord, direction, velocity, texture file, collision
-        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r) : base(content, x, y, dir, t, c, r) {
+        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r, double rng) : base(content, x, y, dir, t, c, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -58,7 +58,7 @@ namespace Shooter.Entities {
                 direction = dir;
             }
             velocity = v;
-            range = 10.0;
+            range = rng;
         }
         public void UpdatePos(double timeElapsed, int tileSize) {
             double x = (Math.Cos(Direction) * velocity * timeElapsed) / tileSize;
