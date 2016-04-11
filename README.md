@@ -310,3 +310,9 @@
 
 <b> 2:58 pm 4/10/2016: Connor Cummings</b>
 <ul><li> fixed naming conventions for buttons in map editor</li></ul>
+
+<b> 9:33 am 4/11/16: Austin Ford</b>
+<ul><li>Added pick up items and static class for creating them</li>
+<li>Changed the skill system</li>
+<li>Changed HUD to count total player mags and draw only first eight</li>
+<li>Added a melee weapon class and a basic stab method</li></ul>
