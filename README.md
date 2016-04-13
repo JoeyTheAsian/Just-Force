@@ -316,3 +316,8 @@
 <li>Changed the skill system</li>
 <li>Changed HUD to count total player mags and draw only first eight</li>
 <li>Added a melee weapon class and a basic stab method</li></ul>
+
+<b> 4:47 pm 4/13/16: Joey Tong</b>
+<ul><li>Implemented A* pathfinding algorithm. (Unoptimized) </li>
+<li>Temporary changes to map to test pathfinding</li>
+</ul>
