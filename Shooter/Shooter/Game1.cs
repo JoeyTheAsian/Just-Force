@@ -17,7 +17,7 @@ namespace Shooter {
     ///main type for the game
 
     public class Game1 : Game {
-
+        bool go = true;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -336,6 +336,10 @@ namespace Shooter {
                             }
                         }
                     }
+                }
+                if(enemies[0] != null && go == true) {
+                    enemies[0].UpdateAI(ref m);
+                    go = false;
                 }
                 //enqueue enemies
                 for (int k = 0; k < enemies.Count; k++) {
