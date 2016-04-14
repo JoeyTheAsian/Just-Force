@@ -20,7 +20,7 @@ namespace Shooter.MapClasses {
         //default map constructor, makes a concrete bitmap with nothing on it
         public Map(ContentManager content, int screenWidth, int screenHeight) {
             tileSize = screenWidth / 20;
-            tileMap = new Texture2D[15, 30];
+            tileMap = new Texture2D[20, 100];
             objectMap = new MapObject[tileMap.GetLength(0),tileMap.GetLength(1)];
             //loops through entire tileMap array and sets each value to concrete
             for (int i = 0; i < tileMap.GetLength(0); i++) {
@@ -39,8 +39,10 @@ namespace Shooter.MapClasses {
                     objectMap[i, j] = null;
                 }
             }
-            for (int j = 0; j < objectMap.GetLength(1) - 3; j++) {
-                objectMap[5, j] = new MapObject(content, true, "NoTexture", 5, j);
+            for (int i = 1; i < objectMap.GetLength(0); i+= 6) {
+                for (int j = 0; j < objectMap.GetLength(1) - 3; j++) {
+                    objectMap[i, j] = new MapObject(content, true, "NoTexture", i, j);
+                }
             }
         }
 

@@ -18,7 +18,15 @@ namespace Shooter.Entities {
         private int scanRange;
         //the size of the area that the enemy will check for a path
         private int pathRange;
-        private int speed;
+        private bool isActing;
+        //movement speed
+        private double speed;
+        //the arc (degrees) which the character can turn to scan
+        private double scanArc;
+        //the speed (in degrees) that the entity scans for enemies
+        private double scanSpeed;
+        //queue that holds the coordinates the npc is scheduled to move to
+        private Queue<Coord> moveQueue = new Queue<Coord>();
         //Default constructor for normal enemies
         public Enemy(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r) {
             //try to set texture to specified name
@@ -35,13 +43,64 @@ namespace Shooter.Entities {
             //Set health
             health = 4;
             maxHealth = health;
+            //set AI scan range
             visionRange = 5;
             scanRange = 5;
             pathRange = 30;
+            //tiles per second
+            speed = 5;
+            isActing = false;
         }
-        public void UpdateAI(ref Map m) {
-            if(m.sounds.Count > 0) {
-
+        public bool Move(double elapsedTime, Coord end) {
+            if (loc.X > end.X - .05 && loc.X < end.X + .05 && loc.Y > end.Y - .05 && loc.Y < end.Y + .05) {
+                return true;
+            } else {
+                Coord start = loc;
+                double x = end.X - loc.X;
+                double y = end.Y - loc.Y;
+                double h = Math.Sqrt(x * x + y * y);
+                double distance = speed * (elapsedTime / 1000);
+                loc.X += distance * x / h;
+                loc.Y += distance * y / h;
+                //account for overshoot
+                if (start.X < end.X) {
+                    if (loc.X > end.X)
+                        loc.X = end.X;
+                }
+                if (start.X > end.X) {
+                    if (loc.X < end.X)
+                        loc.X = end.X;
+                }
+                if (start.Y > end.Y) {
+                    if (loc.Y < end.Y)
+                        loc.Y = end.Y;
+                }
+                if (start.Y < end.Y) {
+                    if (loc.Y > end.Y)
+                        loc.Y = end.Y;
+                }
+                if (loc.X > end.X - .1 && loc.X < end.X + .1 && loc.Y > end.Y - .1 && loc.Y < end.Y + .1) {
+                    return true;
+                }
+                //if the coordinates are close enough, return true to indicate that moving was successful
+                else {
+                    return false;
+                }
+            }
+        }
+        public void UpdateAI(ref Map m, double elapsedTime) {
+            if (moveQueue.Count == 0) {
+                if (m.sounds.Count > 0) {
+                    //find a path to the sound and put it on move queue
+                    List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
+                    foreach (Coord c in path) {
+                        moveQueue.Enqueue(c);
+                    }
+                }
+            } else {
+                if (Move(elapsedTime, moveQueue.Peek())) {
+                    moveQueue.Dequeue();
+                }
             }
 
         }
@@ -128,12 +187,11 @@ namespace Shooter.Entities {
             }
 
             bool success = Search(nodeMap[startX, startY], new Coord(startX, startY), new Coord(endX, endY), ref nodeMap);
-            Console.WriteLine(success);
             if (success) {
                 List<Coord> path = new List<Coord>();
                 Node n = nodeMap[endX, endY];
                 while (n.parent != null) {
-                    path.Add(new Coord(n.location.X + .5, n.location.Y + .5));
+                    path.Add(new Coord(n.location.X, n.location.Y));
                     n = n.parent;
                 }
                 path.Reverse();
