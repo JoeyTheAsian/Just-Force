@@ -117,19 +117,20 @@ namespace Shooter.Entities {
                     //stay within boundaries of map and check if the tile is walkable
                     if (i > 0 && j > 0 && nodeMap[i,j].collidable == false) {
                         Node n = nodeMap[i, j];
+                        if (n.state == Node.NodeState.Closed) {
+                            //do nothing if the node is closed
+                            continue;
+                        }
                         // Already-open nodes are added to the list only if you find a shorter way to get there
                         if (n.state == Node.NodeState.Open) {
-                            //if the currently stored path to that node is longer, override with shorter path
-                            if(n.pathLength > n.GetNewPathDist(curNode)) {
+                            //if the currently stored path to that node is longer, override with shorter path+
+                            n.UpdateDist(n.location, end);
+                            if (n.pathLength > n.GetNewPathDist(curNode)) {
                                 n.parent = curNode;
                                 n.UpdateDist(n.location, end);
                                 validNodes.Add(n);
                             }
                         } 
-                        if (n.state == Node.NodeState.Closed) {
-                            //do nothing if the node is closed
-                            continue;
-                        }
                         //untested node case
                         else {
                             n.parent = curNode;

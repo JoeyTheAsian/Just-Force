@@ -9,10 +9,10 @@ namespace Shooter.Other_tools {
         public Coord location;
         public bool collidable;
         //length of the current path
-        public float pathLength;
+        public double pathLength;
         //length of straight line from node to finish
-        public float bestLength;
-        public float estLength;
+        public double bestLength;
+        public  double estLength;
         public Node parent;
         public enum NodeState {
             Untested,
@@ -24,8 +24,8 @@ namespace Shooter.Other_tools {
             collidable = col;
             location = loc;
             parent = par;
-            bestLength = (float)Math.Sqrt(Math.Pow((end.X - loc.X), 2.0) + Math.Pow((end.Y - loc.Y), 2.0));
-            pathLength = 0f;
+            bestLength = Math.Abs(end.X - loc.X) + Math.Abs(end.Y - loc.Y);
+            pathLength = 0;
             Node temp = this;
             while(temp.parent != null) {
                 pathLength += (float)Math.Sqrt(Math.Pow((temp.location.X - temp.parent.location.X), 2.0) 
@@ -36,8 +36,8 @@ namespace Shooter.Other_tools {
             state = NodeState.Untested;
         }
         public void UpdateDist(Coord loc, Coord end) {
-            bestLength = (float)Math.Sqrt(Math.Pow((end.X - loc.X), 2.0) + Math.Pow((end.Y - loc.Y), 2.0));
-            float total = 0.0f;
+            bestLength = Math.Abs(end.X - loc.X) + Math.Abs(end.Y - loc.Y);
+            double total = 0;
             Node temp = this;
             while (temp.parent != null) {
                 //get the total distance traveled along the current path
@@ -47,17 +47,16 @@ namespace Shooter.Other_tools {
             pathLength = total;
             estLength = pathLength + bestLength;
         }
-        public float GetNewPathDist(Node parent) {
+        public double GetNewPathDist(Node p) {
             float total = 0.0f;
             Node temp = this;
-            temp.parent = parent;
+            temp.parent = p;
             while (temp.parent != null) {
                 //get the total distance traveled along the new
                 total += (float)Math.Sqrt(Math.Pow((temp.location.X - temp.parent.location.X), 2.0) + Math.Pow((temp.location.Y - temp.parent.location.Y), 2.0));
                 temp = temp.parent;
             }
-            pathLength = total;
-            return pathLength;
+            return total;
         }
     }
 }
