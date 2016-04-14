@@ -321,3 +321,7 @@
 <ul><li>Implemented A* pathfinding algorithm. (Unoptimized) </li>
 <li>Temporary changes to map to test pathfinding</li>
 </ul>
+<b> 11:57 pm 4/13/16: Joey Tong</b>
+<ul><li><b>Went to hell and back</b> (Optimization and best-case debugging to A* algorithm) </li>
+<li>Partial implementation of basic movement AI and sound scanning</li>
+</ul>
