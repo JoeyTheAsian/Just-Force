@@ -317,6 +317,25 @@
 <li>Changed HUD to count total player mags and draw only first eight</li>
 <li>Added a melee weapon class and a basic stab method</li></ul>
 
+<<<<<<< HEAD
 <b> 10:04 am 4/11/2016: Connor Cummings</b>
 <ul><li>created entity array and entity string array for enimeies ane player spawn</li>
 <li> added a player spawn tool to set point of entry in level</li></ul>
+=======
+<b> 4:47 pm 4/13/16: Joey Tong</b>
+<ul><li>Implemented A* pathfinding algorithm. (Unoptimized) </li>
+<li>Temporary changes to map to test pathfinding</li>
+</ul>
+<b> 11:57 pm 4/13/16: Joey Tong</b>
+<ul><li><b>Went to hell and back</b> (Optimization and best-case debugging to A* algorithm) </li>
+<li>Partial implementation of basic movement AI and sound scanning</li>
+</ul>
+<b> 9:30 pm 4/14/16: Joey Tong</b>
+<ul><li>New Textures!</li>
+<li>Fence textures</li>
+<li>Car Textures</li>
+<li>Overhauled Concrete textures</li>
+<li>Overhauled Asphalt textures + lane lines</li>
+<li>Building textures</li>
+</ul>
+>>>>>>> origin/master

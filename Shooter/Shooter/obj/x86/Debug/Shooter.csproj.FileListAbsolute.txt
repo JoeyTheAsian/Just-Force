@@ -465,3 +465,7 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png

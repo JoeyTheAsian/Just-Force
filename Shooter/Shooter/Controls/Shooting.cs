@@ -86,6 +86,7 @@ namespace Shooter.Controls {
                             //load and enqueue sound
                             soundEffects.TryGetValue("gunshot", out TempSound);
                             curSounds.Enqueue(TempSound);
+                            m.sounds.Add(player.Loc);
                             //add the player's sound to the map's sound queue for AI to detect
                             m.sounds.Add(player.Loc);
                             c.screenShake = true;
@@ -108,6 +109,7 @@ namespace Shooter.Controls {
                             projectiles.Add(p);
                             soundEffects.TryGetValue("gunshot", out TempSound);
                             curSounds.Enqueue(TempSound);
+                            m.sounds.Add(player.Loc);
                             c.screenShake = true;
                         } else {
                             player.Weapon.Shoot(Content, player, c, m.TileSize);

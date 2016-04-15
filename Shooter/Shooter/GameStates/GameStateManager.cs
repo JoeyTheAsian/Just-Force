@@ -83,7 +83,7 @@ namespace Shooter.GameStates {
             try {
                 gameState = "Playing";
                 CheckGameState();
-            }catch(GameStateNotFoundException e) {
+            } catch(GameStateNotFoundException e) {
                 Console.WriteLine(e.ToString());
                 gameState = "";
             }
@@ -96,7 +96,6 @@ namespace Shooter.GameStates {
             Rectangle exitbuttonRect = new Rectangle((int)exitButtonPosition.X, (int)exitButtonPosition.Y, 600, 192);
 
             if (gameState == "StartMenu") {
-
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
                     try {
@@ -106,7 +105,6 @@ namespace Shooter.GameStates {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
-
                     isLoading = true;
                 }
                 //player exits game

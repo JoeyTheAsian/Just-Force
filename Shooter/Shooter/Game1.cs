@@ -130,7 +130,7 @@ namespace Shooter {
         /// all of your content.
         /// </summary>
         protected override void LoadContent() {
-
+            g.gameState = "Loading";
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -193,6 +193,7 @@ namespace Shooter {
             player.Weapon = Shooting.weapons[1];
             SkillSystem.skills[0].Obtained = true;
             SkillSystem.skills[1].Obtained = true;
+            g.gameState = "StartMenu";
         }
 
         /// <summary>
@@ -253,11 +254,11 @@ namespace Shooter {
             //when loading, updatestate returns true, use that to start new thread
             bool newThread = g.updateState(state, oldState);
             if (newThread == true) {
-                g.backgroundThread = new Thread(new ThreadStart(g.StartGame));
-                g.backgroundThread.Start();
+                g.gameState = "Loading";
+                g.StartGame();
             }
             //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
-            if (g.gameState != "Paused") {
+            if (g.gameState != "Paused" && g.gameState != "Loading") {
 
                 //CONTROLS_____________________________________
 
@@ -337,6 +338,9 @@ namespace Shooter {
                         }
                     }
                 }
+                if(enemies[0] != null) {
+                    enemies[0].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds);
+                }
                 //enqueue enemies
                 for (int k = 0; k < enemies.Count; k++) {
                     sprites.Enqueue(ParentConvertor.ToEntity(enemies[k], Content));
@@ -403,7 +407,7 @@ namespace Shooter {
                     break;
                 //____________________DRAW LOAD SCREEN____________________________________________________________________
                 case "Loading":
-                    //GameStateClass.DrawLoad(spriteBatch, g.loadscreen, g.loadscreenPos);
+                    g.DrawLoad(spriteBatch);
                     spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
                     break;
                 //____________________DRAW PAUSE MENU____________________________________________________________________
