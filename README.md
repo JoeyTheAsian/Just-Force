@@ -325,3 +325,11 @@
 <ul><li><b>Went to hell and back</b> (Optimization and best-case debugging to A* algorithm) </li>
 <li>Partial implementation of basic movement AI and sound scanning</li>
 </ul>
+<b> 9:30 pm 4/14/16: Joey Tong</b>
+<ul><li>New Textures!</li>
+<li>Fence textures</li>
+<li>Car Textures</li>
+<li>Overhauled Concrete textures</li>
+<li>Overhauled Asphalt textures + lane lines</li>
+<li>Building textures</li>
+</ul>
