@@ -28,12 +28,14 @@ namespace MapEditor
         //currently stored texture swatch on the brush
         string curType;
         Bitmap curBrush;
+        Bitmap curBrushR;//rotated current brush
         string curTool = "";
         //string name for texture
         string textString;
         Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner; //texture bitmaps
         Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole; //gameobject bitmaps
-        Bitmap player; //entity bitmaps
+        Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
+        Bitmap player, enemy, riotEnemy; //entity bitmaps
         //Tools
         int mousePosX = -1;
         int mousePosY = -1;
@@ -175,19 +177,6 @@ namespace MapEditor
             g.DrawImage(concreteEdge, 0, 0, 50, 50);
         }
 
-        //building side
-        private void Building_Paint(object sender, PaintEventArgs e) {
-            building = new Bitmap("TileTextures/Building.png");
-            Graphics g = e.Graphics;
-            g.DrawImage(building, 0, 0, 50, 50);
-        }
-
-        //building corner
-        private void BuildingCorner_Paint(object sender, PaintEventArgs e) {
-            buildingCorner = new Bitmap("TileTextures/BuildingCorner.png");
-            Graphics g = e.Graphics;
-            g.DrawImage(buildingCorner, 0, 0, 50, 50);
-        }
         //________________________________________________________________________________________
         #endregion
 
@@ -226,6 +215,62 @@ namespace MapEditor
             fencePole = new Bitmap("GameObjects/fence_pole.png");
             Graphics g = e.Graphics;
             g.DrawImage(fencePole, 0, 0, 50, 50);
+        }
+
+        //car part 1
+        private void Car1_Paint(object sender, PaintEventArgs e) {
+            car_1 = new Bitmap("GameObjects/Car/car1.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(car_1, 0, 0, 50, 50);
+        }
+
+        //car part 2
+        private void Car2_Paint(object sender, PaintEventArgs e) {
+            car_2 = new Bitmap("GameObjects/Car/car2.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(car_2, 0, 0, 50, 50);
+        }
+
+        //car part 3
+        private void Car3_Paint(object sender, PaintEventArgs e) {
+            car_3 = new Bitmap("GameObjects/Car/car3.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(car_3, 0, 0, 50, 50);
+        }
+
+        //car part 4
+        private void Car4_Paint(object sender, PaintEventArgs e) {
+            car_4 = new Bitmap("GameObjects/Car/car4.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(car_4, 0, 0, 50, 50);
+        }
+
+        //car part 5
+        private void Car5_Paint(object sender, PaintEventArgs e) {
+            car_5 = new Bitmap("GameObjects/Car/car5.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(car_5, 0, 0, 50, 50);
+        }
+
+        //car part 6
+        private void Car6_Paint(object sender, PaintEventArgs e) {
+            car_6 = new Bitmap("GameObjects/Car/car6.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(car_6, 0, 0, 50, 50);
+        }
+        
+        //building side
+        private void Building_Paint(object sender, PaintEventArgs e) {
+            building = new Bitmap("GameObjects/Building.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(building, 0, 0, 50, 50);
+        }
+
+        //building corner
+        private void BuildingCorner_Paint(object sender, PaintEventArgs e) {
+            buildingCorner = new Bitmap("GameObjects/BuildingCorner.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(buildingCorner, 0, 0, 50, 50);
         }
         //_________________________________________________________________________________________
         #endregion
@@ -273,20 +318,6 @@ namespace MapEditor
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
-
-        private void Building_MouseClick(object sender, MouseEventArgs e) {
-            curBrush = building;
-            curType = "texture";
-            textString = "Building";
-            pictureBox2.Invalidate();
-        }
-
-        private void BuildingCorner_MouseClick(object sender, MouseEventArgs e) {
-            curBrush = buildingCorner;
-            curType = "texture";
-            textString = "BuildingCorner";
-            pictureBox2.Invalidate();
-        }
         //____________________________________________________________________________________________
         #endregion
 
@@ -324,6 +355,62 @@ namespace MapEditor
             curBrush = fencePole;
             curType = "object";
             textString = "FencePole";
+            pictureBox2.Invalidate();
+        }
+
+        private void Car1_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = car_1;
+            curType = "object";
+            textString = "Car1";
+            pictureBox2.Invalidate();
+        }
+
+        private void Car2_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = car_2;
+            curType = "object";
+            textString = "Car2";
+            pictureBox2.Invalidate();
+        }
+
+        private void Car3_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = car_3;
+            curType = "object";
+            textString = "Car3";
+            pictureBox2.Invalidate();
+        }
+
+        private void Car4_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = car_4;
+            curType = "object";
+            textString = "Car4";
+            pictureBox2.Invalidate();
+        }
+
+        private void Car5_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = car_5;
+            curType = "object";
+            textString = "Car5";
+            pictureBox2.Invalidate();
+        }
+
+        private void Car6_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = car_6;
+            curType = "object";
+            textString = "Car6";
+            pictureBox2.Invalidate();
+        }
+
+        private void Building_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = building;
+            curType = "object";
+            textString = "Building";
+            pictureBox2.Invalidate();
+        }
+
+        private void BuildingCorner_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = buildingCorner;
+            curType = "object";
+            textString = "BuildingCorner";
             pictureBox2.Invalidate();
         }
         //__________________________________________________________________________________________
@@ -368,11 +455,39 @@ namespace MapEditor
         private void PlayerSpawn_MouseClick(object sender, MouseEventArgs e) {
             player = new Bitmap("Entities/Pistol_Player.png");
             curBrush = player;
+            curType = "Entity";
             curTool = "Player_entity";
             textString = "Player";
             pictureBox2.Invalidate();
         }
 
+        //enemy spawn
+        private void EnemySpawn_MouseClick(object sender, MouseEventArgs e) {
+            enemy = new Bitmap("Entities/Pistol_Player.png");
+            curBrush = enemy;
+            curType = "Entity";
+            curTool = "Enemy_entity";
+            textString = "Enemy";
+            pictureBox2.Invalidate();
+        }
+
+        //riot enemy spawn
+        private void RiotEnemy_MouseClick(object sender, MouseEventArgs e) {
+            riotEnemy = new Bitmap("Entities/Pistol_Player.png");
+            curBrush = riotEnemy;
+            curType = "Entity";
+            curTool = "RiotEnemy_entity";
+            textString = "RiotEnemy";
+            pictureBox2.Invalidate();
+        }
+
+        //rotate tool
+        private void Rotate_MouseClick(object sender, MouseEventArgs e) {
+            curBrush.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+            pictureBox2.Invalidate();
+        }
+        
         #endregion
 
         #region Paint Methods
@@ -514,7 +629,21 @@ namespace MapEditor
             if(curTool == "Line") {
 
             }
-            if(curTool == "Player_entity") {
+            if(curTool == "Player_entity") { //player entity
+                mousePosX = (int)(e.X * 1.0 / tlWidth);
+                mousePosY = (int)(e.Y * 1.0 / tlHeight);
+
+                entityMap[mousePosX, mousePosY] = curBrush;
+                entityString[mousePosX, mousePosY] = textString;
+            }
+            if (curTool == "Enemy_entity") { //enemy entity
+                mousePosX = (int)(e.X * 1.0 / tlWidth);
+                mousePosY = (int)(e.Y * 1.0 / tlHeight);
+
+                entityMap[mousePosX, mousePosY] = curBrush;
+                entityString[mousePosX, mousePosY] = textString;
+            }
+            if (curTool == "RiotEnemy_entity") { //riot enemy entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
                 mousePosY = (int)(e.Y * 1.0 / tlHeight);
 

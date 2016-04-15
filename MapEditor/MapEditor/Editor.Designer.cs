@@ -31,6 +31,9 @@
             this.ConcreteCornerTex = new System.Windows.Forms.Button();
             this.ConcreteSideTex = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.RoadLaneEnd = new System.Windows.Forms.Button();
+            this.Building = new System.Windows.Forms.Button();
+            this.BuildingCorner = new System.Windows.Forms.Button();
             this.RowsInput = new System.Windows.Forms.TextBox();
             this.Rows = new System.Windows.Forms.Label();
             this.ColumnsInput = new System.Windows.Forms.TextBox();
@@ -56,18 +59,26 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.NoTexture = new System.Windows.Forms.Button();
             this.TrashCan = new System.Windows.Forms.Button();
+            this.FenceCorner = new System.Windows.Forms.Button();
+            this.FenceLink = new System.Windows.Forms.Button();
+            this.FencePole = new System.Windows.Forms.Button();
+            this.Car1 = new System.Windows.Forms.Button();
+            this.Car2 = new System.Windows.Forms.Button();
+            this.Car3 = new System.Windows.Forms.Button();
+            this.Car4 = new System.Windows.Forms.Button();
+            this.Car5 = new System.Windows.Forms.Button();
+            this.Car6 = new System.Windows.Forms.Button();
             this.Fill = new System.Windows.Forms.Button();
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Pen = new System.Windows.Forms.Button();
             this.Line = new System.Windows.Forms.Button();
+            this.FlipX = new System.Windows.Forms.Button();
+            this.FlipY = new System.Windows.Forms.Button();
+            this.EnemySpawn = new System.Windows.Forms.Button();
             this.PlayerSpawn = new System.Windows.Forms.Button();
-            this.RoadLaneEnd = new System.Windows.Forms.Button();
-            this.Building = new System.Windows.Forms.Button();
-            this.BuildingCorner = new System.Windows.Forms.Button();
-            this.FenceCorner = new System.Windows.Forms.Button();
-            this.FenceLink = new System.Windows.Forms.Button();
-            this.FencePole = new System.Windows.Forms.Button();
+            this.Rotate = new System.Windows.Forms.Button();
+            this.RiotEnemy = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -100,7 +111,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -108,8 +119,6 @@
             this.tableLayoutPanel1.Controls.Add(this.ConcreteSideTex, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.button8, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.RoadLaneEnd, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.Building, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.BuildingCorner, 2, 1);
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -125,7 +134,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(321, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(339, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -199,10 +208,49 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 50);
+            this.button8.Size = new System.Drawing.Size(68, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
+            // 
+            // RoadLaneEnd
+            // 
+            this.RoadLaneEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RoadLaneEnd.Location = new System.Drawing.Point(3, 56);
+            this.RoadLaneEnd.Margin = new System.Windows.Forms.Padding(0);
+            this.RoadLaneEnd.Name = "RoadLaneEnd";
+            this.RoadLaneEnd.Size = new System.Drawing.Size(50, 50);
+            this.RoadLaneEnd.TabIndex = 6;
+            this.RoadLaneEnd.Text = "Road lane end";
+            this.RoadLaneEnd.UseVisualStyleBackColor = true;
+            this.RoadLaneEnd.Paint += new System.Windows.Forms.PaintEventHandler(this.RoadLaneEnd_Paint);
+            this.RoadLaneEnd.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RoadLaneEnd_MouseClick);
+            // 
+            // Building
+            // 
+            this.Building.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Building.Location = new System.Drawing.Point(268, 3);
+            this.Building.Margin = new System.Windows.Forms.Padding(0);
+            this.Building.Name = "Building";
+            this.Building.Size = new System.Drawing.Size(50, 50);
+            this.Building.TabIndex = 7;
+            this.Building.Text = "Building";
+            this.Building.UseVisualStyleBackColor = true;
+            this.Building.Paint += new System.Windows.Forms.PaintEventHandler(this.Building_Paint);
+            this.Building.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Building_MouseClick);
+            // 
+            // BuildingCorner
+            // 
+            this.BuildingCorner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
+            this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
+            this.BuildingCorner.Name = "BuildingCorner";
+            this.BuildingCorner.Size = new System.Drawing.Size(50, 50);
+            this.BuildingCorner.TabIndex = 8;
+            this.BuildingCorner.Text = "Building Corner";
+            this.BuildingCorner.UseVisualStyleBackColor = true;
+            this.BuildingCorner.Paint += new System.Windows.Forms.PaintEventHandler(this.BuildingCorner_Paint);
+            this.BuildingCorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BuildingCorner_MouseClick);
             // 
             // RowsInput
             // 
@@ -443,12 +491,20 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceLink, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.FencePole, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Car1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.Car2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.BuildingCorner, 5, 1);
+            this.tableLayoutPanel2.Controls.Add(this.Building, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Car3, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.Car4, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Car5, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Car6, 2, 2);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -464,7 +520,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -492,6 +548,123 @@
             this.TrashCan.UseVisualStyleBackColor = true;
             this.TrashCan.Paint += new System.Windows.Forms.PaintEventHandler(this.TrashCan_Paint);
             this.TrashCan.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrashCan_MouseClick);
+            // 
+            // FenceCorner
+            // 
+            this.FenceCorner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FenceCorner.Location = new System.Drawing.Point(109, 3);
+            this.FenceCorner.Margin = new System.Windows.Forms.Padding(0);
+            this.FenceCorner.Name = "FenceCorner";
+            this.FenceCorner.Size = new System.Drawing.Size(50, 50);
+            this.FenceCorner.TabIndex = 2;
+            this.FenceCorner.Text = "fence corner";
+            this.FenceCorner.UseVisualStyleBackColor = true;
+            this.FenceCorner.Paint += new System.Windows.Forms.PaintEventHandler(this.FenceCorner_Paint);
+            this.FenceCorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FenceCorner_MouseClick);
+            // 
+            // FenceLink
+            // 
+            this.FenceLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FenceLink.Location = new System.Drawing.Point(162, 3);
+            this.FenceLink.Margin = new System.Windows.Forms.Padding(0);
+            this.FenceLink.Name = "FenceLink";
+            this.FenceLink.Size = new System.Drawing.Size(50, 50);
+            this.FenceLink.TabIndex = 3;
+            this.FenceLink.Text = "fence link";
+            this.FenceLink.UseVisualStyleBackColor = true;
+            this.FenceLink.Paint += new System.Windows.Forms.PaintEventHandler(this.FenceLink_Paint);
+            this.FenceLink.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FenceLink_MouseClick);
+            // 
+            // FencePole
+            // 
+            this.FencePole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FencePole.Location = new System.Drawing.Point(215, 3);
+            this.FencePole.Margin = new System.Windows.Forms.Padding(0);
+            this.FencePole.Name = "FencePole";
+            this.FencePole.Size = new System.Drawing.Size(50, 50);
+            this.FencePole.TabIndex = 4;
+            this.FencePole.Text = "fence poles";
+            this.FencePole.UseVisualStyleBackColor = true;
+            this.FencePole.Paint += new System.Windows.Forms.PaintEventHandler(this.FencePole_Paint);
+            this.FencePole.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FencePole_MouseClick);
+            // 
+            // Car1
+            // 
+            this.Car1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Car1.Location = new System.Drawing.Point(3, 56);
+            this.Car1.Margin = new System.Windows.Forms.Padding(0);
+            this.Car1.Name = "Car1";
+            this.Car1.Size = new System.Drawing.Size(50, 50);
+            this.Car1.TabIndex = 5;
+            this.Car1.Text = "car1";
+            this.Car1.UseVisualStyleBackColor = true;
+            this.Car1.Paint += new System.Windows.Forms.PaintEventHandler(this.Car1_Paint);
+            this.Car1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car1_MouseClick);
+            // 
+            // Car2
+            // 
+            this.Car2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Car2.Location = new System.Drawing.Point(56, 56);
+            this.Car2.Margin = new System.Windows.Forms.Padding(0);
+            this.Car2.Name = "Car2";
+            this.Car2.Size = new System.Drawing.Size(50, 50);
+            this.Car2.TabIndex = 6;
+            this.Car2.Text = "car2";
+            this.Car2.UseVisualStyleBackColor = true;
+            this.Car2.Paint += new System.Windows.Forms.PaintEventHandler(this.Car2_Paint);
+            this.Car2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car2_MouseClick);
+            // 
+            // Car3
+            // 
+            this.Car3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Car3.Location = new System.Drawing.Point(109, 56);
+            this.Car3.Margin = new System.Windows.Forms.Padding(0);
+            this.Car3.Name = "Car3";
+            this.Car3.Size = new System.Drawing.Size(50, 50);
+            this.Car3.TabIndex = 7;
+            this.Car3.Text = "car3";
+            this.Car3.UseVisualStyleBackColor = true;
+            this.Car3.Paint += new System.Windows.Forms.PaintEventHandler(this.Car3_Paint);
+            this.Car3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car3_MouseClick);
+            // 
+            // Car4
+            // 
+            this.Car4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Car4.Location = new System.Drawing.Point(3, 109);
+            this.Car4.Margin = new System.Windows.Forms.Padding(0);
+            this.Car4.Name = "Car4";
+            this.Car4.Size = new System.Drawing.Size(50, 50);
+            this.Car4.TabIndex = 8;
+            this.Car4.Text = "car4";
+            this.Car4.UseVisualStyleBackColor = true;
+            this.Car4.Paint += new System.Windows.Forms.PaintEventHandler(this.Car4_Paint);
+            this.Car4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car4_MouseClick);
+            // 
+            // Car5
+            // 
+            this.Car5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Car5.Location = new System.Drawing.Point(56, 109);
+            this.Car5.Margin = new System.Windows.Forms.Padding(0);
+            this.Car5.Name = "Car5";
+            this.Car5.Size = new System.Drawing.Size(50, 50);
+            this.Car5.TabIndex = 9;
+            this.Car5.Text = "car5";
+            this.Car5.UseVisualStyleBackColor = true;
+            this.Car5.Paint += new System.Windows.Forms.PaintEventHandler(this.Car5_Paint);
+            this.Car5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car5_MouseClick);
+            // 
+            // Car6
+            // 
+            this.Car6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Car6.Location = new System.Drawing.Point(109, 109);
+            this.Car6.Margin = new System.Windows.Forms.Padding(0);
+            this.Car6.Name = "Car6";
+            this.Car6.Size = new System.Drawing.Size(50, 50);
+            this.Car6.TabIndex = 10;
+            this.Car6.Text = "car6";
+            this.Car6.UseVisualStyleBackColor = true;
+            this.Car6.Paint += new System.Windows.Forms.PaintEventHandler(this.Car6_Paint);
+            this.Car6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car6_MouseClick);
             // 
             // Fill
             // 
@@ -540,6 +713,30 @@
             this.Line.UseVisualStyleBackColor = true;
             this.Line.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Line_MouseClick);
             // 
+            // FlipX
+            // 
+            this.FlipX.Location = new System.Drawing.Point(0, 0);
+            this.FlipX.Name = "FlipX";
+            this.FlipX.Size = new System.Drawing.Size(75, 23);
+            this.FlipX.TabIndex = 1;
+            // 
+            // FlipY
+            // 
+            this.FlipY.Location = new System.Drawing.Point(0, 0);
+            this.FlipY.Name = "FlipY";
+            this.FlipY.Size = new System.Drawing.Size(75, 23);
+            this.FlipY.TabIndex = 0;
+            // 
+            // EnemySpawn
+            // 
+            this.EnemySpawn.Location = new System.Drawing.Point(883, 216);
+            this.EnemySpawn.Name = "EnemySpawn";
+            this.EnemySpawn.Size = new System.Drawing.Size(65, 50);
+            this.EnemySpawn.TabIndex = 27;
+            this.EnemySpawn.Text = "Enemy Spawn";
+            this.EnemySpawn.UseVisualStyleBackColor = true;
+            this.EnemySpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EnemySpawn_MouseClick);
+            // 
             // PlayerSpawn
             // 
             this.PlayerSpawn.Location = new System.Drawing.Point(883, 160);
@@ -550,83 +747,25 @@
             this.PlayerSpawn.UseVisualStyleBackColor = true;
             this.PlayerSpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PlayerSpawn_MouseClick);
             // 
-            // RoadLaneEnd
+            // Rotate
             // 
-            this.RoadLaneEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RoadLaneEnd.Location = new System.Drawing.Point(3, 56);
-            this.RoadLaneEnd.Margin = new System.Windows.Forms.Padding(0);
-            this.RoadLaneEnd.Name = "RoadLaneEnd";
-            this.RoadLaneEnd.Size = new System.Drawing.Size(50, 50);
-            this.RoadLaneEnd.TabIndex = 6;
-            this.RoadLaneEnd.Text = "Road lane end";
-            this.RoadLaneEnd.UseVisualStyleBackColor = true;
-            this.RoadLaneEnd.Paint += new System.Windows.Forms.PaintEventHandler(this.RoadLaneEnd_Paint);
-            this.RoadLaneEnd.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RoadLaneEnd_MouseClick);
+            this.Rotate.Location = new System.Drawing.Point(883, 373);
+            this.Rotate.Name = "Rotate";
+            this.Rotate.Size = new System.Drawing.Size(65, 50);
+            this.Rotate.TabIndex = 28;
+            this.Rotate.Text = "Rotate";
+            this.Rotate.UseVisualStyleBackColor = true;
+            this.Rotate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Rotate_MouseClick);
             // 
-            // Building
+            // RiotEnemy
             // 
-            this.Building.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Building.Location = new System.Drawing.Point(56, 56);
-            this.Building.Margin = new System.Windows.Forms.Padding(0);
-            this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(50, 50);
-            this.Building.TabIndex = 7;
-            this.Building.Text = "Building";
-            this.Building.UseVisualStyleBackColor = true;
-            this.Building.Paint += new System.Windows.Forms.PaintEventHandler(this.Building_Paint);
-            this.Building.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Building_MouseClick);
-            // 
-            // BuildingCorner
-            // 
-            this.BuildingCorner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BuildingCorner.Location = new System.Drawing.Point(109, 56);
-            this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
-            this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(50, 50);
-            this.BuildingCorner.TabIndex = 8;
-            this.BuildingCorner.Text = "Building Corner";
-            this.BuildingCorner.UseVisualStyleBackColor = true;
-            this.BuildingCorner.Paint += new System.Windows.Forms.PaintEventHandler(this.BuildingCorner_Paint);
-            this.BuildingCorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BuildingCorner_MouseClick);
-            // 
-            // FenceCorner
-            // 
-            this.FenceCorner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FenceCorner.Location = new System.Drawing.Point(109, 3);
-            this.FenceCorner.Margin = new System.Windows.Forms.Padding(0);
-            this.FenceCorner.Name = "FenceCorner";
-            this.FenceCorner.Size = new System.Drawing.Size(50, 50);
-            this.FenceCorner.TabIndex = 2;
-            this.FenceCorner.Text = "fence corner";
-            this.FenceCorner.UseVisualStyleBackColor = true;
-            this.FenceCorner.Paint += new System.Windows.Forms.PaintEventHandler(this.FenceCorner_Paint);
-            this.FenceCorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FenceCorner_MouseClick);
-            // 
-            // FenceLink
-            // 
-            this.FenceLink.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FenceLink.Location = new System.Drawing.Point(162, 3);
-            this.FenceLink.Margin = new System.Windows.Forms.Padding(0);
-            this.FenceLink.Name = "FenceLink";
-            this.FenceLink.Size = new System.Drawing.Size(50, 50);
-            this.FenceLink.TabIndex = 3;
-            this.FenceLink.Text = "fence link";
-            this.FenceLink.UseVisualStyleBackColor = true;
-            this.FenceLink.Paint += new System.Windows.Forms.PaintEventHandler(this.FenceLink_Paint);
-            this.FenceLink.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FenceLink_MouseClick);
-            // 
-            // FencePole
-            // 
-            this.FencePole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FencePole.Location = new System.Drawing.Point(215, 3);
-            this.FencePole.Margin = new System.Windows.Forms.Padding(0);
-            this.FencePole.Name = "FencePole";
-            this.FencePole.Size = new System.Drawing.Size(50, 50);
-            this.FencePole.TabIndex = 4;
-            this.FencePole.Text = "fence poles";
-            this.FencePole.UseVisualStyleBackColor = true;
-            this.FencePole.Paint += new System.Windows.Forms.PaintEventHandler(this.FencePole_Paint);
-            this.FencePole.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FencePole_MouseClick);
+            this.RiotEnemy.Location = new System.Drawing.Point(883, 272);
+            this.RiotEnemy.Name = "RiotEnemy";
+            this.RiotEnemy.Size = new System.Drawing.Size(65, 50);
+            this.RiotEnemy.TabIndex = 29;
+            this.RiotEnemy.Text = "Riot enemy spawn";
+            this.RiotEnemy.UseVisualStyleBackColor = true;
+            this.RiotEnemy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RiotEnemy_MouseClick);
             // 
             // Editor
             // 
@@ -634,6 +773,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.Controls.Add(this.RiotEnemy);
+            this.Controls.Add(this.Rotate);
+            this.Controls.Add(this.FlipY);
+            this.Controls.Add(this.FlipX);
+            this.Controls.Add(this.EnemySpawn);
             this.Controls.Add(this.PlayerSpawn);
             this.Controls.Add(this.Line);
             this.Controls.Add(this.Pen);
@@ -721,13 +865,24 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Pen;
         private System.Windows.Forms.Button Line;
-        private System.Windows.Forms.Button PlayerSpawn;
         private System.Windows.Forms.Button RoadLaneEnd;
         private System.Windows.Forms.Button Building;
         private System.Windows.Forms.Button BuildingCorner;
         private System.Windows.Forms.Button FenceCorner;
         private System.Windows.Forms.Button FenceLink;
         private System.Windows.Forms.Button FencePole;
+        private System.Windows.Forms.Button Car1;
+        private System.Windows.Forms.Button Car2;
+        private System.Windows.Forms.Button Car3;
+        private System.Windows.Forms.Button Car4;
+        private System.Windows.Forms.Button Car5;
+        private System.Windows.Forms.Button Car6;
+        private System.Windows.Forms.Button FlipX;
+        private System.Windows.Forms.Button FlipY;
+        private System.Windows.Forms.Button EnemySpawn;
+        private System.Windows.Forms.Button PlayerSpawn;
+        private System.Windows.Forms.Button Rotate;
+        private System.Windows.Forms.Button RiotEnemy;
     }
 }
 
