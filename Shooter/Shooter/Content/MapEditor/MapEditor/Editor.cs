@@ -31,8 +31,8 @@ namespace MapEditor
         string curTool = "";
         //string name for texture
         string textString;
-        Bitmap lane, asphalt, concrete, concreteCorner, concreteEdge; //texture bitmaps
-        Bitmap no_texture, trash_can; //gameobject bitmaps
+        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner; //texture bitmaps
+        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole; //gameobject bitmaps
         Bitmap player; //entity bitmaps
         //Tools
         int mousePosX = -1;
@@ -133,50 +133,99 @@ namespace MapEditor
 
         #region Paint events to show texture image on buttons
 
+        //road lanes
         private void RoadLane_Paint(object sender, PaintEventArgs e) {
             lane = new Bitmap("TileTextures/LaneLine.png");
             Graphics g = e.Graphics;
             g.DrawImage(lane, 0, 0, 50, 50);
         }
 
+        //end of road lanes
+        private void RoadLaneEnd_Paint(object sender, PaintEventArgs e) {
+            laneEnd = new Bitmap("TileTextures/LaneLineEnd.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(laneEnd, 0, 0, 50, 50);
+        }
+
+        //asphalt
         private void AsphaltTex_Paint(object sender, PaintEventArgs e) {
             asphalt = new Bitmap("TileTextures/Asphalt.png");
             Graphics g = e.Graphics;
             g.DrawImage(asphalt, 0, 0, 50, 50);
         }
         
+        //concrete
         private void ConcreteTex_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
             Graphics g = e.Graphics;
             g.DrawImage(concrete, 0, 0, 50, 50);
         }
 
+        //concrete corner
         private void ConcreteCornerTex_Paint(object sender, PaintEventArgs e) {
             concreteCorner = new Bitmap("TileTextures/ConcreteCorner.png");
             Graphics g = e.Graphics;
             g.DrawImage(concreteCorner, 0, 0, 50, 50);
         }
 
+        //concrete side
         private void ConcreteSideTex_Paint(object sender, PaintEventArgs e) {
             concreteEdge = new Bitmap("TileTextures/ConcreteEdge.png");
             Graphics g = e.Graphics;
             g.DrawImage(concreteEdge, 0, 0, 50, 50);
+        }
+
+        //building side
+        private void Building_Paint(object sender, PaintEventArgs e) {
+            building = new Bitmap("TileTextures/Building.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(building, 0, 0, 50, 50);
+        }
+
+        //building corner
+        private void BuildingCorner_Paint(object sender, PaintEventArgs e) {
+            buildingCorner = new Bitmap("TileTextures/BuildingCorner.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(buildingCorner, 0, 0, 50, 50);
         }
         //________________________________________________________________________________________
         #endregion
 
         #region Paint events to show game objects on buttons
 
+        //no texture
         private void NoTexture_Paint(object sender, PaintEventArgs e) {
             no_texture = new Bitmap("GameObjects/NoTexture.png");
             Graphics g = e.Graphics;
             g.DrawImage(no_texture, 0, 0, 50, 50);
         }
 
+        //trash can object
         private void TrashCan_Paint(object sender, PaintEventArgs e) {
             trash_can = new Bitmap("GameObjects/Trash_Can.png");
             Graphics g = e.Graphics;
             g.DrawImage(trash_can, 0, 0, 50, 50);
+        }
+
+        //fence corner objects
+        private void FenceCorner_Paint(object sender, PaintEventArgs e) {
+            fenceCorner = new Bitmap("GameObjects/fence_corner.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(fenceCorner, 0, 0, 50, 50);
+        }
+
+        //fence link objects
+        private void FenceLink_Paint(object sender, PaintEventArgs e) {
+            fenceLink = new Bitmap("GameObjects/fence_links.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(fenceLink, 0, 0, 50, 50);
+        }
+
+        //fence poles
+        private void FencePole_Paint(object sender, PaintEventArgs e) {
+            fencePole = new Bitmap("GameObjects/fence_pole.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(fencePole, 0, 0, 50, 50);
         }
         //_________________________________________________________________________________________
         #endregion
@@ -187,6 +236,13 @@ namespace MapEditor
             curBrush = lane;
             curType = "texture";
             textString = "LaneLine";
+            pictureBox2.Invalidate();
+        }
+
+        private void RoadLaneEnd_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = laneEnd;
+            curType = "texture";
+            textString = "LaneLineEnd";
             pictureBox2.Invalidate();
         }
 
@@ -217,6 +273,20 @@ namespace MapEditor
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
+
+        private void Building_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = building;
+            curType = "texture";
+            textString = "Building";
+            pictureBox2.Invalidate();
+        }
+
+        private void BuildingCorner_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = buildingCorner;
+            curType = "texture";
+            textString = "BuildingCorner";
+            pictureBox2.Invalidate();
+        }
         //____________________________________________________________________________________________
         #endregion
 
@@ -233,6 +303,27 @@ namespace MapEditor
             curBrush = trash_can;
             curType = "object";
             textString = "TrashCan";
+            pictureBox2.Invalidate();
+        }
+
+        private void FenceCorner_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = fenceCorner;
+            curType = "object";
+            textString = "FenceCorner";
+            pictureBox2.Invalidate();
+        }
+
+        private void FenceLink_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = fenceLink;
+            curType = "object";
+            textString = "FenceLink";
+            pictureBox2.Invalidate();
+        }
+
+        private void FencePole_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = fencePole;
+            curType = "object";
+            textString = "FencePole";
             pictureBox2.Invalidate();
         }
         //__________________________________________________________________________________________
@@ -258,7 +349,7 @@ namespace MapEditor
         private void Line_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Line";
         }
-
+        
         //Pen tool
         private void Pen_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Pen";
@@ -272,7 +363,7 @@ namespace MapEditor
             textString = null;
             pictureBox2.Invalidate();
         }
-
+        
         //Player spawn
         private void PlayerSpawn_MouseClick(object sender, MouseEventArgs e) {
             player = new Bitmap("Entities/Pistol_Player.png");

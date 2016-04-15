@@ -339,3 +339,6 @@
 <li>Building textures</li>
 </ul>
 >>>>>>> origin/master
+
+<b> 12:00 am 4/15/2016: Connor Cummings</b>
+<ul><li> created buttons for new textures and game objects</li></ul>
