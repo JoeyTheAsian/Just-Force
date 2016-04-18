@@ -171,6 +171,7 @@ namespace Shooter.Controls {
                 ammo.Remove(0);
                 ammo.Sort();
                 ammo.Reverse();
+                isReloading = true;
             }
         }
         //Checks if gun is reloading
