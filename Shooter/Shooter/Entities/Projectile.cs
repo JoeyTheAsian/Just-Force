@@ -14,6 +14,13 @@ namespace Shooter.Entities {
         protected double range;
         protected double velocity;
         protected double distTraveled;
+        protected bool isRifleRound;
+
+        public bool IsRifleRound {
+            get { return isRifleRound; }
+            set { isRifleRound = value; }
+        }
+
         public Projectile(ContentManager content) : base(content) {
             loc = new Coord();
             entTexture = content.Load<Texture2D>("NoTexture");
@@ -21,6 +28,7 @@ namespace Shooter.Entities {
             direction = 0.0;
             velocity = .50;
             range = 10.0;
+            isRifleRound = false;
         }
 
         //parameters: pass in game content manager, x coord, y coord, texture file name
@@ -38,9 +46,10 @@ namespace Shooter.Entities {
             velocity = .5;
             direction = 0.0;
             range = 10.0;
+            isRifleRound = false;
         }
         //constructor: x coord, y coord, direction, velocity, texture file, collision
-        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r, double rng) : base(content, x, y, dir, t, c, r) {
+        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r, double rng, bool rifle) : base(content, x, y, dir, t, c, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -59,6 +68,7 @@ namespace Shooter.Entities {
             }
             velocity = v;
             range = rng;
+            isRifleRound = rifle;
         }
         public void UpdatePos(double timeElapsed, int tileSize) {
             double x = (Math.Cos(Direction) * velocity * timeElapsed) / tileSize;

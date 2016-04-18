@@ -37,6 +37,8 @@ namespace Shooter.Controls {
         protected int ammoCount;
         //Weapon's damage
         protected int damage;
+        //Weapon's range
+        protected double range;
 
         private Random r = new Random();
         //default weapon is a pistol
@@ -57,6 +59,7 @@ namespace Shooter.Controls {
             reloadTime = 1800.0;
             reloadTimer = 0;
             damage = 2;
+            range = 7;
         }
 
         public Weapon(ContentManager content, List<int> a, bool au, double spr, int fr, string t, int d) {
@@ -69,9 +72,10 @@ namespace Shooter.Controls {
             reloadTime = 1800.0;
             reloadTimer = 0;
             damage = d;
+            range = 7;
         }
 
-        public Weapon(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime) {
+        public Weapon(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime, int rng) {
             fireRate = fr;
             auto = au;
             spread = spr;
@@ -86,6 +90,7 @@ namespace Shooter.Controls {
             reloadTime = rlTime;
             reloadTimer = 0;
             damage = d;
+            range = rng;
         }
 
         public int FireRate {
@@ -141,8 +146,17 @@ namespace Shooter.Controls {
         public virtual Projectile Shoot(ContentManager content, Character p, Camera c, int tileSize) {
             timeSinceLastShot = 0;
             if (CheckAmmo()) {
-                Projectile proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 3.0, "Bullet", true,
-                                                new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), 10.0);
+                Projectile proj = null;
+                if (name.Equals("Rifle")) {
+                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 5, "BulletTwo", true,
+                                                   new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), range, true);
+                } else if (name.Equals("Pistol")) {
+                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 5, "Bullet", true,
+                                                   new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), range, false);
+                } else {
+                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 5, "BulletTwo", true,
+                                                    new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), range, false);
+                }
                 ammo[0]--;
                 return proj;
             } else {

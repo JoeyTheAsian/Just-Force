@@ -323,7 +323,7 @@ namespace Shooter {
                         i--;
                     } else {
                         projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit")) {
+                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit") && !projectiles[i].IsRifleRound) {
                             projectiles.RemoveAt(i);
                             i--;
                             break;

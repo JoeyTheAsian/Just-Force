@@ -13,8 +13,7 @@ namespace Shooter.MapClasses {
         public bool collision;
         protected Coord loc;
 
-        public Texture2D ObjTexture
-        {
+        public Texture2D ObjTexture {
             get { return objTexture; }
         }
         public MapObject(ContentManager content, int x, int y) {
@@ -25,10 +24,10 @@ namespace Shooter.MapClasses {
         public MapObject(ContentManager content, bool c, string texture, int x, int y) {
             try {
                 objTexture = content.Load<Texture2D>(texture);
-            }catch(ContentLoadException e) {
+            } catch (ContentLoadException e) {
                 Console.WriteLine(e.ToString());
                 Console.WriteLine("File Not Found: " + texture + ", Defaulting to NoTexture");
-                objTexture = content.Load<Texture2D>("EmptyTile");
+                objTexture = content.Load<Texture2D>("NoTexture");
             }
             collision = c;
             loc = new Coord(x, y);

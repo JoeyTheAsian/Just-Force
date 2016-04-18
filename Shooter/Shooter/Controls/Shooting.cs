@@ -54,8 +54,8 @@ namespace Shooter.Controls {
                 */
 
         //Static array for the weapons in the game
-        public static Weapon[] weapons = new Weapon[3];
-        public static Texture2D[] weaponsFaces = new Texture2D[3];
+        public static Weapon[] weapons = new Weapon[5];
+        public static Texture2D[] weaponsFaces = new Texture2D[5];
 
         //Creates the wepaons that are int the game
         public static void CreateWeapons(ContentManager Content) {
@@ -66,8 +66,14 @@ namespace Shooter.Controls {
             weapons[1] = new Weapon(Content);
             weaponsFaces[1] = Content.Load<Texture2D>("Pistol_Player");
             //Adds the Tommy Gun
-            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "Submachine Gun", 15, 16, 1800);
+            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "Submachine Gun", 15, 16, 1800, 7);
             weaponsFaces[2] = Content.Load<Texture2D>("Submachine_Gun_Player");
+            //Adds the Shotgun
+            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 6, 5, 2500, 4);
+            weaponsFaces[3] = Content.Load<Texture2D>("Submachine_Gun_Player");
+            //Adds the Rifle
+            weapons[4] = new Weapon(Content, false, 1, 6, "Rifle", 5, "RifleBullet", "Rifle", 4, 3, 200, 10);
+            weaponsFaces[4] = Content.Load<Texture2D>("Submachine_Gun_Player");
         }
 
         //Shoots the player's current gun
@@ -101,21 +107,45 @@ namespace Shooter.Controls {
             } else {
                 if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton != ButtonState.Pressed) {
                     if (temp) {
-                        SoundEffect TempSound;
-                        //enqueue gunshot sound
-                        //only shoot if not a null projectile
-                        Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
-                        if (p != null) {
-                            projectiles.Add(p);
-                            soundEffects.TryGetValue("gunshot", out TempSound);
-                            curSounds.Enqueue(TempSound);
-                            m.sounds.Add(player.Loc);
-                            c.screenShake = true;
+                        if (player.Weapon.Name.Equals("Shotgun")) {
+                            SoundEffect TempSound;
+                            //enqueue gunshot sound
+                            //only shoot if not a null projectile
+                            Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                            if (p != null) {
+                                player.Weapon.Ammo[0] += 2;
+                                Projectile p2 = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                Projectile p3 = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                projectiles.Add(p);
+                                projectiles.Add(p2);
+                                projectiles.Add(p3);
+                                soundEffects.TryGetValue("gunshot", out TempSound);
+                                curSounds.Enqueue(TempSound);
+                                m.sounds.Add(player.Loc);
+                                c.screenShake = true;
+                            } else {
+                                player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                //enqueue gun click sound if empty
+                                soundEffects.TryGetValue("emptyClick", out TempSound);
+                                curSounds.Enqueue(TempSound);
+                            }
                         } else {
-                            player.Weapon.Shoot(Content, player, c, m.TileSize);
-                            //enqueue gun click sound if empty
-                            soundEffects.TryGetValue("emptyClick", out TempSound);
-                            curSounds.Enqueue(TempSound);
+                            SoundEffect TempSound;
+                            //enqueue gunshot sound
+                            //only shoot if not a null projectile
+                            Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                            if (p != null) {
+                                projectiles.Add(p);
+                                soundEffects.TryGetValue("gunshot", out TempSound);
+                                curSounds.Enqueue(TempSound);
+                                m.sounds.Add(player.Loc);
+                                c.screenShake = true;
+                            } else {
+                                player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                //enqueue gun click sound if empty
+                                soundEffects.TryGetValue("emptyClick", out TempSound);
+
+                            }
                         }
                     }
                 }
@@ -144,7 +174,25 @@ namespace Shooter.Controls {
                 //Changes the weapon
                 player.Weapon = weapons[index];
                 player.EntTexture = weaponsFaces[index];
+            } else if (state.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q)) {
+                //Gets the index of the player's current weapon
+                int index = 0;
+                for (int i = 0; i < weapons.Length; i++) {
+                    if (weapons[i].Name.Equals(player.Weapon.Name)) {
+                        //Sets the new index to the old one plus one and breaks the loop
+                        index = i - 1;
+                        break;
+                    }
+                }
+                if (index < 1) {
+                    index = weapons.Length - 1;
+                }
+
+                //Changes the weapon
+                player.Weapon = weapons[index];
+                player.EntTexture = weaponsFaces[index];
             }
+
         }
 
         //Method to use the player's knife

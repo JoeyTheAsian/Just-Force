@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Shooter.Entities;
+using Shooter.Controls;
 
 namespace Shooter.MapClasses {
     class Map {
@@ -21,7 +22,7 @@ namespace Shooter.MapClasses {
         public Map(ContentManager content, int screenWidth, int screenHeight) {
             tileSize = screenWidth / 20;
             tileMap = new Texture2D[20, 100];
-            objectMap = new MapObject[tileMap.GetLength(0),tileMap.GetLength(1)];
+            objectMap = new MapObject[tileMap.GetLength(0), tileMap.GetLength(1)];
             //loops through entire tileMap array and sets each value to concrete
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
@@ -30,16 +31,16 @@ namespace Shooter.MapClasses {
             }
             //loops through objectMap array and sets edges to noTexture
             for (int i = 0; i < objectMap.GetLength(0); i++) {
-                for(int j = 0; j < objectMap.GetLength(1); j++) {
+                for (int j = 0; j < objectMap.GetLength(1); j++) {
                     objectMap[i, j] = new MapObject(content, true, "NoTexture", i, j);
                 }
             }
-            for (int i = 1; i < objectMap.GetLength(0)-1; i++) {
-                for (int j = 1; j < objectMap.GetLength(1)-1; j++) {
+            for (int i = 1; i < objectMap.GetLength(0) - 1; i++) {
+                for (int j = 1; j < objectMap.GetLength(1) - 1; j++) {
                     objectMap[i, j] = null;
                 }
             }
-            for (int i = 1; i < objectMap.GetLength(0); i+= 6) {
+            for (int i = 1; i < objectMap.GetLength(0); i += 6) {
                 for (int j = 0; j < objectMap.GetLength(1) - 3; j++) {
                     objectMap[i, j] = new MapObject(content, true, "NoTexture", i, j);
                 }
@@ -47,21 +48,66 @@ namespace Shooter.MapClasses {
         }
 
         // constructor that reads fro a file map.cs
-        public Map(ContentManager content, string filename)
-        {
-            tileMap = new Texture2D[100, 100];
-            objectMap = new MapObject[100, 100];
+        public Map(ContentManager content, string filename, Camera c, Character player, List<Enemy> enemies, int screenWidth) {
+            Texture2D empTexture = content.Load<Texture2D>("EmptyTile");
+            tileSize = screenWidth / 20;
 
             BinaryReader input = new BinaryReader(File.OpenRead("../../../Content/" + filename));
-            for (int i = 0; i < tileMap.GetLength(0); i++)
-            {
-                for (int j = 0; j < tileMap.GetLength(1); j++)
-                {
+            int mapWidth = input.ReadInt32();
+            int mapHeight = input.ReadInt32();
+
+            tileMap = new Texture2D[mapWidth, mapHeight];
+            objectMap = new MapObject[mapWidth, mapHeight];
+
+
+            for (int i = 0; i < tileMap.GetLength(0); i++) {
+                for (int j = 0; j < tileMap.GetLength(1); j++) {
                     string txtrString = input.ReadString();
-                    Texture2D texture = content.Load<Texture2D>(txtrString);
-                    tileMap[i, j] = texture;
+                    if (!txtrString.Equals("null")) {
+                        Texture2D texture = content.Load<Texture2D>(txtrString);
+                        tileMap[i, j] = texture;
+                    } else {
+                        tileMap[i, j] = empTexture;
+                    }
                 }
             }
+
+            for (int i = 0; i < objectMap.GetLength(0); i++) {
+                for (int j = 0; j < objectMap.GetLength(1); j++) {
+                    string txtrString = input.ReadString();
+                    if (!txtrString.Equals("null")) {
+                        objectMap[i, j] = new MapObject(content, true, txtrString, i, j);
+                    } else {
+                        objectMap[i, j] = null;
+                    }
+                }
+            }
+
+            int entWidth = input.ReadInt32();
+            int entHieght = input.ReadInt32();
+
+            for (int x = 0; x < objectMap.GetLength(0); x++) {
+                for (int y = 0; y < objectMap.GetLength(1); y++) {
+                    string txtrString = input.ReadString();
+                    if (!txtrString.Equals("null")) {
+                        continue;
+                    } else if (txtrString.Equals("Enemy")) {
+                        CreateEnemy.CreateNormalEnemy(ref enemies, content, c, this, x, y);
+                    }
+                }
+            }
+
+            string playerPos = input.ReadString();
+            string[] playerParts = playerPos.Split(',');
+            double distX = player.Loc.X - double.Parse(playerParts[1]);
+            double distY = player.Loc.Y - double.Parse(playerParts[2]);
+
+            player.Loc.X -= distX;
+            player.Loc.Y -= distY;
+            c.camPos.X += distX;
+            c.camPos.Y += distY;
+
+            input.Close();
         }
 
         public string[] CheckArea(Entity e) {
@@ -80,7 +126,7 @@ namespace Shooter.MapClasses {
                             //If the entity is a projectile then set the first index has a hit in it
                             if (e is Projectile) {
                                 sides[0] = "hit";
-                            //Else is a character and puts the side with the collsion in the array
+                                //Else is a character and puts the side with the collsion in the array
                             } else {
                                 sides[index] = objectMap[i, j].CheckCollide(e);
                             }
@@ -100,14 +146,13 @@ namespace Shooter.MapClasses {
             }
         }
         //tilesize property
-        public int TileSize{
-            get{
+        public int TileSize {
+            get {
                 return tileSize;
             }
         }
         //objectMap property
-        public MapObject[,] ObjectMap
-        {
+        public MapObject[,] ObjectMap {
             get {
                 return objectMap;
             }
