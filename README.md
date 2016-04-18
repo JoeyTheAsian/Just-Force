@@ -352,3 +352,6 @@
 <li>Added HUD and ammo icons for Shotgun and Rifle</li>
 <li>Pressing 'Q' now switches to previous weapon </li>
 <li>Maps can now be read in</li></ul>
+
+<b> 1:25 pm 4/18/16: Anthony Olivares </b>
+<ul><li> Added the folder "LevelDesigns", and digital mock-ups for the layouts of levels 1 and 2 </li></ul>
