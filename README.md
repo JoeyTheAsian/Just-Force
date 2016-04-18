@@ -346,3 +346,9 @@
 <b> 9:59 am 4/14/16: Joey Tong</b>
 <ul><li>Gameplay tweaks & fixed AI to work for all currently spawned enemies</li>
 </ul>
+
+<b> 10:02 am 4/18/16: Austin Ford</b>
+<ul><li>Added Shotugn and Rifle</li>
+<li>Added HUD and ammo icons for Shotgun and Rifle</li>
+<li>Pressing 'Q' now switches to previous weapon </li>
+<li>Maps can now be read in</li></ul>
