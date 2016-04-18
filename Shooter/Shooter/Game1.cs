@@ -226,9 +226,9 @@ namespace Shooter {
                     string[] methodCall = command.Split('/');
                     //Checks to see the number of parameters
                     if (methodCall.Length > 2) {
-                        if (methodCall[0].Equals("CreateNormalEnemy")) {
+                        if (methodCall[0].Equals("CREATENORMALENEMY")) {
                             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
-                        } else if (methodCall[0].Equals("CreateRiotEnemy")) {
+                        } else if (methodCall[0].Equals("CREATERIOTENEMY")) {
                             CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         }
                         //Else runs checks for the command
@@ -357,11 +357,6 @@ namespace Shooter {
                         k--;
                     }
                 }
-
-                if (oldState.IsKeyDown(Keys.X) && state.IsKeyUp(Keys.X)) {
-
-                }
-
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
 

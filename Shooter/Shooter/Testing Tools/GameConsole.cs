@@ -20,14 +20,14 @@ namespace Shooter.Testing_Tools
             commands = new Dictionary<string, string>();
 
             //Adds the commands
-            commands.Add("Exit", "exit");
-            commands.Add("Update Fps", "UpdateFPS");
-            commands.Add("Create Normal Enemy", "CreateNormalEnemy");
-            commands.Add("Create Riot Enemy", "CreateRiotEnemy");
-            commands.Add("Fill player ammo", "player.weapon");
-            commands.Add("Super Health", "player.Health");
-            commands.Add("Print", "");
-            commands.Add("Print Enemies", "printenemies");
+            commands.Add("EXIT", "exit");
+            commands.Add("UPDATEFPS", "UpdateFps");
+            commands.Add("CREATENORMALENEMY", "CreateNormalEnemy");
+            commands.Add("CREATERIOTENEMY", "CreateRiotEnemy");
+            commands.Add("FILLPLAYERAMMO", "player.weapon");
+            commands.Add("SUPERHEALTH", "player.Health");
+            commands.Add("PRINT", "");
+            commands.Add("PRINTENEMIES", "printenemies");
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Shooter.Testing_Tools
             while (true)
             {
                 //Stores the value of the command
-                string line = Console.ReadLine();
+                string line = Console.ReadLine().ToUpper();
 
                 //Checks to see if the command exists
                 if (!commands.ContainsKey(line))
@@ -48,7 +48,7 @@ namespace Shooter.Testing_Tools
                     continue;
                 }
                 //Prints the commands out
-                else if (line.Equals("Print"))
+                else if (line.Equals("PRINT"))
                 {
                     foreach (string command in commands.Keys)
                     {
@@ -56,18 +56,18 @@ namespace Shooter.Testing_Tools
                     }
                 }
                 //Checks if the command wants an enemy then gets the necessary location for the enemy
-                else if (line.Equals("Create Normal Enemy") || line.Equals("Create Riot Enemy"))
+                else if (line.Equals("CREATENORMALENEMY") || line.Equals("CREATERIOTENEMY"))
                 {
                     Console.WriteLine("Enter X:");
                     int x = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter Y:");
                     int y = int.Parse(Console.ReadLine());
-                    if (line.Equals("Create Normal Enemy"))
+                    if (line.Equals("CREATENORMALENEMY"))
                     {
-                        return commands["Create Normal Enemy"] + "/" + x + "/" + y;
+                        return commands["CREATENORMALENEMY"] + "/" + x + "/" + y;
                     }
                     else {
-                        return commands["Create Riot Enemy"] + "/" + x + "/" + y;
+                        return commands["CREATERIOTENEMY"] + "/" + x + "/" + y;
                     }
                 }
                 //Else returns the command to check
