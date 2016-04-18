@@ -18,7 +18,7 @@ namespace Shooter.Controls {
         public Movement(double mv, double accel, int tileSize) {
             maxVelocity = mv;
             acceleration = accel;
-            sprintVelocity = maxVelocity + 5.0 / tileSize;
+            sprintVelocity = maxVelocity + 2.7 / tileSize;
             normVelocity = maxVelocity;
         }
         public void UpdateSprint(KeyboardState state, KeyboardState oldState, int tileSize, Character player) {

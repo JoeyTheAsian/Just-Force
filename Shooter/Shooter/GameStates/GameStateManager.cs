@@ -12,7 +12,6 @@ namespace Shooter.GameStates {
      class GameStateManager {
 
         //attributes
-        public Thread backgroundThread;
         public Texture2D startButton;
         public Rectangle startButtonPosition;
         //public Texture2D ResumeButton;

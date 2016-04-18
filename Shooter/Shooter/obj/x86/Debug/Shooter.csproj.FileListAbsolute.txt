@@ -469,3 +469,4 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp.pn
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe.config

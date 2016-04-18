@@ -18,7 +18,6 @@ namespace Shooter.Entities {
         private int scanRange;
         //the size of the area that the enemy will check for a path
         private int pathRange;
-        private bool isActing;
         //movement speed
         private double speed;
         //the arc (degrees) which the character can turn to scan
@@ -45,11 +44,10 @@ namespace Shooter.Entities {
             maxHealth = health;
             //set AI scan range
             visionRange = 5;
-            scanRange = 5;
+            scanRange = 8;
             pathRange = 30;
             //tiles per second
-            speed = 5;
-            isActing = false;
+            speed = 6;
         }
         public bool Move(double elapsedTime, Coord end) {
             if (loc.X > end.X - .05 && loc.X < end.X + .05 && loc.Y > end.Y - .05 && loc.Y < end.Y + .05) {
@@ -89,12 +87,17 @@ namespace Shooter.Entities {
             }
         }
         public void UpdateAI(ref Map m, double elapsedTime) {
+
             if (moveQueue.Count == 0) {
                 if (m.sounds.Count > 0) {
-                    //find a path to the sound and put it on move queue
-                    List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
-                    foreach (Coord c in path) {
-                        moveQueue.Enqueue(c);
+                    Coord start = m.sounds[m.sounds.Count - 1];
+                    double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
+                    if (dist < scanRange) {
+                        //find a path to the sound and put it on move queue
+                        List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
+                        foreach (Coord c in path) {
+                            moveQueue.Enqueue(c);
+                        }
                     }
                 }
             } else {

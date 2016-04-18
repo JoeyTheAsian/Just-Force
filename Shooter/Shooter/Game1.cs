@@ -170,8 +170,8 @@ namespace Shooter {
             player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here
-            double maxVelocity = (10.0 / m.TileSize);
-            double acceleration = ((70.0 / m.TileSize) / 1000);
+            double maxVelocity = (5.4 / m.TileSize);
+            double acceleration = ((80.0 / m.TileSize) / 1000);
             movement = new Movement(maxVelocity, acceleration, m.TileSize);
 
             //use this.Content to load your game content here
@@ -338,9 +338,13 @@ namespace Shooter {
                         }
                     }
                 }
-                if(enemies[0] != null) {
-                    enemies[0].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds);
+                //update AI code
+                for(int i = 0; i < enemies.Count; i++) {
+                    if (enemies[i] != null) {
+                        enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds);
+                    }
                 }
+
                 //enqueue enemies
                 for (int k = 0; k < enemies.Count; k++) {
                     sprites.Enqueue(ParentConvertor.ToEntity(enemies[k], Content));
@@ -493,11 +497,12 @@ namespace Shooter {
                     for (int i = 0; i < curSounds.Count; i++) {
                         curSounds.Dequeue().Play();
                     }
-                    //add frame to frame counter
-                    FPSHandler.frames++;
+                    m.sounds.Clear();
                     break;
             }
 
+            //add frame to frame counter
+            FPSHandler.frames++;
             spriteBatch.End();
             //update current fps sample
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
