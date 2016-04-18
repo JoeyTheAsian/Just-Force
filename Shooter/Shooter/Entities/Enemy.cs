@@ -16,14 +16,16 @@ namespace Shooter.Entities {
         private int visionRange;
         //how far the enemy can hear gunshots
         private int scanRange;
-        //the size of the area that the enemy will check for a path
-        private int pathRange;
+        //the direction that the character is moving to, not necessarily facing
+        private double heading;
         //movement speed
         private double speed;
         //the arc (degrees) which the character can turn to scan
         private double scanArc;
-        //the speed (in degrees) that the entity scans for enemies
+        //the speed (in scanArcs/s) that the entity scans for enemies
         private double scanSpeed;
+        //The timer for scanning
+        private double scanTimer;
         //queue that holds the coordinates the npc is scheduled to move to
         private Queue<Coord> moveQueue = new Queue<Coord>();
         //Default constructor for normal enemies
@@ -45,7 +47,7 @@ namespace Shooter.Entities {
             //set AI scan range
             visionRange = 5;
             scanRange = 8;
-            pathRange = 30;
+            scanSpeed = .8;
             //tiles per second
             speed = 6;
         }
@@ -87,10 +89,13 @@ namespace Shooter.Entities {
             }
         }
         public void UpdateAI(ref Map m, double elapsedTime) {
-
+            direction = heading;
+            direction += elapsedTime * scanSpeed / 1000;
             if (moveQueue.Count == 0) {
                 if (m.sounds.Count > 0) {
                     Coord start = m.sounds[m.sounds.Count - 1];
+                    heading = Math.Atan((start.Y - loc.Y) / (start.X - loc.X));
+                    direction = heading;
                     double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
                     if (dist < scanRange) {
                         //find a path to the sound and put it on move queue

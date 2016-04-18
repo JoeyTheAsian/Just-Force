@@ -226,9 +226,9 @@ namespace Shooter {
                     string[] methodCall = command.Split('/');
                     //Checks to see the number of parameters
                     if (methodCall.Length > 2) {
-                        if (methodCall[0].Equals("CREATENORMALENEMY")) {
+                        if (methodCall[0].Equals("CreateNormalEnemy")) {
                             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
-                        } else if (methodCall[0].Equals("CREATERIOTENEMY")) {
+                        } else if (methodCall[0].Equals("CreateRiotEnemy")) {
                             CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         }
                         //Else runs checks for the command
@@ -266,11 +266,7 @@ namespace Shooter {
                 //update X & Y instantanous velocities and checks sprint  
                 movement.XVelocity = movement.UpdateX(movement.XVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
                 movement.YVelocity = movement.UpdateY(movement.YVelocity, gameTime.ElapsedGameTime.Milliseconds, state);
-                //if (!(player.CheckStamina())) {
-                //    movement.UpdateSprint(state, oldState, m.TileSize, false, player);
-                // } else {
-                //    movement.UpdateSprint(state, oldState, m.TileSize, true, player);
-                // }
+                //Sprint and stamina checks
                 movement.UpdateSprint(state, oldState, m.TileSize, player);
                 player.UpdateStamina(gameTime.TotalGameTime.Milliseconds);
 
@@ -323,7 +319,7 @@ namespace Shooter {
                         i--;
                     } else {
                         projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit") && !projectiles[i].IsRifleRound) {
+                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit")) {
                             projectiles.RemoveAt(i);
                             i--;
                             break;
@@ -338,7 +334,7 @@ namespace Shooter {
                         }
                     }
                 }
-                //update AI code
+                //update AI for all enemies
                 for(int i = 0; i < enemies.Count; i++) {
                     if (enemies[i] != null) {
                         enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds);
@@ -357,6 +353,7 @@ namespace Shooter {
                         k--;
                     }
                 }
+
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
 
