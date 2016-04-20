@@ -355,3 +355,7 @@
 
 <b> 1:25 pm 4/18/16: Anthony Olivares </b>
 <ul><li> Added the folder "LevelDesigns", and digital mock-ups for the layouts of levels 1 and 2 </li></ul>
+
+<b> 3:23 pm 4/20/2016: Connor Cummings</b>
+<ul><li>fixed rotation tool</li>
+<li> added exception catches for textures and map objects</li></ul>
