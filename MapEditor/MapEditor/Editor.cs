@@ -16,9 +16,9 @@ namespace MapEditor
 
         string filename; // string that holds the name of the file that is being saved/loaded to
 
-        Bitmap[,] Map = new Bitmap[0,0]; // array that stores bitmaps
-        Bitmap[,] objectMap = new Bitmap[0,0]; // array that stores bitmaps
-        Bitmap[,] entityMap = new Bitmap[0,0];
+        Image[,] Map = new Image[0,0]; // array that stores bitmaps
+        Image[,] objectMap = new Image[0,0]; // array that stores bitmaps
+        Image[,] entityMap = new Image[0,0];
 
         string[,] mapString = new string[0,0]; // array that stores texture names as a string for saving the file
         string[,] objectString = new string[0,0]; // array that stores object texture names as a string for saving the file
@@ -66,8 +66,13 @@ namespace MapEditor
             {
                 for (int j = 0; j < mapString.GetLength(1); j++)
                 {
-                    string texture = mapString[i, j].ToString(); // gets the texture name from the array and saves it to the file
-                    output.Write(texture);
+                    try {
+                        string texture = mapString[i, j].ToString(); // gets the texture name from the array and saves it to the file
+                        output.Write(texture);
+                    }
+                    catch (NullReferenceException){
+                        output.Write("null");
+                    }
                 }
             }
 
@@ -76,8 +81,13 @@ namespace MapEditor
             {
                 for (int j = 0; j < objectString.GetLength(1); j++)
                 {
-                    string obj = objectString[i, j].ToString(); // saves object's name to the file
-                    output.Write(obj);
+                    try {
+                        string obj = objectString[i, j].ToString(); // saves object's name to the file
+                        output.Write(obj);
+                    }
+                    catch (NullReferenceException) {
+                        output.Write("null");
+                    }
                 }
             }
             output.Close();
@@ -484,7 +494,7 @@ namespace MapEditor
         //rotate tool
         private void Rotate_MouseClick(object sender, MouseEventArgs e) {
             curBrush.RotateFlip(RotateFlipType.Rotate90FlipNone);
-
+            
             pictureBox2.Invalidate();
         }
         
@@ -521,6 +531,16 @@ namespace MapEditor
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
             painting = true;
+            int positionX = (int)((e.X * 1.0 / tlWidth));
+            int positionY = (int)((e.Y * 1.0 / tlHeight));
+            if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
+                Map[positionX, positionY] = new Bitmap(curBrush);
+                mapString[positionX, positionY] = textString;
+            }
+            else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+                objectMap[positionX, positionY] = new Bitmap(curBrush);
+                objectString[positionX, positionY] = textString;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
@@ -528,11 +548,11 @@ namespace MapEditor
                 int positionX = (int)((e.X * 1.0 / tlWidth));
                 int positionY = (int)((e.Y * 1.0 / tlHeight));
                 if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
-                        Map[positionX, positionY] = curBrush;
+                        Map[positionX, positionY] =  new Bitmap(curBrush);
                         mapString[positionX, positionY] = textString;
                 }
                 else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
-                        objectMap[positionX, positionY] = curBrush;
+                        objectMap[positionX, positionY] = new Bitmap(curBrush);
                         objectString[positionX, positionY] = textString;
                 }
             }
@@ -600,7 +620,7 @@ namespace MapEditor
                         yValues.Sort();
                         foreach (int x in xValues) {
                             foreach (int y in yValues) {
-                                Map[x, y] = curBrush;
+                                Map[x, y] = new Bitmap(curBrush);
                                 mapString[x, y] = textString;
                             }
                         }
@@ -610,7 +630,7 @@ namespace MapEditor
                         yValues.Sort();
                         foreach (int x in xValues) {
                             foreach (int y in yValues) {
-                                objectMap[x, y] = curBrush;
+                                objectMap[x, y] = new Bitmap(curBrush);
                                 objectString[x, y] = textString;
                             }
                         }
@@ -633,21 +653,21 @@ namespace MapEditor
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
                 mousePosY = (int)(e.Y * 1.0 / tlHeight);
 
-                entityMap[mousePosX, mousePosY] = curBrush;
+                entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
                 entityString[mousePosX, mousePosY] = textString;
             }
             if (curTool == "Enemy_entity") { //enemy entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
                 mousePosY = (int)(e.Y * 1.0 / tlHeight);
 
-                entityMap[mousePosX, mousePosY] = curBrush;
+                entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
                 entityString[mousePosX, mousePosY] = textString;
             }
             if (curTool == "RiotEnemy_entity") { //riot enemy entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
                 mousePosY = (int)(e.Y * 1.0 / tlHeight);
 
-                entityMap[mousePosX, mousePosY] = curBrush;
+                entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
                 entityString[mousePosX, mousePosY] = textString;
             }
         }

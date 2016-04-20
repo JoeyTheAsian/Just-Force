@@ -29,6 +29,8 @@ namespace Shooter.GameStates {
         public Rectangle graphicsButtonPosition;
         public Texture2D backButton;
         public Rectangle backButtonPosition;
+        public Texture2D resumeButton;
+        public Rectangle resumeButtonPosition;
 
         public Texture2D startMenuBackground;
 
@@ -67,6 +69,9 @@ namespace Shooter.GameStates {
             soundsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
             graphicsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
             backButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 8 / 10, screenWidth / 5, screenHeight / 8);
+
+            resumeButton = content.Load<Texture2D>("Resume");
+            resumeButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
 
         }
         public void CheckGameState() {
@@ -143,6 +148,19 @@ namespace Shooter.GameStates {
                     {
                         Console.WriteLine(e.ToString());
                         gameState = "";                        
+                    }
+                }
+                else if (mouseClickRect.Intersects(resumeButtonPosition))
+                {
+                    try
+                    {
+                        gameState = "Playing";
+                        CheckGameState();
+                    }
+                    catch (GameStateNotFoundException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
                     }
                 }
             }
@@ -226,7 +244,6 @@ namespace Shooter.GameStates {
             return mouseClickRect;
         }
         
-
         public bool updateState(KeyboardState State, KeyboardState oldState) {
             if (gameState == "Playing" && State.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) {
                 try {
