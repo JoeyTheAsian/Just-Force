@@ -460,7 +460,8 @@ namespace Shooter {
                         //temp
                         Entity e = sprites.Dequeue();
                         //draw enemy
-                        spriteBatch.Draw(e.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, e.Loc.X, e.Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                        spriteBatch.Draw(e.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, e.Loc.X, e.Loc.Y, m.TileSize, c.xOffset, c.yOffset),
+                                                                                null, Color.White, (float)e.Direction, new Vector2(e.EntTexture.Width / 2f, e.EntTexture.Height / 2f), SpriteEffects.None, 0);                     
                     }
                     if (Items.Count > 0) {
                         spriteBatch.Draw(Items[0].ItemTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, Items[0].Location.X, Items[0].Location.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
@@ -468,11 +469,6 @@ namespace Shooter {
                     spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y,
                                                                                 m.TileSize, c.xOffset, c.yOffset),
                                                                                 null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
-                    //Draws the temp enemy
-                    for (int k = 0; k < enemies.Count; k++) {
-                        //Updates the enemies' rectangle property
-                        enemies[k].rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset);
-                    }
 
 
                     //draw the player model

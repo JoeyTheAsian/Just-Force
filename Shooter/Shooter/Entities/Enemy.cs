@@ -20,10 +20,10 @@ namespace Shooter.Entities {
         private double heading;
         //movement speed
         private double speed;
-        //the arc (degrees) which the character can turn to scan
-        private double scanArc;
         //the speed (in scanArcs/s) that the entity scans for enemies
         private double scanSpeed;
+        //amount of time to do one whole scan
+        private double scanTime;
         //The timer for scanning
         private double scanTimer;
         //queue that holds the coordinates the npc is scheduled to move to
@@ -47,7 +47,10 @@ namespace Shooter.Entities {
             //set AI scan range
             visionRange = 5;
             scanRange = 8;
-            scanSpeed = .8;
+            scanSpeed = 2;
+            //convert to ms
+            scanTime = 2 * 1000;
+            heading = 0;
             //tiles per second
             speed = 6;
         }
@@ -89,13 +92,31 @@ namespace Shooter.Entities {
             }
         }
         public void UpdateAI(ref Map m, double elapsedTime) {
-            direction = heading;
-            direction += elapsedTime * scanSpeed / 1000;
+            //update timer
+            scanTimer += elapsedTime;
+
+            //repeatedly turn at scanSpeed (radians/s)
+            if (scanTimer < scanTime /4) {
+                direction += .01;
+            }else if(scanTimer < scanTime * 2/4) {
+                direction -= .01;
+            } else if(scanTimer < scanTime * 3/4) {
+                direction -= .01;
+            } else if(scanTimer < scanTime) {
+                direction += .01;
+            } else if(scanTimer >= scanTime){
+                scanTimer = 0;
+                direction = heading;
+            }
+            if (direction > Math.PI) {
+                direction -= (direction) * 2;
+            }
+            if(direction < -1 * Math.PI) {
+                direction += direction * 2;
+            }
             if (moveQueue.Count == 0) {
                 if (m.sounds.Count > 0) {
                     Coord start = m.sounds[m.sounds.Count - 1];
-                    heading = Math.Atan((start.Y - loc.Y) / (start.X - loc.X));
-                    direction = heading;
                     double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
                     if (dist < scanRange) {
                         //find a path to the sound and put it on move queue
@@ -107,10 +128,12 @@ namespace Shooter.Entities {
                 }
             } else {
                 if (Move(elapsedTime, moveQueue.Peek())) {
+                    Coord temp = new Coord(moveQueue.Peek().X - loc.X, moveQueue.Peek().Y - loc.Y);
+                    heading = Math.Atan2(temp.Y, temp.X);
+                    Console.WriteLine(heading / (2 * Math.PI) * 360);
                     moveQueue.Dequeue();
                 }
             }
-
         }
         //Checks all adjacent tiles and returns list of valid tiles sorted by estimated path length
         public List<Node> checkAdjacent(Node curNode, Coord end, ref Node[,] nodeMap) {

@@ -17,7 +17,7 @@ namespace Shooter.Testing_Tools {
             }
         }
         public FPSHandling() {
-            Console.WriteLine("FPS Recording Started.");
+
         }
         
         public string UpdateFPS() {

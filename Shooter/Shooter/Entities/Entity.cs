@@ -97,34 +97,6 @@ namespace Shooter.Entities {
             loc.X += x;
             loc.Y += y;
         }
-        //moves entity one OR "p" units in specified direction
-        public void MoveUp() {
-            loc.Y -= 1;
-        }
-        public void MoveUp(double p) {
-            loc.Y -= p;
-        }
-        //_________________________
-        public void MoveDown() {
-            loc.Y += 1;
-        }
-        public void MoveDown(double p) {
-            loc.Y += p;
-        }
-        //_________________________
-        public void MoveLeft() {
-            loc.X -= 1;
-        }
-        public void MoveLeft(double p) {
-            loc.X -= 1;
-        }
-        //_________________________
-        public void MoveRight() {
-            loc.X += 1;
-        }
-        public void MoveRight(double p) {
-            loc.X += p;
-        }
         //Rectangle property
         public Rectangle rectangle
         {
