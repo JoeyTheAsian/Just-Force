@@ -359,3 +359,6 @@
 <b> 3:23 pm 4/20/2016: Connor Cummings</b>
 <ul><li>fixed rotation tool</li>
 <li> added exception catches for textures and map objects</li></ul>
+
+<b> 4:04 pm 4/20/2016: Anthony Olivares </b>
+<ul><li>implemented the ability to change the game's volume in the sounds option menu</li></ul>
