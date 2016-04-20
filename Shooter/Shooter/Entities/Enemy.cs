@@ -94,16 +94,17 @@ namespace Shooter.Entities {
         public void UpdateAI(ref Map m, double elapsedTime) {
             //update timer
             scanTimer += elapsedTime;
+            //Check in front for player
 
-            //repeatedly turn at scanSpeed (radians/s)
+            //repeatedly scan an arc
             if (scanTimer < scanTime /4) {
-                direction += .01;
+                direction += scanSpeed;
             }else if(scanTimer < scanTime * 2/4) {
-                direction -= .01;
+                direction -= scanSpeed;
             } else if(scanTimer < scanTime * 3/4) {
-                direction -= .01;
+                direction -= scanSpeed;
             } else if(scanTimer < scanTime) {
-                direction += .01;
+                direction += scanSpeed;
             } else if(scanTimer >= scanTime){
                 scanTimer = 0;
                 direction = heading;
@@ -114,6 +115,7 @@ namespace Shooter.Entities {
             if(direction < -1 * Math.PI) {
                 direction += direction * 2;
             }
+            //Pathfinding with sound
             if (moveQueue.Count == 0) {
                 if (m.sounds.Count > 0) {
                     Coord start = m.sounds[m.sounds.Count - 1];
