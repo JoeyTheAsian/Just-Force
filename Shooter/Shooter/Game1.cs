@@ -47,6 +47,8 @@ namespace Shooter {
         //input objects
         private Movement movement;
 
+        private Single volume;
+
         //Height and width of the monitor
         private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -92,8 +94,10 @@ namespace Shooter {
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.PreferredBackBufferWidth = screenWidth;
 
+            volume = 1.0f;
             Content.RootDirectory = "Content";
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -257,6 +261,7 @@ namespace Shooter {
                 g.gameState = "Loading";
                 g.StartGame();
             }
+
             //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
             if (g.gameState != "Paused" && g.gameState != "Loading") {
 
@@ -359,6 +364,45 @@ namespace Shooter {
 
 
             }
+            
+            //UPDATE LOGIC FOR SOUND OPTIONS______________________________________________________________________________________________________________
+            if (g.gameState == "SoundsMenu")
+            {
+                Console.WriteLine(volume);
+                if (state.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right))
+                {                    
+                    volume += 0.1f;
+                    if(volume > 1.0f)
+                    {
+                        volume = 1.0f;
+                    }
+                    if(volume < 0.0f)
+                    {
+                        volume = 0.0f;
+                    }
+                    SoundEffect shot;
+                    soundEffects.TryGetValue("gunshot", out shot);
+                    curSounds.Enqueue(shot);
+                    curSounds.Dequeue().Play(volume, 0.0f, 0.0f);
+                }
+
+                if (state.IsKeyDown(Keys.Left) && oldState.IsKeyUp(Keys.Left))
+                {
+                    volume = volume - 0.1f;
+                    if (volume > 1.0f)
+                    {
+                        volume = 1.0f;
+                    }
+                    if (volume < 0.0f)
+                    {
+                        volume = 0.0f;
+                    }
+                    SoundEffect shot;
+                    soundEffects.TryGetValue("gunshot", out shot);
+                    curSounds.Enqueue(shot);
+                    curSounds.Dequeue().Play(volume, 0.0f, 0.0f);
+                }
+            }
 
             //END OF GAME LOGIC_____________________________________________________________________________________________________________
 
@@ -400,6 +444,7 @@ namespace Shooter {
                 case "SoundsMenu":
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    spriteBatch.DrawString(arial, "Use the Left and Right arrow keys to increase or decrease the volume", new Vector2(screenWidth / 4, screenHeight / 2), Color.DarkRed);
                     break;
                 //____________________DRAW LOAD SCREEN____________________________________________________________________
                 case "Loading":
@@ -409,8 +454,8 @@ namespace Shooter {
                 //____________________DRAW PAUSE MENU____________________________________________________________________
                 case "Paused":
                     //temp test
-                    GraphicsDevice.Clear(Color.Gray);
-                    spriteBatch.DrawString(arial, "Press Esc to Resume", new Vector2(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10), Color.DarkRed);
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.resumeButton, g.resumeButtonPosition, Color.White);
                     spriteBatch.Draw(g.optionsButton, g.optionsButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
@@ -486,12 +531,14 @@ namespace Shooter {
                     HUD.DrawHUD(player, ref spriteBatch, screenHeight, screenWidth, arial, health, healthBar);
 
                     //play all enqueued sound effects
-                    for (int i = 0; i < curSounds.Count; i++) {
-                        curSounds.Dequeue().Play();
+                    for (int i = 0; i < curSounds.Count; i++)
+                    {
+                        curSounds.Dequeue().Play(volume, 0f, 0f);
                     }
                     m.sounds.Clear();
                     break;
             }
+
 
             //add frame to frame counter
             FPSHandler.frames++;
