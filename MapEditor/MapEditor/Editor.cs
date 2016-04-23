@@ -28,7 +28,6 @@ namespace MapEditor
         //currently stored texture swatch on the brush
         string curType;
         Bitmap curBrush;
-        Bitmap curBrushR;//rotated current brush
         string curTool = "";
         //string name for texture
         string textString;
@@ -58,7 +57,7 @@ namespace MapEditor
         //save button
         private void button1_Click(object sender, EventArgs e) {
 
-            Stream str = File.OpenWrite("../../../../" + filename + ".dat");
+            Stream str = File.OpenWrite("Shooter/Shooter/Content" + filename + ".dat");
             BinaryWriter output = new BinaryWriter(str);
 
             // saves textures
@@ -440,6 +439,8 @@ namespace MapEditor
         //Fill tool
         private void Fill_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Fill";
+            prevMousePosX = -1;
+            prevMousePosY = -1;
         }
 
         //Line tool
@@ -537,7 +538,7 @@ namespace MapEditor
                 Map[positionX, positionY] = new Bitmap(curBrush);
                 mapString[positionX, positionY] = textString;
             }
-            else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+            else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
                 objectMap[positionX, positionY] = new Bitmap(curBrush);
                 objectString[positionX, positionY] = textString;
             }
@@ -551,7 +552,7 @@ namespace MapEditor
                         Map[positionX, positionY] =  new Bitmap(curBrush);
                         mapString[positionX, positionY] = textString;
                 }
-                else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+                else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX >=0 && positionY >=0) {
                         objectMap[positionX, positionY] = new Bitmap(curBrush);
                         objectString[positionX, positionY] = textString;
                 }
@@ -596,7 +597,7 @@ namespace MapEditor
                     mousePosX = (int)(e.X * 1.0 / tlWidth);
                     mousePosY = (int)(e.Y * 1.0 / tlHeight);
                     if(mousePosX < prevMousePosX) {
-                        for(int i = mousePosX; i < prevMousePosX; i++) {
+                        for(int i = mousePosX; i <= prevMousePosX; i++) {
                             xValues.Add(i);
                         }
                     }else if(mousePosX >= prevMousePosX) {
@@ -605,7 +606,7 @@ namespace MapEditor
                         }
                     }
                     if (mousePosY < prevMousePosY) {
-                        for (int i = mousePosY; i < prevMousePosY; i++) {
+                        for (int i = mousePosY; i <= prevMousePosY; i++) {
                             yValues.Add(i);
                         }
                     }

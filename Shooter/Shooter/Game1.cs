@@ -153,7 +153,8 @@ namespace Shooter {
             tb = new TileBounds();
 
             //create map and pass in contentmanager
-            m = new Map(Content, screenWidth, screenHeight);
+            //m = new Map(Content, screenWidth, screenHeight);
+            m = new Map(Content, "Map.dat", c, player, enemies, screenWidth);
 
             //creates the player (test texture)
             player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
@@ -424,7 +425,12 @@ namespace Shooter {
             }
 
             //END OF GAME LOGIC_____________________________________________________________________________________________________________
-
+            if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
+                FPSHandler.AddSample(FPSHandler.frames);
+                FPSHandler.frames = 0;
+                //update FPS
+                FPSHandler.UpdateFPS();
+            }
             //Updates the old input states with what the current states are
             oldState = state;
             oldMState = mState;
@@ -558,15 +564,6 @@ namespace Shooter {
             spriteBatch.End();
             //update current fps sample
             FPSHandler.frames++;
-            if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
-                FPSHandler.AddSample(FPSHandler.frames);
-                FPSHandler.frames = 0;
-                //update FPS
-                FPSHandler.UpdateFPS();
-            }
-
-
-
 
             base.Draw(gameTime);
         }

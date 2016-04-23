@@ -47,7 +47,7 @@ namespace Shooter.MapClasses {
             }
         }
 
-        // constructor that reads fro a file map.cs
+        // constructor that reads from a file
         public Map(ContentManager content, string filename, Camera c, Character player, List<Enemy> enemies, int screenWidth) {
             Texture2D empTexture = content.Load<Texture2D>("EmptyTile");
             tileSize = screenWidth / 20;
@@ -58,7 +58,6 @@ namespace Shooter.MapClasses {
 
             tileMap = new Texture2D[mapWidth, mapHeight];
             objectMap = new MapObject[mapWidth, mapHeight];
-
 
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
