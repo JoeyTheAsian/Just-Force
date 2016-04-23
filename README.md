@@ -362,3 +362,9 @@
 
 <b> 4:04 pm 4/20/2016: Anthony Olivares </b>
 <ul><li>implemented the ability to change the game's volume in the sounds option menu</li></ul>
+
+<b> 10:02 am 4/18/16: Austin Ford</b>
+<ul><li>Added Shotugn ammo and Rifle ammo for pickup items</li>
+<li>Animations for melee, pistol reloading and smg reloading</li>
+<li>Added the basis for the third skill, which will grant invincibility while sprinting</li>
+<li>Changed the console and added more commands</li></ul>
