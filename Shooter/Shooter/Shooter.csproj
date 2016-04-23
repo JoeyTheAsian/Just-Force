@@ -67,6 +67,7 @@
     <Compile Include="Controls\Movement.cs" />
     <Compile Include="Controls\OverCharged.cs" />
     <Compile Include="Controls\Perseverance.cs" />
+    <Compile Include="Controls\Rhinoceros.cs" />
     <Compile Include="Controls\Shooting.cs" />
     <Compile Include="Controls\Skill.cs" />
     <Compile Include="Controls\SkillSystem.cs" />
@@ -252,6 +253,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Trash_Can.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Player_Sheet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Rifle_Ammo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Shotgun_Ammo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

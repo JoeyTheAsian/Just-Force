@@ -39,7 +39,8 @@ namespace Shooter.Controls {
         protected int damage;
         //Weapon's range
         protected double range;
-
+        //Weapon texture level
+        protected int level;
         private Random r = new Random();
         //default weapon is a pistol
         public Weapon(ContentManager content) {
@@ -60,6 +61,7 @@ namespace Shooter.Controls {
             reloadTimer = 0;
             damage = 2;
             range = 7;
+            level = 1;
         }
 
         public Weapon(ContentManager content, List<int> a, bool au, double spr, int fr, string t, int d) {
@@ -73,9 +75,10 @@ namespace Shooter.Controls {
             reloadTimer = 0;
             damage = d;
             range = 7;
+            level = 1;
         }
 
-        public Weapon(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime, int rng) {
+        public Weapon(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime, int rng, int lvl) {
             fireRate = fr;
             auto = au;
             spread = spr;
@@ -91,6 +94,7 @@ namespace Shooter.Controls {
             reloadTimer = 0;
             damage = d;
             range = rng;
+            level = lvl;
         }
 
         public int FireRate {
@@ -131,6 +135,16 @@ namespace Shooter.Controls {
             get {
                 return ammoTexture;
             }
+        }
+
+        public double ReloadTime {
+            get { return reloadTime; }
+            set { reloadTime = value; }
+        }
+
+        public int Level {
+            get { return level; }
+            set { level = value; }
         }
         public double GetSpread() {
             //returns a random integer that will be the offset of the bullet direction
@@ -176,12 +190,12 @@ namespace Shooter.Controls {
         }
         //Checks if gun is reloading
         public bool Reloading(double timeElapsed) {
-            reloadTimer += timeElapsed;
-            if (reloadTime >= reloadTimer) {
-                isReloading = false;
+            if (isReloading) {
+                reloadTimer += timeElapsed;
+            }
+            if (reloadTime <= reloadTimer && isReloading) {
+                //isReloading = false;
                 reloadTimer = 0;
-            } else {
-                isReloading = true;
             }
             return isReloading;
         }

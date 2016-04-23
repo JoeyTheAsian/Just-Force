@@ -18,7 +18,14 @@ namespace Shooter.Entities {
         protected double stamina;
         protected Weapon weapon;
         protected bool isSprinting;
+        protected bool isMeleeing;
         protected ContentManager cont;
+        //Animation Variables
+        protected int numOfFrames = 9;
+        protected int framesElapsed;
+        protected int timePerFrame = 100;
+        protected int frame = 0;
+        protected int frameLevel = 1;
 
 
         //properties
@@ -42,6 +49,36 @@ namespace Shooter.Entities {
         public bool IsSprinting {
             get { return isSprinting; }
             set { isSprinting = value; }
+        }
+
+        public bool IsMeleeing {
+            get { return isMeleeing; }
+            set { isMeleeing = value; }
+        }
+
+        public int NumOfFrames {
+            get { return numOfFrames; }
+            set { numOfFrames = value; }
+        }
+
+        public int FramesElapsed {
+            get { return framesElapsed; }
+            set { framesElapsed = value; }
+        }
+
+        public int TimePerFrame {
+            get { return timePerFrame; }
+            set { timePerFrame = value; }
+        }
+
+        public int Frame {
+            get { return frame; }
+            set { frame = value; }
+        }
+
+        public int FrameLevel {
+            get { return frameLevel; }
+            set { frameLevel = value; }
         }
 
         public Character(ContentManager content) : base(content) {
@@ -141,6 +178,28 @@ namespace Shooter.Entities {
             } else if (isSprinting && stamina > 0) {
                 stamina -= time / 4000.0;
                 //If the charge delay is active then decrements it
+            }
+        }
+
+        public void UpdateAnimation(double time) {
+            //If the player is meleeing do the animation
+            if (isMeleeing) {
+                framesElapsed = (int)(time / timePerFrame);
+                frame = framesElapsed % numOfFrames;
+                //If the player has finished the animation then break out of melee
+                if (frame > numOfFrames - 2) {
+                    isMeleeing = false;
+                    frameLevel = weapon.Level;
+                    frame = 0;
+                }
+            } else if (weapon.isReloading) {
+                framesElapsed = (int)(time / timePerFrame);
+                frame = framesElapsed % numOfFrames;
+
+                if (frame > numOfFrames - 2) {
+                    weapon.isReloading = false;
+                    frame = 0;
+                }
             }
         }
     }

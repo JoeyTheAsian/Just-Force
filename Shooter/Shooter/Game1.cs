@@ -197,6 +197,8 @@ namespace Shooter {
             player.Weapon = Shooting.weapons[1];
             SkillSystem.skills[0].Obtained = true;
             SkillSystem.skills[1].Obtained = true;
+            SkillSystem.skills[2].Obtained = true;
+            player.EntTexture = Content.Load<Texture2D>("Player_Sheet");
             g.gameState = "StartMenu";
         }
 
@@ -230,10 +232,22 @@ namespace Shooter {
                     string[] methodCall = command.Split('/');
                     //Checks to see the number of parameters
                     if (methodCall.Length > 2) {
-                        if (methodCall[0].Equals("CreateNormalEnemy")) {
+                        if (methodCall[0].Equals("CREATENORMALENEMY")) {
                             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
-                        } else if (methodCall[0].Equals("CreateRiotEnemy")) {
+                        } else if (methodCall[0].Equals("CREATERIOTENEMY")) {
                             CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                        } else if (methodCall[0].Equals("createhealthkit")) {
+                            CreateItems.CreateHealthKit(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                        } else if (methodCall[0].Equals("createammokit")) {
+                            if (methodCall[methodCall.Length - 1].Equals("pistol")) {
+                                CreateItems.CreatePistolAmmo(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            } else if (methodCall[methodCall.Length - 1].Equals("rifle")) {
+                                CreateItems.CreateRifleAmmo(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            } else if (methodCall[methodCall.Length - 1].Equals("shotgun")) {
+                                CreateItems.CreateShotgunAmmo(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            } else if (methodCall[methodCall.Length - 1].Equals("smg")) {
+                                CreateItems.CreateSMGAmmo(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            }
                         }
                         //Else runs checks for the command
                     } else {
@@ -308,8 +322,12 @@ namespace Shooter {
 
                     if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
                         player.Weapon.Reload();
+                        player.Frame = 0;
+                        player.NumOfFrames = 9;
+                        player.TimePerFrame = (int)(player.Weapon.ReloadTime / player.NumOfFrames);
                     }
                 }
+                player.UpdateAnimation(gameTime.TotalGameTime.TotalMilliseconds);
                 Shooting.Stab(player, state, oldState, Content, c, m.TileSize, projectiles);
                 SkillSystem.UseSkill(player, state, oldState, gameTime.TotalGameTime.Milliseconds);
                 //update camera
@@ -324,7 +342,7 @@ namespace Shooter {
                         i--;
                     } else {
                         projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit")) {
+                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit") && !projectiles[i].IsRifleRound) {
                             projectiles.RemoveAt(i);
                             i--;
                             break;
@@ -358,6 +376,7 @@ namespace Shooter {
                         k--;
                     }
                 }
+                CreateItems.CheckItemCollisions(Items, player);
 
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
@@ -508,18 +527,13 @@ namespace Shooter {
                         spriteBatch.Draw(e.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, e.Loc.X, e.Loc.Y, m.TileSize, c.xOffset, c.yOffset),
                                                                                 null, Color.White, (float)e.Direction, new Vector2(e.EntTexture.Width / 2f, e.EntTexture.Height / 2f), SpriteEffects.None, 0);                     
                     }
-                    if (Items.Count > 0) {
-                        spriteBatch.Draw(Items[0].ItemTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, Items[0].Location.X, Items[0].Location.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
-                    }//draw the player model
+                    //draw the player model
                     spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y,
                                                                                 m.TileSize, c.xOffset, c.yOffset),
-                                                                                null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+                                                                                new Rectangle(player.Frame * 200, player.FrameLevel * 200, 200, 200), Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
 
-                    //draw the player model
-                    //updates the player's rectangle property
-                    player.rectangle = PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize, c.xOffset, c.yOffset);
-                    spriteBatch.Draw(player.EntTexture, player.rectangle, null, Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
+
 
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);

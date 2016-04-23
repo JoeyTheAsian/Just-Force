@@ -9,7 +9,7 @@ using System.Text;
 namespace Shooter.Controls {
     static class SkillSystem {
         //Static array for the skills in the game
-        public static Skill[] skills = new Skill[2];
+        public static Skill[] skills = new Skill[3];
         public static double timer = 0;
         public static double reTimer = 100;
         //Creates the wepaons that are int the game
@@ -18,21 +18,26 @@ namespace Shooter.Controls {
             skills[0] = new OverCharged(Content, p);
             //Adds the Perseverance skill
             skills[1] = new Perseverance(Content, p);
+            //Adds the Rhinoceros skill
+            skills[2] = new Rhinoceros(Content);
         }
 
         //Uses the player's skill
         public static void UseSkill(Character player, KeyboardState state, KeyboardState oldState, int time) {
             //Checks to see if the key is pressed
-            if(state.IsKeyDown(Keys.D1) && oldState.IsKeyUp(Keys.D1) && !CheckActiveSkills() && skills[0].Obtained) {
+            if (state.IsKeyDown(Keys.D1) && oldState.IsKeyUp(Keys.D1) && !CheckActiveSkills() && skills[0].Obtained) {
                 //Activate the skill and sets the timers
                 skills[0].ActivateSkill();
             } else if (state.IsKeyDown(Keys.D2) && oldState.IsKeyUp(Keys.D2) && !CheckActiveSkills() && skills[1].Obtained) {
                 //Activate the skill and sets the timers
                 skills[1].ActivateSkill();
+            } else if (state.IsKeyDown(Keys.D3) && oldState.IsKeyUp(Keys.D3) && !CheckActiveSkills() && skills[2].Obtained) {
+                //Activate the skill and sets the timers
+                skills[2].ActivateSkill();
             }
             foreach (Skill s in skills) {
-                    s.Status(time);                
-            }           
+                s.Status(time);
+            }
         }
 
         /*//Switches the player's skill
@@ -58,12 +63,12 @@ namespace Shooter.Controls {
             }
         }*/
         public static bool CheckActiveSkills() {
-            foreach(Skill s in skills) {
+            foreach (Skill s in skills) {
                 if (s.Active || s.ReTimer < 100) {
                     return true;
-                }                
+                }
             }
             return false;
         }
-     }
+    }
 }

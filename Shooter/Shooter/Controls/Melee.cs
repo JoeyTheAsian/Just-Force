@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 namespace Shooter.Controls {
     class Melee : Weapon {
         //Construcotr that creates a melee weapon object
-        public Melee(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime) : base(content, au, spr, fr, t, d, ammoT, n, maxAm, ammoC, rlTime, 5) { }
+        public Melee(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime) : base(content, au, spr, fr, t, d, ammoT, n, maxAm, ammoC, rlTime, 5, 0) { }
 
         //Overrrides the shoot method to create a more accurate short range projectile
         public override Projectile Shoot(ContentManager content, Character p, Camera c, int tileSize) {
