@@ -192,6 +192,9 @@
     <Content Include="Content\LaneLineEnd.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\levelSelect.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Options.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

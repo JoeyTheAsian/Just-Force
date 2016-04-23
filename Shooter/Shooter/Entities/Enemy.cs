@@ -20,8 +20,10 @@ namespace Shooter.Entities {
         private double heading;
         //movement speed
         private double speed;
-        //the speed (in scanArcs/s) that the entity scans for enemies
-        private double scanSpeed;
+        //the speed that the entity turns
+        private double turnSpeed;
+        //the arc that the enemy pans
+        private double scanArc;
         //amount of time to do one whole scan
         private double scanTime;
         //The timer for scanning
@@ -47,12 +49,14 @@ namespace Shooter.Entities {
             //set AI scan range
             visionRange = 5;
             scanRange = 8;
-            scanSpeed = 2;
+            turnSpeed = .01;
+            scanArc = .25 * Math.PI;
             //convert to ms
             scanTime = 2 * 1000;
             heading = 0;
             //tiles per second
             speed = 6;
+            weapon = new Controls.Weapon(content);
         }
         public bool Move(double elapsedTime, Coord end) {
             if (loc.X > end.X - .05 && loc.X < end.X + .05 && loc.Y > end.Y - .05 && loc.Y < end.Y + .05) {
@@ -91,51 +95,64 @@ namespace Shooter.Entities {
                 }
             }
         }
+        //rotates the character x degrees (positive for clockwise)
+        public void Rotate(double deg) {
+            if(direction > 1 * Math.PI) {
+                //wrap angle
+                direction = -1 * Math.PI + (direction - Math.PI);
+            }
+            if(direction < -1 * Math.PI) {
+                direction = Math.PI + (direction + Math.PI);
+            } else {
+                direction += deg;
+            }
+        }
         public void UpdateAI(ref Map m, double elapsedTime) {
             //update timer
             scanTimer += elapsedTime;
-            //Check in front for player
-
-            //repeatedly scan an arc
-            if (scanTimer < scanTime /4) {
-                direction += scanSpeed;
-            }else if(scanTimer < scanTime * 2/4) {
-                direction -= scanSpeed;
-            } else if(scanTimer < scanTime * 3/4) {
-                direction -= scanSpeed;
-            } else if(scanTimer < scanTime) {
-                direction += scanSpeed;
-            } else if(scanTimer >= scanTime){
+            //Find the shortest way to turn to the direction it's headed in
+            if (heading - direction <= Math.PI && heading - direction > 0) {
+                Rotate(turnSpeed);
+                if (direction > heading) {
+                    direction = heading;
+                }
+            } else if (direction - heading >= -Math.PI && heading - direction <= 0) {
+                Rotate(-turnSpeed);
+                if (direction < heading) {
+                    direction = heading;
+                }
+            }
+            //pan
+            if (scanTimer < scanTime / 4) {
+                Rotate(2 * turnSpeed);
+            }else if(scanTimer < scanTime * 3 / 4) {
+                Rotate(-2 * turnSpeed);
+            }else if(scanTimer < scanTime) {
+                Rotate(2 * turnSpeed);
+            }else {
                 scanTimer = 0;
-                direction = heading;
-            }
-            if (direction > Math.PI) {
-                direction -= (direction) * 2;
-            }
-            if(direction < -1 * Math.PI) {
-                direction += direction * 2;
             }
             //Pathfinding with sound
-            if (moveQueue.Count == 0) {
-                if (m.sounds.Count > 0) {
-                    Coord start = m.sounds[m.sounds.Count - 1];
-                    double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
-                    if (dist < scanRange) {
-                        //find a path to the sound and put it on move queue
-                        List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
-                        foreach (Coord c in path) {
-                            moveQueue.Enqueue(c);
-                        }
+            if (m.sounds.Count > 0) {
+                Coord start = m.sounds[m.sounds.Count - 1];
+                double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
+                if (dist < scanRange) {
+                    //find a path to the sound and put it on move queue
+                    moveQueue.Clear();
+                    List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
+                    foreach (Coord c in path) {
+                        moveQueue.Enqueue(c);
                     }
                 }
-            } else {
+            }
+            if (moveQueue.Count > 0) {
                 if (Move(elapsedTime, moveQueue.Peek())) {
                     Coord temp = new Coord(moveQueue.Peek().X - loc.X, moveQueue.Peek().Y - loc.Y);
                     heading = Math.Atan2(temp.Y, temp.X);
-                    Console.WriteLine(heading / (2 * Math.PI) * 360);
                     moveQueue.Dequeue();
                 }
             }
+
         }
         //Checks all adjacent tiles and returns list of valid tiles sorted by estimated path length
         public List<Node> checkAdjacent(Node curNode, Coord end, ref Node[,] nodeMap) {
@@ -156,9 +173,9 @@ namespace Shooter.Entities {
                         }
                         // Already-open nodes are added to the list only if you find a shorter way to get there
                         if (n.state == Node.NodeState.Open) {
-                            //if the currently stored path to that node is longer, override with shorter path+
+                            //if the currently stored path to that node is longer, override with shorter path
                             n.UpdateDist(n.location, end);
-                            if (n.pathLength > n.GetNewPathDist(curNode)) {
+                            if (n.GetNewPathDist(curNode) < n.pathLength) {
                                 n.parent = curNode;
                                 n.UpdateDist(n.location, end);
                                 validNodes.Add(n);

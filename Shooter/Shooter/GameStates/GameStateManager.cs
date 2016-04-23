@@ -23,6 +23,8 @@ namespace Shooter.GameStates {
 
         public Texture2D optionsButton;
         public Rectangle optionsButtonPosition;
+        public Texture2D levelSelectButton;
+        public Rectangle levelSelectButtonPosition;
         public Texture2D soundsButton;
         public Rectangle soundsButtonPosition;
         public Texture2D graphicsButton;
@@ -47,6 +49,7 @@ namespace Shooter.GameStates {
             states.Add("PAUSED");
             states.Add("STARTMENU");
             states.Add("OPTIONSMENU");
+            states.Add("LEVELSELECT");
             states.Add("SOUNDSMENU");
             states.Add("GRAPHICSMENU");
             gameState = "";
@@ -55,9 +58,12 @@ namespace Shooter.GameStates {
             startButton = content.Load<Texture2D>("startButton");
             exitButton = content.Load<Texture2D>("exitButton");
             loadScreen = content.Load<Texture2D>("loadinggraphic");
+            levelSelectButton = content.Load<Texture2D>("levelSelect");
             startMenuBackground = content.Load<Texture2D>("startMenuBackground");
-            startButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
-            exitButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 8 / 10, screenWidth / 5, screenHeight / 8);
+
+            startButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 3 / 11, screenWidth / 5, screenHeight / 8);
+            exitButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 9 / 11, screenWidth / 5, screenHeight / 8);
+            levelSelectButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 5 / 11, screenWidth / 5, screenHeight / 8);
             loadScreenPos = new Vector2((screenWidth / 2) - (loadScreen.Width / 2), (screenHeight / 2) - (loadScreen.Height / 2));
 
             // initialise buttons for options menu and their positions
@@ -65,7 +71,8 @@ namespace Shooter.GameStates {
             soundsButton = content.Load<Texture2D>("Sounds");
             graphicsButton = content.Load<Texture2D>("Graphics");
             backButton = content.Load<Texture2D>("Back");
-            optionsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
+
+            optionsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 7 / 11, screenWidth / 5, screenHeight / 8);
             soundsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
             graphicsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 6 / 10, screenWidth / 5, screenHeight / 8);
             backButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 8 / 10, screenWidth / 5, screenHeight / 8);
@@ -117,48 +124,57 @@ namespace Shooter.GameStates {
                 }
                 // player clicked on options
                 else if (mouseClickRect.Intersects(optionsButtonPosition)) {
-                    try
-                    {
+                    try {
                         gameState = "OptionsMenu";
                         lastState = "StartMenu";
                         CheckGameState();
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
-                    
+                } else if (mouseClickRect.Intersects(levelSelectButtonPosition)) {
+                    try {
+                        gameState = "LevelSelect";
+                        lastState = "StartMenu";
+                        CheckGameState();
+                    } catch (GameStateNotFoundException e) {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                    }
                 }
             }
-
-            //puased screen method
+            //level select menu
+            else if (gameState == "LevelSelect") {
+                // back button clicked
+                if (mouseClickRect.Intersects(backButtonPosition)) {
+                    try {
+                        gameState = lastState;
+                        CheckGameState();
+                    } catch (GameStateNotFoundException e) {
+                        Console.WriteLine(e.ToString());
+                        gameState = "";
+                        lastState = "";
+                    }
+                }
+            }
+            //puased screen
             else if (gameState == "Paused") {
                 if (mouseClickRect.Intersects(exitbuttonRect)) {
                     game.Exit();
-                }
-                else if (mouseClickRect.Intersects(optionsButtonPosition)) {
-                    try
-                    {
+                } else if (mouseClickRect.Intersects(optionsButtonPosition)) {
+                    try {
                         gameState = "OptionsMenu";
                         lastState = "Paused";
                         CheckGameState();
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
-                        gameState = "";                        
+                        gameState = "";
                     }
-                }
-                else if (mouseClickRect.Intersects(resumeButtonPosition))
-                {
-                    try
-                    {
+                } else if (mouseClickRect.Intersects(resumeButtonPosition)) {
+                    try {
                         gameState = "Playing";
                         CheckGameState();
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
@@ -166,42 +182,32 @@ namespace Shooter.GameStates {
             }
 
             //options screen method
-            else if (gameState == "OptionsMenu")
-            {
+            else if (gameState == "OptionsMenu") {
                 // back button clicked
                 if (mouseClickRect.Intersects(backButtonPosition)) {
-                    try
-                    {
+                    try {
                         gameState = lastState;
                         CheckGameState();
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                         lastState = "";
                     }
                 }
                 // sounds button clicked
-                else if (mouseClickRect.Intersects(soundsButtonPosition)){
-                    try
-                    {
+                else if (mouseClickRect.Intersects(soundsButtonPosition)) {
+                    try {
                         gameState = "SoundsMenu";
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
                 }
                 // graphics button clicked
                 else if (mouseClickRect.Intersects(graphicsButtonPosition)) {
-                    try
-                    {
+                    try {
                         gameState = "GraphicsMenu";
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
@@ -209,16 +215,11 @@ namespace Shooter.GameStates {
             }
 
             // Sounds menu
-            else if (gameState == "SoundsMenu")
-            {
-                if (mouseClickRect.Intersects(backButtonPosition))
-                {
-                    try
-                    {
+            else if (gameState == "SoundsMenu") {
+                if (mouseClickRect.Intersects(backButtonPosition)) {
+                    try {
                         gameState = "OptionsMenu";
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
@@ -226,16 +227,11 @@ namespace Shooter.GameStates {
             }
 
             // graphics menu
-            else if (gameState == "GraphicsMenu")
-            {
-                if (mouseClickRect.Intersects(backButtonPosition))
-                {
-                    try
-                    {
+            else if (gameState == "GraphicsMenu") {
+                if (mouseClickRect.Intersects(backButtonPosition)) {
+                    try {
                         gameState = "OptionsMenu";
-                    }
-                    catch (GameStateNotFoundException e)
-                    {
+                    } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }

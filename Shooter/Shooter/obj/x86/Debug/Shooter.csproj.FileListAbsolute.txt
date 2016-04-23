@@ -627,3 +627,7 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.p
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelSelect.png

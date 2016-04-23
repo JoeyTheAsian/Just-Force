@@ -36,7 +36,7 @@ namespace Shooter.Other_tools {
             state = NodeState.Untested;
         }
         public void UpdateDist(Coord loc, Coord end) {
-            bestLength = Math.Abs(end.X - loc.X) + Math.Abs(end.Y - loc.Y);
+            bestLength = Math.Sqrt((Math.Pow(Math.Abs(end.X - loc.X), 2) + Math.Pow(Math.Abs(end.Y - loc.Y), 2)));
             double total = 0;
             Node temp = this;
             while (temp.parent != null) {
@@ -52,7 +52,7 @@ namespace Shooter.Other_tools {
             Node temp = this;
             temp.parent = p;
             while (temp.parent != null) {
-                //get the total distance traveled along the new
+                //get the total distance traveled along the new path
                 total += (float)Math.Sqrt(Math.Pow((temp.location.X - temp.parent.location.X), 2.0) + Math.Pow((temp.location.Y - temp.parent.location.Y), 2.0));
                 temp = temp.parent;
             }

@@ -188,8 +188,8 @@ namespace Shooter {
             //Creates enemies to check
             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
-            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
-            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
+            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
+            //CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
             //Creates the weapons for the player
             Shooting.CreateWeapons(Content);
             SkillSystem.CreateSkills(Content, player);
@@ -445,6 +445,7 @@ namespace Shooter {
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.startButton, g.startButtonPosition, Color.White);
                     spriteBatch.Draw(g.optionsButton, g.optionsButtonPosition, Color.White);
+                    spriteBatch.Draw(g.levelSelectButton, g.levelSelectButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
                 //____________________DRAW OPTIONS MENU___________________________________________________________________
@@ -452,6 +453,11 @@ namespace Shooter {
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.soundsButton, g.soundsButtonPosition, Color.White);
                     spriteBatch.Draw(g.graphicsButton, g.graphicsButtonPosition, Color.White);
+                    spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    break;
+                //____________________DRAW LEVEL SELECT OPTIONS MENU__________________________________________________________
+                case "LevelSelect":
+                    spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
                     break;
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
@@ -546,20 +552,22 @@ namespace Shooter {
                         curSounds.Dequeue().Play(volume, 0f, 0f);
                     }
                     m.sounds.Clear();
+                    //add frame to frame counter
                     break;
             }
-
-
-            //add frame to frame counter
-            FPSHandler.frames++;
             spriteBatch.End();
             //update current fps sample
+            FPSHandler.frames++;
             if (gameTime.TotalGameTime.TotalMilliseconds % 1000 == 0) {
                 FPSHandler.AddSample(FPSHandler.frames);
                 FPSHandler.frames = 0;
                 //update FPS
                 FPSHandler.UpdateFPS();
             }
+
+
+
+
             base.Draw(gameTime);
         }
     }
