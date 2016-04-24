@@ -368,3 +368,19 @@
 <li>Animations for melee, pistol reloading and smg reloading</li>
 <li>Added the basis for the third skill, which will grant invincibility while sprinting</li>
 <li>Changed the console and added more commands</li></ul>
+
+<b> 1:11 am 4/24/16: Joey Tong</b>
+<ul><li>Forgot to add a few change posts this week</li>
+<li>Added rotation/ panning to enemy AI</li>
+<li>Added rotate method to enemy that wraps the direction</li>
+<li>Implemented some fixes to AI not updating path mid movement</li>
+<li>Added Level Select button texture and implemented LevelSelect gamestate & screen</li>
+<li>Fixed FPS display bug that caused FPS to sporadically shoot up to 300</li>
+<li>Added direction to parentconvertor for compatibility with draw procedure</li>
+<li>Added weapons to enemies</li>
+<li>Made enemies try to face the direction that they're moving in while still scanning</li>
+<li>General bug fixes in map editor</li>
+<li>Fixed indexing issues where some tools has problems drawing to some sections of the screen</li>
+<li>Fixed an IndexOutOfBounds exception caused by fill tool</li>
+<li>Fixed bug where fill tool mouse coordinates weren't cleared when tools were switched</li>
+</ul>
