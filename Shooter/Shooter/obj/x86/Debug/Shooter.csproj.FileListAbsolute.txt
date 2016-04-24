@@ -465,7 +465,6 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
@@ -500,9 +499,6 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car3.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car4.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car5.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car6.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_corner.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_links.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_pole.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\LaneLineEnd.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RifleBullet.png
@@ -632,3 +628,6 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.pn
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelSelect.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelSelect.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceCorner.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceLinks.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fencePole.png

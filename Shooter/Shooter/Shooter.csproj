@@ -111,9 +111,6 @@
     <Content Include="Content\Back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Blade_Temp.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Building.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -168,14 +165,14 @@
     <Content Include="Content\exitbutton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\fence_corner.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\fenceCorner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\fence_links.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\fenceLinks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\fence_pole.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\fencePole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Graphics.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

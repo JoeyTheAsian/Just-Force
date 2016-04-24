@@ -154,7 +154,7 @@ namespace Shooter {
 
             //create map and pass in contentmanager
             m = new Map(Content, screenWidth, screenHeight);
-
+           // m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
             //creates the player (test texture)
             player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
 

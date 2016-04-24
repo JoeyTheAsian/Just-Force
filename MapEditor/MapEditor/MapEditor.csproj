@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{674B4D9C-C354-4B65-A184-3CF42DDC796F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MapEditor</RootNamespace>
     <AssemblyName>MapEditor</AssemblyName>
@@ -115,20 +115,20 @@
     <Content Include="GameObjects\Car\car6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\fence_corner.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="GameObjects\fenceCorner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\fence_links.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="GameObjects\fenceLinks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\fence_pole.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="GameObjects\fencePole.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="GameObjects\NoTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\Trash_Can.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="GameObjects\TrashCan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TileTextures\Asphalt.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

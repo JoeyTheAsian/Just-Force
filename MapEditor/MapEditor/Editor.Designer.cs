@@ -111,7 +111,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -134,7 +134,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(342, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -208,7 +208,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(71, 50);
+            this.button8.Size = new System.Drawing.Size(74, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -232,7 +232,7 @@
             this.Building.Location = new System.Drawing.Point(268, 3);
             this.Building.Margin = new System.Windows.Forms.Padding(0);
             this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(53, 50);
+            this.Building.Size = new System.Drawing.Size(56, 50);
             this.Building.TabIndex = 7;
             this.Building.Text = "Building";
             this.Building.UseVisualStyleBackColor = true;
@@ -245,7 +245,7 @@
             this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
             this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(53, 50);
+            this.BuildingCorner.Size = new System.Drawing.Size(56, 50);
             this.BuildingCorner.TabIndex = 8;
             this.BuildingCorner.Text = "Building Corner";
             this.BuildingCorner.UseVisualStyleBackColor = true;
@@ -491,7 +491,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
@@ -520,7 +520,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(327, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
