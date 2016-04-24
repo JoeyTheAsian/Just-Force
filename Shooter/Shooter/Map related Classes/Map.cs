@@ -13,6 +13,8 @@ namespace Shooter.MapClasses {
     class Map {
         protected Texture2D[,] tileMap;
         protected MapObject[,] objectMap;
+        protected int[,] tileRot;
+        protected int[,] objRot;
         //currently active sounds on the map, used for AI to detect sounds and move towards position
         public List<Coord> sounds = new List<Coord>();
         //tiles are 100px by 100px, use this variable for everything related to tile scaling
@@ -21,8 +23,10 @@ namespace Shooter.MapClasses {
         //default map constructor, makes a concrete bitmap with nothing on it
         public Map(ContentManager content, int screenWidth, int screenHeight) {
             tileSize = screenWidth / 20;
-            tileMap = new Texture2D[15, 15];
+            tileMap = new Texture2D[20, 100];
             objectMap = new MapObject[tileMap.GetLength(0), tileMap.GetLength(1)];
+            tileRot = new int[tileMap.GetLength(0), tileMap.GetLength(1)];
+            objRot = new int[tileMap.GetLength(0), tileMap.GetLength(1)];
             //loops through entire tileMap array and sets each value to concrete
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
@@ -47,7 +51,7 @@ namespace Shooter.MapClasses {
             }
         }
 
-        // constructor that reads from a file
+        // constructor that reads fro a file map.cs
         public Map(ContentManager content, string filename, Camera c, Character player, List<Enemy> enemies, int screenWidth) {
             Texture2D empTexture = content.Load<Texture2D>("EmptyTile");
             tileSize = screenWidth / 20;
@@ -58,6 +62,9 @@ namespace Shooter.MapClasses {
 
             tileMap = new Texture2D[mapWidth, mapHeight];
             objectMap = new MapObject[mapWidth, mapHeight];
+            tileRot = new int[tileMap.GetLength(0), tileMap.GetLength(1)];
+            objRot = new int[tileMap.GetLength(0), tileMap.GetLength(1)];
+
 
             for (int i = 0; i < tileMap.GetLength(0); i++) {
                 for (int j = 0; j < tileMap.GetLength(1); j++) {
@@ -68,6 +75,12 @@ namespace Shooter.MapClasses {
                     } else {
                         tileMap[i, j] = empTexture;
                     }
+                }
+            }
+
+            for (int i = 0; i < tileMap.GetLength(0); i++) {
+                for (int j = 0; j < tileMap.GetLength(1); j++) {
+                    tileRot[i, j] = input.ReadInt32();
                 }
             }
 
@@ -82,11 +95,17 @@ namespace Shooter.MapClasses {
                 }
             }
 
+            for (int i = 0; i < objectMap.GetLength(0); i++) {
+                for (int j = 0; j < objectMap.GetLength(1); j++) {
+                    objRot[i, j] = input.ReadInt32();
+                }
+            }
+
             int entWidth = input.ReadInt32();
             int entHieght = input.ReadInt32();
 
-            for (int x = 0; x < objectMap.GetLength(0); x++) {
-                for (int y = 0; y < objectMap.GetLength(1); y++) {
+            for (int x = 0; x < entWidth; x++) {
+                for (int y = 0; y < entHieght; y++) {
                     string txtrString = input.ReadString();
                     if (!txtrString.Equals("null")) {
                         continue;
@@ -100,12 +119,12 @@ namespace Shooter.MapClasses {
             string[] playerParts = playerPos.Split(',');
             double distX = player.Loc.X - double.Parse(playerParts[1]);
             double distY = player.Loc.Y - double.Parse(playerParts[2]);
-
+            /*
             player.Loc.X -= distX;
             player.Loc.Y -= distY;
             c.camPos.X += distX;
             c.camPos.Y += distY;
-
+            */
             input.Close();
         }
 
@@ -154,6 +173,20 @@ namespace Shooter.MapClasses {
         public MapObject[,] ObjectMap {
             get {
                 return objectMap;
+            }
+        }
+
+        //objectMap rot property
+        public int[,] ObjRot {
+            get {
+                return objRot;
+            }
+        }
+
+        //tileMap rot property
+        public int[,] TileRot {
+            get {
+                return tileRot;
             }
         }
     }

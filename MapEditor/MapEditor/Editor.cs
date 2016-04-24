@@ -4,8 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 
-namespace MapEditor
-{
+namespace MapEditor {
     public partial class Editor : Form {
         public Editor() {
             InitializeComponent();
@@ -16,18 +15,21 @@ namespace MapEditor
 
         string filename; // string that holds the name of the file that is being saved/loaded to
 
-        Image[,] Map = new Image[0,0]; // array that stores bitmaps
-        Image[,] objectMap = new Image[0,0]; // array that stores bitmaps
-        Image[,] entityMap = new Image[0,0];
+        Image[,] Map = new Image[0, 0]; // array that stores bitmaps
+        Image[,] objectMap = new Image[0, 0]; // array that stores bitmaps
+        Image[,] entityMap = new Image[0, 0];
 
-        string[,] mapString = new string[0,0]; // array that stores texture names as a string for saving the file
-        string[,] objectString = new string[0,0]; // array that stores object texture names as a string for saving the file
-        string[,] entityString = new string[0,0];
+        string[,] mapString = new string[0, 0]; // array that stores texture names as a string for saving the file
+        string[,] objectString = new string[0, 0]; // array that stores object texture names as a string for saving the file
+        string[,] entityString = new string[0, 0];
+        int[,] textureRotation = new int[0, 0];
+        int[,] objectRotation = new int[0, 0];
 
         List<Point> map = new List<Point>();
         //currently stored texture swatch on the brush
         string curType;
         Bitmap curBrush;
+        Bitmap curBrushR;//rotated current brush
         string curTool = "";
         //string name for texture
         string textString;
@@ -36,6 +38,10 @@ namespace MapEditor
         Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
         Bitmap player, enemy, riotEnemy; //entity bitmaps
         //Tools
+        string playerPos = "" + "," + 0 + "," + 0;
+        int playerX;
+        int playerY;
+        int curRotation = 0;
         int mousePosX = -1;
         int mousePosY = -1;
         int prevMousePosX = -1;
@@ -44,8 +50,8 @@ namespace MapEditor
         List<int> yValues = new List<int>();
         Bitmap eraser; //eraser bitmap
         bool painting = false;
-        
-        
+
+
 
         private void Editor_Load(object sender, EventArgs e) {
             panel1.Controls.Add(pictureBox1);
@@ -57,84 +63,111 @@ namespace MapEditor
         //save button
         private void button1_Click(object sender, EventArgs e) {
 
-            Stream str = File.OpenWrite("Shooter/Shooter/Content" + filename + ".dat");
+            Stream str = File.OpenWrite("../../../../" + filename + ".dat");
             BinaryWriter output = new BinaryWriter(str);
+            output.Write(mapString.GetLength(0));
+            output.Write(mapString.GetLength(1));
 
             // saves textures
-            for (int i = 0; i < mapString.GetLength(0); i++)
-            {
-                for (int j = 0; j < mapString.GetLength(1); j++)
-                {
-                    try {
+            for (int i = 0; i < mapString.GetLength(0); i++) {
+                for (int j = 0; j < mapString.GetLength(1); j++) {
+                    if (mapString[i, j] != null) {
                         string texture = mapString[i, j].ToString(); // gets the texture name from the array and saves it to the file
                         output.Write(texture);
+                    } else {
+                        output.Write("null");
                     }
-                    catch (NullReferenceException){
+                }
+            }
+
+            // saves textures
+            for (int i = 0; i < mapString.GetLength(0); i++) {
+                for (int j = 0; j < mapString.GetLength(1); j++) {
+                    if (mapString[i, j] != null) {
+                        output.Write(textureRotation[i, j]);
+                    } else {
+                        output.Write(0);
+                    }
+                }
+            }
+
+            // saves objects
+            for (int i = 0; i < objectString.GetLength(0); i++) {
+                for (int j = 0; j < objectString.GetLength(1); j++) {
+                    if (objectString[i, j] != null) {
+                        string obj = objectString[i, j].ToString(); // saves object's name to the file
+                        output.Write(obj);
+                    } else {
                         output.Write("null");
                     }
                 }
             }
 
             // saves objects
-            for (int i = 0; i < objectString.GetLength(0); i++)
-            {
-                for (int j = 0; j < objectString.GetLength(1); j++)
-                {
-                    try {
-                        string obj = objectString[i, j].ToString(); // saves object's name to the file
-                        output.Write(obj);
+            for (int i = 0; i < objectString.GetLength(0); i++) {
+                for (int j = 0; j < objectString.GetLength(1); j++) {
+                    if (objectString[i, j] != null) {
+                        output.Write(objectRotation[i, j]);
+                    } else {
+                        output.Write(0);
                     }
-                    catch (NullReferenceException) {
+                }
+            }
+
+            output.Write(entityString.GetLength(0));
+            output.Write(entityString.GetLength(1));
+
+            // saves entities
+            for (int i = 0; i < entityString.GetLength(0); i++) {
+                for (int j = 0; j < entityString.GetLength(1); j++) {
+                    if (entityString[i, j] != null) {
+                        string ent = entityString[i, j].ToString(); // saves object's name to the file
+                        output.Write(ent);
+                    } else {
                         output.Write("null");
                     }
                 }
             }
+
+            output.Write(playerPos);
+
             output.Close();
         }
         #endregion
-        
+
         #region Load Map Button
         // load map button
-        private void button7_Click(object sender, EventArgs e)
-        {
+        private void button7_Click(object sender, EventArgs e) {
             BinaryReader input = new BinaryReader(File.OpenRead("../../../../" + filename + ".dat"));
 
             // get textures
-            for (int i = 0; i < Map.GetLength(0); i++)
-            {
-                for (int j = 0; j < Map.GetLength(1); j++)
-                {
+            for (int i = 0; i < Map.GetLength(0); i++) {
+                for (int j = 0; j < Map.GetLength(1); j++) {
                     string texture = input.ReadString(); // string it reads in is the name of the texture's file
                     mapString[i, j] = texture; // stores it in the string version of the map array
                 }
             }
 
             // get objects
-            for (int i = 0; i < Map.GetLength(0); i++)
-            {
-                for (int j = 0; j < Map.GetLength(1); j++)
-                {
+            for (int i = 0; i < Map.GetLength(0); i++) {
+                for (int j = 0; j < Map.GetLength(1); j++) {
                     string obj = input.ReadString(); // string it reads in is the name of the object's file
                     objectString[i, j] = obj; // stores it in the string version of the object array
                 }
             }
             input.Close();
-            
+
             // load textures
-            for (int i = 0; i < mapString.GetLength(0); i++)
-            {
-                for (int j = 0; j < mapString.GetLength(1); j++)
-                {
+            for (int i = 0; i < mapString.GetLength(0); i++) {
+                for (int j = 0; j < mapString.GetLength(1); j++) {
                     Bitmap text = new Bitmap("TileTextures/" + mapString[i, j] + ".png"); // loads the texture
                     Map[i, j] = text; // stores it in the map array for editing
                 }
             }
 
             // load objects
-            for (int i = 0; i < objectString.GetLength(0); i++)
-            {
-                for (int j = 0; j < objectString.GetLength(1); j++)
-                {
+            for (int i = 0; i < objectString.GetLength(0); i++) {
+                for (int j = 0; j < objectString.GetLength(1); j++) {
                     Bitmap obj = new Bitmap("TileTextures/" + objectString[i, j] + ".png"); // load object texture
                     objectMap[i, j] = obj; // stores it in the object array
                 }
@@ -164,7 +197,7 @@ namespace MapEditor
             Graphics g = e.Graphics;
             g.DrawImage(asphalt, 0, 0, 50, 50);
         }
-        
+
         //concrete
         private void ConcreteTex_Paint(object sender, PaintEventArgs e) {
             concrete = new Bitmap("TileTextures/Concrete.png");
@@ -267,7 +300,7 @@ namespace MapEditor
             Graphics g = e.Graphics;
             g.DrawImage(car_6, 0, 0, 50, 50);
         }
-        
+
         //building side
         private void Building_Paint(object sender, PaintEventArgs e) {
             building = new Bitmap("GameObjects/Building.png");
@@ -288,6 +321,7 @@ namespace MapEditor
 
         private void RoadLane_MouseClick(object sender, MouseEventArgs e) {
             curBrush = lane;
+            curRotation = 0;
             curType = "texture";
             textString = "LaneLine";
             pictureBox2.Invalidate();
@@ -295,6 +329,7 @@ namespace MapEditor
 
         private void RoadLaneEnd_MouseClick(object sender, MouseEventArgs e) {
             curBrush = laneEnd;
+            curRotation = 0;
             curType = "texture";
             textString = "LaneLineEnd";
             pictureBox2.Invalidate();
@@ -302,6 +337,7 @@ namespace MapEditor
 
         private void AsphaltTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = asphalt;
+            curRotation = 0;
             curType = "texture";
             textString = "Asphalt";
             pictureBox2.Invalidate();
@@ -309,6 +345,7 @@ namespace MapEditor
 
         private void ConcreteTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = concrete;
+            curRotation = 0;
             curType = "texture";
             textString = "Concrete";
             pictureBox2.Invalidate();
@@ -316,6 +353,7 @@ namespace MapEditor
 
         private void ConcreteCornerTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = concreteCorner;
+            curRotation = 0;
             curType = "texture";
             textString = "ConcreteCorner";
             pictureBox2.Invalidate();
@@ -323,6 +361,7 @@ namespace MapEditor
 
         private void ConcreteSideTex_MouseClick(object sender, MouseEventArgs e) {
             curBrush = concreteEdge;
+            curRotation = 0;
             curType = "texture";
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
@@ -334,13 +373,15 @@ namespace MapEditor
 
         private void NoTexture_MouseClick(object sender, MouseEventArgs e) {
             curBrush = no_texture;
+            curRotation = 0;
             curType = "object";
             textString = "NoTexture";
             pictureBox2.Invalidate();
         }
-        
+
         private void TrashCan_MouseClick(object sender, MouseEventArgs e) {
             curBrush = trash_can;
+            curRotation = 0;
             curType = "object";
             textString = "TrashCan";
             pictureBox2.Invalidate();
@@ -348,6 +389,7 @@ namespace MapEditor
 
         private void FenceCorner_MouseClick(object sender, MouseEventArgs e) {
             curBrush = fenceCorner;
+            curRotation = 0;
             curType = "object";
             textString = "FenceCorner";
             pictureBox2.Invalidate();
@@ -355,6 +397,7 @@ namespace MapEditor
 
         private void FenceLink_MouseClick(object sender, MouseEventArgs e) {
             curBrush = fenceLink;
+            curRotation = 0;
             curType = "object";
             textString = "FenceLink";
             pictureBox2.Invalidate();
@@ -362,6 +405,7 @@ namespace MapEditor
 
         private void FencePole_MouseClick(object sender, MouseEventArgs e) {
             curBrush = fencePole;
+            curRotation = 0;
             curType = "object";
             textString = "FencePole";
             pictureBox2.Invalidate();
@@ -369,6 +413,7 @@ namespace MapEditor
 
         private void Car1_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_1;
+            curRotation = 0;
             curType = "object";
             textString = "Car1";
             pictureBox2.Invalidate();
@@ -376,6 +421,7 @@ namespace MapEditor
 
         private void Car2_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_2;
+            curRotation = 0;
             curType = "object";
             textString = "Car2";
             pictureBox2.Invalidate();
@@ -383,6 +429,7 @@ namespace MapEditor
 
         private void Car3_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_3;
+            curRotation = 0;
             curType = "object";
             textString = "Car3";
             pictureBox2.Invalidate();
@@ -390,6 +437,7 @@ namespace MapEditor
 
         private void Car4_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_4;
+            curRotation = 0;
             curType = "object";
             textString = "Car4";
             pictureBox2.Invalidate();
@@ -397,6 +445,7 @@ namespace MapEditor
 
         private void Car5_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_5;
+            curRotation = 0;
             curType = "object";
             textString = "Car5";
             pictureBox2.Invalidate();
@@ -404,6 +453,7 @@ namespace MapEditor
 
         private void Car6_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_6;
+            curRotation = 0;
             curType = "object";
             textString = "Car6";
             pictureBox2.Invalidate();
@@ -411,6 +461,7 @@ namespace MapEditor
 
         private void Building_MouseClick(object sender, MouseEventArgs e) {
             curBrush = building;
+            curRotation = 0;
             curType = "object";
             textString = "Building";
             pictureBox2.Invalidate();
@@ -418,6 +469,7 @@ namespace MapEditor
 
         private void BuildingCorner_MouseClick(object sender, MouseEventArgs e) {
             curBrush = buildingCorner;
+            curRotation = 0;
             curType = "object";
             textString = "BuildingCorner";
             pictureBox2.Invalidate();
@@ -431,6 +483,7 @@ namespace MapEditor
         private void ObjectEraser_MouseClick(object sender, MouseEventArgs e) {
             eraser = new Bitmap("Tools/EmptyTile.png");
             curBrush = eraser;
+            curRotation = 0;
             curType = "object";
             textString = null;
             pictureBox2.Invalidate();
@@ -439,15 +492,13 @@ namespace MapEditor
         //Fill tool
         private void Fill_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Fill";
-            prevMousePosX = -1;
-            prevMousePosY = -1;
         }
 
         //Line tool
         private void Line_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Line";
         }
-        
+
         //Pen tool
         private void Pen_MouseClick(object sender, MouseEventArgs e) {
             curTool = "Pen";
@@ -457,15 +508,17 @@ namespace MapEditor
         private void TextureEraser_MouseClick(object sender, MouseEventArgs e) {
             eraser = new Bitmap("Tools/EmptyTile.png");
             curBrush = eraser;
+            curRotation = 0;
             curType = "texture";
             textString = null;
             pictureBox2.Invalidate();
         }
-        
+
         //Player spawn
         private void PlayerSpawn_MouseClick(object sender, MouseEventArgs e) {
             player = new Bitmap("Entities/Pistol_Player.png");
             curBrush = player;
+            curRotation = 0;
             curType = "Entity";
             curTool = "Player_entity";
             textString = "Player";
@@ -476,6 +529,7 @@ namespace MapEditor
         private void EnemySpawn_MouseClick(object sender, MouseEventArgs e) {
             enemy = new Bitmap("Entities/Pistol_Player.png");
             curBrush = enemy;
+            curRotation = 0;
             curType = "Entity";
             curTool = "Enemy_entity";
             textString = "Enemy";
@@ -486,6 +540,7 @@ namespace MapEditor
         private void RiotEnemy_MouseClick(object sender, MouseEventArgs e) {
             riotEnemy = new Bitmap("Entities/Pistol_Player.png");
             curBrush = riotEnemy;
+            curRotation = 0;
             curType = "Entity";
             curTool = "RiotEnemy_entity";
             textString = "RiotEnemy";
@@ -495,10 +550,14 @@ namespace MapEditor
         //rotate tool
         private void Rotate_MouseClick(object sender, MouseEventArgs e) {
             curBrush.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            
+
+            curRotation--;
+            if (curRotation < 0) {
+                curRotation = 3;
+            }
             pictureBox2.Invalidate();
         }
-        
+
         #endregion
 
         #region Paint Methods
@@ -508,24 +567,18 @@ namespace MapEditor
             if (curType == "texture") {
                 try {
                     g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
-                }
-                catch (ArgumentNullException) { }
-                catch (NullReferenceException) { }
-            }else if (curType == "object") {
+                } catch (ArgumentNullException) { } catch (NullReferenceException) { }
+            } else if (curType == "object") {
                 try {
                     g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
-                }
-                catch (ArgumentNullException) { }
-                catch (NullReferenceException) { }
-            }else if (curType == "entity") {
+                } catch (ArgumentNullException) { } catch (NullReferenceException) { }
+            } else if (curType == "entity") {
                 try {
                     g.DrawImage(curBrush, 0, 0, pictureBox2.Width, pictureBox2.Height);
-                }
-                catch (ArgumentNullException) { }
-                catch (NullReferenceException) { }
+                } catch (ArgumentNullException) { } catch (NullReferenceException) { }
             }
         }
-               
+
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
             painting = false;
         }
@@ -537,10 +590,11 @@ namespace MapEditor
             if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
                 Map[positionX, positionY] = new Bitmap(curBrush);
                 mapString[positionX, positionY] = textString;
-            }
-            else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
+                textureRotation[positionX, positionY] = curRotation;
+            } else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
                 objectMap[positionX, positionY] = new Bitmap(curBrush);
                 objectString[positionX, positionY] = textString;
+                objectRotation[positionX, positionY] = curRotation;
             }
         }
 
@@ -549,12 +603,13 @@ namespace MapEditor
                 int positionX = (int)((e.X * 1.0 / tlWidth));
                 int positionY = (int)((e.Y * 1.0 / tlHeight));
                 if (curType == "texture" && curBrush != null && Map.GetLength(0) > positionX && Map.GetLength(1) > positionY && positionX >= 0 && positionY >= 0) {
-                        Map[positionX, positionY] =  new Bitmap(curBrush);
-                        mapString[positionX, positionY] = textString;
-                }
-                else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX >=0 && positionY >=0) {
-                        objectMap[positionX, positionY] = new Bitmap(curBrush);
-                        objectString[positionX, positionY] = textString;
+                    Map[positionX, positionY] = new Bitmap(curBrush);
+                    mapString[positionX, positionY] = textString;
+                    textureRotation[positionX, positionY] = curRotation;
+                } else if (curType == "object" && curBrush != null && objectMap.GetLength(0) > positionX && objectMap.GetLength(1) > positionY && positionX > 0 && positionY > 0) {
+                    objectMap[positionX, positionY] = new Bitmap(curBrush);
+                    objectString[positionX, positionY] = textString;
+                    objectRotation[positionX, positionY] = curRotation;
                 }
             }
         }
@@ -569,13 +624,16 @@ namespace MapEditor
                         //draw tilemap and objectmap
                         if (x < Map.GetLength(0) && y < Map.GetLength(1)) {
                             if (Map[x, y] != null) {
-                               g.DrawImage(Map[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                                g.DrawImage(Map[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
                             }
                             if (objectMap[x, y] != null) {
                                 g.DrawImage(objectMap[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
                             }
-                            if (entityMap[x,y] != null) {
+                            if (entityMap[x, y] != null) {
                                 g.DrawImage(entityMap[x, y], x * tlWidth, tlHeight * y, tlWidth, tlHeight);
+                            }
+                            if (player != null) {
+                                g.DrawImage(player, playerX * tlWidth, playerY * tlHeight, tlWidth, tlHeight);
                             }
                         }
                         g.DrawLine(p, x * tlWidth, 0, x * tlWidth, rows * tlHeight); //draw lines for columns
@@ -588,29 +646,27 @@ namespace MapEditor
 
         //Mouseclick for tools
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e) {
-            if(curTool == "Fill") {
+            if (curTool == "Fill") {
                 if (prevMousePosX == -1 && prevMousePosY == -1) {
                     prevMousePosX = (int)(e.X * 1.0 / tlWidth);
                     prevMousePosY = (int)(e.Y * 1.0 / tlHeight);
-                }
-                else {
+                } else {
                     mousePosX = (int)(e.X * 1.0 / tlWidth);
                     mousePosY = (int)(e.Y * 1.0 / tlHeight);
-                    if(mousePosX < prevMousePosX) {
-                        for(int i = mousePosX; i <= prevMousePosX; i++) {
+                    if (mousePosX < prevMousePosX) {
+                        for (int i = mousePosX; i < prevMousePosX; i++) {
                             xValues.Add(i);
                         }
-                    }else if(mousePosX >= prevMousePosX) {
+                    } else if (mousePosX >= prevMousePosX) {
                         for (int i = prevMousePosX; i <= mousePosX; i++) {
                             xValues.Add(i);
                         }
                     }
                     if (mousePosY < prevMousePosY) {
-                        for (int i = mousePosY; i <= prevMousePosY; i++) {
+                        for (int i = mousePosY; i < prevMousePosY; i++) {
                             yValues.Add(i);
                         }
-                    }
-                    else if (mousePosY >= prevMousePosY) {
+                    } else if (mousePosY >= prevMousePosY) {
                         for (int i = prevMousePosY; i <= mousePosY; i++) {
                             yValues.Add(i);
                         }
@@ -623,6 +679,7 @@ namespace MapEditor
                             foreach (int y in yValues) {
                                 Map[x, y] = new Bitmap(curBrush);
                                 mapString[x, y] = textString;
+                                textureRotation[x, y] = curRotation;
                             }
                         }
                     }
@@ -633,6 +690,7 @@ namespace MapEditor
                             foreach (int y in yValues) {
                                 objectMap[x, y] = new Bitmap(curBrush);
                                 objectString[x, y] = textString;
+                                objectRotation[x, y] = curRotation;
                             }
                         }
                     }
@@ -644,18 +702,20 @@ namespace MapEditor
                     yValues = new List<int>();
                 }
             }
-            if(curTool == "Pen") {
+            if (curTool == "Pen") {
 
             }
-            if(curTool == "Line") {
+            if (curTool == "Line") {
 
             }
-            if(curTool == "Player_entity") { //player entity
+            if (curTool == "Player_entity") { //player entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
                 mousePosY = (int)(e.Y * 1.0 / tlHeight);
 
-                entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
-                entityString[mousePosX, mousePosY] = textString;
+                player = curBrush;
+                playerX = mousePosX;
+                playerY = mousePosY;
+                playerPos = textString + "," + playerX + "," + playerY;
             }
             if (curTool == "Enemy_entity") { //enemy entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
@@ -679,8 +739,8 @@ namespace MapEditor
 
         //get input for number of rows, columns, tile width and height, and file name_________________________________________
 
-        private void fileNameBox_TextChanged(object sender, EventArgs e) { // get file name
-            inputFilename = fileNameBox.Text;
+        private string fileNameBox_TextChanged(object sender, EventArgs e) { // get file name
+            return fileNameBox.Text;
         }
 
         private void RowsInput_TextChanged(object sender, EventArgs e) { //get number of rows for map
@@ -690,7 +750,7 @@ namespace MapEditor
         private void ColumnsInput_TextChanged(object sender, EventArgs e) { //get number of columns for map
             inputcolumns = ColumnsInput.Text;
         }
-        
+
         private void TileWidthInput_TextChanged(object sender, EventArgs e) { //get width of tiles in pixels
             inputwidth = TileWidthInput.Text;
         }
@@ -704,34 +764,30 @@ namespace MapEditor
         private void CreateGrid_Click(object sender, EventArgs e) {
 
             //Parse user input into ints_____________________________________________
-            if(string.IsNullOrEmpty(inputrows) == false && inputrows != "0") {
+            if (string.IsNullOrEmpty(inputrows) == false && inputrows != "0") {
                 try {
                     rows = int.Parse(inputrows);
+                } catch (FormatException) { }
             }
-            catch (FormatException) { }
-            }
-            if(string.IsNullOrEmpty(inputcolumns) == false && inputcolumns != "0") {
+            if (string.IsNullOrEmpty(inputcolumns) == false && inputcolumns != "0") {
                 try {
                     columns = int.Parse(inputcolumns);
-                }
-                catch (FormatException) { }
+                } catch (FormatException) { }
             }
-            if(string.IsNullOrEmpty(inputwidth) == false && inputwidth != "0") {
+            if (string.IsNullOrEmpty(inputwidth) == false && inputwidth != "0") {
                 try {
                     tlWidth = int.Parse(inputwidth);
-                }
-                catch (FormatException) { }
+                } catch (FormatException) { }
             }
-            if(string.IsNullOrEmpty(inputheight) == false && inputheight != "0") {
+            if (string.IsNullOrEmpty(inputheight) == false && inputheight != "0") {
                 try {
                     tlHeight = int.Parse(inputheight);
-                }
-                catch (FormatException) { }
+                } catch (FormatException) { }
             }
             //___________________________________________________________________________
             #endregion
 
-            
+
             pictureBox1.Height = rows * tlHeight + 5;
             pictureBox1.Width = columns * tlWidth + 5;
             Map = new Bitmap[columns, rows];
@@ -740,9 +796,11 @@ namespace MapEditor
             entityString = new string[columns, rows];
             objectString = new string[columns, rows];
             mapString = new string[columns, rows];
-            filename = inputFilename;
+            textureRotation = new int[columns, rows];
+            objectRotation = new int[columns, rows];
+            filename = fileNameBox_TextChanged(sender, e);
 
             pictureBox1.Invalidate();
-        }  
+        }
     }
 }
