@@ -63,7 +63,7 @@ namespace MapEditor {
         //save button
         private void button1_Click(object sender, EventArgs e) {
             filename = fileNameBox.Text;
-            Stream str = File.OpenWrite("../../../../" + filename + ".dat");
+            Stream str = File.OpenWrite("../../../../Shooter/Shooter/Content/" + filename + ".dat");
             BinaryWriter output = new BinaryWriter(str);
             output.Write(mapString.GetLength(0));
             output.Write(mapString.GetLength(1));
@@ -712,8 +712,9 @@ namespace MapEditor {
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
                 mousePosY = (int)(e.Y * 1.0 / tlHeight);
 
-                entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
-                entityString[mousePosX, mousePosY] = textString;
+                playerX = mousePosX;
+                playerY = mousePosY;
+                playerPos = "" + "," + playerX + "," + playerY;
             }
             if (curTool == "Enemy_entity") { //enemy entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);

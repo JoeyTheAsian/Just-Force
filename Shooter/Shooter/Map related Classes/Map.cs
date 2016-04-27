@@ -107,10 +107,12 @@ namespace Shooter.MapClasses {
             for (int x = 0; x < entWidth; x++) {
                 for (int y = 0; y < entHieght; y++) {
                     string txtrString = input.ReadString();
-                    if (!txtrString.Equals("null")) {
+                    if (txtrString.Equals("null")) {
                         continue;
                     } else if (txtrString.Equals("Enemy")) {
                         CreateEnemy.CreateNormalEnemy(ref enemies, content, c, this, x, y);
+                    } else if (txtrString.Equals("RiotEnemy")) {
+                        CreateEnemy.CreateRiotEnemy(ref enemies, content, c, this, x, y);
                     }
                 }
             }
@@ -120,42 +122,57 @@ namespace Shooter.MapClasses {
             string[] playerParts = playerPos.Split(',');
             double distX = player.Loc.X - double.Parse(playerParts[1]);
             double distY = player.Loc.Y - double.Parse(playerParts[2]);
-            /*
+            
             player.Loc.X -= distX;
             player.Loc.Y -= distY;
             c.camPos.X += distX;
             c.camPos.Y += distY;
-            */
+            
             input.Close();
         }
 
-        public string[] CheckArea(Entity e) {
-            //Array to store the sides which the entity collides with
-            string[] sides = new string[10];
-            //Index in the arry
-            int index = 0;
-            //Loops thorugh nearby x values
+        public string CheckArea(Entity e, Camera c) {
             for (int i = (int)e.Loc.X - 2; i < (int)e.Loc.X + 2; i++) {
                 //Loops through nearby y values
                 for (int j = (int)e.Loc.Y - 2; j < (int)e.Loc.Y + 2; j++) {
                     //Checks if the spot is a valid spot to check
                     if (i > -1 && j > -1 && i < objectMap.GetLength(0) && j < objectMap.GetLength(1)) {
-                        //Checks to see if the object is null or collides
-                        if (objectMap[i, j] != null && !objectMap[i, j].CheckCollide(e).Equals("none")) {
-                            //If the entity is a projectile then set the first index has a hit in it
-                            if (e is Projectile) {
-                                sides[0] = "hit";
-                                //Else is a character and puts the side with the collsion in the array
-                            } else {
-                                sides[index] = objectMap[i, j].CheckCollide(e);
+                        //Checks to see if the object is null
+                        if (objectMap[i, j] != null) {
+                            bool left = false, right = false, top = false, bot = false;
+                            //Checks if there is an object to the left
+                            if ((i - 1) > -1 && objectMap[i - 1, j] != null && objectMap[i - 1, j].collision) {
+                                left = true;
                             }
-                            index++;
+                            //Checks if there is an object to the right
+                            if ((i + 1) < objectMap.GetLength(0) && objectMap[i + 1, j] != null && objectMap[i + 1, j].collision) {
+                                right = true;
+                            }
+                            //Checks if there is an object to the top
+                            if ((j - 1) > -1 && objectMap[i, j - 1] != null && objectMap[i, j - 1].collision) {
+                                top = true;
+                            }
+                            //Checks if there is an object to the bot
+                            if ((j + 1) < objectMap.GetLength(1) && objectMap[i, j + 1] != null && objectMap[i, j + 1].collision) {
+                                bot = true;
+                            }
+
+                            //Checks to see if the object collides
+                            if (!objectMap[i, j].CheckCollide(e, c, left, right, top, bot).Equals("none")) {
+                                //If the entity is a projectile then set the first index has a hit in it
+                                if (e is Projectile) {
+                                    return "hit";
+                                    //Else is a character and puts the side with the collsion in the array
+                                } else {
+                                    return objectMap[i, j].CheckCollide(e, c, left, right, top, bot);
+                                }
+                            }
                         }
                     }
                 }
             }
             //Return the sides
-            return sides;
+            return "none";
         }
 
         //tileMap property

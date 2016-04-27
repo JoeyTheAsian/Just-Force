@@ -154,7 +154,8 @@ namespace Shooter {
 
             //create map and pass in contentmanager
             m = new Map(Content, screenWidth, screenHeight);
-           // m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
+
+            //m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
             //creates the player (test texture)
             player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
 
@@ -168,9 +169,11 @@ namespace Shooter {
 
             //load up initial camera
             c = new Camera(screenHeight, screenWidth);
-
-            player.Loc.Y = (c.camPos.Y + (screenHeight / 2)) / m.TileSize;
-            player.Loc.X = (c.camPos.X + (screenWidth / 2)) / m.TileSize;
+            player.Loc.Y = (c.camPos.Y + (screenHeight / 2)) / (screenWidth / 20);
+            player.Loc.X = (c.camPos.X + (screenWidth / 2)) / (screenWidth / 20);
+            enemies = new List<Enemy>();
+            //LOAD MAP HERE______
+            //m = new Map(Content, ".dat", c, player, enemies, screenWidth);
             player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here
@@ -183,11 +186,10 @@ namespace Shooter {
             originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
 
             //Creates temp enemy
-            enemies = new List<Enemy>();
             Items = new List<PickUpItem>();
             //Creates enemies to check
-            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
-            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
+           // CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
+            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
             //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
             //CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
             //Creates the weapons for the player
@@ -290,17 +292,7 @@ namespace Shooter {
                 player.UpdateStamina(gameTime.TotalGameTime.Milliseconds);
 
                 //Checks for player collision with mapobjects
-                string[] s = m.CheckArea(player);
-                for (int i = 0; i < s.Length; i++) {
-                    if (s[i] != null) {
-                        if (s[i].Equals("Bottom") && movement.YVelocity > 0 || s[i].Equals("Top") && movement.YVelocity < 0) {
-                            movement.YVelocity = -movement.YVelocity / 5;
-                        }
-                        if (s[i].Equals("Left") && movement.XVelocity < 0 || s[i].Equals("Right") && movement.XVelocity > 0) {
-                            movement.XVelocity = -movement.XVelocity / 5;
-                        }
-                    }
-                }
+               m.CheckArea(player, c);
 
                 //update the camera & player positions
                 player.Loc.X -= movement.XVelocity;
@@ -342,7 +334,7 @@ namespace Shooter {
                         i--;
                     } else {
                         projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                        if (m.CheckArea(projectiles[i])[0] != null && m.CheckArea(projectiles[i])[0].Equals("hit") && !projectiles[i].IsRifleRound) {
+                        if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
                             projectiles.RemoveAt(i);
                             i--;
                             break;
@@ -499,22 +491,30 @@ namespace Shooter {
                     for (int i = tb.Xmin; i < tb.Xmax; i++) {
                         for (int j = tb.Ymin; j < tb.Ymax; j++) {
                             //draw the tile
-                            spriteBatch.Draw(m.TileMap[i, j],
+                            /*spriteBatch.Draw(m.TileMap[i, j],
                                             //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
                                             new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
                                                           (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
                                                           m.TileSize, m.TileSize), Color.White);
+                                                          */
+                            spriteBatch.Draw(m.TileMap[i, j], new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
+                                                          (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
+                                                          m.TileSize, m.TileSize), null, Color.White, m.TileRot[i, j] * -1.5708f, new Vector2((m.TileMap[i,j].Width/2f), (m.TileMap[i, j].Width / 2f)), SpriteEffects.None, 0);
                         }
                     }
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
                     for (int i = tb.Xmin; i < tb.Xmax; i++) {
                         for (int j = tb.Ymin; j < tb.Ymax; j++) {
                             if (m.ObjectMap[i, j] != null) {
-                                spriteBatch.Draw(m.ObjectMap[i, j].ObjTexture,
+                                /*spriteBatch.Draw(m.ObjectMap[i, j].ObjTexture,
                                                 //Width value and Height values are translated to pixel units + the position of the tile on the actual gridmap + .5 to account for rounding errors
                                                 new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
                                                                 (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
                                                                 m.TileSize, m.TileSize), Color.White);
+                                                                */
+                                spriteBatch.Draw(m.ObjectMap[i, j].ObjTexture, new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
+                                                                (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
+                                                                m.TileSize, m.TileSize), null, Color.White, m.ObjRot[i, j] * -1.5708f, new Vector2((m.ObjectMap[i, j].ObjTexture.Width / 2f), (m.ObjectMap[i, j].ObjTexture.Width / 2f)), SpriteEffects.None, 0);
                             }
                         }
                     }
