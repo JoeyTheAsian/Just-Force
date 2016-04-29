@@ -153,7 +153,7 @@ namespace Shooter {
             tb = new TileBounds();
 
             //create map and pass in contentmanager
-            m = new Map(Content, screenWidth, screenHeight);
+            //m = new Map(Content, screenWidth, screenHeight);
 
             //m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
             //creates the player (test texture)
@@ -173,7 +173,7 @@ namespace Shooter {
             player.Loc.X = (c.camPos.X + (screenWidth / 2)) / (screenWidth / 20);
             enemies = new List<Enemy>();
             //LOAD MAP HERE______
-            //m = new Map(Content, ".dat", c, player, enemies, screenWidth);
+            m = new Map(Content, "level1.dat", c, player, enemies, screenWidth);
             player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here

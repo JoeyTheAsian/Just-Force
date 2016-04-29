@@ -511,7 +511,6 @@ D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.xnb
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Ammo.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Back.png
-D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
@@ -530,9 +529,6 @@ D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\emptyclick.wav
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\EmptyTile.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Exit.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
-D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_corner.png
-D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_links.png
-D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_pole.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Graphics.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthBar.png
@@ -668,3 +664,11 @@ C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceCorner.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceLinks.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fencePole.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelSelect.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
