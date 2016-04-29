@@ -160,7 +160,8 @@ namespace Shooter.GameStates {
             //puased screen
             else if (gameState == "Paused") {
                 if (mouseClickRect.Intersects(exitbuttonRect)) {
-                    game.Exit();
+                    gameState = "StartMenu";
+                    CheckGameState();
                 } else if (mouseClickRect.Intersects(optionsButtonPosition)) {
                     try {
                         gameState = "OptionsMenu";

@@ -34,7 +34,7 @@ namespace MapEditor {
         //string name for texture
         string textString;
         Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner; //texture bitmaps
-        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole; //gameobject bitmaps
+        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior; //gameobject bitmaps
         Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
         Bitmap player, enemy, riotEnemy; //entity bitmaps
         //Tools
@@ -314,6 +314,14 @@ namespace MapEditor {
             Graphics g = e.Graphics;
             g.DrawImage(buildingCorner, 0, 0, 50, 50);
         }
+
+        // buyilding interior
+        private void BuildingInterior_Paint(object sender, PaintEventArgs e)
+        {
+            buildingInterior = new Bitmap("GameObjects/BuildingInterior.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(buildingInterior, 0, 0, 50, 50);
+        }
         //_________________________________________________________________________________________
         #endregion
 
@@ -440,6 +448,15 @@ namespace MapEditor {
             curRotation = 0;
             curType = "object";
             textString = "car4";
+            pictureBox2.Invalidate();
+        }
+
+        private void BuildingInterior_Click(object sender, EventArgs e)
+        {
+            curBrush = buildingInterior;
+            curRotation = 0;
+            curType = "object";
+            textString = "buildingInterior";
             pictureBox2.Invalidate();
         }
 

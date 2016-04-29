@@ -79,6 +79,7 @@
             this.PlayerSpawn = new System.Windows.Forms.Button();
             this.Rotate = new System.Windows.Forms.Button();
             this.RiotEnemy = new System.Windows.Forms.Button();
+            this.BuildingInterior = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -111,7 +112,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -134,7 +135,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -208,7 +209,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(74, 50);
+            this.button8.Size = new System.Drawing.Size(77, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -232,7 +233,7 @@
             this.Building.Location = new System.Drawing.Point(268, 3);
             this.Building.Margin = new System.Windows.Forms.Padding(0);
             this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(56, 50);
+            this.Building.Size = new System.Drawing.Size(59, 50);
             this.Building.TabIndex = 7;
             this.Building.Text = "Building";
             this.Building.UseVisualStyleBackColor = true;
@@ -245,7 +246,7 @@
             this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
             this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(56, 50);
+            this.BuildingCorner.Size = new System.Drawing.Size(59, 50);
             this.BuildingCorner.TabIndex = 8;
             this.BuildingCorner.Text = "Building Corner";
             this.BuildingCorner.UseVisualStyleBackColor = true;
@@ -491,7 +492,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
@@ -505,6 +506,7 @@
             this.tableLayoutPanel2.Controls.Add(this.Car4, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.Car5, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.Car6, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.BuildingInterior, 5, 2);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -520,7 +522,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(327, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(330, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -767,6 +769,19 @@
             this.RiotEnemy.UseVisualStyleBackColor = true;
             this.RiotEnemy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RiotEnemy_MouseClick);
             // 
+            // BuildingInterior
+            // 
+            this.BuildingInterior.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BuildingInterior.Location = new System.Drawing.Point(268, 109);
+            this.BuildingInterior.Margin = new System.Windows.Forms.Padding(0);
+            this.BuildingInterior.Name = "BuildingInterior";
+            this.BuildingInterior.Size = new System.Drawing.Size(59, 50);
+            this.BuildingInterior.TabIndex = 11;
+            this.BuildingInterior.Text = "BuildingInterior";
+            this.BuildingInterior.UseVisualStyleBackColor = true;
+            this.BuildingInterior.Click += new System.EventHandler(this.BuildingInterior_Click);
+            this.BuildingInterior.Paint += new System.Windows.Forms.PaintEventHandler(this.BuildingInterior_Paint);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -883,6 +898,7 @@
         private System.Windows.Forms.Button PlayerSpawn;
         private System.Windows.Forms.Button Rotate;
         private System.Windows.Forms.Button RiotEnemy;
+        private System.Windows.Forms.Button BuildingInterior;
     }
 }
 

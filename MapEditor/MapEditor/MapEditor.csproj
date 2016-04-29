@@ -97,6 +97,9 @@
     <Content Include="Entities\Pistol_Player.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameObjects\BuildingInterior.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="GameObjects\Car\car1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -139,6 +142,7 @@
     <Content Include="GameObjects\BuildingCorner.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="TileTextures\BuildingInterior.png" />
     <Content Include="TileTextures\Concrete.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
