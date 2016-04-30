@@ -126,9 +126,6 @@
     <Content Include="Content\BulletTwo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\button-start.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\car1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

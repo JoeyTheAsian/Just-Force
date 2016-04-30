@@ -492,7 +492,6 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TrashCan.p
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BulletTwo.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car1.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car2.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car3.png
