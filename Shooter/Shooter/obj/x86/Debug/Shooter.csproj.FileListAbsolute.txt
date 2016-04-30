@@ -672,3 +672,4 @@ D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
