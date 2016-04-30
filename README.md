@@ -385,5 +385,12 @@
 <li>Fixed bug where fill tool mouse coordinates weren't cleared when tools were switched</li>
 </ul>
 
-<b> 3:36 am 4/29/16: Austin Ford, Anthony Olivartes, Connor Cummings</b>
+<b> 3:36 pm 4/29/16: Austin Ford, Anthony Olivartes, Connor Cummings</b>
 <ul><li>Made level 1 and added texture for the interior of building roofs, fixed some bugs in the map editor</li></ul>
+<b> 4:00 pm 4/29/16: Joey Tong</b>
+<ul><li>New Textures:</li>
+<li>Slanted car</li>
+<li>Dumpster</li>
+<li>Stairs</li>
+<li>Columns</li>
+</ul>
