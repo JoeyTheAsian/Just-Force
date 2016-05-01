@@ -394,3 +394,6 @@
 <li>Stairs</li>
 <li>Columns</li>
 </ul>
+<b> 2:30 am 5/1/16: Joey Tong</b>
+<ul><li>Added vision cone and player detection to AI</li>
+</ul>
