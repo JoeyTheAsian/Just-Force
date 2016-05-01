@@ -107,7 +107,27 @@ namespace Shooter.Entities {
                 direction += deg;
             }
         }
-        public void UpdateAI(ref Map m, double elapsedTime) {
+        // Return True if the player is in the scan triangle
+        public bool IsPointInPolygon(List<Coord> triangle, Coord player) {
+            double totalAngle = 0;
+            for(int i = 0; i < triangle.Count; i++) {
+                int nextIndex = i + 1; 
+                if (nextIndex >= triangle.Count) {
+                    nextIndex = 0;
+                }
+                double distAB = Math.Sqrt(Math.Pow((player.X - triangle[i].X), 2) + Math.Pow((player.Y - triangle[i].Y), 2));
+                double distAC = Math.Sqrt(Math.Pow((player.X - triangle[nextIndex].X), 2) + Math.Pow((player.Y - triangle[nextIndex].Y), 2));
+                double distBC = Math.Sqrt(Math.Pow((triangle[i].X - triangle[nextIndex].X), 2) + Math.Pow((triangle[i].Y - triangle[nextIndex].Y), 2));
+                totalAngle += Math.Acos((Math.Pow(distAB,2) + Math.Pow(distAC,2) - Math.Pow(distBC, 2)) / (2 *distAB * distBC));
+            }
+            return (Math.Abs(totalAngle) > 0.000001);
+        }
+        public void UpdateAI(ref Map m, double elapsedTime, Coord player) {
+            List<Coord> triangle = new List<Coord>();
+            triangle.Add(loc);
+            triangle.Add(new Coord((loc.X + Math.Cos(direction + scanArc) * visionRange), (loc.Y + Math.Sin(direction + scanArc) * visionRange)));
+            triangle.Add(new Coord((loc.X + Math.Cos(direction - scanArc) * visionRange), (loc.Y + Math.Sin(direction - scanArc) * visionRange)));
+            Console.WriteLine(IsPointInPolygon(triangle,player));
             //update timer
             scanTimer += elapsedTime;
             //Find the shortest way to turn to the direction it's headed in

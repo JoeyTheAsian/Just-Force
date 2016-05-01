@@ -352,7 +352,7 @@ namespace Shooter {
                 //update AI for all enemies
                 for(int i = 0; i < enemies.Count; i++) {
                     if (enemies[i] != null) {
-                        enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds);
+                        enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc);
                     }
                 }
 
