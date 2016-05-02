@@ -68,6 +68,7 @@
             this.Car4 = new System.Windows.Forms.Button();
             this.Car5 = new System.Windows.Forms.Button();
             this.Car6 = new System.Windows.Forms.Button();
+            this.BuildingInterior = new System.Windows.Forms.Button();
             this.Fill = new System.Windows.Forms.Button();
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,7 +80,21 @@
             this.PlayerSpawn = new System.Windows.Forms.Button();
             this.Rotate = new System.Windows.Forms.Button();
             this.RiotEnemy = new System.Windows.Forms.Button();
-            this.BuildingInterior = new System.Windows.Forms.Button();
+            this.Pillar = new System.Windows.Forms.Button();
+            this.slantcar1 = new System.Windows.Forms.Button();
+            this.slantcar2 = new System.Windows.Forms.Button();
+            this.slantcar3 = new System.Windows.Forms.Button();
+            this.slantcar4 = new System.Windows.Forms.Button();
+            this.slantcar5 = new System.Windows.Forms.Button();
+            this.slantcar6 = new System.Windows.Forms.Button();
+            this.dumpster1 = new System.Windows.Forms.Button();
+            this.dumpster2 = new System.Windows.Forms.Button();
+            this.dumpster3 = new System.Windows.Forms.Button();
+            this.dumpster4 = new System.Windows.Forms.Button();
+            this.dumpster5 = new System.Windows.Forms.Button();
+            this.dumpster6 = new System.Windows.Forms.Button();
+            this.stairs = new System.Windows.Forms.Button();
+            this.stairscorner = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -112,7 +127,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -120,6 +135,8 @@
             this.tableLayoutPanel1.Controls.Add(this.ConcreteSideTex, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.button8, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.RoadLaneEnd, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.stairs, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.stairscorner, 2, 1);
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -135,7 +152,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(348, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(321, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -209,7 +226,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(77, 50);
+            this.button8.Size = new System.Drawing.Size(50, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -233,7 +250,7 @@
             this.Building.Location = new System.Drawing.Point(268, 3);
             this.Building.Margin = new System.Windows.Forms.Padding(0);
             this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(59, 50);
+            this.Building.Size = new System.Drawing.Size(50, 50);
             this.Building.TabIndex = 7;
             this.Building.Text = "Building";
             this.Building.UseVisualStyleBackColor = true;
@@ -246,7 +263,7 @@
             this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
             this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(59, 50);
+            this.BuildingCorner.Size = new System.Drawing.Size(50, 50);
             this.BuildingCorner.TabIndex = 8;
             this.BuildingCorner.Text = "Building Corner";
             this.BuildingCorner.UseVisualStyleBackColor = true;
@@ -492,7 +509,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
@@ -507,6 +524,19 @@
             this.tableLayoutPanel2.Controls.Add(this.Car5, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.Car6, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.BuildingInterior, 5, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Pillar, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.slantcar1, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.slantcar2, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.slantcar3, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.slantcar4, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.slantcar5, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.slantcar6, 2, 4);
+            this.tableLayoutPanel2.Controls.Add(this.dumpster1, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.dumpster2, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.dumpster3, 5, 3);
+            this.tableLayoutPanel2.Controls.Add(this.dumpster4, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.dumpster5, 4, 4);
+            this.tableLayoutPanel2.Controls.Add(this.dumpster6, 5, 4);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -522,7 +552,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(330, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -668,6 +698,19 @@
             this.Car6.Paint += new System.Windows.Forms.PaintEventHandler(this.Car6_Paint);
             this.Car6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Car6_MouseClick);
             // 
+            // BuildingInterior
+            // 
+            this.BuildingInterior.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BuildingInterior.Location = new System.Drawing.Point(268, 109);
+            this.BuildingInterior.Margin = new System.Windows.Forms.Padding(0);
+            this.BuildingInterior.Name = "BuildingInterior";
+            this.BuildingInterior.Size = new System.Drawing.Size(50, 50);
+            this.BuildingInterior.TabIndex = 11;
+            this.BuildingInterior.Text = "BuildingInterior";
+            this.BuildingInterior.UseVisualStyleBackColor = true;
+            this.BuildingInterior.Click += new System.EventHandler(this.BuildingInterior_Click);
+            this.BuildingInterior.Paint += new System.Windows.Forms.PaintEventHandler(this.BuildingInterior_Paint);
+            // 
             // Fill
             // 
             this.Fill.Location = new System.Drawing.Point(883, 30);
@@ -769,18 +812,200 @@
             this.RiotEnemy.UseVisualStyleBackColor = true;
             this.RiotEnemy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RiotEnemy_MouseClick);
             // 
-            // BuildingInterior
+            // Pillar
             // 
-            this.BuildingInterior.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BuildingInterior.Location = new System.Drawing.Point(268, 109);
-            this.BuildingInterior.Margin = new System.Windows.Forms.Padding(0);
-            this.BuildingInterior.Name = "BuildingInterior";
-            this.BuildingInterior.Size = new System.Drawing.Size(59, 50);
-            this.BuildingInterior.TabIndex = 11;
-            this.BuildingInterior.Text = "BuildingInterior";
-            this.BuildingInterior.UseVisualStyleBackColor = true;
-            this.BuildingInterior.Click += new System.EventHandler(this.BuildingInterior_Click);
-            this.BuildingInterior.Paint += new System.Windows.Forms.PaintEventHandler(this.BuildingInterior_Paint);
+            this.Pillar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Pillar.Location = new System.Drawing.Point(162, 56);
+            this.Pillar.Margin = new System.Windows.Forms.Padding(0);
+            this.Pillar.Name = "Pillar";
+            this.Pillar.Size = new System.Drawing.Size(50, 50);
+            this.Pillar.TabIndex = 12;
+            this.Pillar.Text = "pillar";
+            this.Pillar.UseVisualStyleBackColor = true;
+            this.Pillar.Paint += new System.Windows.Forms.PaintEventHandler(this.Pillar_Paint);
+            this.Pillar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Pillar_MouseClick);
+            // 
+            // slantcar1
+            // 
+            this.slantcar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slantcar1.Location = new System.Drawing.Point(3, 162);
+            this.slantcar1.Margin = new System.Windows.Forms.Padding(0);
+            this.slantcar1.Name = "slantcar1";
+            this.slantcar1.Size = new System.Drawing.Size(50, 50);
+            this.slantcar1.TabIndex = 13;
+            this.slantcar1.Text = "slant car 1";
+            this.slantcar1.UseVisualStyleBackColor = true;
+            this.slantcar1.Paint += new System.Windows.Forms.PaintEventHandler(this.slantcar1_Paint);
+            this.slantcar1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.slantcar1_MouseClick);
+            // 
+            // slantcar2
+            // 
+            this.slantcar2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slantcar2.Location = new System.Drawing.Point(56, 162);
+            this.slantcar2.Margin = new System.Windows.Forms.Padding(0);
+            this.slantcar2.Name = "slantcar2";
+            this.slantcar2.Size = new System.Drawing.Size(50, 50);
+            this.slantcar2.TabIndex = 14;
+            this.slantcar2.Text = "slant car 2";
+            this.slantcar2.UseVisualStyleBackColor = true;
+            this.slantcar2.Paint += new System.Windows.Forms.PaintEventHandler(this.slantcar2_Paint);
+            this.slantcar2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.slantcar2_MouseClick);
+            // 
+            // slantcar3
+            // 
+            this.slantcar3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slantcar3.Location = new System.Drawing.Point(109, 162);
+            this.slantcar3.Margin = new System.Windows.Forms.Padding(0);
+            this.slantcar3.Name = "slantcar3";
+            this.slantcar3.Size = new System.Drawing.Size(50, 50);
+            this.slantcar3.TabIndex = 15;
+            this.slantcar3.Text = "slant car 3";
+            this.slantcar3.UseVisualStyleBackColor = true;
+            this.slantcar3.Paint += new System.Windows.Forms.PaintEventHandler(this.slantcar3_Paint);
+            this.slantcar3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.slantcar3_MouseClick);
+            // 
+            // slantcar4
+            // 
+            this.slantcar4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slantcar4.Location = new System.Drawing.Point(3, 215);
+            this.slantcar4.Margin = new System.Windows.Forms.Padding(0);
+            this.slantcar4.Name = "slantcar4";
+            this.slantcar4.Size = new System.Drawing.Size(50, 50);
+            this.slantcar4.TabIndex = 16;
+            this.slantcar4.Text = "slant car 4";
+            this.slantcar4.UseVisualStyleBackColor = true;
+            this.slantcar4.Paint += new System.Windows.Forms.PaintEventHandler(this.slantcar4_Paint);
+            this.slantcar4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.slantcar4_MouseClick);
+            // 
+            // slantcar5
+            // 
+            this.slantcar5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slantcar5.Location = new System.Drawing.Point(56, 215);
+            this.slantcar5.Margin = new System.Windows.Forms.Padding(0);
+            this.slantcar5.Name = "slantcar5";
+            this.slantcar5.Size = new System.Drawing.Size(50, 50);
+            this.slantcar5.TabIndex = 17;
+            this.slantcar5.Text = "slant car 5";
+            this.slantcar5.UseVisualStyleBackColor = true;
+            this.slantcar5.Paint += new System.Windows.Forms.PaintEventHandler(this.slantcar5_Paint);
+            this.slantcar5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.slantcar5_MouseClick);
+            // 
+            // slantcar6
+            // 
+            this.slantcar6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.slantcar6.Location = new System.Drawing.Point(109, 215);
+            this.slantcar6.Margin = new System.Windows.Forms.Padding(0);
+            this.slantcar6.Name = "slantcar6";
+            this.slantcar6.Size = new System.Drawing.Size(50, 50);
+            this.slantcar6.TabIndex = 18;
+            this.slantcar6.Text = "slant car 6";
+            this.slantcar6.UseVisualStyleBackColor = true;
+            this.slantcar6.Paint += new System.Windows.Forms.PaintEventHandler(this.slantcar6_Paint);
+            this.slantcar6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.slantcar6_MouseClick);
+            // 
+            // dumpster1
+            // 
+            this.dumpster1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dumpster1.Location = new System.Drawing.Point(162, 162);
+            this.dumpster1.Margin = new System.Windows.Forms.Padding(0);
+            this.dumpster1.Name = "dumpster1";
+            this.dumpster1.Size = new System.Drawing.Size(50, 50);
+            this.dumpster1.TabIndex = 19;
+            this.dumpster1.Text = "dumpster1";
+            this.dumpster1.UseVisualStyleBackColor = true;
+            this.dumpster1.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster1_Paint);
+            this.dumpster1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster1_MouseClick);
+            // 
+            // dumpster2
+            // 
+            this.dumpster2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dumpster2.Location = new System.Drawing.Point(215, 162);
+            this.dumpster2.Margin = new System.Windows.Forms.Padding(0);
+            this.dumpster2.Name = "dumpster2";
+            this.dumpster2.Size = new System.Drawing.Size(50, 50);
+            this.dumpster2.TabIndex = 20;
+            this.dumpster2.Text = "dumpster2";
+            this.dumpster2.UseVisualStyleBackColor = true;
+            this.dumpster2.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster2_Paint);
+            this.dumpster2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster2_MouseClick);
+            // 
+            // dumpster3
+            // 
+            this.dumpster3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dumpster3.Location = new System.Drawing.Point(268, 162);
+            this.dumpster3.Margin = new System.Windows.Forms.Padding(0);
+            this.dumpster3.Name = "dumpster3";
+            this.dumpster3.Size = new System.Drawing.Size(50, 50);
+            this.dumpster3.TabIndex = 21;
+            this.dumpster3.Text = "dumpster3";
+            this.dumpster3.UseVisualStyleBackColor = true;
+            this.dumpster3.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster3_Paint);
+            this.dumpster3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster3_MouseClick);
+            // 
+            // dumpster4
+            // 
+            this.dumpster4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dumpster4.Location = new System.Drawing.Point(162, 215);
+            this.dumpster4.Margin = new System.Windows.Forms.Padding(0);
+            this.dumpster4.Name = "dumpster4";
+            this.dumpster4.Size = new System.Drawing.Size(50, 50);
+            this.dumpster4.TabIndex = 22;
+            this.dumpster4.Text = "dumpster4";
+            this.dumpster4.UseVisualStyleBackColor = true;
+            this.dumpster4.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster4_Paint);
+            this.dumpster4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster4_MouseClick);
+            // 
+            // dumpster5
+            // 
+            this.dumpster5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dumpster5.Location = new System.Drawing.Point(215, 215);
+            this.dumpster5.Margin = new System.Windows.Forms.Padding(0);
+            this.dumpster5.Name = "dumpster5";
+            this.dumpster5.Size = new System.Drawing.Size(50, 50);
+            this.dumpster5.TabIndex = 23;
+            this.dumpster5.Text = "dumpster5";
+            this.dumpster5.UseVisualStyleBackColor = true;
+            this.dumpster5.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster5_Paint);
+            this.dumpster5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster5_MouseClick);
+            // 
+            // dumpster6
+            // 
+            this.dumpster6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dumpster6.Location = new System.Drawing.Point(268, 215);
+            this.dumpster6.Margin = new System.Windows.Forms.Padding(0);
+            this.dumpster6.Name = "dumpster6";
+            this.dumpster6.Size = new System.Drawing.Size(50, 50);
+            this.dumpster6.TabIndex = 24;
+            this.dumpster6.Text = "dumpster6";
+            this.dumpster6.UseVisualStyleBackColor = true;
+            this.dumpster6.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster6_Paint);
+            this.dumpster6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster6_MouseClick);
+            // 
+            // stairs
+            // 
+            this.stairs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairs.Location = new System.Drawing.Point(56, 56);
+            this.stairs.Margin = new System.Windows.Forms.Padding(0);
+            this.stairs.Name = "stairs";
+            this.stairs.Size = new System.Drawing.Size(50, 50);
+            this.stairs.TabIndex = 7;
+            this.stairs.Text = "stairs";
+            this.stairs.UseVisualStyleBackColor = true;
+            this.stairs.Paint += new System.Windows.Forms.PaintEventHandler(this.stairs_Paint);
+            this.stairs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stairs_MouseClick);
+            // 
+            // stairscorner
+            // 
+            this.stairscorner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairscorner.Location = new System.Drawing.Point(109, 56);
+            this.stairscorner.Margin = new System.Windows.Forms.Padding(0);
+            this.stairscorner.Name = "stairscorner";
+            this.stairscorner.Size = new System.Drawing.Size(50, 50);
+            this.stairscorner.TabIndex = 8;
+            this.stairscorner.Text = "stairs corner";
+            this.stairscorner.UseVisualStyleBackColor = true;
+            this.stairscorner.Paint += new System.Windows.Forms.PaintEventHandler(this.stairscorner_Paint);
+            this.stairscorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stairscorner_MouseClick);
             // 
             // Editor
             // 
@@ -899,6 +1124,21 @@
         private System.Windows.Forms.Button Rotate;
         private System.Windows.Forms.Button RiotEnemy;
         private System.Windows.Forms.Button BuildingInterior;
+        private System.Windows.Forms.Button Pillar;
+        private System.Windows.Forms.Button slantcar1;
+        private System.Windows.Forms.Button slantcar2;
+        private System.Windows.Forms.Button slantcar3;
+        private System.Windows.Forms.Button slantcar4;
+        private System.Windows.Forms.Button slantcar5;
+        private System.Windows.Forms.Button slantcar6;
+        private System.Windows.Forms.Button dumpster1;
+        private System.Windows.Forms.Button dumpster2;
+        private System.Windows.Forms.Button dumpster3;
+        private System.Windows.Forms.Button dumpster4;
+        private System.Windows.Forms.Button dumpster5;
+        private System.Windows.Forms.Button dumpster6;
+        private System.Windows.Forms.Button stairs;
+        private System.Windows.Forms.Button stairscorner;
     }
 }
 

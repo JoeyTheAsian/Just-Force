@@ -397,3 +397,6 @@
 <b> 2:30 am 5/1/16: Joey Tong</b>
 <ul><li>Added vision cone and player detection to AI</li>
 </ul>
+
+<b> 4:01pm 5/2/2016: Connor Cummings</b>
+<ul><li>added new textures to map editor</li></ul>
