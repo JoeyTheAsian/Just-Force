@@ -25,7 +25,7 @@ namespace Shooter.Controls {
         //randomness of the fire pattern
         protected double spread;
         //shots per second
-        protected int fireRate;
+        protected double fireRate;
         //Amount of time reload takes
         protected double reloadTime;
         //reload timer
@@ -97,8 +97,9 @@ namespace Shooter.Controls {
             level = lvl;
         }
 
-        public int FireRate {
+        public double FireRate {
             get { return fireRate; }
+            set {fireRate = value;}
         }
         public bool Auto {
             get { return auto; }
