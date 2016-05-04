@@ -32,6 +32,8 @@
             this.ConcreteSideTex = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.RoadLaneEnd = new System.Windows.Forms.Button();
+            this.stairs = new System.Windows.Forms.Button();
+            this.stairscorner = new System.Windows.Forms.Button();
             this.Building = new System.Windows.Forms.Button();
             this.BuildingCorner = new System.Windows.Forms.Button();
             this.RowsInput = new System.Windows.Forms.TextBox();
@@ -51,7 +53,6 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextureEraser = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -69,17 +70,6 @@
             this.Car5 = new System.Windows.Forms.Button();
             this.Car6 = new System.Windows.Forms.Button();
             this.BuildingInterior = new System.Windows.Forms.Button();
-            this.Fill = new System.Windows.Forms.Button();
-            this.fileNameBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Pen = new System.Windows.Forms.Button();
-            this.Line = new System.Windows.Forms.Button();
-            this.FlipX = new System.Windows.Forms.Button();
-            this.FlipY = new System.Windows.Forms.Button();
-            this.EnemySpawn = new System.Windows.Forms.Button();
-            this.PlayerSpawn = new System.Windows.Forms.Button();
-            this.Rotate = new System.Windows.Forms.Button();
-            this.RiotEnemy = new System.Windows.Forms.Button();
             this.Pillar = new System.Windows.Forms.Button();
             this.slantcar1 = new System.Windows.Forms.Button();
             this.slantcar2 = new System.Windows.Forms.Button();
@@ -93,8 +83,17 @@
             this.dumpster4 = new System.Windows.Forms.Button();
             this.dumpster5 = new System.Windows.Forms.Button();
             this.dumpster6 = new System.Windows.Forms.Button();
-            this.stairs = new System.Windows.Forms.Button();
-            this.stairscorner = new System.Windows.Forms.Button();
+            this.Fill = new System.Windows.Forms.Button();
+            this.fileNameBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Pen = new System.Windows.Forms.Button();
+            this.Line = new System.Windows.Forms.Button();
+            this.FlipX = new System.Windows.Forms.Button();
+            this.FlipY = new System.Windows.Forms.Button();
+            this.EnemySpawn = new System.Windows.Forms.Button();
+            this.PlayerSpawn = new System.Windows.Forms.Button();
+            this.Rotate = new System.Windows.Forms.Button();
+            this.RiotEnemy = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -127,7 +126,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -152,7 +151,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(321, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -226,7 +225,7 @@
             this.button8.Location = new System.Drawing.Point(268, 3);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 50);
+            this.button8.Size = new System.Drawing.Size(53, 50);
             this.button8.TabIndex = 5;
             this.button8.Text = "texture6";
             this.button8.UseVisualStyleBackColor = true;
@@ -244,13 +243,39 @@
             this.RoadLaneEnd.Paint += new System.Windows.Forms.PaintEventHandler(this.RoadLaneEnd_Paint);
             this.RoadLaneEnd.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RoadLaneEnd_MouseClick);
             // 
+            // stairs
+            // 
+            this.stairs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairs.Location = new System.Drawing.Point(56, 56);
+            this.stairs.Margin = new System.Windows.Forms.Padding(0);
+            this.stairs.Name = "stairs";
+            this.stairs.Size = new System.Drawing.Size(50, 50);
+            this.stairs.TabIndex = 7;
+            this.stairs.Text = "stairs";
+            this.stairs.UseVisualStyleBackColor = true;
+            this.stairs.Paint += new System.Windows.Forms.PaintEventHandler(this.stairs_Paint);
+            this.stairs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stairs_MouseClick);
+            // 
+            // stairscorner
+            // 
+            this.stairscorner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stairscorner.Location = new System.Drawing.Point(109, 56);
+            this.stairscorner.Margin = new System.Windows.Forms.Padding(0);
+            this.stairscorner.Name = "stairscorner";
+            this.stairscorner.Size = new System.Drawing.Size(50, 50);
+            this.stairscorner.TabIndex = 8;
+            this.stairscorner.Text = "stairs corner";
+            this.stairscorner.UseVisualStyleBackColor = true;
+            this.stairscorner.Paint += new System.Windows.Forms.PaintEventHandler(this.stairscorner_Paint);
+            this.stairscorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stairscorner_MouseClick);
+            // 
             // Building
             // 
             this.Building.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Building.Location = new System.Drawing.Point(268, 3);
             this.Building.Margin = new System.Windows.Forms.Padding(0);
             this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(50, 50);
+            this.Building.Size = new System.Drawing.Size(53, 50);
             this.Building.TabIndex = 7;
             this.Building.Text = "Building";
             this.Building.UseVisualStyleBackColor = true;
@@ -263,7 +288,7 @@
             this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
             this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(50, 50);
+            this.BuildingCorner.Size = new System.Drawing.Size(53, 50);
             this.BuildingCorner.TabIndex = 8;
             this.BuildingCorner.Text = "Building Corner";
             this.BuildingCorner.UseVisualStyleBackColor = true;
@@ -433,16 +458,6 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Current Brush";
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(1197, 637);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(57, 40);
-            this.button7.TabIndex = 18;
-            this.button7.Text = "Load Map";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
@@ -509,7 +524,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
@@ -552,7 +567,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -704,113 +719,12 @@
             this.BuildingInterior.Location = new System.Drawing.Point(268, 109);
             this.BuildingInterior.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingInterior.Name = "BuildingInterior";
-            this.BuildingInterior.Size = new System.Drawing.Size(50, 50);
+            this.BuildingInterior.Size = new System.Drawing.Size(53, 50);
             this.BuildingInterior.TabIndex = 11;
             this.BuildingInterior.Text = "BuildingInterior";
             this.BuildingInterior.UseVisualStyleBackColor = true;
             this.BuildingInterior.Click += new System.EventHandler(this.BuildingInterior_Click);
             this.BuildingInterior.Paint += new System.Windows.Forms.PaintEventHandler(this.BuildingInterior_Paint);
-            // 
-            // Fill
-            // 
-            this.Fill.Location = new System.Drawing.Point(883, 30);
-            this.Fill.Name = "Fill";
-            this.Fill.Size = new System.Drawing.Size(65, 41);
-            this.Fill.TabIndex = 21;
-            this.Fill.Text = "Fill Tool";
-            this.Fill.UseVisualStyleBackColor = true;
-            this.Fill.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Fill_MouseClick);
-            // 
-            // fileNameBox
-            // 
-            this.fileNameBox.Location = new System.Drawing.Point(983, 556);
-            this.fileNameBox.Name = "fileNameBox";
-            this.fileNameBox.Size = new System.Drawing.Size(326, 20);
-            this.fileNameBox.TabIndex = 22;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(891, 556);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 20);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Map Name:";
-            // 
-            // Pen
-            // 
-            this.Pen.Location = new System.Drawing.Point(883, 79);
-            this.Pen.Name = "Pen";
-            this.Pen.Size = new System.Drawing.Size(65, 23);
-            this.Pen.TabIndex = 24;
-            this.Pen.Text = "Pen Tool";
-            this.Pen.UseVisualStyleBackColor = true;
-            this.Pen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Pen_MouseClick);
-            // 
-            // Line
-            // 
-            this.Line.Location = new System.Drawing.Point(883, 108);
-            this.Line.Name = "Line";
-            this.Line.Size = new System.Drawing.Size(65, 23);
-            this.Line.TabIndex = 25;
-            this.Line.Text = "Line Tool";
-            this.Line.UseVisualStyleBackColor = true;
-            this.Line.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Line_MouseClick);
-            // 
-            // FlipX
-            // 
-            this.FlipX.Location = new System.Drawing.Point(0, 0);
-            this.FlipX.Name = "FlipX";
-            this.FlipX.Size = new System.Drawing.Size(75, 23);
-            this.FlipX.TabIndex = 1;
-            // 
-            // FlipY
-            // 
-            this.FlipY.Location = new System.Drawing.Point(0, 0);
-            this.FlipY.Name = "FlipY";
-            this.FlipY.Size = new System.Drawing.Size(75, 23);
-            this.FlipY.TabIndex = 0;
-            // 
-            // EnemySpawn
-            // 
-            this.EnemySpawn.Location = new System.Drawing.Point(883, 216);
-            this.EnemySpawn.Name = "EnemySpawn";
-            this.EnemySpawn.Size = new System.Drawing.Size(65, 50);
-            this.EnemySpawn.TabIndex = 27;
-            this.EnemySpawn.Text = "Enemy Spawn";
-            this.EnemySpawn.UseVisualStyleBackColor = true;
-            this.EnemySpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EnemySpawn_MouseClick);
-            // 
-            // PlayerSpawn
-            // 
-            this.PlayerSpawn.Location = new System.Drawing.Point(883, 160);
-            this.PlayerSpawn.Name = "PlayerSpawn";
-            this.PlayerSpawn.Size = new System.Drawing.Size(65, 50);
-            this.PlayerSpawn.TabIndex = 26;
-            this.PlayerSpawn.Text = "Player spawn";
-            this.PlayerSpawn.UseVisualStyleBackColor = true;
-            this.PlayerSpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PlayerSpawn_MouseClick);
-            // 
-            // Rotate
-            // 
-            this.Rotate.Location = new System.Drawing.Point(977, 636);
-            this.Rotate.Name = "Rotate";
-            this.Rotate.Size = new System.Drawing.Size(77, 32);
-            this.Rotate.TabIndex = 28;
-            this.Rotate.Text = "Rotate";
-            this.Rotate.UseVisualStyleBackColor = true;
-            this.Rotate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Rotate_MouseClick);
-            // 
-            // RiotEnemy
-            // 
-            this.RiotEnemy.Location = new System.Drawing.Point(883, 272);
-            this.RiotEnemy.Name = "RiotEnemy";
-            this.RiotEnemy.Size = new System.Drawing.Size(65, 50);
-            this.RiotEnemy.TabIndex = 29;
-            this.RiotEnemy.Text = "Riot enemy spawn";
-            this.RiotEnemy.UseVisualStyleBackColor = true;
-            this.RiotEnemy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RiotEnemy_MouseClick);
             // 
             // Pillar
             // 
@@ -935,7 +849,7 @@
             this.dumpster3.Location = new System.Drawing.Point(268, 162);
             this.dumpster3.Margin = new System.Windows.Forms.Padding(0);
             this.dumpster3.Name = "dumpster3";
-            this.dumpster3.Size = new System.Drawing.Size(50, 50);
+            this.dumpster3.Size = new System.Drawing.Size(53, 50);
             this.dumpster3.TabIndex = 21;
             this.dumpster3.Text = "dumpster3";
             this.dumpster3.UseVisualStyleBackColor = true;
@@ -974,38 +888,113 @@
             this.dumpster6.Location = new System.Drawing.Point(268, 215);
             this.dumpster6.Margin = new System.Windows.Forms.Padding(0);
             this.dumpster6.Name = "dumpster6";
-            this.dumpster6.Size = new System.Drawing.Size(50, 50);
+            this.dumpster6.Size = new System.Drawing.Size(53, 50);
             this.dumpster6.TabIndex = 24;
             this.dumpster6.Text = "dumpster6";
             this.dumpster6.UseVisualStyleBackColor = true;
             this.dumpster6.Paint += new System.Windows.Forms.PaintEventHandler(this.dumpster6_Paint);
             this.dumpster6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dumpster6_MouseClick);
             // 
-            // stairs
+            // Fill
             // 
-            this.stairs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stairs.Location = new System.Drawing.Point(56, 56);
-            this.stairs.Margin = new System.Windows.Forms.Padding(0);
-            this.stairs.Name = "stairs";
-            this.stairs.Size = new System.Drawing.Size(50, 50);
-            this.stairs.TabIndex = 7;
-            this.stairs.Text = "stairs";
-            this.stairs.UseVisualStyleBackColor = true;
-            this.stairs.Paint += new System.Windows.Forms.PaintEventHandler(this.stairs_Paint);
-            this.stairs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stairs_MouseClick);
+            this.Fill.Location = new System.Drawing.Point(883, 30);
+            this.Fill.Name = "Fill";
+            this.Fill.Size = new System.Drawing.Size(65, 41);
+            this.Fill.TabIndex = 21;
+            this.Fill.Text = "Fill Tool";
+            this.Fill.UseVisualStyleBackColor = true;
+            this.Fill.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Fill_MouseClick);
             // 
-            // stairscorner
+            // fileNameBox
             // 
-            this.stairscorner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stairscorner.Location = new System.Drawing.Point(109, 56);
-            this.stairscorner.Margin = new System.Windows.Forms.Padding(0);
-            this.stairscorner.Name = "stairscorner";
-            this.stairscorner.Size = new System.Drawing.Size(50, 50);
-            this.stairscorner.TabIndex = 8;
-            this.stairscorner.Text = "stairs corner";
-            this.stairscorner.UseVisualStyleBackColor = true;
-            this.stairscorner.Paint += new System.Windows.Forms.PaintEventHandler(this.stairscorner_Paint);
-            this.stairscorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stairscorner_MouseClick);
+            this.fileNameBox.Location = new System.Drawing.Point(983, 556);
+            this.fileNameBox.Name = "fileNameBox";
+            this.fileNameBox.Size = new System.Drawing.Size(326, 20);
+            this.fileNameBox.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(891, 556);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 20);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Map Name:";
+            // 
+            // Pen
+            // 
+            this.Pen.Location = new System.Drawing.Point(883, 79);
+            this.Pen.Name = "Pen";
+            this.Pen.Size = new System.Drawing.Size(65, 23);
+            this.Pen.TabIndex = 24;
+            this.Pen.Text = "Pen Tool";
+            this.Pen.UseVisualStyleBackColor = true;
+            this.Pen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Pen_MouseClick);
+            // 
+            // Line
+            // 
+            this.Line.Location = new System.Drawing.Point(883, 108);
+            this.Line.Name = "Line";
+            this.Line.Size = new System.Drawing.Size(65, 23);
+            this.Line.TabIndex = 25;
+            this.Line.Text = "Line Tool";
+            this.Line.UseVisualStyleBackColor = true;
+            this.Line.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Line_MouseClick);
+            // 
+            // FlipX
+            // 
+            this.FlipX.Location = new System.Drawing.Point(0, 0);
+            this.FlipX.Name = "FlipX";
+            this.FlipX.Size = new System.Drawing.Size(75, 23);
+            this.FlipX.TabIndex = 1;
+            // 
+            // FlipY
+            // 
+            this.FlipY.Location = new System.Drawing.Point(0, 0);
+            this.FlipY.Name = "FlipY";
+            this.FlipY.Size = new System.Drawing.Size(75, 23);
+            this.FlipY.TabIndex = 0;
+            // 
+            // EnemySpawn
+            // 
+            this.EnemySpawn.Location = new System.Drawing.Point(883, 216);
+            this.EnemySpawn.Name = "EnemySpawn";
+            this.EnemySpawn.Size = new System.Drawing.Size(65, 50);
+            this.EnemySpawn.TabIndex = 27;
+            this.EnemySpawn.Text = "Enemy Spawn";
+            this.EnemySpawn.UseVisualStyleBackColor = true;
+            this.EnemySpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EnemySpawn_MouseClick);
+            // 
+            // PlayerSpawn
+            // 
+            this.PlayerSpawn.Location = new System.Drawing.Point(883, 160);
+            this.PlayerSpawn.Name = "PlayerSpawn";
+            this.PlayerSpawn.Size = new System.Drawing.Size(65, 50);
+            this.PlayerSpawn.TabIndex = 26;
+            this.PlayerSpawn.Text = "Player spawn";
+            this.PlayerSpawn.UseVisualStyleBackColor = true;
+            this.PlayerSpawn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PlayerSpawn_MouseClick);
+            // 
+            // Rotate
+            // 
+            this.Rotate.Location = new System.Drawing.Point(977, 636);
+            this.Rotate.Name = "Rotate";
+            this.Rotate.Size = new System.Drawing.Size(77, 32);
+            this.Rotate.TabIndex = 28;
+            this.Rotate.Text = "Rotate";
+            this.Rotate.UseVisualStyleBackColor = true;
+            this.Rotate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Rotate_MouseClick);
+            // 
+            // RiotEnemy
+            // 
+            this.RiotEnemy.Location = new System.Drawing.Point(883, 272);
+            this.RiotEnemy.Name = "RiotEnemy";
+            this.RiotEnemy.Size = new System.Drawing.Size(65, 50);
+            this.RiotEnemy.TabIndex = 29;
+            this.RiotEnemy.Text = "Riot enemy spawn";
+            this.RiotEnemy.UseVisualStyleBackColor = true;
+            this.RiotEnemy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RiotEnemy_MouseClick);
             // 
             // Editor
             // 
@@ -1026,7 +1015,6 @@
             this.Controls.Add(this.Fill);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.TileHeight);
@@ -1091,7 +1079,6 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panel3;

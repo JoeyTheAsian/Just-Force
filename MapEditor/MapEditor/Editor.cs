@@ -137,46 +137,6 @@ namespace MapEditor {
         }
         #endregion
 
-        #region Load Map Button
-        // load map button
-        private void button7_Click(object sender, EventArgs e) {
-            BinaryReader input = new BinaryReader(File.OpenRead("../../../../" + filename + ".dat"));
-
-            // get textures
-            for (int i = 0; i < Map.GetLength(0); i++) {
-                for (int j = 0; j < Map.GetLength(1); j++) {
-                    string texture = input.ReadString(); // string it reads in is the name of the texture's file
-                    mapString[i, j] = texture; // stores it in the string version of the map array
-                }
-            }
-
-            // get objects
-            for (int i = 0; i < Map.GetLength(0); i++) {
-                for (int j = 0; j < Map.GetLength(1); j++) {
-                    string obj = input.ReadString(); // string it reads in is the name of the object's file
-                    objectString[i, j] = obj; // stores it in the string version of the object array
-                }
-            }
-            input.Close();
-
-            // load textures
-            for (int i = 0; i < mapString.GetLength(0); i++) {
-                for (int j = 0; j < mapString.GetLength(1); j++) {
-                    Bitmap text = new Bitmap("TileTextures/" + mapString[i, j] + ".png"); // loads the texture
-                    Map[i, j] = text; // stores it in the map array for editing
-                }
-            }
-
-            // load objects
-            for (int i = 0; i < objectString.GetLength(0); i++) {
-                for (int j = 0; j < objectString.GetLength(1); j++) {
-                    Bitmap obj = new Bitmap("TileTextures/" + objectString[i, j] + ".png"); // load object texture
-                    objectMap[i, j] = obj; // stores it in the object array
-                }
-            }
-        }
-        #endregion
-
         #region Paint events to show texture image on buttons
 
         //road lanes
