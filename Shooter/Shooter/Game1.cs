@@ -292,7 +292,7 @@ namespace Shooter {
                 player.UpdateStamina(gameTime.TotalGameTime.Milliseconds);
 
                 //Checks for player collision with mapobjects
-               m.CheckArea(player, c);
+                m.CheckArea(player, c);
 
                 //update the camera & player positions
                 player.Loc.X -= movement.XVelocity;
@@ -326,33 +326,33 @@ namespace Shooter {
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
                             new Coord(mState.X, mState.Y), new Coord((player.Loc.X - c.camPos.X) * m.TileSize, (player.Loc.Y - c.camPos.Y) * m.TileSize));
 
-                //updates projectiles and checks collision
-                for (int i = 0; i < projectiles.Count; i++) {
-                    //checks if the projectile has exceeded its maximum range
-                    if (projectiles[i].CheckRange() == true) {
-                        projectiles.Remove(projectiles[i]);
-                        i--;
-                    } else {
-                        projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                        if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
-                            projectiles.RemoveAt(i);
+                    //updates projectiles and checks collision
+                    for (int i = 0; i < projectiles.Count; i++) {
+                        //checks if the projectile has exceeded its maximum range
+                        if (projectiles[i].CheckRange() == true) {
+                            projectiles.Remove(projectiles[i]);
                             i--;
-                            break;
-                        }
-                        //Checks if any projectiles collide with any enemies
-                        for (int k = 0; k < enemies.Count; k++) {
-                            if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
+                        } else {
+                            projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                            if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;
                             }
+                            //Checks if any projectiles collide with any enemies
+                            for (int k = 0; k < enemies.Count; k++) {
+                                if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
+                                    projectiles.RemoveAt(i);
+                                    i--;
+                                    break;
+                                }
+                            }
                         }
                     }
-                }
                 //update AI for all enemies
-                for(int i = 0; i < enemies.Count; i++) {
+                for (int i = 0; i < enemies.Count; i++) {
                     if (enemies[i] != null) {
-                        enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds);
+                        enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc, Content, c,ref projectiles);
                     }
                 }
 

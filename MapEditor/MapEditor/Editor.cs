@@ -33,9 +33,11 @@ namespace MapEditor {
         string curTool = "";
         //string name for texture
         string textString;
-        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner; //texture bitmaps
-        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior; //gameobject bitmaps
+        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner, Stairs, stairs_corner; //texture bitmaps
+        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior, pillar; //gameobject bitmaps
         Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
+        Bitmap slant_car1, slant_car2, slant_car3, slant_car4, slant_car5, slant_car6;// bitmap for slanted cars
+        Bitmap dumpster_1, dumpster_2, dumpster_3, dumpster_4, dumpster_5, dumpster_6;// bitmaps for dumpster
         Bitmap player, enemy, riotEnemy; //entity bitmaps
         //Tools
         string playerPos = "" + "," + 0 + "," + 0;
@@ -218,6 +220,20 @@ namespace MapEditor {
             Graphics g = e.Graphics;
             g.DrawImage(concreteEdge, 0, 0, 50, 50);
         }
+        
+        //stairs
+        private void stairs_Paint(object sender, PaintEventArgs e) {
+            Stairs = new Bitmap("TileTextures/Stairs.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(Stairs, 0, 0, 50, 50);
+        }
+
+        //stairs corner
+        private void stairscorner_Paint(object sender, PaintEventArgs e) {
+            stairs_corner = new Bitmap("TileTextures/StaursCorner.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(stairs_corner, 0, 0, 50, 50);
+        }
 
         //________________________________________________________________________________________
         #endregion
@@ -315,12 +331,103 @@ namespace MapEditor {
             g.DrawImage(buildingCorner, 0, 0, 50, 50);
         }
 
-        // buyilding interior
+        // building interior
         private void BuildingInterior_Paint(object sender, PaintEventArgs e)
         {
             buildingInterior = new Bitmap("GameObjects/BuildingInterior.png");
             Graphics g = e.Graphics;
             g.DrawImage(buildingInterior, 0, 0, 50, 50);
+        }
+
+        //pillar
+        private void Pillar_Paint(object sender, PaintEventArgs e) {
+            pillar = new Bitmap("GameObjects/Column.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(pillar, 0, 0, 50, 50);
+        }
+
+        //slant car 1
+        private void slantcar1_Paint(object sender, PaintEventArgs e) {
+            slant_car6 = new Bitmap("GameObjects/Slant Car/CarSlanted6.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(slant_car6, 0, 0, 50, 50);
+        }
+
+        //slant car 2
+        private void slantcar2_Paint(object sender, PaintEventArgs e) {
+            slant_car5 = new Bitmap("GameObjects/Slant Car/CarSlanted5.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(slant_car5, 0, 0, 50, 50);
+        }
+
+        //slant car 3
+        private void slantcar3_Paint(object sender, PaintEventArgs e) {
+            slant_car4 = new Bitmap("GameObjects/Slant Car/CarSlanted4.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(slant_car4, 0, 0, 50, 50);
+        }
+
+        //slant car 4
+        private void slantcar4_Paint(object sender, PaintEventArgs e) {
+            slant_car3 = new Bitmap("GameObjects/Slant Car/CarSlanted3.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(slant_car3, 0, 0, 50, 50);
+        }
+
+        //slant car 5
+        private void slantcar5_Paint(object sender, PaintEventArgs e) {
+            slant_car2 = new Bitmap("GameObjects/Slant Car/CarSlanted2.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(slant_car2, 0, 0, 50, 50);
+        }
+
+        //slant car 6
+        private void slantcar6_Paint(object sender, PaintEventArgs e) {
+            slant_car1 = new Bitmap("GameObjects/Slant Car/CarSlanted1.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(slant_car1, 0, 0, 50, 50);
+        }
+
+        //dumpster 1
+        private void dumpster1_Paint(object sender, PaintEventArgs e) {
+            dumpster_1 = new Bitmap("GameObjects/Dumpster/Dumpster1.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(dumpster_1, 0, 0, 50, 50);
+        }
+
+        //dumpster 2
+        private void dumpster2_Paint(object sender, PaintEventArgs e) {
+            dumpster_2 = new Bitmap("GameObjects/Dumpster/Dumpster2.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(dumpster_2, 0, 0, 50, 50);
+        }
+
+        //dumpster 3
+        private void dumpster3_Paint(object sender, PaintEventArgs e) {
+            dumpster_3 = new Bitmap("GameObjects/Dumpster/Dumpster3.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(dumpster_3, 0, 0, 50, 50);
+        }
+
+        //dumpster 4
+        private void dumpster4_Paint(object sender, PaintEventArgs e) {
+            dumpster_4 = new Bitmap("GameObjects/Dumpster/Dumpster4.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(dumpster_4, 0, 0, 50, 50);
+        }
+
+        //dumpster 5
+        private void dumpster5_Paint(object sender, PaintEventArgs e) {
+            dumpster_5 = new Bitmap("GameObjects/Dumpster/Dumpster5.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(dumpster_5, 0, 0, 50, 50);
+        }
+
+        //dumpster 6
+        private void dumpster6_Paint(object sender, PaintEventArgs e) {
+            dumpster_6 = new Bitmap("GameObjects/Dumpster/Dumpster6.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(dumpster_6, 0, 0, 50, 50);
         }
         //_________________________________________________________________________________________
         #endregion
@@ -374,6 +481,22 @@ namespace MapEditor {
             textString = "ConcreteEdge";
             pictureBox2.Invalidate();
         }
+
+        private void stairs_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = Stairs;
+            curRotation = 0;
+            curType = "texture";
+            textString = "stairs";
+            pictureBox2.Invalidate();
+        }
+
+        private void stairscorner_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = stairs_corner;
+            curRotation = 0;
+            curType = "texture";
+            textString = "stairscorner";
+            pictureBox2.Invalidate();
+        }
         //____________________________________________________________________________________________
         #endregion
 
@@ -419,6 +542,56 @@ namespace MapEditor {
             pictureBox2.Invalidate();
         }
 
+        private void dumpster1_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = dumpster_1;
+            curRotation = 0;
+            curType = "object";
+            textString = "dumpster1";
+            pictureBox2.Invalidate();
+        }
+
+        private void dumpster2_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = dumpster_2;
+            curRotation = 0;
+            curType = "object";
+            textString = "dumpster2";
+            pictureBox2.Invalidate();
+        }
+
+        private void dumpster3_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = dumpster_3;
+            curRotation = 0;
+            curType = "object";
+            textString = "dumpster3";
+            pictureBox2.Invalidate();
+        }
+
+        private void dumpster4_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = dumpster_4;
+            curRotation = 0;
+            curType = "object";
+            textString = "dumpster4";
+            pictureBox2.Invalidate();
+        }
+
+        
+
+        private void dumpster5_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = dumpster_5;
+            curRotation = 0;
+            curType = "object";
+            textString = "dumpster5";
+            pictureBox2.Invalidate();
+        }
+
+        private void dumpster6_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = dumpster_6;
+            curRotation = 0;
+            curType = "object";
+            textString = "dumpster6";
+            pictureBox2.Invalidate();
+        }
+
         private void Car1_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_1;
             curRotation = 0;
@@ -442,7 +615,7 @@ namespace MapEditor {
             textString = "car3";
             pictureBox2.Invalidate();
         }
-
+        
         private void Car4_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_4;
             curRotation = 0;
@@ -450,16 +623,7 @@ namespace MapEditor {
             textString = "car4";
             pictureBox2.Invalidate();
         }
-
-        private void BuildingInterior_Click(object sender, EventArgs e)
-        {
-            curBrush = buildingInterior;
-            curRotation = 0;
-            curType = "object";
-            textString = "buildingInterior";
-            pictureBox2.Invalidate();
-        }
-
+        
         private void Car5_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_5;
             curRotation = 0;
@@ -467,12 +631,60 @@ namespace MapEditor {
             textString = "car5";
             pictureBox2.Invalidate();
         }
-
+        
         private void Car6_MouseClick(object sender, MouseEventArgs e) {
             curBrush = car_6;
             curRotation = 0;
             curType = "object";
             textString = "car6";
+            pictureBox2.Invalidate();
+        }
+
+        private void slantcar1_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = slant_car6;
+            curRotation = 0;
+            curType = "object";
+            textString = "slant_car6";
+            pictureBox2.Invalidate();
+        }
+
+        private void slantcar2_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = slant_car5;
+            curRotation = 0;
+            curType = "object";
+            textString = "slant_car5";
+            pictureBox2.Invalidate();
+        }
+
+        private void slantcar3_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = slant_car4;
+            curRotation = 0;
+            curType = "object";
+            textString = "slant_car4";
+            pictureBox2.Invalidate();
+        }
+
+        private void slantcar4_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = slant_car3;
+            curRotation = 0;
+            curType = "object";
+            textString = "slant_car3";
+            pictureBox2.Invalidate();
+        }
+
+        private void slantcar5_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = slant_car2;
+            curRotation = 0;
+            curType = "object";
+            textString = "slant_car2";
+            pictureBox2.Invalidate();
+        }
+
+        private void slantcar6_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = slant_car1;
+            curRotation = 0;
+            curType = "object";
+            textString = "slant_car1";
             pictureBox2.Invalidate();
         }
 
@@ -489,6 +701,23 @@ namespace MapEditor {
             curRotation = 0;
             curType = "object";
             textString = "BuildingCorner";
+            pictureBox2.Invalidate();
+        }
+
+        private void BuildingInterior_Click(object sender, EventArgs e)
+        {
+            curBrush = buildingInterior;
+            curRotation = 0;
+            curType = "object";
+            textString = "buildingInterior";
+            pictureBox2.Invalidate();
+        }
+
+        private void Pillar_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = pillar;
+            curRotation = 0;
+            curType = "object";
+            textString = "pillar";
             pictureBox2.Invalidate();
         }
         //__________________________________________________________________________________________

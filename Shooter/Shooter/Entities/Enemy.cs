@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Shooter.Controls;
 using Shooter.MapClasses;
 using Shooter.Other_tools;
 using System;
@@ -28,6 +29,8 @@ namespace Shooter.Entities {
         private double scanTime;
         //The timer for scanning
         private double scanTimer;
+        //boolean for aggression
+        private bool aggro;
         //queue that holds the coordinates the npc is scheduled to move to
         private Queue<Coord> moveQueue = new Queue<Coord>();
         //Default constructor for normal enemies
@@ -42,7 +45,7 @@ namespace Shooter.Entities {
 
             //collidable object by default
             collision = true;
-
+            aggro = false;
             //Set health
             health = 4;
             maxHealth = health;
@@ -57,6 +60,7 @@ namespace Shooter.Entities {
             //tiles per second
             speed = 6;
             weapon = new Controls.Weapon(content);
+            weapon.FireRate = .5;
         }
         public bool Move(double elapsedTime, Coord end) {
             if (loc.X > end.X - .05 && loc.X < end.X + .05 && loc.Y > end.Y - .05 && loc.Y < end.Y + .05) {
@@ -107,7 +111,36 @@ namespace Shooter.Entities {
                 direction += deg;
             }
         }
-        public void UpdateAI(ref Map m, double elapsedTime) {
+        // Return True if the player is in the scan triangle
+        public bool IsPointInPolygon(List<Coord> triangle, Coord player) {
+            double totalAngle = 0;
+            for(int i = 0; i < triangle.Count; i++) {
+                int nextIndex = i + 1; 
+                if (nextIndex >= triangle.Count) {
+                    nextIndex = 0;
+                }
+                double distAB = Math.Sqrt(Math.Pow((player.X - triangle[i].X), 2) + Math.Pow((player.Y - triangle[i].Y), 2));
+                double distAC = Math.Sqrt(Math.Pow((player.X - triangle[nextIndex].X), 2) + Math.Pow((player.Y - triangle[nextIndex].Y), 2));
+                double distBC = Math.Sqrt(Math.Pow((triangle[i].X - triangle[nextIndex].X), 2) + Math.Pow((triangle[i].Y - triangle[nextIndex].Y), 2));
+                totalAngle += Math.Acos((Math.Pow(distAB,2) + Math.Pow(distAC,2) - Math.Pow(distBC, 2)) / (2 *distAB * distBC));
+            }
+            return (Math.Abs(totalAngle) > 0.000001);
+        }
+        public void UpdateAI(ref Map m, double elapsedTime, Coord player, ContentManager content, Camera c, ref List<Projectile> projectiles) {
+            //define the triangle within which the character scans
+            List<Coord> triangle = new List<Coord>();
+            triangle.Add(loc);
+            triangle.Add(new Coord((loc.X + Math.Cos(direction + scanArc) * visionRange), (loc.Y + Math.Sin(direction + scanArc) * visionRange)));
+            triangle.Add(new Coord((loc.X + Math.Cos(direction - scanArc) * visionRange), (loc.Y + Math.Sin(direction - scanArc) * visionRange)));
+            Console.WriteLine(IsPointInPolygon(triangle, player));
+            if (IsPointInPolygon(triangle, player)) {
+                aggro = true;
+                if (weapon.CheckFireRate(elapsedTime)) {
+                    projectiles.Add(weapon.Shoot(content, this, c, m.TileSize));
+                }
+            }else {
+                aggro = false;
+            }
             //update timer
             scanTimer += elapsedTime;
             //Find the shortest way to turn to the direction it's headed in
@@ -122,15 +155,18 @@ namespace Shooter.Entities {
                     direction = heading;
                 }
             }
-            //pan
-            if (scanTimer < scanTime / 4) {
-                Rotate(2 * turnSpeed);
-            }else if(scanTimer < scanTime * 3 / 4) {
-                Rotate(-2 * turnSpeed);
-            }else if(scanTimer < scanTime) {
-                Rotate(2 * turnSpeed);
-            }else {
-                scanTimer = 0;
+            //if the player is not yet found, pan to look for him
+            if (!aggro) {
+                //pan around looking for player
+                if (scanTimer < scanTime / 4) {
+                    Rotate(2 * turnSpeed);
+                } else if (scanTimer < scanTime * 3 / 4) {
+                    Rotate(-2 * turnSpeed);
+                } else if (scanTimer < scanTime) {
+                    Rotate(2 * turnSpeed);
+                } else {
+                    scanTimer = 0;
+                }
             }
             //Pathfinding with sound
             if (m.sounds.Count > 0) {
@@ -140,8 +176,8 @@ namespace Shooter.Entities {
                     //find a path to the sound and put it on move queue
                     moveQueue.Clear();
                     List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
-                    foreach (Coord c in path) {
-                        moveQueue.Enqueue(c);
+                    foreach (Coord point in path) {
+                        moveQueue.Enqueue(point);
                     }
                 }
             }
