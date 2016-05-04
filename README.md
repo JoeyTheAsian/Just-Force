@@ -400,3 +400,6 @@
 
 <b> 4:01pm 5/2/2016: Connor Cummings</b>
 <ul><li>added new textures to map editor</li></ul>
+
+<b> 3:33pm 5/4/2016: Anthony Olivares</b>
+<ul><li>updated design.txt with a list of assets needed for the office building levels</li></ul>
