@@ -1,4 +1,4 @@
-* next to basic/required items
+﻿* next to basic/required items
 
 ###########
 Game Title:
@@ -120,3 +120,11 @@ Assests (that would be required for currently confirmed levels)
 -fencing
 -dumpsters
 -brick walls for alleyways
+
+###########
+ASSETS FOR OFFICE BUILDING LEVELS
+###########
+-carpet floor
+-interior wall
+-desk chairs
+-desks
