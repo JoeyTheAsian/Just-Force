@@ -398,11 +398,9 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Back.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Exit.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Graphics.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Options.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Player.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Resume.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Sounds.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\SubmachineGun.png
 D:\Github\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Ammo.png
 D:\Github\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
@@ -709,3 +707,7 @@ C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.pn
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Player.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png

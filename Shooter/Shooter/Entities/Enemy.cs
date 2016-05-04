@@ -33,11 +33,12 @@ namespace Shooter.Entities {
         private bool aggro;
         //queue that holds the coordinates the npc is scheduled to move to
         private Queue<Coord> moveQueue = new Queue<Coord>();
+        private Random random = new Random();
         //Default constructor for normal enemies
         public Enemy(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r) {
             //try to set texture to specified name
             try {
-                entTexture = content.Load<Texture2D>(t);
+                entTexture = content.Load<Texture2D>("Enemy" + random.Next(1, 3));
             } catch (FileNotFoundException) {
                 entTexture = content.Load<Texture2D>("NoTexture");
                 Console.WriteLine(t + "Not found. Using default texture.");
@@ -53,7 +54,7 @@ namespace Shooter.Entities {
             visionRange = 5;
             scanRange = 8;
             turnSpeed = .01;
-            scanArc = .25 * Math.PI;
+            scanArc = .1 * Math.PI;
             //convert to ms
             scanTime = 2 * 1000;
             heading = 0;
@@ -143,52 +144,54 @@ namespace Shooter.Entities {
             }
             //update timer
             scanTimer += elapsedTime;
-            //Find the shortest way to turn to the direction it's headed in
-            if (heading - direction <= Math.PI && heading - direction > 0) {
-                Rotate(turnSpeed);
-                if (direction > heading) {
-                    direction = heading;
-                }
-            } else if (direction - heading >= -Math.PI && heading - direction <= 0) {
-                Rotate(-turnSpeed);
-                if (direction < heading) {
-                    direction = heading;
-                }
-            }
-            //if the player is not yet found, pan to look for him
-            if (!aggro) {
-                //pan around looking for player
-                if (scanTimer < scanTime / 4) {
-                    Rotate(2 * turnSpeed);
-                } else if (scanTimer < scanTime * 3 / 4) {
-                    Rotate(-2 * turnSpeed);
-                } else if (scanTimer < scanTime) {
-                    Rotate(2 * turnSpeed);
-                } else {
-                    scanTimer = 0;
-                }
-            }
-            //Pathfinding with sound
-            if (m.sounds.Count > 0) {
-                Coord start = m.sounds[m.sounds.Count - 1];
-                double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
-                if (dist < scanRange) {
-                    //find a path to the sound and put it on move queue
-                    moveQueue.Clear();
-                    List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
-                    foreach (Coord point in path) {
-                        moveQueue.Enqueue(point);
+            if (moveQueue.Count > 0) {
+                //Find the shortest way to turn to the direction it's headed in
+                if (heading - direction <= Math.PI && heading - direction > 0) {
+                    Rotate(10 * turnSpeed);
+                    if (direction > heading) {
+                        direction = heading;
+                    }
+                } else if (direction - heading >= -Math.PI && heading - direction <= 0) {
+                    Rotate(10 * -turnSpeed);
+                    if (direction < heading) {
+                        direction = heading;
                     }
                 }
-            }
-            if (moveQueue.Count > 0) {
                 if (Move(elapsedTime, moveQueue.Peek())) {
                     Coord temp = new Coord(moveQueue.Peek().X - loc.X, moveQueue.Peek().Y - loc.Y);
                     heading = Math.Atan2(temp.Y, temp.X);
                     moveQueue.Dequeue();
                 }
+            } else {
+                //if the player is not yet found, pan to look for him and listen for his shots
+                if (!aggro) {
+                    //pan around looking for player
+                    if (scanTimer < scanTime / 4) {
+                        Rotate(2 * turnSpeed);
+                    } else if (scanTimer < scanTime * 3 / 4) {
+                        Rotate(-2 * turnSpeed);
+                    } else if (scanTimer < scanTime) {
+                        Rotate(2 * turnSpeed);
+                    } else {
+                        scanTimer = 0;
+                    }
+                    //Pathfinding with sound
+                    if (m.sounds.Count > 0) {
+                        Coord start = m.sounds[m.sounds.Count - 1];
+                        double dist = Math.Sqrt(Math.Pow(start.X - loc.X, 2) + Math.Pow(start.Y - loc.Y, 2));
+                        if (dist < scanRange) {
+                            //find a path to the sound and put it on move queue
+                            moveQueue.Clear();
+                            List<Coord> path = GetPath(loc, m.sounds[m.sounds.Count - 1], ref m);
+                            foreach (Coord point in path) {
+                                moveQueue.Enqueue(point);
+                            }
+                        }
+                    }
+                } else {
+                    direction = Math.Atan2(player.Y - loc.Y, player.X - loc.X);
+                }
             }
-
         }
         //Checks all adjacent tiles and returns list of valid tiles sorted by estimated path length
         public List<Node> checkAdjacent(Node curNode, Coord end, ref Node[,] nodeMap) {
@@ -278,7 +281,7 @@ namespace Shooter.Entities {
                 List<Coord> path = new List<Coord>();
                 Node n = nodeMap[endX, endY];
                 while (n.parent != null) {
-                    path.Add(new Coord(n.location.X, n.location.Y));
+                    path.Add(new Coord(n.location.X + (random.Next(-3, 3) * .1), n.location.Y + (random.Next(-3, 3) * .1)));
                     n = n.parent;
                 }
                 path.Reverse();
