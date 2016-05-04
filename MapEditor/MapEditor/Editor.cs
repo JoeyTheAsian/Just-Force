@@ -735,7 +735,7 @@ namespace MapEditor {
 
         //enemy spawn
         private void EnemySpawn_MouseClick(object sender, MouseEventArgs e) {
-            enemy = new Bitmap("Entities/Pistol_Player.png");
+            enemy = new Bitmap("Entities/Enemy2.png");
             curBrush = enemy;
             curRotation = 0;
             curType = "Entity";
