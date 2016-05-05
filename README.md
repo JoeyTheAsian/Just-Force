@@ -403,3 +403,11 @@
 
 <b> 3:33pm 5/4/2016: Anthony Olivares</b>
 <ul><li>updated design.txt with a list of assets needed for the office building levels</li></ul>
+<b> 9:30 pm 5/4/16: Joey Tong</b>
+<ul><li>New Textures:</li>
+<li>Enemy1, Enemy2, Enemy3</li>
+<li>Cursor.png</li>
+<li>Finished coding AI, added some improvements and randomizations of path</li>
+<li>Fixed many glitches related to rotation and detection in the AI</li>
+<li>Changed cursor to custom cursor texture</li>
+</ul>
