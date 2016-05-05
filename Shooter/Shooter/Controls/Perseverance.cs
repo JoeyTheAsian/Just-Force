@@ -10,7 +10,7 @@ namespace Shooter.Controls {
         //Object to store a player
         protected Character player;
         //Constructor that takes the player object, and passes up static names for this skill
-        public Perseverance(ContentManager content, Character p) : base(content, "NoTexture", "Perseverance", 6000, 3000) {
+        public Perseverance(ContentManager content, Character p) : base(content, "NoTexture", "Perseverance", 6000, 3500) {
             player = p;
         }
         //Doubles the player's health, halves the player's damage and sets the skill to active

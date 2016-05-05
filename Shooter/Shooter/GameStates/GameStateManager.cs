@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Shooter.Entities;
+using Shooter.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Text;
 using System.Threading;
 
 namespace Shooter.GameStates {
-     class GameStateManager {
+    class GameStateManager {
 
         //attributes
         public Texture2D startButton;
@@ -42,7 +44,7 @@ namespace Shooter.GameStates {
         public string lastState; // holds whether the player went to options from pause menu or main menu
         //define attributes
 
-        public GameStateManager(int screenWidth, int screenHeight, ContentManager content) {
+        public GameStateManager(int screenWidth, int screenHeight, ContentManager content, int curLvl) {
             states = new List<string>();
             states.Add("LOADING");
             states.Add("PLAYING");
@@ -52,6 +54,7 @@ namespace Shooter.GameStates {
             states.Add("LEVELSELECT");
             states.Add("SOUNDSMENU");
             states.Add("GRAPHICSMENU");
+            states.Add("LEVELSWITCH");
             gameState = "";
 
             // main menu buttons and their positions
@@ -84,7 +87,7 @@ namespace Shooter.GameStates {
         public void CheckGameState() {
             if (states.Contains(gameState.ToUpper()) == false) {
                 throw (new GameStateNotFoundException(gameState));
-            } 
+            }
         }
         //draw load screen
         public void DrawLoad(SpriteBatch sb) {
@@ -94,14 +97,14 @@ namespace Shooter.GameStates {
             try {
                 gameState = "Playing";
                 CheckGameState();
-            } catch(GameStateNotFoundException e) {
+            } catch (GameStateNotFoundException e) {
                 Console.WriteLine(e.ToString());
                 gameState = "";
             }
             isLoading = true;
         }
         //method for mouse on main menu
-        public Rectangle MouseClicked(int x, int y, Game1 game) {
+        public Rectangle MouseClicked(int x, int y, Game1 game, ref int currentLevel, ref List<Enemy> enemies, ref List<PickUpItem> Items, ref List<Projectile> projectiles, ref int timer, ContentManager Content, ref Character player, ref string wepUnl) {
             Rectangle mouseClickRect = new Rectangle(x, y, 1, 1);
             Rectangle startbuttonRect = new Rectangle((int)startButtonPosition.X, (int)startButtonPosition.Y, 300, 108);
             Rectangle exitbuttonRect = new Rectangle((int)exitButtonPosition.X, (int)exitButtonPosition.Y, 600, 192);
@@ -110,13 +113,22 @@ namespace Shooter.GameStates {
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
                     try {
-                        gameState = "Loading";
+                        Shooting.CreateWeapons(Content);
+                        wepUnl = "";
+                        player.Weapon = Shooting.weapons[1];
+                        player.FrameLevel = 1;
+                        currentLevel = 1;
+                        enemies.Clear();
+                        Items.Clear();
+                        projectiles.Clear();
+                        timer = 0;
+                        gameState = "LevelSwitch";
                         CheckGameState();
                     } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
                         gameState = "";
                     }
-                    isLoading = true;
+
                 }
                 //player exits game
                 else if (mouseClickRect.Intersects(exitbuttonRect)) {
@@ -237,10 +249,10 @@ namespace Shooter.GameStates {
                         gameState = "";
                     }
                 }
-            }            
+            }
             return mouseClickRect;
         }
-        
+
         public bool updateState(KeyboardState State, KeyboardState oldState) {
             if (gameState == "Playing" && State.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) {
                 try {
@@ -251,9 +263,8 @@ namespace Shooter.GameStates {
                     gameState = "";
                 }
                 return false;
-            }
-            else if (gameState == "Paused") {
-                if (State.IsKeyDown(Keys.Escape)&& oldState.IsKeyUp(Keys.Escape)) {
+            } else if (gameState == "Paused") {
+                if (State.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) {
                     try {
                         gameState = "Playing";
                         CheckGameState();

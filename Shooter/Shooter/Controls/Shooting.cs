@@ -63,23 +63,23 @@ namespace Shooter.Controls {
             //Adds the pistol
             weapons[1] = new Weapon(Content);
             //Adds the Tommy Gun
-            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "Submachine Gun", 15, 16, 1800, 7, 2);
+            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "SMG", 15, 6, 800, 7, 2, false);
             //Adds the Shotgun
-            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 6, 5, 2500, 4, 3);
+            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 6, 5, 1500, 4, 3, false);
             //Adds the Rifle
-            weapons[4] = new Weapon(Content, false, 1, 6, "Rifle", 5, "RifleBullet", "Rifle", 4, 3, 2000, 10, 4);
+            weapons[4] = new Weapon(Content, false, 1, 6, "Rifle", 5, "RifleBullet", "Rifle", 4, 3, 1000, 10, 4, false);
         }
 
         //Shoots the player's current gun
         public static void ShootWeapon(Character player, MouseState mState, MouseState oldMState, List<Projectile> projectiles, bool temp, Camera c, ContentManager Content, Queue<SoundEffect> curSounds, Dictionary<string, SoundEffect> soundEffects, ref Map m) {
-            if (!player.IsMeleeing && (!SkillSystem.skills[2].Active && !player.IsSprinting)) {
+            if (!player.IsMeleeing && !(SkillSystem.skills[2].Active && player.IsSprinting)) {
                 if (player.Weapon.Auto) {
                     if (oldMState.LeftButton == ButtonState.Pressed) {
                         if (temp) {
                             SoundEffect TempSound;
                             //enqueue gunshot sound
                             //only shoot if not a null projectile
-                            Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                            Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                             if (p != null) {
                                 //create new projectile
                                 projectiles.Add(p);
@@ -91,7 +91,7 @@ namespace Shooter.Controls {
                                 m.sounds.Add(player.Loc);
                                 c.screenShake = true;
                             } else {
-                                player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                 //enqueue gun click sound if empty
                                 soundEffects.TryGetValue("emptyClick", out TempSound);
                                 curSounds.Enqueue(TempSound);
@@ -105,11 +105,11 @@ namespace Shooter.Controls {
                                 SoundEffect TempSound;
                                 //enqueue gunshot sound
                                 //only shoot if not a null projectile
-                                Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                 if (p != null) {
                                     player.Weapon.Ammo[0] += 2;
-                                    Projectile p2 = player.Weapon.Shoot(Content, player, c, m.TileSize);
-                                    Projectile p3 = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                    Projectile p2 = player.Weapon.Shoot(Content, player, c, m.TileSize, player);
+                                    Projectile p3 = player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                     projectiles.Add(p);
                                     projectiles.Add(p2);
                                     projectiles.Add(p3);
@@ -118,7 +118,7 @@ namespace Shooter.Controls {
                                     m.sounds.Add(player.Loc);
                                     c.screenShake = true;
                                 } else {
-                                    player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                    player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                     //enqueue gun click sound if empty
                                     soundEffects.TryGetValue("emptyClick", out TempSound);
                                     curSounds.Enqueue(TempSound);
@@ -127,7 +127,7 @@ namespace Shooter.Controls {
                                 SoundEffect TempSound;
                                 //enqueue gunshot sound
                                 //only shoot if not a null projectile
-                                Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                Projectile p = player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                 if (p != null) {
                                     projectiles.Add(p);
                                     soundEffects.TryGetValue("gunshot", out TempSound);
@@ -135,7 +135,7 @@ namespace Shooter.Controls {
                                     m.sounds.Add(player.Loc);
                                     c.screenShake = true;
                                 } else {
-                                    player.Weapon.Shoot(Content, player, c, m.TileSize);
+                                    player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                     //enqueue gun click sound if empty
                                     soundEffects.TryGetValue("emptyClick", out TempSound);
 
@@ -149,7 +149,7 @@ namespace Shooter.Controls {
 
         //Switches the player's weapon
         public static void SwitchWeapon(Character player, KeyboardState state, KeyboardState oldState) {
-            if (!player.IsMeleeing && (!SkillSystem.skills[2].Active && !player.IsSprinting)) {
+            if (!player.IsMeleeing && !(SkillSystem.skills[2].Active && player.IsSprinting)) {
                 //Press E to switch the player's weapon
                 if (state.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E)) {
                     //Gets the index of the player's current weapon
@@ -168,9 +168,11 @@ namespace Shooter.Controls {
                     }
 
                     //Changes the weapon
-                    player.Weapon = weapons[index];
-                    player.FrameLevel = index;
-                    player.Frame = 0;
+                    if (weapons[index].IsAcquired) {
+                        player.Weapon = weapons[index];
+                        player.FrameLevel = index;
+                        player.Frame = 0;
+                    }
                 } else if (state.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q)) {
                     //Gets the index of the player's current weapon
                     int index = 0;
@@ -186,9 +188,11 @@ namespace Shooter.Controls {
                     }
 
                     //Changes the weapon
-                    player.Weapon = weapons[index];
-                    player.FrameLevel = index;
-                    player.Frame = 0;
+                    if (weapons[index].IsAcquired) {
+                        player.Weapon = weapons[index];
+                        player.FrameLevel = index;
+                        player.Frame = 0;
+                    }
                 }
             }
 
@@ -198,7 +202,7 @@ namespace Shooter.Controls {
         public static void Stab(Character player, KeyboardState state, KeyboardState oldState, ContentManager content, Camera c, int tileSize, List<Projectile> projectiles) {
             //If the player presses 'V' then does a melee attack
             if (state.IsKeyDown(Keys.V) && oldState.IsKeyUp(Keys.V) && (!SkillSystem.skills[2].Active && !player.IsSprinting) && !player.Weapon.isReloading) {
-                projectiles.Add(weapons[0].Shoot(content, player, c, tileSize));
+                projectiles.Add(weapons[0].Shoot(content, player, c, tileSize, player));
                 //Sets the player to a melee state
                 player.IsMeleeing = true;
                 //Sets animation values

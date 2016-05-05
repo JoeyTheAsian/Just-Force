@@ -581,11 +581,9 @@ D:\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 D:\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe.config
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Back.png
-C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Blade_Temp.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BulletTwo.png
-C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car1.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car2.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car3.png
@@ -593,9 +591,6 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car4.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car5.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car6.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Exit.png
-C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_corner.png
-C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_links.png
-C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fence_pole.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Graphics.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\LaneLineEnd.png
@@ -612,7 +607,6 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\SubmachineG
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TrashCan.png
-C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
@@ -712,3 +706,16 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceCorner.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceLinks.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fencePole.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bar.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png

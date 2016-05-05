@@ -12,7 +12,7 @@ namespace Shooter.Controls {
         protected int prevHp;
 
         //Constructor that takes the player object, and passes up static names for this skill
-        public OverCharged(ContentManager content, Character p) : base(content, "NoTexture", "Overcharged", 6000, 3000) {
+        public OverCharged(ContentManager content, Character p) : base(content, "NoTexture", "Overcharged", 6000, 3300) {
             player = p;
         }
         //Stores the player's previous health, doubles the player's damage, halves the player's health and sets the skill to active

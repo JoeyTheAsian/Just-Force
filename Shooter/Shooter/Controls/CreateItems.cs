@@ -37,17 +37,48 @@ namespace Shooter.Controls {
             for (int f = 0; f < Items.Count; f++) {
                 if (Items[f].CheckCollide(player)) {
                     if (Items[f].ItemType.Equals("health")) {
-                        player.Health++;
+                        if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
+                            player.Health++;
+                        }
                     } else if (Items[f].ItemType.Equals("pistolammo")) {
-                        Shooting.weapons[1].Ammo.Add(15);
+                        Shooting.weapons[1].Ammo.Add(9);
                     } else if (Items[f].ItemType.Equals("smgammo")) {
-                        Shooting.weapons[2].Ammo.Add(9);
+                        Shooting.weapons[2].Ammo.Add(15);
                     } else if (Items[f].ItemType.Equals("shotgunammo")) {
                         Shooting.weapons[3].Ammo.Add(6);
                     } else if (Items[f].ItemType.Equals("rifleammo")) {
                         Shooting.weapons[4].Ammo.Add(4);
                     }
                     Items.RemoveAt(f);
+                }
+            }
+        }
+        //Creates a random item at a specified position
+        public static void CreateRandomItem(Random rng, ContentManager Content, List<PickUpItem> Items, double x, double y, Character player) {
+            //A one in four chance of enemies dropping some sort of item
+            int dropRate = rng.Next(0, 6);
+
+            //If the value equals zero then drops a random item
+            if (dropRate == 0) {
+                int drop = rng.Next(0, 101);
+                //Twenty percent chance for health
+                if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
+                    if (drop > 80) {
+                        CreateHealthKit(Content, Items, x, y);
+                    }
+                }
+                //Thirty percent chance for pistol ammo
+                if (drop > 50) {
+                    CreatePistolAmmo(Content, Items, x, y);
+                    //Fifteen percent chance for SMG ammo
+                } else if (drop > 35) {
+                    CreateSMGAmmo(Content, Items, x, y);
+                    //Twenty percent chance for shotgun ammo
+                } else if (drop > 15) {
+                    CreateShotgunAmmo(Content, Items, x, y);
+                    //Fifteen percent chance for rifle ammo
+                } else {
+                    CreateRifleAmmo(Content, Items, x, y);
                 }
             }
         }

@@ -113,7 +113,7 @@ namespace Shooter.Entities {
             collision = false;
 
             //Set health
-            health = 1;
+            health = 5;
             maxHealth = health;
 
             //set stamina
@@ -131,7 +131,7 @@ namespace Shooter.Entities {
             }
 
             //Set health
-            health = 1;
+            health = 5;
             maxHealth = health;
 
             //set stamina

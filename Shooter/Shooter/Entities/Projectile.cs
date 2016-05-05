@@ -15,10 +15,16 @@ namespace Shooter.Entities {
         protected double velocity;
         protected double distTraveled;
         protected bool isRifleRound;
+        protected bool playerShot;
 
         public bool IsRifleRound {
             get { return isRifleRound; }
             set { isRifleRound = value; }
+        }
+
+        public bool PlayerShot {
+            get { return playerShot; }
+            set { playerShot = value; }
         }
 
         public Projectile(ContentManager content) : base(content) {
@@ -49,7 +55,7 @@ namespace Shooter.Entities {
             isRifleRound = false;
         }
         //constructor: x coord, y coord, direction, velocity, texture file, collision
-        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r, double rng, bool rifle) : base(content, x, y, dir, t, c, r) {
+        public Projectile(ContentManager content, double x, double y, double dir, double v, string t, bool c, Rectangle r, double rng, bool rifle, bool isPlayerShot) : base(content, x, y, dir, t, c, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>(t);
@@ -69,6 +75,7 @@ namespace Shooter.Entities {
             velocity = v;
             range = rng;
             isRifleRound = rifle;
+            playerShot = isPlayerShot;
         }
         public void UpdatePos(double timeElapsed, int tileSize) {
             double x = (Math.Cos(Direction) * velocity * timeElapsed) / tileSize;
@@ -94,34 +101,54 @@ namespace Shooter.Entities {
             //Checks collision based on the direction the projectile is rotated to
             //Checks angles in the fourth quadrant
             if (directionDegrees > 270 && directionDegrees <= 360) {
-                if (this.loc.X + 1 < e.Loc.X + 1 && this.loc.X + 1 > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y) {
+                if (this.loc.X + 1 < e.Loc.X + 0.5 && this.loc.X + 1 > e.Loc.X - 0.5 && this.loc.Y + 1 < e.Loc.Y + 0.5 && this.loc.Y + 1 > e.Loc.Y - 0.5) {
                     //Decrements the character's health
-                    e.Health -= w.Damage;
-                    return true;
+                    if (e.IsPlayer && !playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    } else if (!e.IsPlayer && playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    }
                 }
             }
             //Checks angles in the third quadrant
             else if (directionDegrees > 180 && directionDegrees <= 270) {
-                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y + 1 < e.Loc.Y + 1 && this.loc.Y + 1 > e.Loc.Y) {
+                if (this.loc.X < e.Loc.X + 0.5 && this.loc.X > e.Loc.X - 0.5 && this.loc.Y + 1 < e.Loc.Y + 0.5 && this.loc.Y + 1 > e.Loc.Y - 0.5) {
                     //Decrements the character's health
-                    e.Health -= w.Damage;
-                    return true;
+                    if (e.IsPlayer && !playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    } else if (!e.IsPlayer && playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    }
                 }
             }
             //Checks angles in the second quadrant
             else if (directionDegrees > 90 && directionDegrees <= 180) {
-                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y) {
+                if (this.loc.X < e.Loc.X + 0.5 && this.loc.X > e.Loc.X - 0.5 && this.loc.Y < e.Loc.Y + 0.5 && this.loc.Y > e.Loc.Y - 0.5) {
                     //Decrements the character's health
-                    e.Health -= w.Damage;
-                    return true;
+                    if (e.IsPlayer && !playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    } else if (!e.IsPlayer && playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    }
                 }
             }
             //Checks angles in the first quadrant
             else {
-                if (this.loc.X < e.Loc.X + 1 && this.loc.X > e.Loc.X && this.loc.Y < e.Loc.Y + 1 && this.loc.Y > e.Loc.Y) {
+                if (this.loc.X < e.Loc.X + 0.5 && this.loc.X > e.Loc.X - 0.5 && this.loc.Y < e.Loc.Y + 0.5 && this.loc.Y > e.Loc.Y - 0.5) {
                     //Decrements the character's health
-                    e.Health -= w.Damage;
-                    return true;
+                    if (e.IsPlayer && !playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    } else if (!e.IsPlayer && playerShot) {
+                        e.Health -= w.Damage;
+                        return true;
+                    }
                 }
             }
 

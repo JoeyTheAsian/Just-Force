@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
+
 namespace Shooter {
     ///main type for the game
 
@@ -63,9 +64,10 @@ namespace Shooter {
 
         private Character player;
         private Map m;
+        Random rng = new Random();
 
         private TileBounds tb;
-
+        Thread loadingThread;
         //Temp enemy
         private List<Enemy> enemies;
         private List<PickUpItem> Items;
@@ -78,8 +80,19 @@ namespace Shooter {
         //HUD assets
         private Texture2D healthBar;
         private Texture2D health;
+        private Texture2D stamina;
+        private Texture2D bar;
+        private Texture2D[] skillIcons;
         //game time
         protected double time;
+        //Current level variable
+        private int currentLevel = 0;
+        private int numOfLevels = 3;
+        private string[] levelNames;
+        private string[] levelClearPhrases;
+        private int timer = 0;
+        private int tranTimer = 3000;
+        private string wepUnl = "";
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -109,7 +122,7 @@ namespace Shooter {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
-            g = new GameStateManager(screenWidth, screenHeight, Content);
+            g = new GameStateManager(screenWidth, screenHeight, Content, currentLevel);
             cursor = Content.Load<Texture2D>("Cursor");
             cursorX = Mouse.GetState().X;
             cursorY = Mouse.GetState().Y;
@@ -139,70 +152,8 @@ namespace Shooter {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //HUD content
-            healthBar = Content.Load<Texture2D>("healthBar");
-            health = Content.Load<Texture2D>("health");
-            //Loads in the arial font file
-            arial = Content.Load<SpriteFont>("Arial20Bold");
-
-            //adds and loads the first soundeffect object object, a gunshot
-            //The gunshot file is a public domain file
-            soundEffects.Add("gunshot", Content.Load<SoundEffect>("gunshot"));
-            soundEffects.Add("emptyClick", Content.Load<SoundEffect>("emptyclick"));
-
-            //create default tilebounds object
-            tb = new TileBounds();
-
-            //create map and pass in contentmanager
-            //m = new Map(Content, screenWidth, screenHeight);
-
-            //m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
-            //creates the player (test texture)
-            player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
-
-            //creates the currently pending sound queue
-            curSounds = new Queue<SoundEffect>();
-            //creates the currently pending entity queue
-            sprites = new Queue<Entity>();
-
-            //Create the list of projectiles
-            projectiles = new List<Projectile>();
-
-            //load up initial camera
-            c = new Camera(screenHeight, screenWidth);
-            player.Loc.Y = (c.camPos.Y + (screenHeight / 2)) / (screenWidth / 20);
-            player.Loc.X = (c.camPos.X + (screenWidth / 2)) / (screenWidth / 20);
-            enemies = new List<Enemy>();
-            //LOAD MAP HERE______
-            m = new Map(Content, "level1.dat", c, player, enemies, screenWidth);
-            player.IsPlayer = true;
-
-            //movement object, set max velocity and acceleration here
-            double maxVelocity = (5.4 / m.TileSize);
-            double acceleration = ((80.0 / m.TileSize) / 1000);
-            movement = new Movement(maxVelocity, acceleration, m.TileSize);
-
-            //use this.Content to load your game content here
-            //Sets up the origin postion based off the rectangle position
-            originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
-
-            //Creates temp enemy
-            Items = new List<PickUpItem>();
-            //Creates enemies to check
-           // CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
-            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
-            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
-            //CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
-            //Creates the weapons for the player
-            Shooting.CreateWeapons(Content);
-            SkillSystem.CreateSkills(Content, player);
-            //Starts the player with the first weapon
-            player.Weapon = Shooting.weapons[1];
-            SkillSystem.skills[0].Obtained = true;
-            SkillSystem.skills[1].Obtained = true;
-            SkillSystem.skills[2].Obtained = true;
-            player.EntTexture = Content.Load<Texture2D>("Player_Sheet");
-            g.gameState = "StartMenu";
+            loadingThread = new Thread(LoadGame);
+            loadingThread.Start();
         }
 
         /// <summary>
@@ -272,8 +223,10 @@ namespace Shooter {
                 }
             }
 
+
+
             if (oldMState.LeftButton == ButtonState.Released && mState.LeftButton == ButtonState.Pressed) {
-                g.MouseClicked(mState.X, mState.Y, this);
+                g.MouseClicked(mState.X, mState.Y, this, ref currentLevel, ref enemies, ref Items, ref projectiles, ref timer, Content, ref player, ref wepUnl);
             }
             //when loading, updatestate returns true, use that to start new thread
             bool newThread = g.updateState(state, oldState);
@@ -283,8 +236,31 @@ namespace Shooter {
             }
 
             //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
-            if (g.gameState != "Paused" && g.gameState != "Loading") {
+            if (g.gameState.Equals("Playing")) {
+                if (enemies.Count == 0) {
+                    if (oldState.IsKeyDown(Keys.Right) && state.IsKeyUp(Keys.Right)) {
+                        if (currentLevel != numOfLevels) {
+                            currentLevel++;
+                            enemies.Clear();
+                            Items.Clear();
+                            projectiles.Clear();
+                            timer = 0;
+                            g.gameState = "LevelSwitch";
+                            if (!Shooting.weapons[currentLevel].IsAcquired) {
+                                wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[currentLevel].Name;
+                                Shooting.weapons[currentLevel].IsAcquired = true;
+                            } else {
+                                wepUnl = "";
+                            }
 
+                        } else {
+                            enemies.Clear();
+                            Items.Clear();
+                            projectiles.Clear();
+                            g.gameState = "StartMenu";
+                        }
+                    }
+                }
                 //CONTROLS_____________________________________
 
                 //movement controls (W,A,S,D, Shift)
@@ -330,34 +306,34 @@ namespace Shooter {
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
                             new Coord(mState.X, mState.Y), new Coord((player.Loc.X - c.camPos.X) * m.TileSize, (player.Loc.Y - c.camPos.Y) * m.TileSize));
 
-                    //updates projectiles and checks collision
-                    for (int i = 0; i < projectiles.Count; i++) {
-                        //checks if the projectile has exceeded its maximum range
-                        if (projectiles[i].CheckRange() == true) {
-                            projectiles.Remove(projectiles[i]);
+                //updates projectiles and checks collision
+                for (int i = 0; i < projectiles.Count; i++) {
+                    //checks if the projectile has exceeded its maximum range
+                    if (projectiles[i].CheckRange() == true) {
+                        projectiles.Remove(projectiles[i]);
+                        i--;
+                    } else {
+                        projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                        if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
+                            projectiles.RemoveAt(i);
                             i--;
-                        } else {
-                            projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                            if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
+                            break;
+                        }
+                        //Checks if any projectiles collide with any enemies
+                        for (int k = 0; k < enemies.Count; k++) {
+                            if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;
                             }
-                            //Checks if any projectiles collide with any enemies
-                            for (int k = 0; k < enemies.Count; k++) {
-                                if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
-                                    projectiles.RemoveAt(i);
-                                    i--;
-                                    break;
-                                }
-                            }
                         }
                     }
+                }
                 //update AI for all enemies
                 for (int i = 0; i < enemies.Count; i++) {
                     if (enemies[i] != null) {
-                        if(enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc)) {
-                            projectiles.Add(enemies[i].Weapon.Shoot(Content, enemies[i], c, m.TileSize));
+                        if (enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc)) {
+                            projectiles.Add(enemies[i].Weapon.Shoot(Content, enemies[i], c, m.TileSize, enemies[i]));
                             SoundEffect TempSound;
                             soundEffects.TryGetValue("gunshot", out TempSound);
                             try {
@@ -378,6 +354,7 @@ namespace Shooter {
                 //Temp: Checks to see if the enemy is hit
                 for (int k = 0; k < enemies.Count; k++) {
                     if (!enemies[k].CheckHealth()) {
+                        CreateItems.CreateRandomItem(rng, Content, Items, enemies[k].Loc.X, enemies[k].Loc.Y, player);
                         enemies.RemoveAt(k);
                         k--;
                     }
@@ -389,20 +366,24 @@ namespace Shooter {
 
 
             }
-            
+
+            if (g.gameState == "LevelSwitch") {
+                timer += gameTime.ElapsedGameTime.Milliseconds;
+                if (timer >= tranTimer) {
+                    m = new Map(Content, "level" + currentLevel + ".dat", c, player, enemies, screenWidth);
+                    g.gameState = "Playing";
+                }
+            }
+
             //UPDATE LOGIC FOR SOUND OPTIONS______________________________________________________________________________________________________________
-            if (g.gameState == "SoundsMenu")
-            {
+            if (g.gameState == "SoundsMenu") {
                 Console.WriteLine(volume);
-                if (state.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right))
-                {                    
+                if (state.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right)) {
                     volume += 0.1f;
-                    if(volume > 1.0f)
-                    {
+                    if (volume > 1.0f) {
                         volume = 1.0f;
                     }
-                    if(volume < 0.0f)
-                    {
+                    if (volume < 0.0f) {
                         volume = 0.0f;
                     }
                     SoundEffect shot;
@@ -411,15 +392,12 @@ namespace Shooter {
                     curSounds.Dequeue().Play(volume, 0.0f, 0.0f);
                 }
 
-                if (state.IsKeyDown(Keys.Left) && oldState.IsKeyUp(Keys.Left))
-                {
+                if (state.IsKeyDown(Keys.Left) && oldState.IsKeyUp(Keys.Left)) {
                     volume = volume - 0.1f;
-                    if (volume > 1.0f)
-                    {
+                    if (volume > 1.0f) {
                         volume = 1.0f;
                     }
-                    if (volume < 0.0f)
-                    {
+                    if (volume < 0.0f) {
                         volume = 0.0f;
                     }
                     SoundEffect shot;
@@ -495,6 +473,12 @@ namespace Shooter {
                     spriteBatch.Draw(g.optionsButton, g.optionsButtonPosition, Color.White);
                     spriteBatch.Draw(g.exitButton, g.exitButtonPosition, Color.White);
                     break;
+                //____________________DRAW Level Transition____________________________________________________________________
+                case "LevelSwitch":
+                    spriteBatch.DrawString(arial, "Level " + currentLevel, new Vector2((screenWidth - arial.MeasureString("Level " + currentLevel).X) / 2, (screenHeight * 2) / 10), Color.White);
+                    spriteBatch.DrawString(arial, levelNames[currentLevel - 1], new Vector2((screenWidth - arial.MeasureString(levelNames[currentLevel - 1]).X) / 2, ((screenHeight * 2) / 10) + arial.MeasureString("Level " + currentLevel).Y), Color.White);
+                    spriteBatch.DrawString(arial, wepUnl, new Vector2((screenWidth - arial.MeasureString(wepUnl).X) / 2, ((screenHeight * 2) / 10) + arial.MeasureString("Level " + currentLevel).Y * 3), Color.White);
+                    break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
                 case "Playing":
                     //use Tilebounds findBounds method to find the tiles that are actually in the game window, pass in all the values it needs to calculate
@@ -513,7 +497,7 @@ namespace Shooter {
                                                           */
                             spriteBatch.Draw(m.TileMap[i, j], new Rectangle((int)((c.camPos.X * m.TileSize) + (i * m.TileSize) + .5 + c.xOffset),
                                                           (int)((c.camPos.Y * m.TileSize) + (j * m.TileSize) + .5 + c.yOffset),
-                                                          m.TileSize, m.TileSize), null, Color.White, m.TileRot[i, j] * -1.5708f, new Vector2((m.TileMap[i,j].Width/2f), (m.TileMap[i, j].Width / 2f)), SpriteEffects.None, 0);
+                                                          m.TileSize, m.TileSize), null, Color.White, m.TileRot[i, j] * -1.5708f, new Vector2((m.TileMap[i, j].Width / 2f), (m.TileMap[i, j].Width / 2f)), SpriteEffects.None, 0);
                         }
                     }
                     //loop through only the tiles that are actually in the window with bounds in tilebounds object
@@ -534,7 +518,7 @@ namespace Shooter {
                     }
                     //Draws the Items in the list
                     for (int u = 0; u < Items.Count; u++) {
-                        spriteBatch.Draw(Items[u].ItemTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, Items[u].Location.X, Items[u].Location.X, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                        spriteBatch.Draw(Items[u].ItemTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, Items[u].Location.X, Items[u].Location.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
                     }
 
                     //draw projectiles
@@ -550,7 +534,7 @@ namespace Shooter {
                         Entity e = sprites.Dequeue();
                         //draw enemy
                         spriteBatch.Draw(e.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, e.Loc.X, e.Loc.Y, m.TileSize, c.xOffset, c.yOffset),
-                                                                                null, Color.White, (float)e.Direction, new Vector2(e.EntTexture.Width / 2f, e.EntTexture.Height / 2f), SpriteEffects.None, 0);                     
+                                                                                null, Color.White, (float)e.Direction, new Vector2(e.EntTexture.Width / 2f, e.EntTexture.Height / 2f), SpriteEffects.None, 0);
                     }
                     //draw the player model
                     spriteBatch.Draw(player.EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y,
@@ -558,17 +542,26 @@ namespace Shooter {
                                                                                 new Rectangle(player.Frame * 200, player.FrameLevel * 200, 200, 200), Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
 
+
+
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
                     //Draw the HUD, moved calculations to external static class
-                    HUD.DrawHUD(player, ref spriteBatch, screenHeight, screenWidth, arial, health, healthBar);
+                    HUD.DrawHUD(player, ref spriteBatch, screenHeight, screenWidth, arial, health, healthBar, stamina, skillIcons);
 
                     //play all enqueued sound effects
-                    for (int i = 0; i < curSounds.Count; i++)
-                    {
+                    for (int i = 0; i < curSounds.Count; i++) {
                         curSounds.Dequeue().Play(volume, 0f, 0f);
                     }
                     m.sounds.Clear();
+
+                    //Draws if level is clear
+                    if (enemies.Count == 0) {
+                        spriteBatch.Draw(bar, new Rectangle(0, (int)(screenHeight - arial.MeasureString("Height").Y * 3), (int)(arial.MeasureString("These boys are on the highway to hellll").X), (int)(arial.MeasureString("Height").Y * 3)), Color.Gray);
+                        spriteBatch.DrawString(arial, levelClearPhrases[currentLevel - 1], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y * 3)), Color.White);
+                        spriteBatch.DrawString(arial, levelClearPhrases[(currentLevel) + 2], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y * 2)), Color.White);
+                        spriteBatch.DrawString(arial, levelClearPhrases[(currentLevel) + 5], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y)), Color.White);
+                    }
                     //add frame to frame counter
                     break;
             }
@@ -579,6 +572,98 @@ namespace Shooter {
             FPSHandler.frames++;
 
             base.Draw(gameTime);
+        }
+
+        protected void LoadGame() {
+            //HUD content
+            healthBar = Content.Load<Texture2D>("healthBar");
+            health = Content.Load<Texture2D>("health");
+            stamina = Content.Load<Texture2D>("stamina");
+            bar = Content.Load<Texture2D>("bar");
+            skillIcons = new Texture2D[3];
+            skillIcons[0] = Content.Load<Texture2D>("OVC_Icon");
+            skillIcons[1] = Content.Load<Texture2D>("PERSV_Icon");
+            skillIcons[2] = Content.Load<Texture2D>("RHNO_Icon");
+            //Loads in the arial font file
+            arial = Content.Load<SpriteFont>("Arial20Bold");
+
+            //adds and loads the first soundeffect object object, a gunshot
+            //The gunshot file is a public domain file
+            soundEffects.Add("gunshot", Content.Load<SoundEffect>("gunshot"));
+            soundEffects.Add("emptyClick", Content.Load<SoundEffect>("emptyclick"));
+
+            //create default tilebounds object
+            tb = new TileBounds();
+
+            //create map and pass in contentmanager
+            //m = new Map(Content, screenWidth, screenHeight);
+
+            //m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
+            //creates the player (test texture)
+            player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
+            player.Health = 5;
+            player.MaxHealth = 5;
+            //creates the currently pending sound queue
+            curSounds = new Queue<SoundEffect>();
+            //creates the currently pending entity queue
+            sprites = new Queue<Entity>();
+
+            //Create the list of projectiles
+            projectiles = new List<Projectile>();
+
+            //load up initial camera
+            c = new Camera(screenHeight, screenWidth);
+            player.Loc.Y = (c.camPos.Y + (screenHeight / 2)) / (screenWidth / 20);
+            player.Loc.X = (c.camPos.X + (screenWidth / 2)) / (screenWidth / 20);
+            enemies = new List<Enemy>();
+            //LOAD MAP HERE______
+
+            m = new Map(Content, "level1.dat", c, player, enemies, screenWidth);
+            player.IsPlayer = true;
+
+            //movement object, set max velocity and acceleration here
+            double maxVelocity = (5.4 / m.TileSize);
+            double acceleration = ((80.0 / m.TileSize) / 1000);
+            movement = new Movement(maxVelocity, acceleration, m.TileSize);
+
+            //use this.Content to load your game content here
+            //Sets up the origin postion based off the rectangle position
+            originPos = new Vector2(player.EntTexture.Width / 2f, player.EntTexture.Width / 2f);
+
+            //Creates temp enemy
+            Items = new List<PickUpItem>();
+            //Creates enemies to check
+            // CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
+            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
+            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
+            //CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
+            //Creates the weapons for the player
+            Shooting.CreateWeapons(Content);
+            SkillSystem.CreateSkills(Content, player);
+            //Starts the player with the first weapon
+            player.Weapon = Shooting.weapons[1];
+            SkillSystem.skills[0].Obtained = true;
+            SkillSystem.skills[1].Obtained = true;
+            SkillSystem.skills[2].Obtained = true;
+            currentLevel = 1;
+            //Creates the names of the levels
+            levelNames = new string[3];
+            levelNames[0] = "The Arrival";
+            levelNames[1] = "The Roadway";
+            levelNames[2] = "Apartment Complex";
+            //Creates the phrases that are said on level completion
+            levelClearPhrases = new string[9];
+            levelClearPhrases[0] = "Looks like they were waiting for me";
+            levelClearPhrases[3] = "Didn't matter though";
+            levelClearPhrases[6] = "'->' to move onto the next area";
+            levelClearPhrases[1] = "Another group of thugs taken care of";
+            levelClearPhrases[4] = "These boys are on the highway to hell";
+            levelClearPhrases[7] = "'->' to head to the next area";
+            levelClearPhrases[2] = "That's the last of them";
+            levelClearPhrases[5] = "This case is Closed";
+            levelClearPhrases[8] = "'->' to return to the menu";
+            player.EntTexture = Content.Load<Texture2D>("Player_Sheet");
+            g.gameState = "StartMenu";
         }
     }
 }
