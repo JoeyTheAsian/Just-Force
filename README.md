@@ -411,3 +411,13 @@
 <li>Fixed many glitches related to rotation and detection in the AI</li>
 <li>Changed cursor to custom cursor texture</li>
 </ul>
+
+<b> 2:14 p 5/5/16: Austin Ford</b>
+<ul><li>Created custom icons for the three skills and added them to the hud</li>
+<li>Skill icons display which skill is active when skills may not be used</li>
+<li>Added random pick up item drops from enemies</li>
+<li>Added a level transition state that displays before a level</li>
+<li>Add the ability to switch between levels after clearing an area of enemies</li>
+<li>Add a visual prompt that tells the player when the area is clear</li>
+<li>Weapon are now unlocked based on the current level the player is on </li>
+<li>Added a stamina for the player's sprint and changed the display for overcharged health</li></ul>
