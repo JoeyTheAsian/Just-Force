@@ -127,21 +127,14 @@ namespace Shooter.Entities {
             }
             return (Math.Abs(totalAngle) > 0.000001);
         }
-        public void UpdateAI(ref Map m, double elapsedTime, Coord player, ContentManager content, Camera c, ref List<Projectile> projectiles) {
+        //returns true if the entity should shoot
+        public bool UpdateAI(ref Map m, double elapsedTime, Coord player) {
             //define the triangle within which the character scans
             List<Coord> triangle = new List<Coord>();
             triangle.Add(loc);
             triangle.Add(new Coord((loc.X + Math.Cos(direction + scanArc) * visionRange), (loc.Y + Math.Sin(direction + scanArc) * visionRange)));
             triangle.Add(new Coord((loc.X + Math.Cos(direction - scanArc) * visionRange), (loc.Y + Math.Sin(direction - scanArc) * visionRange)));
-            Console.WriteLine(IsPointInPolygon(triangle, player));
-            if (IsPointInPolygon(triangle, player)) {
-                aggro = true;
-                if (weapon.CheckFireRate(elapsedTime)) {
-                    projectiles.Add(weapon.Shoot(content, this, c, m.TileSize));
-                }
-            }else {
-                aggro = false;
-            }
+
             //update timer
             scanTimer += elapsedTime;
             if (moveQueue.Count > 0) {
@@ -191,6 +184,18 @@ namespace Shooter.Entities {
                 } else {
                     direction = Math.Atan2(player.Y - loc.Y, player.X - loc.X);
                 }
+            }
+
+            if (IsPointInPolygon(triangle, player)) {
+                aggro = true;
+                if (weapon.CheckFireRate(elapsedTime)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                aggro = false;
+                    return false;
             }
         }
         //Checks all adjacent tiles and returns list of valid tiles sorted by estimated path length

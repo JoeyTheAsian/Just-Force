@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-
 namespace Shooter {
     ///main type for the game
 
@@ -72,6 +71,10 @@ namespace Shooter {
         private List<PickUpItem> Items;
         //connor's menu implementation___________
         GameStateManager g;
+        //Cursor texture
+        private Texture2D cursor;
+        private int cursorX;
+        private int cursorY;
         //HUD assets
         private Texture2D healthBar;
         private Texture2D health;
@@ -89,7 +92,7 @@ namespace Shooter {
             oldState = Keyboard.GetState();
             oldMState = Mouse.GetState();
 
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
             //set window size to screen size
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.PreferredBackBufferWidth = screenWidth;
@@ -106,12 +109,10 @@ namespace Shooter {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
-            // TODO: Add your initialization logic here
-            //g = new GameStateClass(screenWidth,screenHeight, Content);
-            //enable mouse pointer
-            IsMouseVisible = true;
             g = new GameStateManager(screenWidth, screenHeight, Content);
-
+            cursor = Content.Load<Texture2D>("Cursor");
+            cursorX = Mouse.GetState().X;
+            cursorY = Mouse.GetState().Y;
             try {
                 g.gameState = "StartMenu";
                 g.CheckGameState();
@@ -222,6 +223,9 @@ namespace Shooter {
             //Creates another keyboard & mouse state objects to hold the new states
             KeyboardState state = Keyboard.GetState();
             MouseState mState = Mouse.GetState();
+            //update mouse position
+            cursorX = mState.X;
+            cursorY = mState.Y;
 
             //Checks for a console input
             if (oldState.IsKeyDown(Keys.OemTilde) && state.IsKeyUp(Keys.OemTilde)) {
@@ -352,7 +356,17 @@ namespace Shooter {
                 //update AI for all enemies
                 for (int i = 0; i < enemies.Count; i++) {
                     if (enemies[i] != null) {
-                        enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc, Content, c,ref projectiles);
+                        if(enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc)) {
+                            projectiles.Add(enemies[i].Weapon.Shoot(Content, enemies[i], c, m.TileSize));
+                            SoundEffect TempSound;
+                            soundEffects.TryGetValue("gunshot", out TempSound);
+                            try {
+                                curSounds.Enqueue(TempSound);
+                            } catch (NullReferenceException e) {
+                                Console.WriteLine("Sound Effect not found or implemented");
+                                Console.WriteLine(e.StackTrace);
+                            }
+                        }
                     }
                 }
 
@@ -544,8 +558,6 @@ namespace Shooter {
                                                                                 new Rectangle(player.Frame * 200, player.FrameLevel * 200, 200, 200), Color.White, (float)player.Direction, originPos, SpriteEffects.None, 0);
 
 
-
-
                     //Draws a spritefont at postion 0,0 on the screen
                     spriteBatch.DrawString(arial, "FPS: " + FPSHandler.AvgFPS, new Vector2(0, 0), Color.Yellow);
                     //Draw the HUD, moved calculations to external static class
@@ -560,6 +572,8 @@ namespace Shooter {
                     //add frame to frame counter
                     break;
             }
+            //Draw the cursor
+            spriteBatch.Draw(cursor, new Rectangle(cursorX - cursor.Width / 2, cursorY - cursor.Height / 2, cursor.Width, cursor.Height), Color.Magenta);
             spriteBatch.End();
             //update current fps sample
             FPSHandler.frames++;

@@ -153,6 +153,9 @@
     <Content Include="Content\Concrete.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Cursor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\emptyclick.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
