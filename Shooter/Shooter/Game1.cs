@@ -52,8 +52,8 @@ namespace Shooter {
         //Height and width of the monitor
         //private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         //private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-        private int screenHeight = 768;
-        private int screenWidth = 1024;
+        private int screenHeight = 1080;
+        private int screenWidth = 1920;
         //Camera object
         private Camera c;
 
@@ -377,7 +377,6 @@ namespace Shooter {
 
             //UPDATE LOGIC FOR SOUND OPTIONS______________________________________________________________________________________________________________
             if (g.gameState == "SoundsMenu") {
-                Console.WriteLine(volume);
                 if (state.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right)) {
                     volume += 0.1f;
                     if (volume > 1.0f) {
@@ -524,8 +523,10 @@ namespace Shooter {
                     //draw projectiles
                     for (int i = 0; i < projectiles.Count; i++) {
                         //Updates the projectiles' rectangle property
-                        projectiles[i].rectangle = new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize);
-                        spriteBatch.Draw(projectiles[i].EntTexture, projectiles[i].rectangle, null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
+                        if (projectiles[i] != null) {
+                            projectiles[i].rectangle = new Rectangle((int)((c.camPos.X + projectiles[i].Loc.X) * m.TileSize), (int)((c.camPos.Y + projectiles[i].Loc.Y) * m.TileSize), m.TileSize, m.TileSize);
+                            spriteBatch.Draw(projectiles[i].EntTexture, projectiles[i].rectangle, null, Color.White, (float)projectiles[i].Direction, new Vector2(projectiles[i].EntTexture.Width / 2f, projectiles[i].EntTexture.Width / 2f), SpriteEffects.None, 0);
+                        }
                     }
 
                     //Draws the temp enemies queued to the sprites list
@@ -622,7 +623,7 @@ namespace Shooter {
             player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here
-            double maxVelocity = (5.4 / m.TileSize);
+            double maxVelocity = (4.7 / m.TileSize);
             double acceleration = ((80.0 / m.TileSize) / 1000);
             movement = new Movement(maxVelocity, acceleration, m.TileSize);
 

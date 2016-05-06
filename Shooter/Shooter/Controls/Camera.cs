@@ -31,13 +31,13 @@ namespace Shooter.Controls {
             if (screenShake == true && shakeDur < 12) {
                 xOffset += 2;
                 shakeDur += elapsedTime;
-            } else if (screenShake == true && shakeDur >= 12 && shakeDur < 37) {
+            } else if (screenShake == true && shakeDur >= 12 && shakeDur < 50) {
                 xOffset -= 2;
                 shakeDur += elapsedTime;
-            } else if (screenShake == true && shakeDur >= 37 && shakeDur < 50) {
+            } else if (screenShake == true && shakeDur >= 50 && shakeDur < 75) {
                 xOffset += 2;
                 shakeDur += elapsedTime;
-            } else if (shakeDur >= 50) {
+            } else if (shakeDur >= 75) {
                 xOffset = 0;
                 yOffset = 0;
                 screenShake = false;

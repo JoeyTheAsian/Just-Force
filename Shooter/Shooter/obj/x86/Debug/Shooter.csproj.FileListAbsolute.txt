@@ -719,3 +719,8 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.pn
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bar.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
