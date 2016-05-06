@@ -38,7 +38,7 @@ namespace Shooter.Controls {
                 if (Items[f].CheckCollide(player)) {
                     if (Items[f].ItemType.Equals("health")) {
                         if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
-                            player.Health++;
+                            player.Health += 2;
                         }
                     } else if (Items[f].ItemType.Equals("pistolammo")) {
                         Shooting.weapons[1].Ammo.Add(9);
@@ -62,23 +62,21 @@ namespace Shooter.Controls {
             if (dropRate == 0) {
                 int drop = rng.Next(0, 101);
                 //Twenty percent chance for health
-                if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
-                    if (drop > 80) {
+                if (drop > 80 && player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
                         CreateHealthKit(Content, Items, x, y);
-                    }
                 }
                 //Thirty percent chance for pistol ammo
-                if (drop > 50) {
-                    CreatePistolAmmo(Content, Items, x, y);
+                else if (drop > 70 && Shooting.weapons[4].IsAcquired) {
+                    CreateRifleAmmo(Content, Items, x, y);
                     //Fifteen percent chance for SMG ammo
-                } else if (drop > 35) {
+                } else if (drop > 55 && Shooting.weapons[2].IsAcquired) {
                     CreateSMGAmmo(Content, Items, x, y);
                     //Twenty percent chance for shotgun ammo
-                } else if (drop > 15) {
+                } else if (drop > 35 && Shooting.weapons[3].IsAcquired) {
                     CreateShotgunAmmo(Content, Items, x, y);
                     //Fifteen percent chance for rifle ammo
                 } else {
-                    CreateRifleAmmo(Content, Items, x, y);
+                    CreatePistolAmmo(Content, Items, x, y);
                 }
             }
         }

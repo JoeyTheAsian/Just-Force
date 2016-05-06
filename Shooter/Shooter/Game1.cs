@@ -319,6 +319,11 @@ namespace Shooter {
                             i--;
                             break;
                         }
+                        if(!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
+                            projectiles.RemoveAt(i);
+                            i--;
+                            break;
+                        }
                         //Checks if any projectiles collide with any enemies
                         for (int k = 0; k < enemies.Count; k++) {
                             if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
@@ -602,8 +607,8 @@ namespace Shooter {
             //m = new Map(Content, "TestMap.dat", c, player, enemies, screenWidth);
             //creates the player (test texture)
             player = new Character(Content, 10, 10, 0, "Pistol_Player", true, new Rectangle(0, 0, 0, 0));
-            player.Health = 5;
-            player.MaxHealth = 5;
+            player.Health = 10;
+            player.MaxHealth = 10;
             //creates the currently pending sound queue
             curSounds = new Queue<SoundEffect>();
             //creates the currently pending entity queue
