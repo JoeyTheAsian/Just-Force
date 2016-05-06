@@ -181,6 +181,9 @@
     <Content Include="GameObjects\TrashCan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameObjects\Wall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TileTextures\Asphalt.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -218,6 +221,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TileTextures\StaursCorner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TileTextures\TiledFloor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Tools\EmptyTile.png">
