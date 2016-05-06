@@ -39,6 +39,11 @@ namespace Shooter.GameStates
         public Rectangle resumeButtonPosition;
         public Texture2D deathBackground;
 
+        //Textures for level buttons
+        public List<Texture2D> levelIcons;
+        //Rectangles for level buttons
+        public List<Rectangle> levelRect;
+
         public Texture2D startMenuBackground;
 
         public List<string> states;
@@ -87,6 +92,23 @@ namespace Shooter.GameStates
             resumeButton = content.Load<Texture2D>("Resume");
             resumeButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
 
+            //Adds the icons
+            levelIcons = new List<Texture2D>();
+            levelIcons.Add(content.Load <Texture2D>("level1Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level2Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level3Icon"));
+
+            //Adds the rectangles
+            levelRect = new List<Rectangle>();
+            levelRect.Add(new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 10, 350, 200)); //level 1
+            levelRect.Add(new Rectangle(screenWidth / 3, screenHeight * 3 / 10, 350, 200)); //level 2
+            levelRect.Add(new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 10, 350, 200)); //level 3
+            levelRect.Add(new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200)); //level 4
+            levelRect.Add(new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200)); //level 5
+            levelRect.Add(new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200)); //level 6
+            levelRect.Add(new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200)); //level 7
+            levelRect.Add(new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200)); //level 8
+
         }
         public void CheckGameState() {
             if (states.Contains(gameState.ToUpper()) == false) {
@@ -120,6 +142,7 @@ namespace Shooter.GameStates
                         SkillSystem.CreateSkills(Content, player);
                         Shooting.CreateWeapons(Content);
                         player.Health = player.MaxHealth;
+                        player.Stamina = 100;
                         wepUnl = "";
                         player.Weapon = Shooting.weapons[1];
                         player.FrameLevel = 1;
@@ -173,6 +196,30 @@ namespace Shooter.GameStates
                         gameState = "";
                         lastState = "";
                     }
+                } else if (mouseClickRect.Intersects(levelRect[0]) || mouseClickRect.Intersects(levelRect[1]) || mouseClickRect.Intersects(levelRect[2])) {
+                    Shooting.CreateWeapons(Content);
+                    if (mouseClickRect.Intersects(levelRect[0])) {
+                        currentLevel = 1;
+                    } else if (mouseClickRect.Intersects(levelRect[1])) {
+                        currentLevel = 2;
+                        Shooting.weapons[2].IsAcquired = true;
+                    } else if (mouseClickRect.Intersects(levelRect[2])) {
+                        currentLevel = 3;
+                        Shooting.weapons[2].IsAcquired = true;
+                        Shooting.weapons[3].IsAcquired = true;
+                    }
+                    SkillSystem.CreateSkills(Content, player);
+                    player.Health = player.MaxHealth;
+                    player.Stamina = 100;
+                    wepUnl = "";
+                    player.Weapon = Shooting.weapons[1];
+                    player.FrameLevel = 1;
+                    enemies.Clear();
+                    Items.Clear();
+                    projectiles.Clear();
+                    timer = 0;
+                    gameState = "LevelSwitch";
+                    CheckGameState();
                 }
             }
             //Death screen 

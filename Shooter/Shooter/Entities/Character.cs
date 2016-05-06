@@ -176,7 +176,7 @@ namespace Shooter.Entities {
                 stamina += time / 2500.0;
                 //Removes stamina if the player is sprinting and if stamina is postive
             } else if (isSprinting && stamina > 0) {
-                stamina -= time / 4000.0;
+                stamina -= time / 2000.0;
                 //If the charge delay is active then decrements it
             }
         }
