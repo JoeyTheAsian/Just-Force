@@ -424,4 +424,4 @@
 
 <b> 3:53 pm 5/6/16: Anthony Olivares </b>
 <ul><li>Added tutorial screen content</li>
-<li>Balanceing changes (reduced bullet speed, reduce starting magazines for SMG and Shotgun, reduced clip size of shotgun</li></ul>
+<li>Balancing changes (reduced bullet speed, reduce starting magazines for SMG and Shotgun, reduced clip size of shotgun)</li></ul>
