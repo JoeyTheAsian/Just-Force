@@ -447,6 +447,14 @@ namespace Shooter {
                 case "LevelSelect":
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 10, 350, 200), Color.White); //level 1
+                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth / 3, screenHeight * 3 / 10, 350, 200), Color.White); //level 2
+                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 10, 350, 200), Color.White); //level 3
+                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200), Color.White); //level 4
+                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200), Color.White); //level 5
+                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
+                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
+                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
                     break;
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
                 case "GraphicsMenu":
