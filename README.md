@@ -421,3 +421,7 @@
 <li>Add a visual prompt that tells the player when the area is clear</li>
 <li>Weapon are now unlocked based on the current level the player is on </li>
 <li>Added a stamina for the player's sprint and changed the display for overcharged health</li></ul>
+
+<b> 3:53 pm 5/6/16: Anthony Olivares </b>
+<ul><li>Added tutorial screen content</li>
+<li>Balanceing changes (reduced bullet speed, reduce starting magazines for SMG and Shotgun, reduced clip size of shotgun</li></ul>
