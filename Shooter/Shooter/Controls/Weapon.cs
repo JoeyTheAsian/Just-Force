@@ -172,13 +172,13 @@ namespace Shooter.Controls {
             if (CheckAmmo()) {
                 Projectile proj = null;
                 if (name.Equals("Rifle")) {
-                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 5, "BulletTwo", true,
+                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 3, "BulletTwo", true,
                                                    new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), range, true, e.IsPlayer);
                 } else if (name.Equals("Pistol")) {
-                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 5, "Bullet", true,
+                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 3, "Bullet", true,
                                                    new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), range, false, e.IsPlayer);
                 } else {
-                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 5, "BulletTwo", true,
+                    proj = new Projectile(content, p.Loc.X, p.Loc.Y, p.Direction + GetSpread() * (Math.PI / 180.0), 3, "BulletTwo", true,
                                                     new Rectangle((int)((c.camPos.X + p.Loc.X) * tileSize), (int)((c.camPos.Y + p.Loc.Y) * tileSize), tileSize, tileSize), range, false, e.IsPlayer);
                 }
                 ammo[0]--;
