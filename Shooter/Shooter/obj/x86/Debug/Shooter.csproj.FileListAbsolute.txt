@@ -691,7 +691,6 @@ C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\SubmachineGu
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TrashCan.png
-C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
@@ -718,6 +717,17 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+<<<<<<< HEAD
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bar.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
+C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+=======
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
@@ -735,3 +745,4 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.pn
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+>>>>>>> origin/master
