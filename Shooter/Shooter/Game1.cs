@@ -364,6 +364,12 @@ namespace Shooter {
                         k--;
                     }
                 }
+
+                //Checks if the player is dead
+                if (player.Health <= 0) {
+                    g.gameState = "Death";
+                }
+
                 CreateItems.CheckItemCollisions(Items, player);
 
                 //Updates the rotation position by getting the angle between two points
@@ -476,6 +482,12 @@ namespace Shooter {
                 case "Loading":
                     g.DrawLoad(spriteBatch);
                     spriteBatch.Draw(g.loadScreen, new Vector2((screenWidth / 2) - (g.loadScreen.Width / 2), (screenHeight / 2) - (g.loadScreen.Height / 2)), Color.Cyan);
+                    break;
+
+                //___________________DRAW DEATH SCREEN_____________________________________________________________________
+                case "Death":
+                    spriteBatch.Draw(g.deathBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
                     break;
                 //____________________DRAW PAUSE MENU____________________________________________________________________
                 case "Paused":

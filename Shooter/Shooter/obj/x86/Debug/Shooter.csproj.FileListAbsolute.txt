@@ -717,7 +717,6 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
-<<<<<<< HEAD
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
@@ -745,6 +744,9 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.pn
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
@@ -761,3 +763,13 @@ D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+<<<<<<< HEAD
+=======
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+>>>>>>> origin/master

@@ -10,8 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace Shooter.GameStates {
-    class GameStateManager {
+namespace Shooter.GameStates
+{
+    class GameStateManager
+    {
 
         //attributes
         public Texture2D startButton;
@@ -35,6 +37,7 @@ namespace Shooter.GameStates {
         public Rectangle backButtonPosition;
         public Texture2D resumeButton;
         public Rectangle resumeButtonPosition;
+        public Texture2D deathBackground;
 
         public Texture2D startMenuBackground;
 
@@ -63,6 +66,7 @@ namespace Shooter.GameStates {
             loadScreen = content.Load<Texture2D>("loadinggraphic");
             levelSelectButton = content.Load<Texture2D>("levelSelect");
             startMenuBackground = content.Load<Texture2D>("startMenuBackground");
+            deathBackground = content.Load<Texture2D>("deathScreen");
 
             startButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 3 / 11, screenWidth / 5, screenHeight / 8);
             exitButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 9 / 11, screenWidth / 5, screenHeight / 8);
@@ -113,7 +117,9 @@ namespace Shooter.GameStates {
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
                     try {
+                        SkillSystem.CreateSkills(Content, player);
                         Shooting.CreateWeapons(Content);
+                        player.Health = player.MaxHealth;
                         wepUnl = "";
                         player.Weapon = Shooting.weapons[1];
                         player.FrameLevel = 1;
@@ -167,6 +173,13 @@ namespace Shooter.GameStates {
                         gameState = "";
                         lastState = "";
                     }
+                }
+            }
+            //Death screen 
+            else if (gameState == "Death") {
+                if (mouseClickRect.Intersects(exitbuttonRect)) {
+                    gameState = "StartMenu";
+                    CheckGameState();
                 }
             }
             //puased screen
