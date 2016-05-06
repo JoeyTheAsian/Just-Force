@@ -57,18 +57,20 @@ namespace Shooter.Controls {
         public static Weapon[] weapons = new Weapon[5];
 
         //Creates the wepaons that are int the game
-        public static void CreateWeapons(ContentManager Content) {
+        public static void CreateWeapons(ContentManager Content)
+        {
             //Adds the pistol
             weapons[0] = new Melee(Content, false, 0, 5, "Pistol", 2, "Ammo", "Knife", 1, 1000, 0);
             //Adds the pistol
             weapons[1] = new Weapon(Content);
             //Adds the Tommy Gun
-            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "SMG", 15, 6, 800, 7, 2, false);
+            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "SMG", 15, 3, 800, 7, 2, false);
             //Adds the Shotgun
-            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 6, 5, 1500, 4, 3, false);
+            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 5, 2, 1500, 4, 3, false);
             //Adds the Rifle
             weapons[4] = new Weapon(Content, false, 1, 6, "Rifle", 5, "RifleBullet", "Rifle", 4, 3, 1000, 10, 4, false);
         }
+
 
         //Shoots the player's current gun
         public static void ShootWeapon(Character player, MouseState mState, MouseState oldMState, List<Projectile> projectiles, bool temp, Camera c, ContentManager Content, Queue<SoundEffect> curSounds, Dictionary<string, SoundEffect> soundEffects, ref Map m) {

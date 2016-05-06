@@ -33,8 +33,8 @@ namespace MapEditor {
         string curTool = "";
         //string name for texture
         string textString;
-        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner, Stairs, stairs_corner; //texture bitmaps
-        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior, pillar; //gameobject bitmaps
+        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner, Stairs, stairs_corner, stairs_flipped, carpet, tiledFloor; //texture bitmaps
+        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior, pillar, table1, table2, officeWall; //gameobject bitmaps
         Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
         Bitmap slant_car1, slant_car2, slant_car3, slant_car4, slant_car5, slant_car6;// bitmap for slanted cars
         Bitmap dumpster_1, dumpster_2, dumpster_3, dumpster_4, dumpster_5, dumpster_6;// bitmaps for dumpster
@@ -193,6 +193,27 @@ namespace MapEditor {
             stairs_corner = new Bitmap("TileTextures/StaursCorner.png");
             Graphics g = e.Graphics;
             g.DrawImage(stairs_corner, 0, 0, 50, 50);
+        }
+
+        //stairs flipped
+        private void stairsflipped_Paint(object sender, PaintEventArgs e) {
+            stairs_flipped = new Bitmap("TileTextures/StairsCornerFlipped.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(stairs_flipped, 0, 0, 50, 50);
+        }
+
+        //carpet
+        private void Carpet_Paint(object sender, PaintEventArgs e) {
+            carpet = new Bitmap("TileTextures/Carpet.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(carpet, 0, 0, 50, 50);
+        }
+
+        //tiled floor
+        private void TiledFloor_Paint(object sender, PaintEventArgs e) {
+            tiledFloor = new Bitmap("TileTextures/TiledFloor.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(tiledFloor, 0, 0, 50, 50);
         }
 
         //________________________________________________________________________________________
@@ -389,6 +410,27 @@ namespace MapEditor {
             Graphics g = e.Graphics;
             g.DrawImage(dumpster_6, 0, 0, 50, 50);
         }
+
+        //table 1
+        private void Table1_Paint(object sender, PaintEventArgs e) {
+            table1 = new Bitmap("GameObjects/Table1.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(table1, 0, 0, 50, 50);
+        }
+
+        //table 2
+        private void Table2_Paint(object sender, PaintEventArgs e) {
+            table2 = new Bitmap("GameObjects/Table2.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(table2, 0, 0, 50, 50);
+        }
+
+        //office wall
+        private void OfficeWall_Paint(object sender, PaintEventArgs e) {
+            officeWall = new Bitmap("GameObjects/Wall.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(officeWall, 0, 0, 50, 50);
+        }
         //_________________________________________________________________________________________
         #endregion
 
@@ -457,6 +499,30 @@ namespace MapEditor {
             textString = "stairscorner";
             pictureBox2.Invalidate();
         }
+
+        private void stairsflipped_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = stairs_flipped;
+            curRotation = 0;
+            curType = "texture";
+            textString = "stairsflipped";
+            pictureBox2.Invalidate();
+        }
+
+        private void Carpet_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = carpet;
+            curRotation = 0;
+            curType = "texture";
+            textString = "carpet";
+            pictureBox2.Invalidate();
+        }
+
+        private void TiledFloor_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = tiledFloor;
+            curRotation = 0;
+            curType = "texture";
+            textString = "tiledFloor";
+            pictureBox2.Invalidate();
+        }
         //____________________________________________________________________________________________
         #endregion
 
@@ -502,6 +568,8 @@ namespace MapEditor {
             pictureBox2.Invalidate();
         }
 
+        
+
         private void dumpster1_MouseClick(object sender, MouseEventArgs e) {
             curBrush = dumpster_1;
             curRotation = 0;
@@ -509,6 +577,8 @@ namespace MapEditor {
             textString = "dumpster1";
             pictureBox2.Invalidate();
         }
+
+        
 
         private void dumpster2_MouseClick(object sender, MouseEventArgs e) {
             curBrush = dumpster_2;
@@ -518,6 +588,8 @@ namespace MapEditor {
             pictureBox2.Invalidate();
         }
 
+        
+
         private void dumpster3_MouseClick(object sender, MouseEventArgs e) {
             curBrush = dumpster_3;
             curRotation = 0;
@@ -525,6 +597,8 @@ namespace MapEditor {
             textString = "dumpster3";
             pictureBox2.Invalidate();
         }
+
+        
 
         private void dumpster4_MouseClick(object sender, MouseEventArgs e) {
             curBrush = dumpster_4;
@@ -678,6 +752,30 @@ namespace MapEditor {
             curRotation = 0;
             curType = "object";
             textString = "pillar";
+            pictureBox2.Invalidate();
+        }
+
+        private void Table1_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = table1;
+            curRotation = 0;
+            curType = "object";
+            textString = "table1";
+            pictureBox2.Invalidate();
+        }
+
+        private void Table2_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = table2;
+            curRotation = 0;
+            curType = "object";
+            textString = "table2";
+            pictureBox2.Invalidate();
+        }
+
+        private void OfficeWall_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = officeWall;
+            curRotation = 0;
+            curType = "object";
+            textString = "officewall";
             pictureBox2.Invalidate();
         }
         //__________________________________________________________________________________________
