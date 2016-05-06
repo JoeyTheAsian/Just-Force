@@ -89,7 +89,7 @@ namespace Shooter.Entities {
             //default character creates default weapon which is a pistol
             weapon = new Weapon(content);
             //Set Health
-            maxHealth = 1;
+            maxHealth = 20;
             health = maxHealth;
             //set stamina
             stamina = 100;
@@ -113,7 +113,7 @@ namespace Shooter.Entities {
             collision = false;
 
             //Set health
-            health = 5;
+            health = 20;
             maxHealth = health;
 
             //set stamina
@@ -131,7 +131,7 @@ namespace Shooter.Entities {
             }
 
             //Set health
-            health = 5;
+            health = 20;
             maxHealth = health;
 
             //set stamina

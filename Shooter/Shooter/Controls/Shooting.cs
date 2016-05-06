@@ -201,7 +201,7 @@ namespace Shooter.Controls {
         //Method to use the player's knife
         public static void Stab(Character player, KeyboardState state, KeyboardState oldState, ContentManager content, Camera c, int tileSize, List<Projectile> projectiles) {
             //If the player presses 'V' then does a melee attack
-            if (state.IsKeyDown(Keys.V) && oldState.IsKeyUp(Keys.V) && (!SkillSystem.skills[2].Active && !player.IsSprinting) && !player.Weapon.isReloading) {
+            if (state.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space) && (!SkillSystem.skills[2].Active && !player.IsSprinting) && !player.Weapon.isReloading) {
                 projectiles.Add(weapons[0].Shoot(content, player, c, tileSize, player));
                 //Sets the player to a melee state
                 player.IsMeleeing = true;
