@@ -758,3 +758,10 @@ D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
 D:\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG

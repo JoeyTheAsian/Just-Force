@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Shooter.Controls {
-    static class SkillSystem {
+namespace Shooter.Controls
+{
+    static class SkillSystem
+    {
         //Static array for the skills in the game
         public static Skill[] skills = new Skill[3];
         public static double timer = 0;
@@ -20,6 +22,11 @@ namespace Shooter.Controls {
             skills[1] = new Perseverance(Content, p);
             //Adds the Rhinoceros skill
             skills[2] = new Rhinoceros(Content);
+
+            //Sets all the skills to obtained
+            skills[0].Obtained = true;
+            skills[1].Obtained = true;
+            skills[2].Obtained = true;
         }
 
         //Uses the player's skill

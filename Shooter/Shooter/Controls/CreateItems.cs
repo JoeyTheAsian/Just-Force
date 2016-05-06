@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Shooter.Controls {
-    static class CreateItems {
+namespace Shooter.Controls
+{
+    static class CreateItems
+    {
         //Creates a healthkit at a location
         public static void CreateHealthKit(ContentManager Content, List<PickUpItem> Items, double x, double y) {
             Items.Add(new PickUpItem(Content, "Health_Kit", "health", x, y));
@@ -39,6 +41,8 @@ namespace Shooter.Controls {
                     if (Items[f].ItemType.Equals("health")) {
                         if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
                             player.Health += 2;
+                        } else {
+                            return;
                         }
                     } else if (Items[f].ItemType.Equals("pistolammo")) {
                         Shooting.weapons[1].Ammo.Add(9);
@@ -62,8 +66,8 @@ namespace Shooter.Controls {
             if (dropRate == 0) {
                 int drop = rng.Next(0, 101);
                 //Twenty percent chance for health
-                if (drop > 80 && player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
-                        CreateHealthKit(Content, Items, x, y);
+                if (drop > 80) {
+                    CreateHealthKit(Content, Items, x, y);
                 }
                 //Thirty percent chance for pistol ammo
                 else if (drop > 70 && Shooting.weapons[4].IsAcquired) {
