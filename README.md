@@ -403,6 +403,7 @@
 
 <b> 3:33pm 5/4/2016: Anthony Olivares</b>
 <ul><li>updated design.txt with a list of assets needed for the office building levels</li></ul>
+
 <b> 9:30 pm 5/4/16: Joey Tong</b>
 <ul><li>New Textures:</li>
 <li>Enemy1, Enemy2, Enemy3</li>
@@ -425,3 +426,13 @@
 <b> 3:53 pm 5/6/16: Anthony Olivares </b>
 <ul><li>Added tutorial screen content</li>
 <li>Balancing changes (reduced bullet speed, reduce starting magazines for SMG and Shotgun, reduced clip size of shotgun)</li></ul>
+
+<b> 9:30 pm 5/4/16: Joey Tong</b>
+<ul><li>Ai improvements</li>
+<li>General stat balancing</li>
+<li>Added riot enemy stat presets</li>
+<li>removed debugging "writLine" calls</li>
+<li>General Debugging, fixed bug that caused double draw calls for every entity</li>
+<li>Added Riot Enemy Texture</li>
+<li>Made game significantly harder</li>
+</ul>
