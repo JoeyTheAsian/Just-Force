@@ -427,7 +427,7 @@
 <ul><li>Added tutorial screen content</li>
 <li>Balancing changes (reduced bullet speed, reduce starting magazines for SMG and Shotgun, reduced clip size of shotgun)</li></ul>
 
-<b> 9:30 pm 5/4/16: Joey Tong</b>
+<b> 11:41 pm 5/8/16: Joey Tong</b>
 <ul><li>Ai improvements</li>
 <li>General stat balancing</li>
 <li>Added riot enemy stat presets</li>
