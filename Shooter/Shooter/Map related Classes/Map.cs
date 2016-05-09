@@ -118,7 +118,6 @@ namespace Shooter.MapClasses {
             }
 
             string playerPos = input.ReadString();
-            Console.WriteLine(playerPos);
             string[] playerParts = playerPos.Split(',');
             double distX = player.Loc.X - double.Parse(playerParts[1]);
             double distY = player.Loc.Y - double.Parse(playerParts[2]);

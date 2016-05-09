@@ -14,23 +14,24 @@ namespace Shooter.Entities {
     class Enemy : Character {
         //Enemy unique data values
         //how far the enemy can see
-        private int visionRange;
+        protected int visionRange;
         //how far the enemy can hear gunshots
-        private int scanRange;
+        protected int scanRange;
         //the direction that the character is moving to, not necessarily facing
-        private double heading;
+        protected double heading;
         //movement speed
-        private double speed;
+        protected double speed;
         //the speed that the entity turns
-        private double turnSpeed;
+        protected double turnSpeed;
         //the arc that the enemy pans
-        private double scanArc;
+        protected double scanArc;
         //amount of time to do one whole scan
-        private double scanTime;
+        protected double scanTime;
         //The timer for scanning
-        private double scanTimer;
+        protected double scanTimer;
         //boolean for aggression
-        private bool aggro;
+        protected bool aggro;
+        protected Coord playerLoc;
         //queue that holds the coordinates the npc is scheduled to move to
         private Queue<Coord> moveQueue = new Queue<Coord>();
         private Random random = new Random();
@@ -53,7 +54,7 @@ namespace Shooter.Entities {
             //set AI scan range
             visionRange = 5;
             scanRange = 8;
-            turnSpeed = .01;
+            turnSpeed = .013;
             scanArc = .1 * Math.PI;
             //convert to ms
             scanTime = 2 * 1000;
@@ -61,7 +62,7 @@ namespace Shooter.Entities {
             //tiles per second
             speed = 6;
             weapon = new Controls.Weapon(content);
-            weapon.FireRate = .5;
+            weapon.FireRate = 1;
         }
         public bool Move(double elapsedTime, Coord end) {
             if (loc.X > end.X - .05 && loc.X < end.X + .05 && loc.Y > end.Y - .05 && loc.Y < end.Y + .05) {
@@ -112,6 +113,19 @@ namespace Shooter.Entities {
                 direction += deg;
             }
         }
+        public void RotateTo(double deg) {
+            if(direction - deg < deg - direction) {
+                Rotate(turnSpeed);
+                if(direction < deg + (1.5 * turnSpeed) && direction > deg - (turnSpeed)){
+                    direction = deg;
+                }
+            } else {
+                Rotate(-2 * turnSpeed);
+                if (direction < deg + (1.5 * turnSpeed) && direction > deg - (1.5 * turnSpeed)) {
+                    direction = deg;
+                }
+            }
+        }
         // Return True if the player is in the scan triangle
         public bool IsPointInPolygon(List<Coord> triangle, Coord player) {
             double totalAngle = 0;
@@ -158,6 +172,13 @@ namespace Shooter.Entities {
             } else {
                 //if the player is not yet found, pan to look for him and listen for his shots
                 if (!aggro) {
+                    if (playerLoc != null) {
+                        List<Coord> path = GetPath(loc, playerLoc, ref m);
+                        foreach(Coord c in path) {
+                            moveQueue.Enqueue(c);
+                        }
+                        playerLoc = null;
+                    }
                     //pan around looking for player
                     if (scanTimer < scanTime / 4) {
                         Rotate(2 * turnSpeed);
@@ -182,6 +203,7 @@ namespace Shooter.Entities {
                         }
                     }
                 } else {
+                    playerLoc = player;
                     direction = Math.Atan2(player.Y - loc.Y, player.X - loc.X);
                 }
             }

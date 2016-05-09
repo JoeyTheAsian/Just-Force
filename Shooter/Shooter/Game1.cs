@@ -65,6 +65,7 @@ namespace Shooter {
         private Character player;
         private Map m;
         Random rng = new Random();
+        private bool isDrawing = true;
 
         private TileBounds tb;
         Thread loadingThread;
@@ -352,9 +353,14 @@ namespace Shooter {
                 }
 
                 //enqueue enemies
-                for (int k = 0; k < enemies.Count; k++) {
-                    sprites.Enqueue(ParentConvertor.ToEntity(enemies[k], Content));
-                    //spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                if (isDrawing) {
+                    for (int k = 0; k < enemies.Count; k++) {
+                        sprites.Enqueue(ParentConvertor.ToEntity(enemies[k], Content));
+                        isDrawing = false;
+                        //spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                    }
+                } else {
+                    isDrawing = true;
                 }
                 //Temp: Checks to see if the enemy is hit
                 for (int k = 0; k < enemies.Count; k++) {
@@ -461,11 +467,11 @@ namespace Shooter {
                     spriteBatch.Draw(g.levelIcons[0], g.levelRect[0], Color.White); //level 1
                     spriteBatch.Draw(g.levelIcons[1], g.levelRect[1], Color.White); //level 2
                     spriteBatch.Draw(g.levelIcons[2], g.levelRect[2], Color.White); //level 3
-                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200), Color.White); //level 4
-                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200), Color.White); //level 5
-                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
-                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
-                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
+                    spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200), Color.White); //level 4
+                    spriteBatch.Draw(health, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200), Color.White); //level 5
+                    spriteBatch.Draw(health, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
+                    spriteBatch.Draw(health, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
+                    spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
                     break;
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
                 case "GraphicsMenu":

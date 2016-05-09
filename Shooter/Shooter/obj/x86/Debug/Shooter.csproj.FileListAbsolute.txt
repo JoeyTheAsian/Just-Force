@@ -769,3 +769,10 @@ C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
