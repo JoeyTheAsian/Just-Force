@@ -60,27 +60,27 @@ namespace Shooter.Controls
         //Creates a random item at a specified position
         public static void CreateRandomItem(Random rng, ContentManager Content, List<PickUpItem> Items, double x, double y, Character player) {
             //A one in four chance of enemies dropping some sort of item
-            int dropRate = rng.Next(0, 6);
+            int dropRate = rng.Next(0, 5);
 
             //If the value equals zero then drops a random item
-            if (dropRate == 0) {
+            if (dropRate == 0 || dropRate == 1) {
                 int drop = rng.Next(0, 101);
-                //Twenty percent chance for health
-                if (drop > 80) {
-                    CreateHealthKit(Content, Items, x, y);
+                // health
+                if (drop > 90 && Shooting.weapons[4].IsAcquired) {
+                    CreateRifleAmmo(Content, Items, x, y);               
                 }
-                //Thirty percent chance for pistol ammo
-                else if (drop > 70 && Shooting.weapons[4].IsAcquired) {
-                    CreateRifleAmmo(Content, Items, x, y);
+                //Thirty percent chance for rifle ammo
+                else if (drop > 70 && Shooting.weapons[3].IsAcquired) {
+                    CreateShotgunAmmo(Content, Items, x, y);
                     //Fifteen percent chance for SMG ammo
                 } else if (drop > 55 && Shooting.weapons[2].IsAcquired) {
                     CreateSMGAmmo(Content, Items, x, y);
                     //Twenty percent chance for shotgun ammo
-                } else if (drop > 35 && Shooting.weapons[3].IsAcquired) {
-                    CreateShotgunAmmo(Content, Items, x, y);
+                } else if (drop > 30) {
+                    CreatePistolAmmo(Content, Items, x, y);
                     //Fifteen percent chance for rifle ammo
                 } else {
-                    CreatePistolAmmo(Content, Items, x, y);
+                    CreateHealthKit(Content, Items, x, y);
                 }
             }
         }

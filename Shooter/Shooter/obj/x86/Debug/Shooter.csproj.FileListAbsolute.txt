@@ -875,3 +875,5 @@ D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.
 D:\Users\jpt1447\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 D:\Users\jpt1447\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
 D:\Users\jpt1447\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\controlsButton.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\tutorial.png
