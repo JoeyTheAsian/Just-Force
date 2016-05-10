@@ -437,7 +437,7 @@
 <li>Made game significantly harder</li>
 </ul>
 
-<b> 2:14 p 5/5/16: Austin Ford</b>
+<b> 7:59 p 5/9/16: Austin Ford</b>
 <ul><li>Added in level clear status saving and loading</li>
 <li>You can now only select levels that you have beaten</li>
 <li>Levels that are not beaten are draw with a red overlay</li>
