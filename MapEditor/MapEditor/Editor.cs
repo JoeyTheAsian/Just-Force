@@ -202,14 +202,14 @@ namespace MapEditor {
 
         //stairs corner
         private void stairscorner_Paint(object sender, PaintEventArgs e) {
-            stairs_corner = new Bitmap("TileTextures/StaursCorner.png");
+            stairs_corner = new Bitmap("TileTextures/StairsCorner.png");
             Graphics g = e.Graphics;
             g.DrawImage(stairs_corner, 0, 0, 50, 50);
         }
 
         //stairs flipped
         private void stairsflipped_Paint(object sender, PaintEventArgs e) {
-            stairs_flipped = new Bitmap("TileTextures/StairsCornerFlipped.png");
+            stairs_flipped = new Bitmap("TileTextures/StairsFlipped.png");
             Graphics g = e.Graphics;
             g.DrawImage(stairs_flipped, 0, 0, 50, 50);
         }
@@ -341,7 +341,7 @@ namespace MapEditor {
 
         //pillar
         private void Pillar_Paint(object sender, PaintEventArgs e) {
-            pillar = new Bitmap("GameObjects/Column.png");
+            pillar = new Bitmap("GameObjects/pillar.png");
             Graphics g = e.Graphics;
             g.DrawImage(pillar, 0, 0, 50, 50);
         }

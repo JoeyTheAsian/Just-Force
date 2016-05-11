@@ -124,22 +124,22 @@
     <Content Include="GameObjects\car6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\CarSlanted1.png">
+    <Content Include="GameObjects\slant_car1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\CarSlanted2.png">
+    <Content Include="GameObjects\slant_car2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\CarSlanted3.png">
+    <Content Include="GameObjects\slant_car3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\CarSlanted4.png">
+    <Content Include="GameObjects\slant_car4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\CarSlanted5.png">
+    <Content Include="GameObjects\slant_car5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\CarSlanted6.png">
+    <Content Include="GameObjects\slant_car6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameObjects\Car\car1.png">
@@ -160,7 +160,7 @@
     <Content Include="GameObjects\Car\car6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\Column.png">
+    <Content Include="GameObjects\pillar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameObjects\counter.png">
@@ -304,10 +304,10 @@
     <Content Include="TileTextures\Stairs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TileTextures\StairsCornerFlipped.png">
+    <Content Include="TileTextures\StairsFlipped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TileTextures\StaursCorner.png">
+    <Content Include="TileTextures\StairsCorner.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TileTextures\TiledFloor.png">
