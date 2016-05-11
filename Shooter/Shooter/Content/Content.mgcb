@@ -25,3 +25,45 @@
 /processorParam:Quality=Best
 /build:emptyClick.wav
 
+#begin pistolReload.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:pistolReload.wav
+
+#begin rifleReload.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:rifleReload.wav
+
+#begin shotgunReload.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:shotgunReload.wav
+
+#begin rifleSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:rifleSound.wav
+
+#begin shotgunSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:shotgunSound.wav
+
+#begin smgReload.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:smgReload.wav
+
+#begin knifeSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:knifeSound.wav
+

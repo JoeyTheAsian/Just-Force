@@ -296,14 +296,14 @@ namespace Shooter {
                     Shooting.SwitchWeapon(player, state, oldState);
 
                     if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
-                        player.Weapon.Reload();
+                        player.Weapon.Reload(curSounds);
                         player.Frame = 0;
                         player.NumOfFrames = 9;
                         player.TimePerFrame = (int)(player.Weapon.ReloadTime / player.NumOfFrames);
                     }
                 }
                 player.UpdateAnimation(gameTime.TotalGameTime.TotalMilliseconds);
-                Shooting.Stab(player, state, oldState, Content, c, m.TileSize, projectiles);
+                Shooting.Stab(player, state, oldState, Content, c, m.TileSize, projectiles, curSounds);
                 SkillSystem.UseSkill(player, state, oldState, gameTime.TotalGameTime.Milliseconds);
                 //update camera
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
