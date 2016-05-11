@@ -446,4 +446,4 @@
 <b> 10:01 pm 5/10/16: Austin Ford</b>
 <ul><li>Added sound effects for the player shooting all weapons</li>
 <li>Added sound effects for the player reloading all weapons</li>
-<li>Added sound effects for knifing</li>ul>
+<li>Added sound effects for knifing</li><ul>
