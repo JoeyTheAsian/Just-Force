@@ -312,30 +312,40 @@ namespace Shooter {
                 //updates projectiles and checks collision
                 for (int i = 0; i < projectiles.Count; i++) {
                     //checks if the projectile has exceeded its maximum range
-                    if (projectiles[i].CheckRange() == true) {
-                        projectiles.Remove(projectiles[i]);
-                        i--;
-                    } else {
-                        projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                        if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
-                            projectiles.RemoveAt(i);
+                    if(projectiles[i] != null)
+                    {
+                        if (projectiles[i].CheckRange() == true)
+                        {
+                            projectiles.Remove(projectiles[i]);
                             i--;
-                            break;
                         }
-                        if(!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
-                            projectiles.RemoveAt(i);
-                            curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
-                            i--;
-                            break;
-                        }
-                        //Checks if any projectiles collide with any enemies
-                        for (int k = 0; k < enemies.Count; k++) {
-                            if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
+                        else {
+                            projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
+                            if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound)
+                            {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;
                             }
+                            if (!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon))
+                            {
+                                projectiles.RemoveAt(i);
+                                curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
+                                i--;
+                                break;
+                            }
+                            //Checks if any projectiles collide with any enemies
+                            for (int k = 0; k < enemies.Count; k++)
+                            {
+                                if (projectiles[i].CheckHit(enemies[k], player.Weapon))
+                                {
+                                    projectiles.RemoveAt(i);
+                                    i--;
+                                    break;
+                                }
+                            }
                         }
+                    
                     }
                 }
                 //update AI for all enemies
@@ -343,6 +353,7 @@ namespace Shooter {
                     if (enemies[i] != null) {
                         if (enemies[i].UpdateAI(ref m, gameTime.ElapsedGameTime.Milliseconds, player.Loc)) {
                             projectiles.Add(enemies[i].Weapon.Shoot(Content, enemies[i], c, m.TileSize, enemies[i]));
+                            enemies[i].Weapon.Ammo[0]++;
                             SoundEffect TempSound;
                             soundEffects.TryGetValue("gunshot", out TempSound);
                             try {
