@@ -61,14 +61,17 @@ namespace Shooter.Controls {
         {
             //Adds the pistol
             weapons[0] = new Melee(Content, false, 0, 5, "Pistol", 2, "Ammo", "Knife", 1, 1000, 0);
+            weapons[0].ShootSound = Content.Load<SoundEffect>("knifeSound");
             //Adds the pistol
             weapons[1] = new Weapon(Content);
+            weapons[1].ShootSound = Content.Load<SoundEffect>("gunshot");
+            weapons[1].ReloadSound = Content.Load<SoundEffect>("pistolReload");
             //Adds the Tommy Gun
-            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "SMG", 15, 3, 800, 7, 2, false);
+            weapons[2] = new Weapon(Content, true, 10, 14, "SubmachineGun", 2, "Ammo", "SMG", 15, 3, 800, 7, 2, false, Content.Load<SoundEffect>("gunshot"), Content.Load<SoundEffect>("smgReload"));
             //Adds the Shotgun
-            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 5, 2, 1500, 4, 3, false);
+            weapons[3] = new Weapon(Content, false, 20, 2, "shotgun", 3, "Shell", "Shotgun", 5, 2, 1500, 4, 3, false, Content.Load<SoundEffect>("shotgunSound"), Content.Load<SoundEffect>("shotgunReload"));
             //Adds the Rifle
-            weapons[4] = new Weapon(Content, false, 1, 6, "Rifle", 5, "RifleBullet", "Rifle", 4, 3, 1000, 10, 4, false);
+            weapons[4] = new Weapon(Content, false, 1, 6, "Rifle", 5, "RifleBullet", "Rifle", 4, 3, 1000, 10, 4, false, Content.Load<SoundEffect>("rifleSound"), Content.Load<SoundEffect>("rifleReload"));
         }
 
 
@@ -87,7 +90,7 @@ namespace Shooter.Controls {
                                 projectiles.Add(p);
                                 //load and enqueue sound
                                 soundEffects.TryGetValue("gunshot", out TempSound);
-                                curSounds.Enqueue(TempSound);
+                                curSounds.Enqueue(player.Weapon.ShootSound);
                                 m.sounds.Add(player.Loc);
                                 //add the player's sound to the map's sound queue for AI to detect
                                 m.sounds.Add(player.Loc);
@@ -115,8 +118,8 @@ namespace Shooter.Controls {
                                     projectiles.Add(p);
                                     projectiles.Add(p2);
                                     projectiles.Add(p3);
-                                    soundEffects.TryGetValue("gunshot", out TempSound);
-                                    curSounds.Enqueue(TempSound);
+                                    soundEffects.TryGetValue("shotgunSound.wav", out TempSound);
+                                    curSounds.Enqueue(player.Weapon.ShootSound);
                                     m.sounds.Add(player.Loc);
                                     c.screenShake = true;
                                 } else {
@@ -133,14 +136,14 @@ namespace Shooter.Controls {
                                 if (p != null) {
                                     projectiles.Add(p);
                                     soundEffects.TryGetValue("gunshot", out TempSound);
-                                    curSounds.Enqueue(TempSound);
+                                    curSounds.Enqueue(player.Weapon.ShootSound);
                                     m.sounds.Add(player.Loc);
                                     c.screenShake = true;
                                 } else {
                                     player.Weapon.Shoot(Content, player, c, m.TileSize, player);
                                     //enqueue gun click sound if empty
                                     soundEffects.TryGetValue("emptyClick", out TempSound);
-
+                                    curSounds.Enqueue(TempSound);
                                 }
                             }
                         }
@@ -201,10 +204,11 @@ namespace Shooter.Controls {
         }
 
         //Method to use the player's knife
-        public static void Stab(Character player, KeyboardState state, KeyboardState oldState, ContentManager content, Camera c, int tileSize, List<Projectile> projectiles) {
+        public static void Stab(Character player, KeyboardState state, KeyboardState oldState, ContentManager content, Camera c, int tileSize, List<Projectile> projectiles, Queue<SoundEffect> curSounds) {
             //If the player presses 'V' then does a melee attack
             if (state.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space) && (!SkillSystem.skills[2].Active && !player.IsSprinting) && !player.Weapon.isReloading) {
                 projectiles.Add(weapons[0].Shoot(content, player, c, tileSize, player));
+                curSounds.Enqueue(weapons[0].ShootSound);
                 //Sets the player to a melee state
                 player.IsMeleeing = true;
                 //Sets animation values

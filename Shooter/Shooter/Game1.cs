@@ -10,6 +10,7 @@ using Shooter.MapClasses;
 using Shooter.Testing_Tools;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 
 
@@ -52,7 +53,7 @@ namespace Shooter {
         //Height and width of the monitor
         //private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         //private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-        private int screenHeight = 1080;
+        private int screenHeight = 1015;
         private int screenWidth = 1920;
         //Camera object
         private Camera c;
@@ -65,6 +66,7 @@ namespace Shooter {
         private Character player;
         private Map m;
         Random rng = new Random();
+        private bool isDrawing = true;
 
         private TileBounds tb;
         Thread loadingThread;
@@ -88,8 +90,7 @@ namespace Shooter {
         //Current level variable
         private int currentLevel = 0;
         private int numOfLevels = 3;
-        private string[] levelNames;
-        private string[] levelClearPhrases;
+        private string[,] levelInfo;
         private int timer = 0;
         private int tranTimer = 3000;
         private string wepUnl = "";
@@ -190,9 +191,9 @@ namespace Shooter {
                     //Checks to see the number of parameters
                     if (methodCall.Length > 2) {
                         if (methodCall[0].Equals("CREATENORMALENEMY")) {
-                            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]), 0);
                         } else if (methodCall[0].Equals("CREATERIOTENEMY")) {
-                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]) , 0);
                         } else if (methodCall[0].Equals("createhealthkit")) {
                             CreateItems.CreateHealthKit(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         } else if (methodCall[0].Equals("createammokit")) {
@@ -240,6 +241,7 @@ namespace Shooter {
                 if (enemies.Count == 0) {
                     if (oldState.IsKeyDown(Keys.Right) && state.IsKeyUp(Keys.Right)) {
                         if (currentLevel != numOfLevels) {
+                            g.levelClears[currentLevel] = 1;
                             currentLevel++;
                             enemies.Clear();
                             Items.Clear();
@@ -254,6 +256,7 @@ namespace Shooter {
                             }
 
                         } else {
+                            g.levelClears[g.levelClears.Length - 1] = 1;
                             enemies.Clear();
                             Items.Clear();
                             projectiles.Clear();
@@ -293,14 +296,14 @@ namespace Shooter {
                     Shooting.SwitchWeapon(player, state, oldState);
 
                     if (state.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R)) {
-                        player.Weapon.Reload();
+                        player.Weapon.Reload(curSounds);
                         player.Frame = 0;
                         player.NumOfFrames = 9;
                         player.TimePerFrame = (int)(player.Weapon.ReloadTime / player.NumOfFrames);
                     }
                 }
                 player.UpdateAnimation(gameTime.TotalGameTime.TotalMilliseconds);
-                Shooting.Stab(player, state, oldState, Content, c, m.TileSize, projectiles);
+                Shooting.Stab(player, state, oldState, Content, c, m.TileSize, projectiles, curSounds);
                 SkillSystem.UseSkill(player, state, oldState, gameTime.TotalGameTime.Milliseconds);
                 //update camera
                 c.UpdateCamera(gameTime.ElapsedGameTime.Milliseconds, mState.X - originPos.X, mState.Y - originPos.Y, m.TileSize,
@@ -321,6 +324,7 @@ namespace Shooter {
                         }
                         if(!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
                             projectiles.RemoveAt(i);
+                            curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
                             i--;
                             break;
                         }
@@ -352,9 +356,14 @@ namespace Shooter {
                 }
 
                 //enqueue enemies
-                for (int k = 0; k < enemies.Count; k++) {
-                    sprites.Enqueue(ParentConvertor.ToEntity(enemies[k], Content));
-                    //spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                if (isDrawing) {
+                    for (int k = 0; k < enemies.Count; k++) {
+                        sprites.Enqueue(ParentConvertor.ToEntity(enemies[k], Content));
+                        isDrawing = false;
+                        //spriteBatch.Draw(enemies[k].EntTexture, PlayerPos.CalcRectangle(c.camPos.X, c.camPos.Y, enemies[k].Loc.X, enemies[k].Loc.Y, m.TileSize, c.xOffset, c.yOffset), Color.White);
+                    }
+                } else {
+                    isDrawing = true;
                 }
                 //Temp: Checks to see if the enemy is hit
                 for (int k = 0; k < enemies.Count; k++) {
@@ -367,10 +376,12 @@ namespace Shooter {
 
                 //Checks if the player is dead
                 if (player.Health <= 0) {
+                    g.saveLevelClears();
+                    curSounds.Enqueue(Content.Load<SoundEffect>("deathSound"));
                     g.gameState = "Death";
                 }
 
-                CreateItems.CheckItemCollisions(Items, player);
+                CreateItems.CheckItemCollisions(Items, player, Content, curSounds);
 
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);
@@ -453,19 +464,32 @@ namespace Shooter {
                     spriteBatch.Draw(g.soundsButton, g.soundsButtonPosition, Color.White);
                     spriteBatch.Draw(g.graphicsButton, g.graphicsButtonPosition, Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    spriteBatch.Draw(g.controlButton, g.controlButtonPosition, Color.White);
                     break;
                 //____________________DRAW LEVEL SELECT OPTIONS MENU__________________________________________________________
                 case "LevelSelect":
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
-                    spriteBatch.Draw(g.levelIcons[0], g.levelRect[0], Color.White); //level 1
-                    spriteBatch.Draw(g.levelIcons[1], g.levelRect[1], Color.White); //level 2
-                    spriteBatch.Draw(g.levelIcons[2], g.levelRect[2], Color.White); //level 3
-                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200), Color.White); //level 4
-                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200), Color.White); //level 5
-                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
-                    spriteBatch.Draw(g.startButton, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
-                    spriteBatch.Draw(g.startButton, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
+                    if (g.levelClears[0] != 0) {
+                        spriteBatch.Draw(g.levelIcons[0], g.levelRect[0], Color.White); //level 1
+                    } else {
+                        spriteBatch.Draw(g.levelIcons[0], g.levelRect[0], Color.Red); //level 1
+                    }
+                    if (g.levelClears[1] != 0) {
+                        spriteBatch.Draw(g.levelIcons[1], g.levelRect[1], Color.White); //level 2
+                    } else {
+                        spriteBatch.Draw(g.levelIcons[1], g.levelRect[1], Color.Red); //level 2
+                    }
+                    if (g.levelClears[1] != 0) {
+                        spriteBatch.Draw(g.levelIcons[2], g.levelRect[2], Color.White); //level 3
+                    } else {
+                        spriteBatch.Draw(g.levelIcons[2], g.levelRect[2], Color.Red); //level 3
+                    }
+                    spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200), Color.White); //level 4
+                    spriteBatch.Draw(health, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200), Color.White); //level 5
+                    spriteBatch.Draw(health, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
+                    spriteBatch.Draw(health, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
+                    spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
                     break;
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
                 case "GraphicsMenu":
@@ -477,6 +501,11 @@ namespace Shooter {
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
                     spriteBatch.DrawString(arial, "Use the Left and Right arrow keys to increase or decrease the volume", new Vector2(screenWidth / 4, screenHeight / 2), Color.DarkRed);
+                    break;
+                //____________________DRAW Controls OPTIONS MENU____________________________________________________________
+                case "Controls":
+                    spriteBatch.Draw(g.controls, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.backButton, g.controlBackButtonPosition, Color.White);
                     break;
                 //____________________DRAW LOAD SCREEN____________________________________________________________________
                 case "Loading":
@@ -500,7 +529,7 @@ namespace Shooter {
                 //____________________DRAW Level Transition____________________________________________________________________
                 case "LevelSwitch":
                     spriteBatch.DrawString(arial, "Level " + currentLevel, new Vector2((screenWidth - arial.MeasureString("Level " + currentLevel).X) / 2, (screenHeight * 2) / 10), Color.White);
-                    spriteBatch.DrawString(arial, levelNames[currentLevel - 1], new Vector2((screenWidth - arial.MeasureString(levelNames[currentLevel - 1]).X) / 2, ((screenHeight * 2) / 10) + arial.MeasureString("Level " + currentLevel).Y), Color.White);
+                    spriteBatch.DrawString(arial, levelInfo[currentLevel - 1, 0], new Vector2((screenWidth - arial.MeasureString(levelInfo[currentLevel - 1, 0]).X) / 2, ((screenHeight * 2) / 10) + arial.MeasureString("Level " + currentLevel).Y), Color.White);
                     spriteBatch.DrawString(arial, wepUnl, new Vector2((screenWidth - arial.MeasureString(wepUnl).X) / 2, ((screenHeight * 2) / 10) + arial.MeasureString("Level " + currentLevel).Y * 3), Color.White);
                     break;
                 //____________________DRAW GAME ENVIRONMENT____________________________________________________________________
@@ -584,9 +613,9 @@ namespace Shooter {
                     //Draws if level is clear
                     if (enemies.Count == 0) {
                         spriteBatch.Draw(bar, new Rectangle(0, (int)(screenHeight - arial.MeasureString("Height").Y * 3), (int)(arial.MeasureString("These boys are on the highway to hellll").X), (int)(arial.MeasureString("Height").Y * 3)), Color.Gray);
-                        spriteBatch.DrawString(arial, levelClearPhrases[currentLevel - 1], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y * 3)), Color.White);
-                        spriteBatch.DrawString(arial, levelClearPhrases[(currentLevel) + 2], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y * 2)), Color.White);
-                        spriteBatch.DrawString(arial, levelClearPhrases[(currentLevel) + 5], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y)), Color.White);
+                        spriteBatch.DrawString(arial, levelInfo[currentLevel - 1, 1], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y * 3)), Color.White);
+                        spriteBatch.DrawString(arial, levelInfo[currentLevel - 1, 2], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y * 2)), Color.White);
+                        spriteBatch.DrawString(arial, levelInfo[currentLevel - 1, 3], new Vector2(0, (int)(screenHeight - arial.MeasureString("Height").Y)), Color.White);
                     }
                     //add frame to frame counter
                     break;
@@ -673,21 +702,14 @@ namespace Shooter {
             SkillSystem.skills[2].Obtained = true;
             currentLevel = 1;
             //Creates the names of the levels
-            levelNames = new string[3];
-            levelNames[0] = "The Arrival";
-            levelNames[1] = "The Roadway";
-            levelNames[2] = "Apartment Complex";
-            //Creates the phrases that are said on level completion
-            levelClearPhrases = new string[9];
-            levelClearPhrases[0] = "Looks like they were waiting for me";
-            levelClearPhrases[3] = "Didn't matter though";
-            levelClearPhrases[6] = "'->' to move onto the next area";
-            levelClearPhrases[1] = "Another group of thugs taken care of";
-            levelClearPhrases[4] = "These boys are on the highway to hell";
-            levelClearPhrases[7] = "'->' to head to the next area";
-            levelClearPhrases[2] = "That's the last of them";
-            levelClearPhrases[5] = "This case is Closed";
-            levelClearPhrases[8] = "'->' to return to the menu";
+            StreamReader levelLoader = new StreamReader("../../../Content/levelInfo.txt");
+            levelInfo = new string[8,4];
+            for(int i = 0; i < levelInfo.GetLength(0); i++) {
+                for(int j = 0; j < levelInfo.GetLength(1); j++) {
+                    levelInfo[i, j] = levelLoader.ReadLine();
+                }
+            }
+            levelLoader.Close();
             player.EntTexture = Content.Load<Texture2D>("Player_Sheet");
             g.gameState = "StartMenu";
         }

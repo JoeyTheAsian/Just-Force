@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using Shooter.Entities;
 using System;
@@ -43,6 +44,9 @@ namespace Shooter.Controls {
         protected bool isAcquired;
         //Weapon texture level
         protected int level;
+        //Weapon sounds
+        protected SoundEffect shoot;
+        protected SoundEffect reload;
         private Random r = new Random();
         //default weapon is a pistol
         public Weapon(ContentManager content) {
@@ -101,6 +105,28 @@ namespace Shooter.Controls {
             isAcquired = acq;
         }
 
+        public Weapon(ContentManager content, bool au, double spr, int fr, string t, int d, string ammoT, string n, int maxAm, int ammoC, double rlTime, int rng, int lvl, bool acq, SoundEffect shot, SoundEffect rl) {
+            fireRate = fr;
+            auto = au;
+            spread = spr;
+            texture = content.Load<Texture2D>(t);
+            ammoTexture = content.Load<Texture2D>(ammoT);
+            name = n;
+            maxAmmo = maxAm;
+            ammo = new List<int>();
+            ammoCount = ammoC;
+            FillAmmo();
+            isReloading = false;
+            reloadTime = rlTime;
+            reloadTimer = 0;
+            damage = d;
+            range = rng;
+            level = lvl;
+            isAcquired = acq;
+            shoot = shot;
+            reload = rl;
+        }
+
         public double FireRate {
             get { return fireRate; }
             set { fireRate = value; }
@@ -152,6 +178,16 @@ namespace Shooter.Controls {
             set { level = value; }
         }
 
+        public SoundEffect ShootSound {
+            get { return shoot; }
+            set { shoot = value; }
+        }
+
+        public SoundEffect ReloadSound {
+            get { return reload; }
+            set { reload = value; }
+        }
+
         public bool IsAcquired {
             get { return isAcquired; }
             set { isAcquired = value; }
@@ -188,10 +224,11 @@ namespace Shooter.Controls {
             }
         }
         //Reloads gun
-        public void Reload() {
+        public void Reload(Queue<SoundEffect> curSounds) {
             if (ammo.Count <= 1) {
                 return;
             } else if (ammo[0] <= maxAmmo) {
+                curSounds.Enqueue(reload);
                 ammo.Remove(0);
                 ammo.Sort();
                 ammo.Reverse();

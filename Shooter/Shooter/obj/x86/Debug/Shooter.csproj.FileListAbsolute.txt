@@ -621,7 +621,6 @@ C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BulletTwo.png
-C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car1.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car2.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car3.png
@@ -645,7 +644,6 @@ C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TrashCan.png
-C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
@@ -769,3 +767,179 @@ C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
 C:\Users\Owner\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe.config
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceCorner.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fenceLinks.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\fencePole.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelSelect.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Player.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\emptyClick.xnb
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.xnb
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Ammo.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Back.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bar.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Bullet.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BulletTwo.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car1.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car2.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car3.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car4.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car5.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car6.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteCorner.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ConcreteEdge.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Concrete.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\emptyclick.wav
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\EmptyTile.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Exit.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\exitbutton.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Graphics.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\health.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthBar.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\LaneLineEnd.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Options.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.wav
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\LaneLine.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\loadinggraphic.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\NoTexture.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Resume.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RifleBullet.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shell.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgun.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Sounds.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\startButton.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\startMenuBackground.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\SubmachineGun.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TrashCan.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Arial14Bold.xnb
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Arial20Bold.xnb
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.pdb
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.dll
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.XAudio2.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D11.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.DXGI.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
+D:\Users\jpt1447\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\controlsButton.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\tutorial.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\controlsButton.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\tutorial.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\pistolReload.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleReload.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunReload.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\pistolReload.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleReload.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunReload.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\pistolReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bar.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\controlsButton.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\pistolReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\tutorial.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ammoSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ammoSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ammoSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.wav

@@ -1,0 +1,32 @@
+The Arrival
+Looks like they were waiting for me
+Didn't matter though
+'->' to move onto the next area
+The Roadway
+Another group of thugs taken care of
+These boys are on the highway to hell
+'->' to head to the next area
+Apartment Complex
+That's the last of them
+This case is Closed
+'->' to return to the menu
+4
+4
+4
+4
+5
+5
+5
+5
+6
+6
+6
+6
+7
+7
+7
+7
+8
+8
+8
+8

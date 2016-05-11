@@ -24,6 +24,7 @@ namespace MapEditor {
         string[,] entityString = new string[0, 0];
         int[,] textureRotation = new int[0, 0];
         int[,] objectRotation = new int[0, 0];
+        int[,] enemyRotation = new int[0, 0];
 
         List<Point> map = new List<Point>();
         //currently stored texture swatch on the brush
@@ -118,6 +119,16 @@ namespace MapEditor {
 
             output.Write(entityString.GetLength(0));
             output.Write(entityString.GetLength(1));
+            // saves objects
+            for (int i = 0; i < entityString.GetLength(0); i++) {
+                for (int j = 0; j < entityString.GetLength(1); j++) {
+                    if (entityString[i, j] != null) {
+                        output.Write(enemyRotation[i, j]);
+                    } else {
+                        output.Write(0);
+                    }
+                }
+            }
 
             // saves entities
             for (int i = 0; i < entityString.GetLength(0); i++) {
@@ -1026,6 +1037,7 @@ namespace MapEditor {
 
                 entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
                 entityString[mousePosX, mousePosY] = textString;
+                enemyRotation[mousePosX, mousePosY] = curRotation;
             }
             if (curTool == "RiotEnemy_entity") { //riot enemy entity
                 mousePosX = (int)(e.X * 1.0 / tlWidth);
@@ -1033,6 +1045,7 @@ namespace MapEditor {
 
                 entityMap[mousePosX, mousePosY] = new Bitmap(curBrush);
                 entityString[mousePosX, mousePosY] = textString;
+                enemyRotation[mousePosX, mousePosY] = curRotation;
             }
         }
         //____________________________________________________________________________________
@@ -1103,6 +1116,7 @@ namespace MapEditor {
             mapString = new string[columns, rows];
             textureRotation = new int[columns, rows];
             objectRotation = new int[columns, rows];
+            enemyRotation = new int[columns, rows];
             filename = fileNameBox_TextChanged(sender, e);
 
             pictureBox1.Invalidate();

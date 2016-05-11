@@ -403,6 +403,7 @@
 
 <b> 3:33pm 5/4/2016: Anthony Olivares</b>
 <ul><li>updated design.txt with a list of assets needed for the office building levels</li></ul>
+
 <b> 9:30 pm 5/4/16: Joey Tong</b>
 <ul><li>New Textures:</li>
 <li>Enemy1, Enemy2, Enemy3</li>
@@ -425,3 +426,30 @@
 <b> 3:53 pm 5/6/16: Anthony Olivares </b>
 <ul><li>Added tutorial screen content</li>
 <li>Balancing changes (reduced bullet speed, reduce starting magazines for SMG and Shotgun, reduced clip size of shotgun)</li></ul>
+
+<b> 11:41 pm 5/8/16: Joey Tong</b>
+<ul><li>Ai improvements</li>
+<li>General stat balancing</li>
+<li>Added riot enemy stat presets</li>
+<li>removed debugging "writLine" calls</li>
+<li>General Debugging, fixed bug that caused double draw calls for every entity</li>
+<li>Added Riot Enemy Texture</li>
+<li>Made game significantly harder</li>
+</ul>
+
+<b> 7:59 pm 5/9/16: Austin Ford</b>
+<ul><li>Added in level clear status saving and loading</li>
+<li>You can now only select levels that you have beaten</li>
+<li>Levels that are not beaten are draw with a red overlay</li>
+<li>Added a controls button to the options menu that takes you to the controls image</li></ul>
+
+<b> 10:01 pm 5/10/16: Austin Ford</b>
+<ul><li>Added sound effects for the player shooting all weapons</li>
+<li>Added sound effects for the player reloading all weapons</li>
+<li>Added sound effects for knifing</li></ul>
+
+<b> 11:35 am 5/11/16: Austin Ford</b>
+<ul><li>Added sound effects for the player getting hit and dying</li>
+<li>Added sound effects for the player picking up ammo and health</li>
+<li>Added rotation saving for enemies in the map editor</li>
+<li>Added rotation loading for enemies</li></ul>
