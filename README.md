@@ -461,3 +461,7 @@
 <b> 3:35 pm 5/11/16: Anthony Connor Cummings</b>
 <ul><li>Added new textures for map editor</li>
 <li>changed look of texture and game object panels</li></ul>
+
+<b> 4:12 pm 5/11/16: Austin Ford</b>
+<ul><li>Added loading feature to the map editor</li>
+<li>Addded door texture</li></ul>
