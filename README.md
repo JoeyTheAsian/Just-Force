@@ -446,10 +446,10 @@
 <b> 10:01 pm 5/10/16: Austin Ford</b>
 <ul><li>Added sound effects for the player shooting all weapons</li>
 <li>Added sound effects for the player reloading all weapons</li>
-<li>Added sound effects for knifing</li><ul>
+<li>Added sound effects for knifing</li></ul>
 
 <b> 11:35 am 5/11/16: Austin Ford</b>
 <ul><li>Added sound effects for the player getting hit and dying</li>
 <li>Added sound effects for the player picking up ammo and health</li>
 <li>Added rotation saving for enemies in the map editor</li>
-<li>Added rotation loading for enemies</li><ul>
+<li>Added rotation loading for enemies</li></ul>
