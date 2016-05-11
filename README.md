@@ -442,3 +442,8 @@
 <li>You can now only select levels that you have beaten</li>
 <li>Levels that are not beaten are draw with a red overlay</li>
 <li>Added a controls button to the options menu that takes you to the controls image</li></ul>
+
+<b> 10:01 pm 5/10/16: Austin Ford</b>
+<ul><li>Added sound effects for the player shooting all weapons</li>
+<li>Added sound effects for the player reloading all weapons</li>
+<li>Added sound effects for knifing</li>ul>
