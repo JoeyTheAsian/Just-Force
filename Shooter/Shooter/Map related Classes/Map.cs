@@ -104,12 +104,13 @@ namespace Shooter.MapClasses {
             int entWidth = input.ReadInt32();
             int entHieght = input.ReadInt32();
             int[,] entRot = new int[entWidth, entHieght];
-            /*for (int i = 0; i < entRot.GetLength(0); i++) {
+
+            for (int i = 0; i < entRot.GetLength(0); i++) {
                 for (int j = 0; j < entRot.GetLength(1); j++) {
                     entRot[i, j] = input.ReadInt32();
                 }
             }
-            */
+            
             for (int x = 0; x < entWidth; x++) {
                 for (int y = 0; y < entHieght; y++) {
                     string txtrString = input.ReadString();

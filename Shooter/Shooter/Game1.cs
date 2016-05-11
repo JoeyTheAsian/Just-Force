@@ -94,6 +94,7 @@ namespace Shooter {
         private int timer = 0;
         private int tranTimer = 3000;
         private string wepUnl = "";
+        private SoundEffect deathSound;
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -388,7 +389,8 @@ namespace Shooter {
                 //Checks if the player is dead
                 if (player.Health <= 0) {
                     g.saveLevelClears();
-                    curSounds.Enqueue(Content.Load<SoundEffect>("deathSound"));
+                    curSounds.Clear();
+                    deathSound.Play();
                     g.gameState = "Death";
                 }
 
@@ -684,7 +686,7 @@ namespace Shooter {
             enemies = new List<Enemy>();
             //LOAD MAP HERE______
 
-            m = new Map(Content, "level1.dat", c, player, enemies, screenWidth);
+            m = new Map(Content, "level4.dat", c, player, enemies, screenWidth);
             player.IsPlayer = true;
 
             //movement object, set max velocity and acceleration here
@@ -721,6 +723,7 @@ namespace Shooter {
                 }
             }
             levelLoader.Close();
+            deathSound = Content.Load<SoundEffect>("deathSound");
             player.EntTexture = Content.Load<Texture2D>("Player_Sheet");
             g.gameState = "StartMenu";
         }

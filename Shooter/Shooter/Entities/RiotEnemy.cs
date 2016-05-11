@@ -15,7 +15,7 @@ namespace Shooter.Entities {
         {
             //try to set texture to specified name
             try {
-                entTexture = content.Load<Texture2D>(t);
+                entTexture = content.Load<Texture2D>("RiotEnemy");
             } catch (FileNotFoundException) {
                 entTexture = content.Load<Texture2D>("RiotEnemy");
                 Console.WriteLine(t + "Not found. Using default texture.");
