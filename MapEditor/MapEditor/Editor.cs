@@ -676,7 +676,227 @@ namespace MapEditor {
             pictureBox2.Invalidate();
         }
 
-        
+        private void btnLoad_Click(object sender, EventArgs e) {
+            try {
+                filename = fileNameBox_TextChanged(sender, e);
+                BinaryReader input = new BinaryReader(File.OpenRead("../../../../Shooter/Shooter/Content/" + filename + ".dat"));
+                columns = input.ReadInt32();
+                rows = input.ReadInt32();
+                Map = new Bitmap[columns, rows];
+                objectMap = new Bitmap[columns, rows];
+                entityMap = new Bitmap[columns, rows];
+                entityString = new string[columns, rows];
+                objectString = new string[columns, rows];
+                mapString = new string[columns, rows];
+                textureRotation = new int[columns, rows];
+                objectRotation = new int[columns, rows];
+                enemyRotation = new int[columns, rows];
+
+                // get textures
+                for (int i = 0; i < Map.GetLength(0); i++) {
+                    for (int j = 0; j < Map.GetLength(1); j++) {
+                        string texture = input.ReadString(); // string it reads in is the name of the texture's file
+                        mapString[i, j] = texture; // stores it in the string version of the map array
+                    }
+                }
+                // load textures
+                for (int i = 0; i < mapString.GetLength(0); i++) {
+                    for (int j = 0; j < mapString.GetLength(1); j++) {
+                        if (mapString[i, j] != "null") {
+                            Bitmap text = new Bitmap("TileTextures/" + mapString[i, j] + ".png"); // loads the texture
+                            Map[i, j] = text; // stores it in the map array for editing
+                        }
+                    }
+                }
+
+                // load textures
+                for (int i = 0; i < mapString.GetLength(0); i++) {
+                    for (int j = 0; j < mapString.GetLength(1); j++) {
+                        int rotation = input.ReadInt32();
+                        for (int r = 0; r < rotation; r++) { // stores it in the map array for editing
+                            Map[i, j].RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        }
+                    }
+                }
+
+                // get objects
+                for (int i = 0; i < Map.GetLength(0); i++) {
+                    for (int j = 0; j < Map.GetLength(1); j++) {
+                        string obj = input.ReadString(); // string it reads in is the name of the object's file
+                        objectString[i, j] = obj; // stores it in the string version of the object array
+                    }
+                }
+
+                // load objects
+                for (int i = 0; i < objectString.GetLength(0); i++) {
+                    for (int j = 0; j < objectString.GetLength(1); j++) {
+                        if (objectString[i, j] != "null") {
+                            Bitmap obj = new Bitmap("GameObjects/" + objectString[i, j] + ".png"); // load object texture
+                            objectMap[i, j] = obj; // stores it in the object array
+                        }
+                    }
+                }
+
+                // load textures
+                for (int i = 0; i < mapString.GetLength(0); i++) {
+                    for (int j = 0; j < mapString.GetLength(1); j++) {
+                        int rotation = input.ReadInt32();
+                        for (int r = 0; r < rotation; r++) { // stores it in the map array for editing
+                            objectMap[i, j].RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        }
+                    }
+                }
+
+                int enemyWidth = input.ReadInt32();
+                int enemyHeight = input.ReadInt32();
+                entityMap = new Bitmap[enemyWidth, enemyHeight];
+                entityString = new string[enemyWidth, enemyHeight];
+
+                enemyRotation = new int[enemyWidth, enemyHeight];
+
+                for (int i = 0; i < enemyRotation.GetLength(0); i++) {
+                    for (int j = 0; j < enemyRotation.GetLength(1); j++) {
+                        enemyRotation[i, j] = input.ReadInt32();
+                    }
+                }
+
+                for (int x = 0; x < enemyWidth; x++) {
+                    for (int y = 0; y < enemyHeight; y++) {
+                        string texture = input.ReadString(); // string it reads in is the name of the texture's file
+                        entityString[x, y] = texture; // stores it in the string version of the map array
+                    }
+                }
+
+                for (int x = 0; x < enemyWidth; x++) {
+                    for (int y = 0; y < enemyHeight; y++) {
+                        if (entityString[x, y] == "Enemy") {
+                            Bitmap ent = new Bitmap("Entities/Enemy2.png"); // load object texture
+                            entityMap[x, y] = ent; // stores it in the object array
+                        }
+                    }
+                }
+
+                playerPos = input.ReadString();
+                string[] playerParts = playerPos.Split(',');
+                playerX = int.Parse(playerParts[1]);
+                playerX = int.Parse(playerParts[2]);
+                input.Close();
+                tlHeight = 20;
+                tlWidth = 20;
+                pictureBox1.Height = rows * tlHeight + 5;
+                pictureBox1.Width = columns * tlWidth + 5;
+                pictureBox1.Invalidate();
+            } catch {
+                filename = fileNameBox_TextChanged(sender, e);
+                BinaryReader input = new BinaryReader(File.OpenRead("../../../../Shooter/Shooter/Content/" + filename + ".dat"));
+                columns = input.ReadInt32();
+                rows = input.ReadInt32();
+                Map = new Bitmap[columns, rows];
+                objectMap = new Bitmap[columns, rows];
+                entityMap = new Bitmap[columns, rows];
+                entityString = new string[columns, rows];
+                objectString = new string[columns, rows];
+                mapString = new string[columns, rows];
+                textureRotation = new int[columns, rows];
+                objectRotation = new int[columns, rows];
+                enemyRotation = new int[columns, rows];
+
+                // get textures
+                for (int i = 0; i < Map.GetLength(0); i++) {
+                    for (int j = 0; j < Map.GetLength(1); j++) {
+                        string texture = input.ReadString(); // string it reads in is the name of the texture's file
+                        mapString[i, j] = texture; // stores it in the string version of the map array
+                    }
+                }
+                // load textures
+                for (int i = 0; i < mapString.GetLength(0); i++) {
+                    for (int j = 0; j < mapString.GetLength(1); j++) {
+                        if (mapString[i, j] != "null") {
+                            Bitmap text = new Bitmap("TileTextures/" + mapString[i, j] + ".png"); // loads the texture
+                            Map[i, j] = text; // stores it in the map array for editing
+                        }
+                    }
+                }
+
+                // load textures
+                for (int i = 0; i < mapString.GetLength(0); i++) {
+                    for (int j = 0; j < mapString.GetLength(1); j++) {
+                        int rotation = input.ReadInt32();
+                        for (int r = 0; r < rotation; r++) { // stores it in the map array for editing
+                            Map[i, j].RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        }
+                    }
+                }
+
+                // get objects
+                for (int i = 0; i < Map.GetLength(0); i++) {
+                    for (int j = 0; j < Map.GetLength(1); j++) {
+                        string obj = input.ReadString(); // string it reads in is the name of the object's file
+                        objectString[i, j] = obj; // stores it in the string version of the object array
+                    }
+                }
+
+                // load objects
+                for (int i = 0; i < objectString.GetLength(0); i++) {
+                    for (int j = 0; j < objectString.GetLength(1); j++) {
+                        if (objectString[i, j] != "null") {
+                            Bitmap obj = new Bitmap("GameObjects/" + objectString[i, j] + ".png"); // load object texture
+                            objectMap[i, j] = obj; // stores it in the object array
+                        }
+                    }
+                }
+
+                // load textures
+                for (int i = 0; i < mapString.GetLength(0); i++) {
+                    for (int j = 0; j < mapString.GetLength(1); j++) {
+                        int rotation = input.ReadInt32();
+                        for (int r = 0; r < rotation; r++) { // stores it in the map array for editing
+                            objectMap[i, j].RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        }
+                    }
+                }
+
+                int enemyWidth = input.ReadInt32();
+                int enemyHeight = input.ReadInt32();
+                entityMap = new Bitmap[enemyWidth, enemyHeight];
+                entityString = new string[enemyWidth, enemyHeight];
+
+                enemyRotation = new int[enemyWidth, enemyHeight];
+
+                for (int i = 0; i < enemyRotation.GetLength(0); i++) {
+                    for (int j = 0; j < enemyRotation.GetLength(1); j++) {
+                        enemyRotation[i, j] = 0;
+                    }
+                }
+
+                for (int x = 0; x < enemyWidth; x++) {
+                    for (int y = 0; y < enemyHeight; y++) {
+                        string texture = input.ReadString(); // string it reads in is the name of the texture's file
+                        entityString[x, y] = texture; // stores it in the string version of the map array
+                    }
+                }
+
+                for (int x = 0; x < enemyWidth; x++) {
+                    for (int y = 0; y < enemyHeight; y++) {
+                        if (entityString[x, y] == "Enemy") {
+                            Bitmap ent = new Bitmap("Entities/Enemy2.png"); // load object texture
+                            entityMap[x, y] = ent; // stores it in the object array
+                        }
+                    }
+                }
+
+                playerPos = input.ReadString();
+                string[] playerParts = playerPos.Split(',');
+                playerX = int.Parse(playerParts[1]);
+                playerX = int.Parse(playerParts[2]);
+                input.Close();
+                tlHeight = 20;
+                tlWidth = 20;
+                pictureBox1.Height = rows * tlHeight + 5;
+                pictureBox1.Width = columns * tlWidth + 5;
+                pictureBox1.Invalidate();
+            }
+        }
 
         private void dumpster2_MouseClick(object sender, MouseEventArgs e) {
             curBrush = dumpster_2;
