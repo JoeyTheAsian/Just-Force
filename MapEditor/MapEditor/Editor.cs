@@ -34,8 +34,8 @@ namespace MapEditor {
         string curTool = "";
         //string name for texture
         string textString;
-        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner, Stairs, stairs_corner, stairs_flipped, carpet, tiledFloor; //texture bitmaps
-        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior, pillar, table1, table2, officeWall; //gameobject bitmaps
+        Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner, Stairs, stairs_corner, stairs_flipped, carpet, tiledFloor, parkingSpot; //texture bitmaps
+        Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior, pillar, table1, table2, officeWall, officeDoubleWall, officeWallCorner, officeWallEnd, crate; //gameobject bitmaps
         Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
         Bitmap slant_car1, slant_car2, slant_car3, slant_car4, slant_car5, slant_car6;// bitmap for slanted cars
         Bitmap dumpster_1, dumpster_2, dumpster_3, dumpster_4, dumpster_5, dumpster_6;// bitmaps for dumpster
@@ -225,6 +225,13 @@ namespace MapEditor {
             tiledFloor = new Bitmap("TileTextures/TiledFloor.png");
             Graphics g = e.Graphics;
             g.DrawImage(tiledFloor, 0, 0, 50, 50);
+        }
+
+        //parking spot
+        private void ParkingSpot_Paint(object sender, PaintEventArgs e) {
+            parkingSpot = new Bitmap("TileTextures/ParkingSpot.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(parkingSpot, 0, 0, 50, 50);
         }
 
         //________________________________________________________________________________________
@@ -442,6 +449,34 @@ namespace MapEditor {
             Graphics g = e.Graphics;
             g.DrawImage(officeWall, 0, 0, 50, 50);
         }
+
+        //office double wall
+        private void DoubleWall_Paint(object sender, PaintEventArgs e) {
+            officeDoubleWall = new Bitmap("GameObjects/DoubleWall.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(officeDoubleWall, 0, 0, 50, 50);
+        }
+
+        //office wall corner
+        private void WallCorner_Paint(object sender, PaintEventArgs e) {
+            officeWallCorner = new Bitmap("GameObjects/WallCorner.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(officeWallCorner, 0, 0, 50, 50);
+        }
+
+        //office wall end
+        private void WallEnd_Paint(object sender, PaintEventArgs e) {
+            officeWallEnd = new Bitmap("GameObjects/WallEnd.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(officeWallEnd, 0, 0, 50, 50);
+        }
+
+        //crate
+        private void Crate_Paint(object sender, PaintEventArgs e) {
+            crate = new Bitmap("GameObjects/crate.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(crate, 0, 0, 50, 50);
+        }
         //_________________________________________________________________________________________
         #endregion
 
@@ -534,6 +569,14 @@ namespace MapEditor {
             textString = "tiledFloor";
             pictureBox2.Invalidate();
         }
+
+        private void ParkingSpot_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = parkingSpot;
+            curRotation = 0;
+            curType = "texture";
+            textString = "parkingspot";
+            pictureBox2.Invalidate();
+        }
         //____________________________________________________________________________________________
         #endregion
 
@@ -555,6 +598,8 @@ namespace MapEditor {
             pictureBox2.Invalidate();
         }
 
+        
+
         private void FenceCorner_MouseClick(object sender, MouseEventArgs e) {
             curBrush = fenceCorner;
             curRotation = 0;
@@ -570,6 +615,8 @@ namespace MapEditor {
             textString = "fenceLinks";
             pictureBox2.Invalidate();
         }
+
+        
 
         private void FencePole_MouseClick(object sender, MouseEventArgs e) {
             curBrush = fencePole;
@@ -789,6 +836,38 @@ namespace MapEditor {
             textString = "officewall";
             pictureBox2.Invalidate();
         }
+
+        private void DoubleWall_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = officeDoubleWall;
+            curRotation = 0;
+            curType = "object";
+            textString = "officedoublewall";
+            pictureBox2.Invalidate();
+        }
+
+        private void WallCorner_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = officeWallCorner;
+            curRotation = 0;
+            curType = "object";
+            textString = "officewallcorner";
+            pictureBox2.Invalidate();
+        }
+
+        private void WallEnd_Click(object sender, EventArgs e) {
+            curBrush = officeWallEnd;
+            curRotation = 0;
+            curType = "object";
+            textString = "officewallend";
+            pictureBox2.Invalidate();
+        }
+
+        private void Crate_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = crate;
+            curRotation = 0;
+            curType = "object";
+            textString = "crate";
+            pictureBox2.Invalidate();
+        }
         //__________________________________________________________________________________________
         #endregion
 
@@ -855,7 +934,7 @@ namespace MapEditor {
 
         //riot enemy spawn
         private void RiotEnemy_MouseClick(object sender, MouseEventArgs e) {
-            riotEnemy = new Bitmap("Entities/Pistol_Player.png");
+            riotEnemy = new Bitmap("Entities/RiotEnemy.png");
             curBrush = riotEnemy;
             curRotation = 0;
             curType = "Entity";

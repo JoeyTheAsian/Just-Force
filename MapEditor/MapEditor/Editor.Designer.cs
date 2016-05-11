@@ -30,12 +30,13 @@
             this.ConcreteTex = new System.Windows.Forms.Button();
             this.ConcreteCornerTex = new System.Windows.Forms.Button();
             this.ConcreteSideTex = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.ParkingSpot = new System.Windows.Forms.Button();
             this.RoadLaneEnd = new System.Windows.Forms.Button();
             this.stairs = new System.Windows.Forms.Button();
             this.stairscorner = new System.Windows.Forms.Button();
             this.stairsflipped = new System.Windows.Forms.Button();
             this.Carpet = new System.Windows.Forms.Button();
+            this.TiledFloor = new System.Windows.Forms.Button();
             this.Building = new System.Windows.Forms.Button();
             this.BuildingCorner = new System.Windows.Forms.Button();
             this.RowsInput = new System.Windows.Forms.TextBox();
@@ -87,6 +88,7 @@
             this.dumpster6 = new System.Windows.Forms.Button();
             this.Table1 = new System.Windows.Forms.Button();
             this.Table2 = new System.Windows.Forms.Button();
+            this.OfficeWall = new System.Windows.Forms.Button();
             this.Fill = new System.Windows.Forms.Button();
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -98,8 +100,10 @@
             this.PlayerSpawn = new System.Windows.Forms.Button();
             this.Rotate = new System.Windows.Forms.Button();
             this.RiotEnemy = new System.Windows.Forms.Button();
-            this.TiledFloor = new System.Windows.Forms.Button();
-            this.OfficeWall = new System.Windows.Forms.Button();
+            this.DoubleWall = new System.Windows.Forms.Button();
+            this.WallCorner = new System.Windows.Forms.Button();
+            this.WallEnd = new System.Windows.Forms.Button();
+            this.Crate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -132,13 +136,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteCornerTex, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteSideTex, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button8, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ParkingSpot, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.RoadLaneEnd, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.stairs, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.stairscorner, 2, 1);
@@ -160,7 +164,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(330, 533);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 533);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -228,16 +232,18 @@
             this.ConcreteSideTex.Paint += new System.Windows.Forms.PaintEventHandler(this.ConcreteSideTex_Paint);
             this.ConcreteSideTex.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ConcreteSideTex_MouseClick);
             // 
-            // button8
+            // ParkingSpot
             // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.Location = new System.Drawing.Point(268, 3);
-            this.button8.Margin = new System.Windows.Forms.Padding(0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(59, 50);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "texture6";
-            this.button8.UseVisualStyleBackColor = true;
+            this.ParkingSpot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ParkingSpot.Location = new System.Drawing.Point(268, 3);
+            this.ParkingSpot.Margin = new System.Windows.Forms.Padding(0);
+            this.ParkingSpot.Name = "ParkingSpot";
+            this.ParkingSpot.Size = new System.Drawing.Size(62, 50);
+            this.ParkingSpot.TabIndex = 5;
+            this.ParkingSpot.Text = "parking spot";
+            this.ParkingSpot.UseVisualStyleBackColor = true;
+            this.ParkingSpot.Paint += new System.Windows.Forms.PaintEventHandler(this.ParkingSpot_Paint);
+            this.ParkingSpot.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ParkingSpot_MouseClick);
             // 
             // RoadLaneEnd
             // 
@@ -304,13 +310,26 @@
             this.Carpet.Paint += new System.Windows.Forms.PaintEventHandler(this.Carpet_Paint);
             this.Carpet.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Carpet_MouseClick);
             // 
+            // TiledFloor
+            // 
+            this.TiledFloor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TiledFloor.Location = new System.Drawing.Point(268, 56);
+            this.TiledFloor.Margin = new System.Windows.Forms.Padding(0);
+            this.TiledFloor.Name = "TiledFloor";
+            this.TiledFloor.Size = new System.Drawing.Size(62, 50);
+            this.TiledFloor.TabIndex = 11;
+            this.TiledFloor.Text = "tiledfloor";
+            this.TiledFloor.UseVisualStyleBackColor = true;
+            this.TiledFloor.Paint += new System.Windows.Forms.PaintEventHandler(this.TiledFloor_Paint);
+            this.TiledFloor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TiledFloor_MouseClick);
+            // 
             // Building
             // 
             this.Building.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Building.Location = new System.Drawing.Point(268, 3);
             this.Building.Margin = new System.Windows.Forms.Padding(0);
             this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(59, 50);
+            this.Building.Size = new System.Drawing.Size(62, 50);
             this.Building.TabIndex = 7;
             this.Building.Text = "Building";
             this.Building.UseVisualStyleBackColor = true;
@@ -323,7 +342,7 @@
             this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
             this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(59, 50);
+            this.BuildingCorner.Size = new System.Drawing.Size(62, 50);
             this.BuildingCorner.TabIndex = 8;
             this.BuildingCorner.Text = "Building Corner";
             this.BuildingCorner.UseVisualStyleBackColor = true;
@@ -559,7 +578,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
@@ -589,7 +608,11 @@
             this.tableLayoutPanel2.Controls.Add(this.dumpster6, 5, 4);
             this.tableLayoutPanel2.Controls.Add(this.Table1, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.Table2, 4, 2);
-            this.tableLayoutPanel2.Controls.Add(this.OfficeWall, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.OfficeWall, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.DoubleWall, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.WallCorner, 2, 5);
+            this.tableLayoutPanel2.Controls.Add(this.WallEnd, 3, 5);
+            this.tableLayoutPanel2.Controls.Add(this.Crate, 4, 1);
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(55, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -605,7 +628,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(330, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(333, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -757,7 +780,7 @@
             this.BuildingInterior.Location = new System.Drawing.Point(268, 109);
             this.BuildingInterior.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingInterior.Name = "BuildingInterior";
-            this.BuildingInterior.Size = new System.Drawing.Size(59, 50);
+            this.BuildingInterior.Size = new System.Drawing.Size(62, 50);
             this.BuildingInterior.TabIndex = 11;
             this.BuildingInterior.Text = "BuildingInterior";
             this.BuildingInterior.UseVisualStyleBackColor = true;
@@ -887,7 +910,7 @@
             this.dumpster3.Location = new System.Drawing.Point(268, 162);
             this.dumpster3.Margin = new System.Windows.Forms.Padding(0);
             this.dumpster3.Name = "dumpster3";
-            this.dumpster3.Size = new System.Drawing.Size(59, 50);
+            this.dumpster3.Size = new System.Drawing.Size(62, 50);
             this.dumpster3.TabIndex = 21;
             this.dumpster3.Text = "dumpster3";
             this.dumpster3.UseVisualStyleBackColor = true;
@@ -926,7 +949,7 @@
             this.dumpster6.Location = new System.Drawing.Point(268, 215);
             this.dumpster6.Margin = new System.Windows.Forms.Padding(0);
             this.dumpster6.Name = "dumpster6";
-            this.dumpster6.Size = new System.Drawing.Size(59, 50);
+            this.dumpster6.Size = new System.Drawing.Size(62, 50);
             this.dumpster6.TabIndex = 24;
             this.dumpster6.Text = "dumpster6";
             this.dumpster6.UseVisualStyleBackColor = true;
@@ -958,6 +981,19 @@
             this.Table2.UseVisualStyleBackColor = true;
             this.Table2.Paint += new System.Windows.Forms.PaintEventHandler(this.Table2_Paint);
             this.Table2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Table2_MouseClick);
+            // 
+            // OfficeWall
+            // 
+            this.OfficeWall.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OfficeWall.Location = new System.Drawing.Point(3, 268);
+            this.OfficeWall.Margin = new System.Windows.Forms.Padding(0);
+            this.OfficeWall.Name = "OfficeWall";
+            this.OfficeWall.Size = new System.Drawing.Size(50, 50);
+            this.OfficeWall.TabIndex = 27;
+            this.OfficeWall.Text = "office wall";
+            this.OfficeWall.UseVisualStyleBackColor = true;
+            this.OfficeWall.Paint += new System.Windows.Forms.PaintEventHandler(this.OfficeWall_Paint);
+            this.OfficeWall.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OfficeWall_MouseClick);
             // 
             // Fill
             // 
@@ -1060,31 +1096,57 @@
             this.RiotEnemy.UseVisualStyleBackColor = true;
             this.RiotEnemy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RiotEnemy_MouseClick);
             // 
-            // TiledFloor
+            // DoubleWall
             // 
-            this.TiledFloor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TiledFloor.Location = new System.Drawing.Point(268, 56);
-            this.TiledFloor.Margin = new System.Windows.Forms.Padding(0);
-            this.TiledFloor.Name = "TiledFloor";
-            this.TiledFloor.Size = new System.Drawing.Size(59, 50);
-            this.TiledFloor.TabIndex = 11;
-            this.TiledFloor.Text = "tiledfloor";
-            this.TiledFloor.UseVisualStyleBackColor = true;
-            this.TiledFloor.Paint += new System.Windows.Forms.PaintEventHandler(this.TiledFloor_Paint);
-            this.TiledFloor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TiledFloor_MouseClick);
+            this.DoubleWall.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DoubleWall.Location = new System.Drawing.Point(56, 268);
+            this.DoubleWall.Margin = new System.Windows.Forms.Padding(0);
+            this.DoubleWall.Name = "DoubleWall";
+            this.DoubleWall.Size = new System.Drawing.Size(50, 50);
+            this.DoubleWall.TabIndex = 28;
+            this.DoubleWall.Text = "office double wall";
+            this.DoubleWall.UseVisualStyleBackColor = true;
+            this.DoubleWall.Paint += new System.Windows.Forms.PaintEventHandler(this.DoubleWall_Paint);
+            this.DoubleWall.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DoubleWall_MouseClick);
             // 
-            // OfficeWall
+            // WallCorner
             // 
-            this.OfficeWall.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OfficeWall.Location = new System.Drawing.Point(215, 56);
-            this.OfficeWall.Margin = new System.Windows.Forms.Padding(0);
-            this.OfficeWall.Name = "OfficeWall";
-            this.OfficeWall.Size = new System.Drawing.Size(50, 50);
-            this.OfficeWall.TabIndex = 27;
-            this.OfficeWall.Text = "office wall";
-            this.OfficeWall.UseVisualStyleBackColor = true;
-            this.OfficeWall.Paint += new System.Windows.Forms.PaintEventHandler(this.OfficeWall_Paint);
-            this.OfficeWall.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OfficeWall_MouseClick);
+            this.WallCorner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WallCorner.Location = new System.Drawing.Point(109, 268);
+            this.WallCorner.Margin = new System.Windows.Forms.Padding(0);
+            this.WallCorner.Name = "WallCorner";
+            this.WallCorner.Size = new System.Drawing.Size(50, 50);
+            this.WallCorner.TabIndex = 29;
+            this.WallCorner.Text = "office wall corner";
+            this.WallCorner.UseVisualStyleBackColor = true;
+            this.WallCorner.Paint += new System.Windows.Forms.PaintEventHandler(this.WallCorner_Paint);
+            this.WallCorner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WallCorner_MouseClick);
+            // 
+            // WallEnd
+            // 
+            this.WallEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WallEnd.Location = new System.Drawing.Point(162, 268);
+            this.WallEnd.Margin = new System.Windows.Forms.Padding(0);
+            this.WallEnd.Name = "WallEnd";
+            this.WallEnd.Size = new System.Drawing.Size(50, 50);
+            this.WallEnd.TabIndex = 30;
+            this.WallEnd.Text = "office wall end";
+            this.WallEnd.UseVisualStyleBackColor = true;
+            this.WallEnd.Click += new System.EventHandler(this.WallEnd_Click);
+            this.WallEnd.Paint += new System.Windows.Forms.PaintEventHandler(this.WallEnd_Paint);
+            // 
+            // Crate
+            // 
+            this.Crate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Crate.Location = new System.Drawing.Point(215, 56);
+            this.Crate.Margin = new System.Windows.Forms.Padding(0);
+            this.Crate.Name = "Crate";
+            this.Crate.Size = new System.Drawing.Size(50, 50);
+            this.Crate.TabIndex = 31;
+            this.Crate.Text = "crate";
+            this.Crate.UseVisualStyleBackColor = true;
+            this.Crate.Paint += new System.Windows.Forms.PaintEventHandler(this.Crate_Paint);
+            this.Crate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Crate_MouseClick);
             // 
             // Editor
             // 
@@ -1170,7 +1232,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button ParkingSpot;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button NoTexture;
@@ -1222,6 +1284,10 @@
         private System.Windows.Forms.Button Table2;
         private System.Windows.Forms.Button TiledFloor;
         private System.Windows.Forms.Button OfficeWall;
+        private System.Windows.Forms.Button DoubleWall;
+        private System.Windows.Forms.Button WallCorner;
+        private System.Windows.Forms.Button WallEnd;
+        private System.Windows.Forms.Button Crate;
     }
 }
 
