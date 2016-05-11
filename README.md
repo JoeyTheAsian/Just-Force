@@ -437,7 +437,7 @@
 <li>Made game significantly harder</li>
 </ul>
 
-<b> 7:59 p 5/9/16: Austin Ford</b>
+<b> 7:59 pm 5/9/16: Austin Ford</b>
 <ul><li>Added in level clear status saving and loading</li>
 <li>You can now only select levels that you have beaten</li>
 <li>Levels that are not beaten are draw with a red overlay</li>
@@ -447,3 +447,9 @@
 <ul><li>Added sound effects for the player shooting all weapons</li>
 <li>Added sound effects for the player reloading all weapons</li>
 <li>Added sound effects for knifing</li><ul>
+
+<b> 11:35 am 5/11/16: Austin Ford</b>
+<ul><li>Added sound effects for the player getting hit and dying</li>
+<li>Added sound effects for the player picking up ammo and health</li>
+<li>Added rotation saving for enemies in the map editor</li>
+<li>Added rotation loading for enemies</li><ul>
