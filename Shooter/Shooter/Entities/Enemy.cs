@@ -36,7 +36,7 @@ namespace Shooter.Entities {
         private Queue<Coord> moveQueue = new Queue<Coord>();
         private Random random = new Random();
         //Default constructor for normal enemies
-        public Enemy(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r) {
+        public Enemy(ContentManager content, double x, double y, string t, Rectangle r, float direction) : base(content, x, y, t, r) {
             //try to set texture to specified name
             try {
                 entTexture = content.Load<Texture2D>("Enemy" + random.Next(1, 3));
@@ -63,6 +63,7 @@ namespace Shooter.Entities {
             speed = 6;
             weapon = new Controls.Weapon(content);
             weapon.FireRate = 1;
+            this.direction = direction;
         }
         public bool Move(double elapsedTime, Coord end) {
             if (loc.X > end.X - .05 && loc.X < end.X + .05 && loc.Y > end.Y - .05 && loc.Y < end.Y + .05) {

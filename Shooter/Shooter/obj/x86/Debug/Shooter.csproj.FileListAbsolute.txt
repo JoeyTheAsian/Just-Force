@@ -621,7 +621,6 @@ C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BulletTwo.png
-C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\button-start.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car1.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car2.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\car3.png
@@ -645,7 +644,6 @@ C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Player.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TrashCan.png
-C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Trash_Can.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Player_Sheet.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Rifle_Ammo.png
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Shotgun_Ammo.png
@@ -900,3 +898,40 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.w
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.xnb
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.wav
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Carpet.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Cursor.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy1.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy2.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Enemy3.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table1.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Table2.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\pistolReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunSound.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.xnb
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bar.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingInterior.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\controlsButton.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathScreen.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\knifeSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level1icon.PNG
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2icon.PNG
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3icon.PNG
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\OVC_Icon.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\PERSV_Icon.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\pistolReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\RHNO_Icon.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\rifleSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\shotgunSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\smgReload.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\stamina.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\tutorial.png
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ammoSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.wav
+C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.wav

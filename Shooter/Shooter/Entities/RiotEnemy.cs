@@ -11,7 +11,7 @@ namespace Shooter.Entities {
     class RiotEnemy : Enemy{
 
         //Default constructor for riot enemies
-        public RiotEnemy(ContentManager content, double x, double y, string t, Rectangle r) : base(content, x, y, t, r)
+        public RiotEnemy(ContentManager content, double x, double y, string t, Rectangle r, float direction) : base(content, x, y, t, r, direction)
         {
             //try to set texture to specified name
             try {
@@ -43,6 +43,7 @@ namespace Shooter.Entities {
             speed = 3;
             weapon = new Controls.Weapon(content);
             weapon.FireRate = 1.4;
+            this.direction = direction;
         }
     }
 }

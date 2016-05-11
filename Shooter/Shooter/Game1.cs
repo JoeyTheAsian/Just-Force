@@ -191,9 +191,9 @@ namespace Shooter {
                     //Checks to see the number of parameters
                     if (methodCall.Length > 2) {
                         if (methodCall[0].Equals("CREATENORMALENEMY")) {
-                            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]), 0);
                         } else if (methodCall[0].Equals("CREATERIOTENEMY")) {
-                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
+                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]) , 0);
                         } else if (methodCall[0].Equals("createhealthkit")) {
                             CreateItems.CreateHealthKit(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         } else if (methodCall[0].Equals("createammokit")) {
@@ -324,6 +324,7 @@ namespace Shooter {
                         }
                         if(!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
                             projectiles.RemoveAt(i);
+                            //curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
                             i--;
                             break;
                         }
@@ -376,10 +377,11 @@ namespace Shooter {
                 //Checks if the player is dead
                 if (player.Health <= 0) {
                     g.saveLevelClears();
+                    //curSounds.Enqueue(Content.Load<SoundEffect>("deathSound"));
                     g.gameState = "Death";
                 }
 
-                CreateItems.CheckItemCollisions(Items, player);
+                CreateItems.CheckItemCollisions(Items, player, Content, curSounds);
 
                 //Updates the rotation position by getting the angle between two points
                 player.Direction = PlayerPos.CalcDirection(mState.X, mState.Y, c.camPos.X, c.camPos.Y, player.Loc.X, player.Loc.Y, m.TileSize);

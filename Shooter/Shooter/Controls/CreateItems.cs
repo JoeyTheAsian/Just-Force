@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 using Shooter.Entities;
 using System;
 using System.Collections.Generic;
@@ -35,23 +36,28 @@ namespace Shooter.Controls
         }
 
         //Checks through collsions with pick up items
-        public static void CheckItemCollisions(List<PickUpItem> Items, Character player) {
+        public static void CheckItemCollisions(List<PickUpItem> Items, Character player, ContentManager Content, Queue<SoundEffect> curSounds) {
             for (int f = 0; f < Items.Count; f++) {
                 if (Items[f].CheckCollide(player)) {
                     if (Items[f].ItemType.Equals("health")) {
                         if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
                             player.Health += 2;
+                            //curSounds.Enqueue(Content.Load<SoundEffect>("healthSound"));
                         } else {
                             return;
                         }
                     } else if (Items[f].ItemType.Equals("pistolammo")) {
                         Shooting.weapons[1].Ammo.Add(9);
+                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("smgammo")) {
                         Shooting.weapons[2].Ammo.Add(15);
+                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("shotgunammo")) {
                         Shooting.weapons[3].Ammo.Add(6);
+                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("rifleammo")) {
                         Shooting.weapons[4].Ammo.Add(4);
+                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     }
                     Items.RemoveAt(f);
                 }
