@@ -67,3 +67,27 @@
 /processorParam:Quality=Best
 /build:knifeSound.wav
 
+#begin ammoSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ammoSound.wav
+
+#begin deathSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:deathSound.wav
+
+#begin healthSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:healthSound.wav
+
+#begin playerHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:playerHit.wav
+

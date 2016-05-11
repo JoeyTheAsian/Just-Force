@@ -324,7 +324,7 @@ namespace Shooter {
                         }
                         if(!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
                             projectiles.RemoveAt(i);
-                            //curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
+                            curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
                             i--;
                             break;
                         }
@@ -377,7 +377,7 @@ namespace Shooter {
                 //Checks if the player is dead
                 if (player.Health <= 0) {
                     g.saveLevelClears();
-                    //curSounds.Enqueue(Content.Load<SoundEffect>("deathSound"));
+                    curSounds.Enqueue(Content.Load<SoundEffect>("deathSound"));
                     g.gameState = "Death";
                 }
 

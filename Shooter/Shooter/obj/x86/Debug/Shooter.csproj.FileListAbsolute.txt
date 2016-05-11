@@ -935,3 +935,11 @@ C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Deb
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.wav
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.wav
 C:\Users\Austin Ford\Documents\GitHub\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ammoSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\ammoSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\deathSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\healthSound.wav
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\playerHit.wav

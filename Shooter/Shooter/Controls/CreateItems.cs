@@ -42,22 +42,22 @@ namespace Shooter.Controls
                     if (Items[f].ItemType.Equals("health")) {
                         if (player.Health < player.MaxHealth && !SkillSystem.skills[0].Active) {
                             player.Health += 2;
-                            //curSounds.Enqueue(Content.Load<SoundEffect>("healthSound"));
+                            curSounds.Enqueue(Content.Load<SoundEffect>("healthSound"));
                         } else {
                             return;
                         }
                     } else if (Items[f].ItemType.Equals("pistolammo")) {
                         Shooting.weapons[1].Ammo.Add(9);
-                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
+                        curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("smgammo")) {
                         Shooting.weapons[2].Ammo.Add(15);
-                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
+                        curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("shotgunammo")) {
                         Shooting.weapons[3].Ammo.Add(6);
-                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
+                        curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("rifleammo")) {
                         Shooting.weapons[4].Ammo.Add(4);
-                        //curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
+                        curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     }
                     Items.RemoveAt(f);
                 }
