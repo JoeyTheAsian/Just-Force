@@ -44,6 +44,8 @@ namespace Shooter.GameStates
         public Texture2D controls;
         public Rectangle controlBackButtonPosition;
         public int[] levelClears;
+        public Texture2D caseBackground;
+        public Texture2D closedBackground;
 
         //Textures for level buttons
         public List<Texture2D> levelIcons;
@@ -107,6 +109,8 @@ namespace Shooter.GameStates
             levelIcons.Add(content.Load <Texture2D>("level1Icon"));
             levelIcons.Add(content.Load<Texture2D>("level2Icon"));
             levelIcons.Add(content.Load<Texture2D>("level3Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level4Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level5Icon"));
 
             //Adds the rectangles
             levelRect = new List<Rectangle>();

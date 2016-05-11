@@ -89,7 +89,7 @@ namespace Shooter {
         protected double time;
         //Current level variable
         private int currentLevel = 0;
-        private int numOfLevels = 3;
+        private int numOfLevels = 5;
         private string[,] levelInfo;
         private int timer = 0;
         private int tranTimer = 3000;
@@ -249,7 +249,7 @@ namespace Shooter {
                             projectiles.Clear();
                             timer = 0;
                             g.gameState = "LevelSwitch";
-                            if (!Shooting.weapons[currentLevel].IsAcquired) {
+                            if (currentLevel < Shooting.weapons.Length && !Shooting.weapons[currentLevel].IsAcquired) {
                                 wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[currentLevel].Name;
                                 Shooting.weapons[currentLevel].IsAcquired = true;
                             } else {
@@ -493,13 +493,21 @@ namespace Shooter {
                     } else {
                         spriteBatch.Draw(g.levelIcons[1], g.levelRect[1], Color.Red); //level 2
                     }
-                    if (g.levelClears[1] != 0) {
+                    if (g.levelClears[2] != 0) {
                         spriteBatch.Draw(g.levelIcons[2], g.levelRect[2], Color.White); //level 3
                     } else {
                         spriteBatch.Draw(g.levelIcons[2], g.levelRect[2], Color.Red); //level 3
                     }
-                    spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200), Color.White); //level 4
-                    spriteBatch.Draw(health, new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200), Color.White); //level 5
+                    if (g.levelClears[3] != 0) {
+                        spriteBatch.Draw(g.levelIcons[3], g.levelRect[3], Color.White); //level 3
+                    } else {
+                        spriteBatch.Draw(g.levelIcons[3], g.levelRect[3], Color.Red); //level 3
+                    }
+                    if (g.levelClears[4] != 0) {
+                        spriteBatch.Draw(g.levelIcons[4], g.levelRect[4], Color.White); //level 3
+                    } else {
+                        spriteBatch.Draw(g.levelIcons[4], g.levelRect[4], Color.Red); //level 3
+                    }
                     spriteBatch.Draw(health, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
                     spriteBatch.Draw(health, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
                     spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
