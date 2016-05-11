@@ -36,6 +36,7 @@ namespace MapEditor {
         string textString;
         Bitmap lane, laneEnd, asphalt, concrete, concreteCorner, concreteEdge, building, buildingCorner, Stairs, stairs_corner, stairs_flipped, carpet, tiledFloor, parkingSpot; //texture bitmaps
         Bitmap no_texture, trash_can, fenceCorner, fenceLink, fencePole, buildingInterior, pillar, table1, table2, officeWall, officeDoubleWall, officeWallCorner, officeWallEnd, crate; //gameobject bitmaps
+        Bitmap fridge, toilet, sink, filingCabinet, counter; //game object bitmaps continued
         Bitmap car_1, car_2, car_3, car_4, car_5, car_6; //bitmap for Car objects
         Bitmap slant_car1, slant_car2, slant_car3, slant_car4, slant_car5, slant_car6;// bitmap for slanted cars
         Bitmap dumpster_1, dumpster_2, dumpster_3, dumpster_4, dumpster_5, dumpster_6;// bitmaps for dumpster
@@ -477,6 +478,41 @@ namespace MapEditor {
             Graphics g = e.Graphics;
             g.DrawImage(crate, 0, 0, 50, 50);
         }
+
+        //Fridge
+        private void Fridge_Paint(object sender, PaintEventArgs e) {
+            fridge = new Bitmap("GameObjects/fridge.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(fridge, 0, 0, 50, 50);
+        }
+
+        //Toilet
+        private void Toilet_Paint(object sender, PaintEventArgs e) {
+            toilet = new Bitmap("GameObjects/toilet.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(toilet, 0, 0, 50, 50);
+        }
+
+        //sink
+        private void Sink_Paint(object sender, PaintEventArgs e) {
+            sink = new Bitmap("GameObjects/sink.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(sink, 0, 0, 50, 50);
+        }
+
+        //counter
+        private void Counter_Paint(object sender, PaintEventArgs e) {
+            counter = new Bitmap("GameObjects/counter.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(counter, 0, 0, 50, 50);
+        }
+
+        //filing cabinet
+        private void FilinfCabinet_Paint(object sender, PaintEventArgs e) {
+            filingCabinet = new Bitmap("GameObjects/filingCabinet.png");
+            Graphics g = e.Graphics;
+            g.DrawImage(filingCabinet, 0, 0, 50, 50);
+        }
         //_________________________________________________________________________________________
         #endregion
 
@@ -590,6 +626,8 @@ namespace MapEditor {
             pictureBox2.Invalidate();
         }
 
+        
+
         private void TrashCan_MouseClick(object sender, MouseEventArgs e) {
             curBrush = trash_can;
             curRotation = 0;
@@ -607,6 +645,8 @@ namespace MapEditor {
             textString = "fenceCorner";
             pictureBox2.Invalidate();
         }
+
+        
 
         private void FenceLink_MouseClick(object sender, MouseEventArgs e) {
             curBrush = fenceLink;
@@ -675,6 +715,8 @@ namespace MapEditor {
             textString = "dumpster5";
             pictureBox2.Invalidate();
         }
+
+        
 
         private void dumpster6_MouseClick(object sender, MouseEventArgs e) {
             curBrush = dumpster_6;
@@ -866,6 +908,46 @@ namespace MapEditor {
             curRotation = 0;
             curType = "object";
             textString = "crate";
+            pictureBox2.Invalidate();
+        }
+
+        private void Fridge_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = fridge;
+            curRotation = 0;
+            curType = "object";
+            textString = "fridge";
+            pictureBox2.Invalidate();
+        }
+
+        private void Toilet_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = toilet;
+            curRotation = 0;
+            curType = "object";
+            textString = "toilet";
+            pictureBox2.Invalidate();
+        }
+
+        private void Sink_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = sink;
+            curRotation = 0;
+            curType = "object";
+            textString = "sink";
+            pictureBox2.Invalidate();
+        }
+
+        private void Counter_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = counter;
+            curRotation = 0;
+            curType = "object";
+            textString = "counter";
+            pictureBox2.Invalidate();
+        }
+
+        private void FilinfCabinet_MouseClick(object sender, MouseEventArgs e) {
+            curBrush = filingCabinet;
+            curRotation = 0;
+            curType = "object";
+            textString = "filingcabinet";
             pictureBox2.Invalidate();
         }
         //__________________________________________________________________________________________

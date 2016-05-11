@@ -457,3 +457,7 @@
 <b> 3:03 pm 5/11/16: Anthony Olivares</b>
 <ul><li>Added levels 4 and 5</li>
 <li>Fixed a bug in which enemies could run out of ammo, causing the game to crash (fixed by giving enemies infinite ammo)</li></ul>
+
+<b> 3:35 pm 5/11/16: Anthony Connor Cummings</b>
+<ul><li>Added new textures for map editor</li>
+<li>changed look of texture and game object panels</li></ul>
