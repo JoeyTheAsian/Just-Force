@@ -232,7 +232,7 @@ namespace Shooter.Entities {
             for (int i = X - 1; i < X + 2; i++) {
                 for (int j = Y - 1; j < Y + 2; j++) {
                     //stay within boundaries of map and check if the tile is walkable
-                    if (i > 0 && j > 0 && nodeMap[i,j].collidable == false) {
+                    if (i > 0 && j > 0 && j < nodeMap.GetLength(1) && i < nodeMap.GetLength(0) && nodeMap[i,j].collidable == false) {
                         Node n = nodeMap[i, j];
                         if (n.state == Node.NodeState.Closed) {
                             //do nothing if the node is closed

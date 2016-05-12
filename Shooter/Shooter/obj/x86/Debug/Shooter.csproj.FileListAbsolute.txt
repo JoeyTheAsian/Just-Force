@@ -1069,3 +1069,7 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\WallCorner
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\WallEnd.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level4icon.PNG
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level5icon.PNG
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\case.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\caseClosed.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level4icon.PNG
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level5icon.PNG

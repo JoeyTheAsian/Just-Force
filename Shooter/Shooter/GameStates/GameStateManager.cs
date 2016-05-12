@@ -46,6 +46,7 @@ namespace Shooter.GameStates
         public int[] levelClears;
         public Texture2D caseBackground;
         public Texture2D closedBackground;
+        public Rectangle rightStartButton;
 
         //Textures for level buttons
         public List<Texture2D> levelIcons;
@@ -93,6 +94,8 @@ namespace Shooter.GameStates
             graphicsButton = content.Load<Texture2D>("Graphics");
             backButton = content.Load<Texture2D>("Back");
             controls = content.Load<Texture2D>("tutorial");
+            caseBackground = content.Load<Texture2D>("case");
+            closedBackground = content.Load<Texture2D>("caseClosed");
 
             optionsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 7 / 11, screenWidth / 5, screenHeight / 8);
             controlButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 4 / 10), screenWidth / 5, screenHeight / 8);
@@ -100,6 +103,7 @@ namespace Shooter.GameStates
             graphicsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 6.6 / 10), screenWidth / 5, screenHeight / 8);
             backButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 8 / 10), screenWidth / 5, screenHeight / 8);
             controlBackButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 9 / 10), screenWidth / 5, screenHeight / 8);
+            rightStartButton = new Rectangle(screenWidth / 2 + screenWidth / 5, (int)(screenHeight * 9 / 10), screenWidth / 5, screenHeight / 8);
 
             resumeButton = content.Load<Texture2D>("Resume");
             resumeButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
@@ -114,14 +118,14 @@ namespace Shooter.GameStates
 
             //Adds the rectangles
             levelRect = new List<Rectangle>();
-            levelRect.Add(new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 10, 350, 200)); //level 1
-            levelRect.Add(new Rectangle(screenWidth / 3, screenHeight * 3 / 10, 350, 200)); //level 2
-            levelRect.Add(new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 10, 350, 200)); //level 3
-            levelRect.Add(new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 10, 350, 200)); //level 4
-            levelRect.Add(new Rectangle((screenWidth / 10) + 50, screenHeight * 3 / 5, 350, 200)); //level 5
-            levelRect.Add(new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200)); //level 6
-            levelRect.Add(new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200)); //level 7
-            levelRect.Add(new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200)); //level 8
+            levelRect.Add(new Rectangle((screenWidth / 14), screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 1
+            levelRect.Add(new Rectangle((screenWidth / 14) + (screenWidth / 5) + screenWidth/ 50, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 2
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) *2, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 3
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 3, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 4
+            levelRect.Add(new Rectangle((screenWidth / 14) , screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 5
+            levelRect.Add(new Rectangle((screenWidth / 14) + (screenWidth / 5) + screenWidth / 50, screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 6
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 2, screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 7
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 3, screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 8
             levelClears = new int[8];
             levelClears[0] = 1;
 
@@ -165,23 +169,11 @@ namespace Shooter.GameStates
                 //player clicks start
                 if (mouseClickRect.Intersects(startbuttonRect)) {
                     try {
-                        SkillSystem.CreateSkills(Content, player);
-                        Shooting.CreateWeapons(Content);
-                        player.Health = player.MaxHealth;
-                        player.Stamina = 100;
-                        wepUnl = "";
-                        player.Weapon = Shooting.weapons[1];
-                        player.FrameLevel = 1;
-                        currentLevel = 1;
-                        enemies.Clear();
-                        Items.Clear();
-                        projectiles.Clear();
-                        timer = 0;
-                        gameState = "LevelSwitch";
+                        gameState = "Case";
                         CheckGameState();
                     } catch (GameStateNotFoundException e) {
                         Console.WriteLine(e.ToString());
-                        gameState = "";
+                        gameState = "Case";
                     }
 
                 }
@@ -222,7 +214,7 @@ namespace Shooter.GameStates
                         gameState = "";
                         lastState = "";
                     }
-                } else if (mouseClickRect.Intersects(levelRect[0]) || mouseClickRect.Intersects(levelRect[1]) || mouseClickRect.Intersects(levelRect[2])) {
+                } else if (mouseClickRect.Intersects(levelRect[0]) || mouseClickRect.Intersects(levelRect[1]) || mouseClickRect.Intersects(levelRect[2]) || mouseClickRect.Intersects(levelRect[3]) || mouseClickRect.Intersects(levelRect[4])) {
                     Shooting.CreateWeapons(Content);
                     if (mouseClickRect.Intersects(levelRect[0]) && levelClears[0] != 0) {
                         currentLevel = 1;
@@ -269,8 +261,42 @@ namespace Shooter.GameStates
                         timer = 0;
                         gameState = "LevelSwitch";
                         CheckGameState();
+                    } else if (mouseClickRect.Intersects(levelRect[3]) && levelClears[3] != 0) {
+                        currentLevel = 4;
+                        Shooting.weapons[2].IsAcquired = true;
+                        Shooting.weapons[3].IsAcquired = true;
+                        Shooting.weapons[4].IsAcquired = true;
+                        SkillSystem.CreateSkills(Content, player);
+                        player.Health = player.MaxHealth;
+                        player.Stamina = 100;
+                        wepUnl = "";
+                        player.Weapon = Shooting.weapons[1];
+                        player.FrameLevel = 1;
+                        enemies.Clear();
+                        Items.Clear();
+                        projectiles.Clear();
+                        timer = 0;
+                        gameState = "LevelSwitch";
+                        CheckGameState();
+                    } else if (mouseClickRect.Intersects(levelRect[4]) && levelClears[4] != 0) {
+                        currentLevel = 5;
+                        Shooting.weapons[2].IsAcquired = true;
+                        Shooting.weapons[3].IsAcquired = true;
+                        Shooting.weapons[4].IsAcquired = true;
+                        SkillSystem.CreateSkills(Content, player);
+                        player.Health = player.MaxHealth;
+                        player.Stamina = 100;
+                        wepUnl = "";
+                        player.Weapon = Shooting.weapons[1];
+                        player.FrameLevel = 1;
+                        enemies.Clear();
+                        Items.Clear();
+                        projectiles.Clear();
+                        timer = 0;
+                        gameState = "LevelSwitch";
+                        CheckGameState();
                     }
-                    
+
                 }
             }
             //Death screen 
@@ -279,9 +305,33 @@ namespace Shooter.GameStates
                     gameState = "StartMenu";
                     CheckGameState();
                 }
+            }//Victory state for beating the game
+            else if (gameState == "Victory") {
+                if (mouseClickRect.Intersects(rightStartButton)) {
+                    gameState = "StartMenu";
+                    CheckGameState();
+                }
+            }//Page for the Case story 
+            else if (gameState == "Case") {
+                if (mouseClickRect.Intersects(rightStartButton)) {
+                    SkillSystem.CreateSkills(Content, player);
+                    Shooting.CreateWeapons(Content);
+                    player.Health = player.MaxHealth;
+                    player.Stamina = 100;
+                    wepUnl = "";
+                    player.Weapon = Shooting.weapons[1];
+                    player.FrameLevel = 1;
+                    currentLevel = 1;
+                    enemies.Clear();
+                    Items.Clear();
+                    projectiles.Clear();
+                    timer = 0;
+                    gameState = "LevelSwitch";
+                    CheckGameState();
+                }
             }
-            //puased screen
-            else if (gameState == "Paused") {
+               //puased screen
+               else if (gameState == "Paused") {
                 if (mouseClickRect.Intersects(exitbuttonRect)) {
                     saveLevelClears();
                     gameState = "StartMenu";

@@ -53,8 +53,10 @@ namespace Shooter {
         //Height and width of the monitor
         //private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         //private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-        private int screenHeight = 1015;
-        private int screenWidth = 1920;
+        //private int screenHeight = 1015;
+        //private int screenWidth = 1920;
+        private int screenHeight = 768;
+        private int screenWidth = 1024;
         //Camera object
         private Camera c;
 
@@ -249,6 +251,7 @@ namespace Shooter {
                             projectiles.Clear();
                             timer = 0;
                             g.gameState = "LevelSwitch";
+                            g.saveLevelClears();
                             if (currentLevel < Shooting.weapons.Length && !Shooting.weapons[currentLevel].IsAcquired) {
                                 wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[currentLevel].Name;
                                 Shooting.weapons[currentLevel].IsAcquired = true;
@@ -261,7 +264,8 @@ namespace Shooter {
                             enemies.Clear();
                             Items.Clear();
                             projectiles.Clear();
-                            g.gameState = "StartMenu";
+                            g.saveLevelClears();
+                            g.gameState = "Victory";
                         }
                     }
                 }
@@ -508,9 +512,9 @@ namespace Shooter {
                     } else {
                         spriteBatch.Draw(g.levelIcons[4], g.levelRect[4], Color.Red); //level 3
                     }
-                    spriteBatch.Draw(health, new Rectangle(screenWidth / 3, screenHeight * 3 / 5, 350, 200), Color.White); //level 6
-                    spriteBatch.Draw(health, new Rectangle((screenWidth * 4 / 7) - 55, screenHeight * 3 / 5, 350, 200), Color.White); //level 7
-                    spriteBatch.Draw(health, new Rectangle(screenWidth * 3 / 4, screenHeight * 3 / 5, 350, 200), Color.White); //level 8
+                    spriteBatch.Draw(health, g.levelRect[5], Color.White); //level 6
+                    spriteBatch.Draw(health, g.levelRect[6], Color.White); //level 7
+                    spriteBatch.Draw(health, g.levelRect[7], Color.White); //level 8
                     break;
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
                 case "GraphicsMenu":
@@ -538,6 +542,16 @@ namespace Shooter {
                 case "Death":
                     spriteBatch.Draw(g.deathBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
+                    break;
+                //___________________DRAW DEATH SCREEN_____________________________________________________________________
+                case "Case":
+                    spriteBatch.Draw(g.caseBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.startButton, g.rightStartButton, Color.White);
+                    break;
+                //___________________DRAW DEATH SCREEN_____________________________________________________________________
+                case "Victory":
+                    spriteBatch.Draw(g.closedBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.startButton, g.rightStartButton, Color.White);
                     break;
                 //____________________DRAW PAUSE MENU____________________________________________________________________
                 case "Paused":

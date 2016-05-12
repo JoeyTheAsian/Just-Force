@@ -53,7 +53,7 @@ namespace Shooter.Controls
                         Shooting.weapons[2].Ammo.Add(15);
                         curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("shotgunammo")) {
-                        Shooting.weapons[3].Ammo.Add(6);
+                        Shooting.weapons[3].Ammo.Add(5);
                         curSounds.Enqueue(Content.Load<SoundEffect>("ammoSound"));
                     } else if (Items[f].ItemType.Equals("rifleammo")) {
                         Shooting.weapons[4].Ammo.Add(4);
