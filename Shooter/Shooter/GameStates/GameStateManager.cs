@@ -101,7 +101,7 @@ namespace Shooter.GameStates {
             soundsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 5.3 / 10), screenWidth / 5, screenHeight / 8);
             graphicsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 6.6 / 10), screenWidth / 5, screenHeight / 8);
             backButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 8 / 10), screenWidth / 5, screenHeight / 8);
-            controlBackButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 9 / 10), screenWidth / 5, screenHeight / 8);
+            controlBackButtonPosition = new Rectangle(screenWidth / 2 + screenWidth / 5, (int)(screenHeight * 55 / 100), screenWidth / 5, screenHeight / 8);
             rightStartButton = new Rectangle(screenWidth / 2 + screenWidth / 5, (int)(screenHeight * 85 / 100), screenWidth / 5, screenHeight / 8);
 
             resumeButton = content.Load<Texture2D>("Resume");
