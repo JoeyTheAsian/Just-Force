@@ -473,3 +473,7 @@
 <li>Added levels 4 and 5 to the level select</li>
 <li>Added a spot for the case file for the game</li>
 <li>Added a victory screen the game</li></ul>
+
+<b> 6:36 pm 5/12/16: Austin Ford</b>
+<ul><li>Added the ability to change resolutions</li>
+<li>Created icons for the diffrent resolutions</li></ul>
