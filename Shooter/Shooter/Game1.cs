@@ -55,8 +55,8 @@ namespace Shooter {
         //private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         //private int screenHeight = 1015;
         //private int screenWidth = 1920;
-        private int screenHeight = 768;
-        private int screenWidth = 1024;
+        private int screenHeight = 600;
+        private int screenWidth = 800;
         //Camera object
         private Camera c;
 
@@ -196,7 +196,7 @@ namespace Shooter {
                         if (methodCall[0].Equals("CREATENORMALENEMY")) {
                             CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]), 0);
                         } else if (methodCall[0].Equals("CREATERIOTENEMY")) {
-                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]) , 0);
+                            CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, double.Parse(methodCall[1]), double.Parse(methodCall[2]), 0);
                         } else if (methodCall[0].Equals("createhealthkit")) {
                             CreateItems.CreateHealthKit(Content, Items, double.Parse(methodCall[1]), double.Parse(methodCall[2]));
                         } else if (methodCall[0].Equals("createammokit")) {
@@ -317,40 +317,33 @@ namespace Shooter {
                 //updates projectiles and checks collision
                 for (int i = 0; i < projectiles.Count; i++) {
                     //checks if the projectile has exceeded its maximum range
-                    if(projectiles[i] != null)
-                    {
-                        if (projectiles[i].CheckRange() == true)
-                        {
+                    if (projectiles[i] != null) {
+                        if (projectiles[i].CheckRange() == true) {
                             projectiles.Remove(projectiles[i]);
                             i--;
-                        }
-                        else {
+                        } else {
                             projectiles[i].UpdatePos(gameTime.ElapsedGameTime.Milliseconds, m.TileSize);
-                            if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound)
-                            {
+                            if (m.CheckArea(projectiles[i], c) != null && m.CheckArea(projectiles[i], c).Equals("hit") && !projectiles[i].IsRifleRound) {
                                 projectiles.RemoveAt(i);
                                 i--;
                                 break;
                             }
-                            if (!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon))
-                            {
+                            if (!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
                                 projectiles.RemoveAt(i);
                                 curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
                                 i--;
                                 break;
                             }
                             //Checks if any projectiles collide with any enemies
-                            for (int k = 0; k < enemies.Count; k++)
-                            {
-                                if (projectiles[i].CheckHit(enemies[k], player.Weapon))
-                                {
+                            for (int k = 0; k < enemies.Count; k++) {
+                                if (projectiles[i].CheckHit(enemies[k], player.Weapon)) {
                                     projectiles.RemoveAt(i);
                                     i--;
                                     break;
                                 }
                             }
                         }
-                    
+
                     }
                 }
                 //update AI for all enemies
@@ -411,6 +404,42 @@ namespace Shooter {
                 if (timer >= tranTimer) {
                     m = new Map(Content, "level" + currentLevel + ".dat", c, player, enemies, screenWidth);
                     g.gameState = "Playing";
+                }
+            }
+            if (g.gameState == "GraphicsMenu") {
+                Rectangle mouseRect = new Rectangle(mState.X, mState.Y, 1, 1);
+                if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton != ButtonState.Pressed && (mouseRect.Intersects(g.levelRect[0]) || mouseRect.Intersects(g.levelRect[1]) || mouseRect.Intersects(g.levelRect[2]) || mouseRect.Intersects(g.levelRect[3]) || mouseRect.Intersects(g.levelRect[4]) || mouseRect.Intersects(g.levelRect[5]) || mouseRect.Intersects(g.levelRect[6]) || mouseRect.Intersects(g.levelRect[7]))) {
+                    if (mouseRect.Intersects(g.levelRect[0])) {
+                        screenHeight = 600;
+                        screenWidth = 800;
+                    } else if (mouseRect.Intersects(g.levelRect[1])) {
+                        screenHeight = 768;
+                        screenWidth = 1024;
+                    } else if (mouseRect.Intersects(g.levelRect[2])) {
+                        screenHeight = 720;
+                        screenWidth = 1280;
+                    } else if (mouseRect.Intersects(g.levelRect[3])) {
+                        screenHeight = 800;
+                        screenWidth = 1280;
+                    } else if (mouseRect.Intersects(g.levelRect[4])) {
+                        screenHeight = 1024;
+                        screenWidth = 1280;
+                    } else if (mouseRect.Intersects(g.levelRect[5])) {
+                        screenHeight = 900;
+                        screenWidth = 1600;
+                    } else if (mouseRect.Intersects(g.levelRect[6])) {
+                        screenHeight = 1024;
+                        screenWidth = 1600;
+                    } else if (mouseRect.Intersects(g.levelRect[7])) {
+                        screenHeight = 1080;
+                        screenWidth = 1920;
+                    }
+                    soundEffects.Clear();
+                    graphics.PreferredBackBufferHeight = screenHeight;
+                    graphics.PreferredBackBufferWidth = screenWidth;
+                    graphics.ApplyChanges();
+                    g = new GameStateManager(screenWidth, screenHeight, Content, currentLevel);
+                    LoadGame();
                 }
             }
 
@@ -519,6 +548,14 @@ namespace Shooter {
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
                 case "GraphicsMenu":
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(g.graphicIcons[0], g.levelRect[0], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[1], g.levelRect[1], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[2], g.levelRect[2], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[3], g.levelRect[3], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[4], g.levelRect[4], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[5], g.levelRect[5], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[6], g.levelRect[6], Color.White); //level 1
+                    spriteBatch.Draw(g.graphicIcons[7], g.levelRect[7], Color.White); //level 1
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
                     break;
                 //____________________DRAW SOUNDS OPTIONS MENU____________________________________________________________
@@ -738,9 +775,9 @@ namespace Shooter {
             currentLevel = 1;
             //Creates the names of the levels
             StreamReader levelLoader = new StreamReader("../../../Content/levelInfo.txt");
-            levelInfo = new string[8,4];
-            for(int i = 0; i < levelInfo.GetLength(0); i++) {
-                for(int j = 0; j < levelInfo.GetLength(1); j++) {
+            levelInfo = new string[8, 4];
+            for (int i = 0; i < levelInfo.GetLength(0); i++) {
+                for (int j = 0; j < levelInfo.GetLength(1); j++) {
                     levelInfo[i, j] = levelLoader.ReadLine();
                 }
             }

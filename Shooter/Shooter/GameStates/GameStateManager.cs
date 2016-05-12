@@ -11,10 +11,8 @@ using System.Text;
 using System.Threading;
 using System.IO;
 
-namespace Shooter.GameStates
-{
-    class GameStateManager
-    {
+namespace Shooter.GameStates {
+    class GameStateManager {
 
         //attributes
         public Texture2D startButton;
@@ -52,7 +50,8 @@ namespace Shooter.GameStates
         public List<Texture2D> levelIcons;
         //Rectangles for level buttons
         public List<Rectangle> levelRect;
-
+        //List for the graphics icons
+        public List<Texture2D> graphicIcons;
         public Texture2D startMenuBackground;
 
         public List<string> states;
@@ -103,14 +102,14 @@ namespace Shooter.GameStates
             graphicsButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 6.6 / 10), screenWidth / 5, screenHeight / 8);
             backButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 8 / 10), screenWidth / 5, screenHeight / 8);
             controlBackButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, (int)(screenHeight * 9 / 10), screenWidth / 5, screenHeight / 8);
-            rightStartButton = new Rectangle(screenWidth / 2 + screenWidth / 5, (int)(screenHeight * 9 / 10), screenWidth / 5, screenHeight / 8);
+            rightStartButton = new Rectangle(screenWidth / 2 + screenWidth / 5, (int)(screenHeight * 85 / 100), screenWidth / 5, screenHeight / 8);
 
             resumeButton = content.Load<Texture2D>("Resume");
             resumeButtonPosition = new Rectangle(screenWidth / 2 - screenWidth / 10, screenHeight * 4 / 10, screenWidth / 5, screenHeight / 8);
 
             //Adds the icons
             levelIcons = new List<Texture2D>();
-            levelIcons.Add(content.Load <Texture2D>("level1Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level1Icon"));
             levelIcons.Add(content.Load<Texture2D>("level2Icon"));
             levelIcons.Add(content.Load<Texture2D>("level3Icon"));
             levelIcons.Add(content.Load<Texture2D>("level4Icon"));
@@ -119,15 +118,21 @@ namespace Shooter.GameStates
             //Adds the rectangles
             levelRect = new List<Rectangle>();
             levelRect.Add(new Rectangle((screenWidth / 14), screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 1
-            levelRect.Add(new Rectangle((screenWidth / 14) + (screenWidth / 5) + screenWidth/ 50, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 2
-            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) *2, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 3
+            levelRect.Add(new Rectangle((screenWidth / 14) + (screenWidth / 5) + screenWidth / 50, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 2
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 2, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 3
             levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 3, screenHeight * 3 / 10, screenWidth / 5, screenHeight / 8)); //level 4
-            levelRect.Add(new Rectangle((screenWidth / 14) , screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 5
-            levelRect.Add(new Rectangle((screenWidth / 14) + (screenWidth / 5) + screenWidth / 50, screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 6
-            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 2, screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 7
-            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 3, screenHeight * 3 / 5, screenWidth / 5, screenHeight / 8)); //level 8
+            levelRect.Add(new Rectangle((screenWidth / 14), screenHeight * 2 / 4, screenWidth / 5, screenHeight / 8)); //level 5
+            levelRect.Add(new Rectangle((screenWidth / 14) + (screenWidth / 5) + screenWidth / 50, screenHeight * 2 / 4, screenWidth / 5, screenHeight / 8)); //level 6
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 2, screenHeight * 2 / 4, screenWidth / 5, screenHeight / 8)); //level 7
+            levelRect.Add(new Rectangle((screenWidth / 14) + ((screenWidth / 5) + screenWidth / 50) * 3, screenHeight * 2 / 4, screenWidth / 5, screenHeight / 8)); //level 8
             levelClears = new int[8];
             levelClears[0] = 1;
+
+            //Icons for the different resolutions
+            graphicIcons = new List<Texture2D>();
+            for(int k = 0; k < 8; k++) {
+                graphicIcons.Add(content.Load<Texture2D>("res" + (k + 1)));
+            }
 
             //
             try {
@@ -467,13 +472,13 @@ namespace Shooter.GameStates
 
         //Method that saves the current level clears
         public void saveLevelClears() {
-                Stream str = File.OpenWrite("levelClear.dat");
-                BinaryWriter levelWriter = new BinaryWriter(str);
-                for (int i = 0; i < levelClears.Length; i++) {
-                    levelWriter.Write(levelClears[i]);
-                }
-                levelWriter.Close();
-            
+            Stream str = File.OpenWrite("levelClear.dat");
+            BinaryWriter levelWriter = new BinaryWriter(str);
+            for (int i = 0; i < levelClears.Length; i++) {
+                levelWriter.Write(levelClears[i]);
+            }
+            levelWriter.Close();
+
         }
     }
 }
