@@ -465,3 +465,11 @@
 <b> 4:12 pm 5/11/16: Austin Ford</b>
 <ul><li>Added loading feature to the map editor</li>
 <li>Addded door texture</li></ul>
+
+<b> 5:20 pm 5/12/16: Austin Ford</b>
+<ul><li>Added levels 4 and 5 to the game</li>
+<li>Changed level select to scale with screen size</li>
+<li>Created icons for levels for and five</li>
+<li>Added levels 4 and 5 to the level select</li>
+<li>Added a spot for the case file for the game</li>
+<li>Added a victory screen the game</li></ul>
