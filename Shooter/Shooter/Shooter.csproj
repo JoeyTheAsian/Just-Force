@@ -117,6 +117,9 @@
     <Content Include="Content\bar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bgSong.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Building.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

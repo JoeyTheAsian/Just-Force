@@ -1083,3 +1083,13 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res5.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res6.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res7.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res8.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res1.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res2.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res3.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res4.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res5.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res6.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res7.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res8.png
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bgSong.xnb
+C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bgSong.wav

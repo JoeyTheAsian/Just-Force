@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.IO;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Shooter.GameStates {
     class GameStateManager {
@@ -165,7 +166,7 @@ namespace Shooter.GameStates {
             isLoading = true;
         }
         //method for mouse on main menu
-        public Rectangle MouseClicked(int x, int y, Game1 game, ref int currentLevel, ref List<Enemy> enemies, ref List<PickUpItem> Items, ref List<Projectile> projectiles, ref int timer, ContentManager Content, ref Character player, ref string wepUnl) {
+        public Rectangle MouseClicked(int x, int y, Game1 game, ref int currentLevel, ref List<Enemy> enemies, ref List<PickUpItem> Items, ref List<Projectile> projectiles, ref int timer, ContentManager Content, ref Character player, ref string wepUnl, ref bool songPlaying, ref SoundEffectInstance song) {
             Rectangle mouseClickRect = new Rectangle(x, y, 1, 1);
             Rectangle startbuttonRect = new Rectangle((int)startButtonPosition.X, (int)startButtonPosition.Y, 300, 108);
             Rectangle exitbuttonRect = new Rectangle((int)exitButtonPosition.X, (int)exitButtonPosition.Y, 600, 192);
@@ -177,7 +178,7 @@ namespace Shooter.GameStates {
                         gameState = "Case";
                         CheckGameState();
                     } catch (GameStateNotFoundException e) {
-                        Console.WriteLine(e.ToString());
+                        
                         gameState = "Case";
                     }
 
@@ -339,6 +340,8 @@ namespace Shooter.GameStates {
                else if (gameState == "Paused") {
                 if (mouseClickRect.Intersects(exitbuttonRect)) {
                     saveLevelClears();
+                    song.Stop();
+                    songPlaying = false;
                     gameState = "StartMenu";
                     CheckGameState();
                 } else if (mouseClickRect.Intersects(optionsButtonPosition)) {
@@ -352,6 +355,7 @@ namespace Shooter.GameStates {
                     }
                 } else if (mouseClickRect.Intersects(resumeButtonPosition)) {
                     try {
+                        song.Resume();
                         gameState = "Playing";
                         CheckGameState();
                     } catch (GameStateNotFoundException e) {
@@ -441,9 +445,10 @@ namespace Shooter.GameStates {
             return mouseClickRect;
         }
 
-        public bool updateState(KeyboardState State, KeyboardState oldState) {
+        public bool updateState(KeyboardState State, KeyboardState oldState, ref bool songPlaying, ref SoundEffectInstance song) {
             if (gameState == "Playing" && State.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) {
                 try {
+                    song.Pause();
                     gameState = "Paused";
                     CheckGameState();
                 } catch (GameStateNotFoundException e) {
@@ -454,6 +459,7 @@ namespace Shooter.GameStates {
             } else if (gameState == "Paused") {
                 if (State.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) {
                     try {
+                        song.Resume();
                         gameState = "Playing";
                         CheckGameState();
                     } catch (GameStateNotFoundException e) {

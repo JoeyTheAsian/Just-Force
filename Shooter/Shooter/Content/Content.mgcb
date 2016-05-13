@@ -91,3 +91,9 @@
 /processorParam:Quality=Best
 /build:playerHit.wav
 
+#begin bgSong.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:bgSong.wav
+

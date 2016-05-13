@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-
+using Microsoft.Xna.Framework.Media;
 
 namespace Shooter {
     ///main type for the game
@@ -55,8 +55,8 @@ namespace Shooter {
         //private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         //private int screenHeight = 1015;
         //private int screenWidth = 1920;
-        private int screenHeight = 600;
-        private int screenWidth = 800;
+        private int screenHeight = 768;
+        private int screenWidth = 1024;
         //Camera object
         private Camera c;
 
@@ -97,6 +97,9 @@ namespace Shooter {
         private int tranTimer = 3000;
         private string wepUnl = "";
         private SoundEffect deathSound;
+        private SoundEffect bgSong;
+        public SoundEffectInstance song;
+        public bool songPlaying;
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -230,10 +233,10 @@ namespace Shooter {
 
 
             if (oldMState.LeftButton == ButtonState.Released && mState.LeftButton == ButtonState.Pressed) {
-                g.MouseClicked(mState.X, mState.Y, this, ref currentLevel, ref enemies, ref Items, ref projectiles, ref timer, Content, ref player, ref wepUnl);
+                g.MouseClicked(mState.X, mState.Y, this, ref currentLevel, ref enemies, ref Items, ref projectiles, ref timer, Content, ref player, ref wepUnl, ref songPlaying, ref song);
             }
             //when loading, updatestate returns true, use that to start new thread
-            bool newThread = g.updateState(state, oldState);
+            bool newThread = g.updateState(state, oldState, ref songPlaying, ref song);
             if (newThread == true) {
                 g.gameState = "Loading";
                 g.StartGame();
@@ -244,6 +247,7 @@ namespace Shooter {
                 if (enemies.Count == 0) {
                     if (oldState.IsKeyDown(Keys.Right) && state.IsKeyUp(Keys.Right)) {
                         if (currentLevel != numOfLevels) {
+                            
                             g.levelClears[currentLevel] = 1;
                             currentLevel++;
                             enemies.Clear();
@@ -260,6 +264,7 @@ namespace Shooter {
                             }
 
                         } else {
+                            song.Stop();
                             g.levelClears[g.levelClears.Length - 1] = 1;
                             enemies.Clear();
                             Items.Clear();
@@ -385,9 +390,12 @@ namespace Shooter {
 
                 //Checks if the player is dead
                 if (player.Health <= 0) {
+                    song.Stop();
+                    songPlaying = false;
                     g.saveLevelClears();
                     curSounds.Clear();
                     deathSound.Play();
+                    MediaPlayer.Stop();
                     g.gameState = "Death";
                 }
 
@@ -403,12 +411,19 @@ namespace Shooter {
                 timer += gameTime.ElapsedGameTime.Milliseconds;
                 if (timer >= tranTimer) {
                     m = new Map(Content, "level" + currentLevel + ".dat", c, player, enemies, screenWidth);
+                    if (!songPlaying) {
+                        song.Volume = volume;
+                        song.Play();
+                        songPlaying = true;
+                    }
                     g.gameState = "Playing";
                 }
             }
             if (g.gameState == "GraphicsMenu") {
                 Rectangle mouseRect = new Rectangle(mState.X, mState.Y, 1, 1);
                 if (oldMState.LeftButton == ButtonState.Pressed && mState.LeftButton != ButtonState.Pressed && (mouseRect.Intersects(g.levelRect[0]) || mouseRect.Intersects(g.levelRect[1]) || mouseRect.Intersects(g.levelRect[2]) || mouseRect.Intersects(g.levelRect[3]) || mouseRect.Intersects(g.levelRect[4]) || mouseRect.Intersects(g.levelRect[5]) || mouseRect.Intersects(g.levelRect[6]) || mouseRect.Intersects(g.levelRect[7]))) {
+                    song.Stop();
+                    songPlaying = false;
                     if (mouseRect.Intersects(g.levelRect[0])) {
                         screenHeight = 600;
                         screenWidth = 800;
@@ -453,6 +468,7 @@ namespace Shooter {
                     if (volume < 0.0f) {
                         volume = 0.0f;
                     }
+                    song.Volume = volume;
                     SoundEffect shot;
                     soundEffects.TryGetValue("gunshot", out shot);
                     curSounds.Enqueue(shot);
@@ -467,6 +483,7 @@ namespace Shooter {
                     if (volume < 0.0f) {
                         volume = 0.0f;
                     }
+                    song.Volume = volume;
                     SoundEffect shot;
                     soundEffects.TryGetValue("gunshot", out shot);
                     curSounds.Enqueue(shot);
@@ -562,7 +579,10 @@ namespace Shooter {
                 case "SoundsMenu":
                     spriteBatch.Draw(g.startMenuBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     spriteBatch.Draw(g.backButton, g.backButtonPosition, Color.White);
-                    spriteBatch.DrawString(arial, "Use the Left and Right arrow keys to increase or decrease the volume", new Vector2(screenWidth / 4, screenHeight / 2), Color.DarkRed);
+                    spriteBatch.DrawString(arial, "Use the Left Arrow key to decrease the volume", new Vector2((screenWidth - arial.MeasureString("Use the Left Arrow key to decrease the volume").X) / 2, screenHeight * 3 / 10), Color.DarkRed);
+                    spriteBatch.DrawString(arial, "Use the Right Arrow key to increase the volume", new Vector2((screenWidth - arial.MeasureString("Use the Right Arrow key to increase the volume").X) / 2, screenHeight * 3 / 10 + arial.MeasureString("Use the Right Arrow key to increase the volume").Y), Color.DarkRed);
+                    spriteBatch.Draw(bar, new Rectangle(screenWidth/2 - screenWidth/4, screenHeight / 2, (int)(screenWidth / 2), screenWidth / 15), Color.Black);
+                    spriteBatch.Draw(bar, new Rectangle(screenWidth / 2 - screenWidth / 4, screenHeight / 2, (int)((screenWidth / 2) * volume / 1.0f), screenWidth / 15), Color.DarkRed);
                     break;
                 //____________________DRAW Controls OPTIONS MENU____________________________________________________________
                 case "Controls":
@@ -784,6 +804,9 @@ namespace Shooter {
             levelLoader.Close();
             deathSound = Content.Load<SoundEffect>("deathSound");
             player.EntTexture = Content.Load<Texture2D>("Player_Sheet");
+            bgSong = Content.Load<SoundEffect>("bgSong");
+            song = bgSong.CreateInstance();
+            song.IsLooped = true;
             g.gameState = "StartMenu";
         }
     }
