@@ -102,7 +102,6 @@
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Pen = new System.Windows.Forms.Button();
-            this.Line = new System.Windows.Forms.Button();
             this.FlipX = new System.Windows.Forms.Button();
             this.FlipY = new System.Windows.Forms.Button();
             this.EnemySpawn = new System.Windows.Forms.Button();
@@ -142,7 +141,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel1.Controls.Add(this.RoadLane, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AsphaltTex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ConcreteTex, 2, 0);
@@ -170,7 +169,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 162);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 162);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // RoadLane
@@ -244,7 +243,7 @@
             this.ParkingSpot.Location = new System.Drawing.Point(268, 3);
             this.ParkingSpot.Margin = new System.Windows.Forms.Padding(0);
             this.ParkingSpot.Name = "ParkingSpot";
-            this.ParkingSpot.Size = new System.Drawing.Size(53, 50);
+            this.ParkingSpot.Size = new System.Drawing.Size(56, 50);
             this.ParkingSpot.TabIndex = 5;
             this.ParkingSpot.Text = "parking spot";
             this.ParkingSpot.UseVisualStyleBackColor = true;
@@ -322,7 +321,7 @@
             this.TiledFloor.Location = new System.Drawing.Point(268, 56);
             this.TiledFloor.Margin = new System.Windows.Forms.Padding(0);
             this.TiledFloor.Name = "TiledFloor";
-            this.TiledFloor.Size = new System.Drawing.Size(53, 50);
+            this.TiledFloor.Size = new System.Drawing.Size(56, 50);
             this.TiledFloor.TabIndex = 11;
             this.TiledFloor.Text = "tiledfloor";
             this.TiledFloor.UseVisualStyleBackColor = true;
@@ -335,7 +334,7 @@
             this.Building.Location = new System.Drawing.Point(268, 3);
             this.Building.Margin = new System.Windows.Forms.Padding(0);
             this.Building.Name = "Building";
-            this.Building.Size = new System.Drawing.Size(53, 50);
+            this.Building.Size = new System.Drawing.Size(56, 50);
             this.Building.TabIndex = 7;
             this.Building.Text = "Building";
             this.Building.UseVisualStyleBackColor = true;
@@ -348,7 +347,7 @@
             this.BuildingCorner.Location = new System.Drawing.Point(268, 56);
             this.BuildingCorner.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingCorner.Name = "BuildingCorner";
-            this.BuildingCorner.Size = new System.Drawing.Size(53, 50);
+            this.BuildingCorner.Size = new System.Drawing.Size(56, 50);
             this.BuildingCorner.TabIndex = 8;
             this.BuildingCorner.Text = "Building Corner";
             this.BuildingCorner.UseVisualStyleBackColor = true;
@@ -584,7 +583,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel2.Controls.Add(this.NoTexture, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TrashCan, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.FenceCorner, 2, 0);
@@ -639,7 +638,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(324, 533);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(327, 533);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // NoTexture
@@ -791,7 +790,7 @@
             this.BuildingInterior.Location = new System.Drawing.Point(268, 109);
             this.BuildingInterior.Margin = new System.Windows.Forms.Padding(0);
             this.BuildingInterior.Name = "BuildingInterior";
-            this.BuildingInterior.Size = new System.Drawing.Size(53, 50);
+            this.BuildingInterior.Size = new System.Drawing.Size(56, 50);
             this.BuildingInterior.TabIndex = 11;
             this.BuildingInterior.Text = "BuildingInterior";
             this.BuildingInterior.UseVisualStyleBackColor = true;
@@ -921,7 +920,7 @@
             this.dumpster3.Location = new System.Drawing.Point(268, 162);
             this.dumpster3.Margin = new System.Windows.Forms.Padding(0);
             this.dumpster3.Name = "dumpster3";
-            this.dumpster3.Size = new System.Drawing.Size(53, 50);
+            this.dumpster3.Size = new System.Drawing.Size(56, 50);
             this.dumpster3.TabIndex = 21;
             this.dumpster3.Text = "dumpster3";
             this.dumpster3.UseVisualStyleBackColor = true;
@@ -960,7 +959,7 @@
             this.dumpster6.Location = new System.Drawing.Point(268, 215);
             this.dumpster6.Margin = new System.Windows.Forms.Padding(0);
             this.dumpster6.Name = "dumpster6";
-            this.dumpster6.Size = new System.Drawing.Size(53, 50);
+            this.dumpster6.Size = new System.Drawing.Size(56, 50);
             this.dumpster6.TabIndex = 24;
             this.dumpster6.Text = "dumpster6";
             this.dumpster6.UseVisualStyleBackColor = true;
@@ -1077,7 +1076,7 @@
             this.Toilet.Location = new System.Drawing.Point(268, 268);
             this.Toilet.Margin = new System.Windows.Forms.Padding(0);
             this.Toilet.Name = "Toilet";
-            this.Toilet.Size = new System.Drawing.Size(53, 50);
+            this.Toilet.Size = new System.Drawing.Size(56, 50);
             this.Toilet.TabIndex = 33;
             this.Toilet.Text = "toilet";
             this.Toilet.UseVisualStyleBackColor = true;
@@ -1160,16 +1159,6 @@
             this.Pen.UseVisualStyleBackColor = true;
             this.Pen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Pen_MouseClick);
             // 
-            // Line
-            // 
-            this.Line.Location = new System.Drawing.Point(883, 108);
-            this.Line.Name = "Line";
-            this.Line.Size = new System.Drawing.Size(65, 23);
-            this.Line.TabIndex = 25;
-            this.Line.Text = "Line Tool";
-            this.Line.UseVisualStyleBackColor = true;
-            this.Line.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Line_MouseClick);
-            // 
             // FlipX
             // 
             this.FlipX.Location = new System.Drawing.Point(0, 0);
@@ -1247,7 +1236,6 @@
             this.Controls.Add(this.FlipX);
             this.Controls.Add(this.EnemySpawn);
             this.Controls.Add(this.PlayerSpawn);
-            this.Controls.Add(this.Line);
             this.Controls.Add(this.Pen);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.fileNameBox);
@@ -1330,7 +1318,6 @@
         private System.Windows.Forms.TextBox fileNameBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Pen;
-        private System.Windows.Forms.Button Line;
         private System.Windows.Forms.Button RoadLaneEnd;
         private System.Windows.Forms.Button Building;
         private System.Windows.Forms.Button BuildingCorner;

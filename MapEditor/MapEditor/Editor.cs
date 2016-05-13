@@ -445,32 +445,38 @@ namespace MapEditor {
         }
 
         //office wall
-        private void OfficeWall_Paint(object sender, PaintEventArgs e) {
-            officeWall = new Bitmap("GameObjects/Wall.png");
+        //office wall
+        private void OfficeWall_Paint(object sender, PaintEventArgs e)
+        {
+            officeWall = new Bitmap("GameObjects/officewall.png");
             Graphics g = e.Graphics;
             g.DrawImage(officeWall, 0, 0, 50, 50);
         }
 
         //office double wall
-        private void DoubleWall_Paint(object sender, PaintEventArgs e) {
+        private void DoubleWall_Paint(object sender, PaintEventArgs e)
+        {
             officeDoubleWall = new Bitmap("GameObjects/DoubleWall.png");
             Graphics g = e.Graphics;
             g.DrawImage(officeDoubleWall, 0, 0, 50, 50);
         }
 
         //office wall corner
-        private void WallCorner_Paint(object sender, PaintEventArgs e) {
-            officeWallCorner = new Bitmap("GameObjects/WallCorner.png");
+        private void WallCorner_Paint(object sender, PaintEventArgs e)
+        {
+            officeWallCorner = new Bitmap("GameObjects/officewallcorner.png");
             Graphics g = e.Graphics;
             g.DrawImage(officeWallCorner, 0, 0, 50, 50);
         }
 
         //office wall end
-        private void WallEnd_Paint(object sender, PaintEventArgs e) {
+        private void WallEnd_Paint(object sender, PaintEventArgs e)
+        {
             officeWallEnd = new Bitmap("GameObjects/WallEnd.png");
             Graphics g = e.Graphics;
             g.DrawImage(officeWallEnd, 0, 0, 50, 50);
         }
+
 
         //crate
         private void Crate_Paint(object sender, PaintEventArgs e) {

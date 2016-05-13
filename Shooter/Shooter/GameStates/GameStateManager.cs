@@ -115,6 +115,9 @@ namespace Shooter.GameStates {
             levelIcons.Add(content.Load<Texture2D>("level3Icon"));
             levelIcons.Add(content.Load<Texture2D>("level4Icon"));
             levelIcons.Add(content.Load<Texture2D>("level5Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level6Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level7Icon"));
+            levelIcons.Add(content.Load<Texture2D>("level8Icon"));
 
             //Adds the rectangles
             levelRect = new List<Rectangle>();
@@ -220,7 +223,7 @@ namespace Shooter.GameStates {
                         gameState = "";
                         lastState = "";
                     }
-                } else if (mouseClickRect.Intersects(levelRect[0]) || mouseClickRect.Intersects(levelRect[1]) || mouseClickRect.Intersects(levelRect[2]) || mouseClickRect.Intersects(levelRect[3]) || mouseClickRect.Intersects(levelRect[4])) {
+                } else if (mouseClickRect.Intersects(levelRect[0]) || mouseClickRect.Intersects(levelRect[1]) || mouseClickRect.Intersects(levelRect[2]) || mouseClickRect.Intersects(levelRect[3]) || mouseClickRect.Intersects(levelRect[4]) || mouseClickRect.Intersects(levelRect[5]) || mouseClickRect.Intersects(levelRect[6]) || mouseClickRect.Intersects(levelRect[7])) {
                     Shooting.CreateWeapons(Content);
                     if (mouseClickRect.Intersects(levelRect[0]) && levelClears[0] != 0) {
                         currentLevel = 1;
@@ -286,6 +289,63 @@ namespace Shooter.GameStates {
                         CheckGameState();
                     } else if (mouseClickRect.Intersects(levelRect[4]) && levelClears[4] != 0) {
                         currentLevel = 5;
+                        Shooting.weapons[2].IsAcquired = true;
+                        Shooting.weapons[3].IsAcquired = true;
+                        Shooting.weapons[4].IsAcquired = true;
+                        SkillSystem.CreateSkills(Content, player);
+                        player.Health = player.MaxHealth;
+                        player.Stamina = 100;
+                        wepUnl = "";
+                        player.Weapon = Shooting.weapons[1];
+                        player.FrameLevel = 1;
+                        enemies.Clear();
+                        Items.Clear();
+                        projectiles.Clear();
+                        timer = 0;
+                        gameState = "LevelSwitch";
+                        CheckGameState();
+                    }
+                    else if (mouseClickRect.Intersects(levelRect[5]) && levelClears[5] != 0)
+                    {
+                        currentLevel = 6;
+                        Shooting.weapons[2].IsAcquired = true;
+                        Shooting.weapons[3].IsAcquired = true;
+                        Shooting.weapons[4].IsAcquired = true;
+                        SkillSystem.CreateSkills(Content, player);
+                        player.Health = player.MaxHealth;
+                        player.Stamina = 100;
+                        wepUnl = "";
+                        player.Weapon = Shooting.weapons[1];
+                        player.FrameLevel = 1;
+                        enemies.Clear();
+                        Items.Clear();
+                        projectiles.Clear();
+                        timer = 0;
+                        gameState = "LevelSwitch";
+                        CheckGameState();
+                    }
+                    else if (mouseClickRect.Intersects(levelRect[6]) && levelClears[6] != 0)
+                    {
+                        currentLevel = 7;
+                        Shooting.weapons[2].IsAcquired = true;
+                        Shooting.weapons[3].IsAcquired = true;
+                        Shooting.weapons[4].IsAcquired = true;
+                        SkillSystem.CreateSkills(Content, player);
+                        player.Health = player.MaxHealth;
+                        player.Stamina = 100;
+                        wepUnl = "";
+                        player.Weapon = Shooting.weapons[1];
+                        player.FrameLevel = 1;
+                        enemies.Clear();
+                        Items.Clear();
+                        projectiles.Clear();
+                        timer = 0;
+                        gameState = "LevelSwitch";
+                        CheckGameState();
+                    }
+                    else if (mouseClickRect.Intersects(levelRect[7]) && levelClears[7] != 0)
+                    {
+                        currentLevel = 8;
                         Shooting.weapons[2].IsAcquired = true;
                         Shooting.weapons[3].IsAcquired = true;
                         Shooting.weapons[4].IsAcquired = true;

@@ -37,10 +37,10 @@ namespace Shooter.Entities {
 
         public bool CheckCollide(Entity e) {
             //Gets the boolean values of the the corresponding four corners of the item
-                bool topLeftCorner = (e.Loc.X - 0.5 <= this.location.X + 0.25 && e.Loc.X + 0.5 >= this.location.X + 0.25 && e.Loc.Y - 0.5 <= this.location.Y + 0.25 && e.Loc.Y + 0.5 >= this.location.Y + 0.25);    
-                bool topRightCorner = (e.Loc.X - 0.5 <= this.location.X + 0.75 && e.Loc.X + 0.5 >= this.location.X + 0.75 && e.Loc.Y - 0.5 <= this.location.Y + 0.25 && e.Loc.Y + 0.5 >= this.location.Y + 0.25);
-                bool botLeftCorner = (e.Loc.X - 0.5 <= this.location.X + 0.25 && e.Loc.X + 0.5 >= this.location.X + 0.25 && e.Loc.Y - 0.5 <= this.location.Y + 0.75 && e.Loc.Y + 0.5 >= this.location.Y + 0.75);
-                bool botRightCorner = (e.Loc.X - 0.5 <= this.location.X + 0.75 && e.Loc.X + 0.5 >= this.location.X + 0.75 && e.Loc.Y - 0.5 <= this.location.Y + 0.75 && e.Loc.Y + 0.5 >= this.location.Y + 0.75);
+                bool topLeftCorner = (e.Loc.X - 0.5 <= this.location.X && e.Loc.X + 0.5 >= this.location.X  && e.Loc.Y - 0.5 <= this.location.Y && e.Loc.Y + 0.5 >= this.location.Y );    
+                bool topRightCorner = (e.Loc.X - 0.5 <= this.location.X + 1 && e.Loc.X + 0.5 >= this.location.X + 1 && e.Loc.Y - 0.5 <= this.location.Y && e.Loc.Y + 0.5 >= this.location.Y);
+                bool botLeftCorner = (e.Loc.X - 0.5 <= this.location.X && e.Loc.X + 0.5 >= this.location.X  && e.Loc.Y - 0.5 <= this.location.Y + 1 && e.Loc.Y + 0.5 >= this.location.Y + 1);
+                bool botRightCorner = (e.Loc.X - 0.5 <= this.location.X + 1 && e.Loc.X + 0.5 >= this.location.X + 1 && e.Loc.Y - 0.5 <= this.location.Y + 1 && e.Loc.Y + 0.5 >= this.location.Y + 1);
 
             //Checks if any corners collide
             if (topLeftCorner || topRightCorner || botLeftCorner || botRightCorner && e.IsPlayer) {

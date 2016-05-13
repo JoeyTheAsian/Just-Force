@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Microsoft.Xna.Framework.Media;
 
 namespace Shooter {
     ///main type for the game
@@ -91,7 +90,7 @@ namespace Shooter {
         protected double time;
         //Current level variable
         private int currentLevel = 0;
-        private int numOfLevels = 5;
+        private int numOfLevels = 8;
         private string[,] levelInfo;
         private int timer = 0;
         private int tranTimer = 3000;
@@ -217,7 +216,8 @@ namespace Shooter {
                     } else {
                         if (methodCall[0].Equals("player.weapon")) {
                             player.Weapon.FillAmmo();
-                        } else if (methodCall[0].Equals("player.health")) {
+                        } else if (methodCall[0].Equals("player.Health")) {
+                            player.MaxHealth = 10000000;
                             player.Health = 10000000;
                         } else if (methodCall[0].Equals("UpdateFPS")) {
                             FPSHandler.UpdateFPS();
@@ -333,7 +333,7 @@ namespace Shooter {
                                 i--;
                                 break;
                             }
-                            if (!SkillSystem.skills[2].Active && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
+                            if (!(SkillSystem.skills[2].Active && player.IsSprinting) && enemies.Count > 0 && projectiles[i].CheckHit(player, enemies[0].Weapon)) {
                                 projectiles.RemoveAt(i);
                                 curSounds.Enqueue(Content.Load<SoundEffect>("playerHit"));
                                 i--;
@@ -395,7 +395,6 @@ namespace Shooter {
                     g.saveLevelClears();
                     curSounds.Clear();
                     deathSound.Play();
-                    MediaPlayer.Stop();
                     g.gameState = "Death";
                 }
 
@@ -559,9 +558,27 @@ namespace Shooter {
                     } else {
                         spriteBatch.Draw(g.levelIcons[4], g.levelRect[4], Color.Red); //level 3
                     }
-                    spriteBatch.Draw(health, g.levelRect[5], Color.White); //level 6
-                    spriteBatch.Draw(health, g.levelRect[6], Color.White); //level 7
-                    spriteBatch.Draw(health, g.levelRect[7], Color.White); //level 8
+                    if (g.levelClears[5] != 0)
+                    {
+                        spriteBatch.Draw(g.levelIcons[5], g.levelRect[5], Color.White); //level 3
+                    }
+                    else {
+                        spriteBatch.Draw(g.levelIcons[5], g.levelRect[5], Color.Red); //level 3
+                    }
+                    if (g.levelClears[6] != 0)
+                    {
+                        spriteBatch.Draw(g.levelIcons[6], g.levelRect[6], Color.White); //level 3
+                    }
+                    else {
+                        spriteBatch.Draw(g.levelIcons[6], g.levelRect[6], Color.Red); //level 3
+                    }
+                    if (g.levelClears[7] != 0)
+                    {
+                        spriteBatch.Draw(g.levelIcons[7], g.levelRect[7], Color.White); //level 3
+                    }
+                    else {
+                        spriteBatch.Draw(g.levelIcons[7], g.levelRect[7], Color.Red); //level 3
+                    }
                     break;
                 //____________________DRAW GRAPHICS OPTIONS MENU__________________________________________________________
                 case "GraphicsMenu":
@@ -609,7 +626,7 @@ namespace Shooter {
                 //___________________DRAW DEATH SCREEN_____________________________________________________________________
                 case "Victory":
                     spriteBatch.Draw(g.closedBackground, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-                    spriteBatch.Draw(g.startButton, g.rightStartButton, Color.White);
+                    spriteBatch.Draw(g.backButton, g.rightStartButton, Color.White);
                     break;
                 //____________________DRAW PAUSE MENU____________________________________________________________________
                 case "Paused":
