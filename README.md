@@ -483,4 +483,5 @@
 <li>Added a background song to the playing state of the game</li></ul>
 
 <b> 2:13 pm 5/13/16: Anthony Olivares </b>
-<ul><li>pushed levels 6, 7, and 8</li></ul>
+<ul><li>pushed levels 6, 7, and 8</li>
+<li>Deleted the line tool from the map editor, since it didn't work</li></ul>
