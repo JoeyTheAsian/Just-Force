@@ -1064,8 +1064,6 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\StairsCorn
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\StairsFlipped.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\TiledFloor.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\toilet.png
-D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Wall.png
-D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\WallCorner.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\WallEnd.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level4icon.PNG
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level5icon.PNG
@@ -1093,3 +1091,10 @@ C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res7.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\res8.png
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bgSong.xnb
 C:\Users\Austin\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bgSong.wav
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bgSong.xnb
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\bgSong.wav
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\officewall.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\officewallcorner.png
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level6icon.PNG
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level7icon.PNG
+D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level8icon.PNG

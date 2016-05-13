@@ -259,10 +259,10 @@
     <Content Include="GameObjects\TrashCan.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\Wall.png">
+    <Content Include="GameObjects\officewall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameObjects\WallCorner.png">
+    <Content Include="GameObjects\officewallcorner.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GameObjects\WallEnd.png">
