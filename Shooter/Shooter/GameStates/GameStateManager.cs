@@ -180,7 +180,7 @@ namespace Shooter.GameStates {
                     try {
                         gameState = "Case";
                         CheckGameState();
-                    } catch (GameStateNotFoundException e) {
+                    } catch (GameStateNotFoundException) {
                         
                         gameState = "Case";
                     }

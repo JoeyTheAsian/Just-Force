@@ -461,6 +461,7 @@ namespace Shooter {
                         screenHeight = 1080;
                         screenWidth = 1920;
                     }
+                    this.Window.Position = new Point(0, 0);
                     soundEffects.Clear();
                     graphics.PreferredBackBufferHeight = screenHeight;
                     graphics.PreferredBackBufferWidth = screenWidth;
