@@ -1,32 +1,32 @@
 The Arrival
 Looks like they were waiting for me
 Didn't matter though
-'->' to move onto the next area
-The Roadway
+'TAB' to move onto the next area
+The Highway
 Another group of thugs taken care of
 These boys are on the highway to hell
-'->' to head to the next area
-Apartment Complex
+'TAB' to head to the next area
+Concrete Lot
+Guess there's still more of them
+Time to explore these buildings
+'TAB' to head to the next area
+Parking Complex
+It's good I checked in here
+Better make sure I cleared them out
+'TAB' to head to the next area
+Parking Complex, Top Floor
+This building is clear
+I should check the office buildings
+'TAB' to head to the next area
+Office Building
+I knew they'd be here
+Time to head up
+'TAB' to head to the next area
+Office Building, Top Floor
+Looks like I'm on the right track
+I'm close to finishing this
+'TAB' to head to the next area
+Outside the old Warehouse
 That's the last of them
-This case is Closed
-'->' to return to the menu
-4
-4
-4
-4
-5
-5
-5
-5
-6
-6
-6
-6
-7
-7
-7
-7
-8
-8
-8
-8
+This case is closed
+'TAB' to return to the main menu
