@@ -477,3 +477,7 @@
 <b> 6:36 pm 5/12/16: Austin Ford</b>
 <ul><li>Added the ability to change resolutions</li>
 <li>Created icons for the diffrent resolutions</li></ul>
+
+<b> 6:36 pm 5/12/16: Austin Ford</b>
+<ul><li>Added a visual bar for volume control</li>
+<li>Added a background song to the playing state of the game</li></ul>
