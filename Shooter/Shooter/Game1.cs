@@ -245,7 +245,7 @@ namespace Shooter {
             //UPDATE GAME LOGIC IF NOT PAUSED_____________________________________________________________________________________________________________
             if (g.gameState.Equals("Playing")) {
                 if (enemies.Count == 0) {
-                    if (oldState.IsKeyDown(Keys.Right) && state.IsKeyUp(Keys.Right)) {
+                    if (oldState.IsKeyDown(Keys.Tab) && state.IsKeyUp(Keys.Tab)) {
                         if (currentLevel != numOfLevels) {
                             
                             g.levelClears[currentLevel] = 1;
@@ -256,11 +256,24 @@ namespace Shooter {
                             timer = 0;
                             g.gameState = "LevelSwitch";
                             g.saveLevelClears();
-                            if (currentLevel < Shooting.weapons.Length && !Shooting.weapons[currentLevel].IsAcquired) {
-                                wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[currentLevel].Name;
-                                Shooting.weapons[currentLevel].IsAcquired = true;
-                            } else {
+                            if (currentLevel == 2 && !Shooting.weapons[2].IsAcquired)
+                            {
+                                wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[2].Name;
+                                Shooting.weapons[2].IsAcquired = true;
+                            }
+                            else if (currentLevel == 4 && !Shooting.weapons[3].IsAcquired)
+                            {
+                                wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[3].Name;
+                                Shooting.weapons[3].IsAcquired = true;
+                            } else if (currentLevel == 6 && !Shooting.weapons[4].IsAcquired)
+                            {
+                                wepUnl = "Looks like I found a new weapon, the " + Shooting.weapons[4].Name;
+                                Shooting.weapons[4].IsAcquired = true;
+                            }
+                            else
+                            {
                                 wepUnl = "";
+
                             }
 
                         } else {

@@ -16,7 +16,10 @@ namespace Shooter.Controls {
         //Doubles the player's health, halves the player's damage and sets the skill to active
         public override void ActivateSkill() {
             player.Health *= 2;
-            player.Weapon.Damage /= 2;
+            Shooting.weapons[1].Damage /= 2;
+            Shooting.weapons[2].Damage /= 2;
+            Shooting.weapons[3].Damage /= 2;
+            Shooting.weapons[4].Damage /= 2;
             //Sets the skill to active and starts the two timers
             active = true;
             timer = 100;
@@ -25,7 +28,10 @@ namespace Shooter.Controls {
         //Doubles the player's damage, halves the player's health and sets the skill to deactive
         public override void DeactivateSkill() {
             player.Health /= 2;
-            player.Weapon.Damage *= 2;
+            Shooting.weapons[1].Damage *= 2;
+            Shooting.weapons[2].Damage *= 2;
+            Shooting.weapons[3].Damage *= 2;
+            Shooting.weapons[4].Damage *= 2;
             //Sets the skill to deactive
             active = false;
         }

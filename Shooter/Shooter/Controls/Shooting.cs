@@ -177,6 +177,11 @@ namespace Shooter.Controls {
                         player.Weapon = weapons[index];
                         player.FrameLevel = index;
                         player.Frame = 0;
+                    } else
+                    {
+                        player.Weapon = weapons[1];
+                        player.FrameLevel = 1;
+                        player.Frame = 0;
                     }
                 } else if (state.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q)) {
                     //Gets the index of the player's current weapon
@@ -191,12 +196,16 @@ namespace Shooter.Controls {
                     if (index < 1) {
                         index = weapons.Length - 1;
                     }
-
                     //Changes the weapon
-                    if (weapons[index].IsAcquired) {
-                        player.Weapon = weapons[index];
-                        player.FrameLevel = index;
-                        player.Frame = 0;
+                    for (int i = index; i > 0; i--)
+                    {
+                        if (weapons[i].IsAcquired)
+                        {
+                            player.Weapon = weapons[i];
+                            player.FrameLevel = i;
+                            player.Frame = 0;
+                            break;
+                        }
                     }
                 }
             }

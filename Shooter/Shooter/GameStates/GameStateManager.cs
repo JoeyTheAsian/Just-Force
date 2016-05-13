@@ -257,7 +257,6 @@ namespace Shooter.GameStates {
                     } else if (mouseClickRect.Intersects(levelRect[2]) && levelClears[2] != 0) {
                         currentLevel = 3;
                         Shooting.weapons[2].IsAcquired = true;
-                        Shooting.weapons[3].IsAcquired = true;
                         SkillSystem.CreateSkills(Content, player);
                         player.Health = player.MaxHealth;
                         player.Stamina = 100;
@@ -274,7 +273,6 @@ namespace Shooter.GameStates {
                         currentLevel = 4;
                         Shooting.weapons[2].IsAcquired = true;
                         Shooting.weapons[3].IsAcquired = true;
-                        Shooting.weapons[4].IsAcquired = true;
                         SkillSystem.CreateSkills(Content, player);
                         player.Health = player.MaxHealth;
                         player.Stamina = 100;
@@ -291,7 +289,6 @@ namespace Shooter.GameStates {
                         currentLevel = 5;
                         Shooting.weapons[2].IsAcquired = true;
                         Shooting.weapons[3].IsAcquired = true;
-                        Shooting.weapons[4].IsAcquired = true;
                         SkillSystem.CreateSkills(Content, player);
                         player.Health = player.MaxHealth;
                         player.Stamina = 100;
