@@ -486,3 +486,7 @@
 <ul><li>pushed levels 6, 7, and 8</li>
 <li>Deleted the line tool from the map editor, since it didn't work</li>
 <li>Pushed the User's Manual</li></ul>
+
+<b> 3:39 pm 5/13/16: Anthony Olivares </b>
+<ul><li>Fixed some errors in user's manual</li>
+<li>Finalized the levelinfo.txt</li></ul>
