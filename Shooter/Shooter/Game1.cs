@@ -811,11 +811,6 @@ namespace Shooter {
 
             //Creates temp enemy
             Items = new List<PickUpItem>();
-            //Creates enemies to check
-            // CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 4, 1);
-            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 8, 1);
-            //CreateEnemy.CreateNormalEnemy(ref enemies, Content, c, m, 12, 1);
-            //CreateEnemy.CreateRiotEnemy(ref enemies, Content, c, m, 16, 1);
             //Creates the weapons for the player
             Shooting.CreateWeapons(Content);
             SkillSystem.CreateSkills(Content, player);
