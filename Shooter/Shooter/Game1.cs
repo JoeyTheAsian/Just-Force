@@ -49,13 +49,14 @@ namespace Shooter {
 
         private Single volume;
 
-        //Height and width of the monitor
-        //private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-        //private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        //Height and width of the screen
+
+        private int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        private int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         //private int screenHeight = 1015;
         //private int screenWidth = 1920;
-        private int screenHeight = 768;
-        private int screenWidth = 1024;
+        //private int screenHeight = 768;
+        //private int screenWidth = 1024;
         //Camera object
         private Camera c;
 
