@@ -20,8 +20,6 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Arial20Bold.x
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\emptyClick.xnb
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\gunshot.xnb
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\EmptyTile.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.pdb
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\MonoGame.Framework.dll
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.MediaFoundation.dll
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.dll
@@ -42,8 +40,6 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct2D1.xml
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\SharpDX.Direct3D9.xml
-C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.exe
-C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.pdb
 C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Shooter.csprojResolveAssemblyReference.cache
 C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Ammo.png
 C:\Users\hi\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Asphalt.png
@@ -464,7 +460,6 @@ D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Health_Kit.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Pistol_Ammo.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Submachine_Gun_Ammo.png
-C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe.config
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Shooter.exe.config
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Building.png
 D:\Users\axf4764\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\BuildingCorner.png
@@ -1232,3 +1227,18 @@ C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\tutorial.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\officewall.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\officewallcorner.png
 C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\WallEnd.png
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelInfo.txt
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Level1.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level2.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level3.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Level4.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\Level5.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level6.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level7.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\level8.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Content\levelClear.dat
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Just_Force.exe.config
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Just_Force.exe
+C:\Users\Joey\Just-Force\Shooter\Shooter\bin\Windows\Debug\Just_Force.pdb
+C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Just_Force.exe
+C:\Users\Joey\Just-Force\Shooter\Shooter\obj\x86\Debug\Just_Force.pdb

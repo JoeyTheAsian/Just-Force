@@ -104,7 +104,7 @@ namespace Shooter {
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
-
+            this.Window.Title = "Just Force";
             //Initializes the list of sound effects
             soundEffects = new Dictionary<string, SoundEffect>();
 
@@ -821,7 +821,7 @@ namespace Shooter {
             SkillSystem.skills[2].Obtained = true;
             currentLevel = 1;
             //Creates the names of the levels
-            StreamReader levelLoader = new StreamReader("../../../Content/levelInfo.txt");
+            StreamReader levelLoader = new StreamReader("Content/levelInfo.txt");
             levelInfo = new string[8, 4];
             for (int i = 0; i < levelInfo.GetLength(0); i++) {
                 for (int j = 0; j < levelInfo.GetLength(1); j++) {

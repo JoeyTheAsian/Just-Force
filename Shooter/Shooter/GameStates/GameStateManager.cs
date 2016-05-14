@@ -140,7 +140,7 @@ namespace Shooter.GameStates {
 
             //
             try {
-                BinaryReader levelReader = new BinaryReader(File.OpenRead("levelClear.dat"));
+                BinaryReader levelReader = new BinaryReader(File.OpenRead("Content/levelClear.dat"));
                 for (int i = 0; i < levelClears.Length; i++) {
                     levelClears[i] = levelReader.ReadInt32();
                 }
@@ -535,13 +535,12 @@ namespace Shooter.GameStates {
 
         //Method that saves the current level clears
         public void saveLevelClears() {
-            Stream str = File.OpenWrite("levelClear.dat");
+            Stream str = File.OpenWrite("Content/levelClear.dat");
             BinaryWriter levelWriter = new BinaryWriter(str);
             for (int i = 0; i < levelClears.Length; i++) {
                 levelWriter.Write(levelClears[i]);
             }
             levelWriter.Close();
-
         }
     }
 }

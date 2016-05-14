@@ -56,7 +56,7 @@ namespace Shooter.MapClasses {
             Texture2D empTexture = content.Load<Texture2D>("EmptyTile");
             tileSize = screenWidth / 20;
 
-            BinaryReader input = new BinaryReader(File.OpenRead("../../../Content/" + filename));
+            BinaryReader input = new BinaryReader(File.OpenRead("Content/" + filename));
             int mapWidth = input.ReadInt32();
             int mapHeight = input.ReadInt32();
 

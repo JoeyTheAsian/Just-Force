@@ -490,3 +490,9 @@
 <b> 3:39 pm 5/13/16: Anthony Olivares </b>
 <ul><li>Fixed some errors in user's manual</li>
 <li>Finalized the levelinfo.txt</li></ul>
+
+<b>1:52 pm 5/14/16: Joey Tong</b>
+<ul><li>Cleaned up directories and added milestone 4 files</li>
+<li>Cleaned up code to use correct directories independent of source code files</li>
+<li>Set resolution to autosize on startup</li>
+<li>Game is done!</li></ul>
