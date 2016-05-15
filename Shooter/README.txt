@@ -10,12 +10,13 @@ S - Move Down
 A - Move Left 
 D - Move Right
 E - change weapons
-V - melee attack
+Space - melee attack
 Shift - Sprint
+Tab - Move to next level
 R - Reload 
 Right mouse button - Shoot
 Move mouse to aim
-1, 2, 3,...9 - Skills
+1, 2, 3 - Skills
 Esc - Pause
 ~ - Debug Console (must manually navigate to console window)
 "print" - List console commands
